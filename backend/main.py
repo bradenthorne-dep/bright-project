@@ -187,6 +187,33 @@ async def get_sample_breakdown():
         ]
     }
 
+@app.get("/api/project-overview")
+async def get_project_overview():
+    """Get project management overview data with mock values"""
+    return {
+        "project_info": {
+            "project_name": "Digital Transformation",
+            "project_manager": "Sarah Johnson",
+            "start_date": "2024-01-15",
+            "end_date": "2024-12-15",
+            "status": "In Progress"
+        },
+        "task_metrics": {
+            "total_tasks": 156,
+            "tasks_completed": 89,
+            "tasks_in_progress": 34,
+            "tasks_on_hold": 8,
+            "tasks_open": 25,
+            "completion_percentage": 57.1
+        },
+        "budget_info": {
+            "allocated_budget": 250000,
+            "utilized_budget": 142750,
+            "budget_utilization_percentage": 57.1,
+            "remaining_budget": 107250
+        }
+    }
+
 
 if __name__ == "__main__":
     import uvicorn

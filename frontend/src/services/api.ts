@@ -54,6 +54,30 @@ export interface SampleBreakdownResponse {
   data: Record<string, any>[];
 }
 
+export interface ProjectOverviewResponse {
+  project_info: {
+    project_name: string;
+    project_manager: string;
+    start_date: string;
+    end_date: string;
+    status: string;
+  };
+  task_metrics: {
+    total_tasks: number;
+    tasks_completed: number;
+    tasks_in_progress: number;
+    tasks_on_hold: number;
+    tasks_open: number;
+    completion_percentage: number;
+  };
+  budget_info: {
+    allocated_budget: number;
+    utilized_budget: number;
+    budget_utilization_percentage: number;
+    remaining_budget: number;
+  };
+}
+
 
 // API functions
 export const apiService = {
@@ -103,6 +127,12 @@ export const apiService = {
   // Get sample breakdown data for testing table component
   async getSampleBreakdown(): Promise<SampleBreakdownResponse> {
     const response = await api.get('/api/sample-breakdown');
+    return response.data;
+  },
+
+  // Get project overview data
+  async getProjectOverview(): Promise<ProjectOverviewResponse> {
+    const response = await api.get('/api/project-overview');
     return response.data;
   },
 
