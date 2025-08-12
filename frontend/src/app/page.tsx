@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import FileUpload from '@/components/tabs/FileUpload';
 import Overview from '@/components/tabs/Overview';
+import TaskTracking from '@/components/tabs/TaskTracking';
 
 export default function DiagnosticPage() {
   const [activeSection, setActiveSection] = useState('data-upload');
@@ -26,6 +27,8 @@ export default function DiagnosticPage() {
         return <FileUpload onDataUploaded={handleDataUpload} onDataAvailable={setDataAvailable} />;
       case 'overview':
         return <Overview onSectionChange={handleNavigationChange} />;
+      case 'task-tracking':
+        return <TaskTracking onSectionChange={handleNavigationChange} />;
       default:
         return <FileUpload onDataUploaded={handleDataUpload} onDataAvailable={setDataAvailable} />;
     }

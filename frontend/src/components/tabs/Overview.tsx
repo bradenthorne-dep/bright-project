@@ -91,14 +91,13 @@ export default function Overview({}: OverviewProps) {
     );
   }
 
-  const { project_info, task_metrics, budget_info } = projectData;
+  const { project_info, task_metrics, budget_info, top_tasks, hourly_rate } = projectData;
 
-  const taskBredownData = [
-    { Category: 'Completed Tasks', Count: task_metrics.tasks_completed, Percentage: `${((task_metrics.tasks_completed / task_metrics.total_tasks) * 100).toFixed(1)}%`, Status: 'Completed' },
-    { Category: 'In Progress Tasks', Count: task_metrics.tasks_in_progress, Percentage: `${((task_metrics.tasks_in_progress / task_metrics.total_tasks) * 100).toFixed(1)}%`, Status: 'In Progress' },
-    { Category: 'Open Tasks', Count: task_metrics.tasks_open, Percentage: `${((task_metrics.tasks_open / task_metrics.total_tasks) * 100).toFixed(1)}%`, Status: 'Open' },
-    { Category: 'On Hold Tasks', Count: task_metrics.tasks_on_hold, Percentage: `${((task_metrics.tasks_on_hold / task_metrics.total_tasks) * 100).toFixed(1)}%`, Status: 'On Hold' },
-  ];
+  const topTasksData = top_tasks.map(task => ({
+    Task: task.task,
+    'Billable Hours': task.billable_hours,
+    'Total Cost': formatCurrency(task.total_cost)
+  }));
 
   return (
     <div className="space-y-8">
@@ -108,125 +107,141 @@ export default function Overview({}: OverviewProps) {
         <p className="text-gray-600">Comprehensive view of project status and metrics</p>
       </div>
 
-      {/* Project Information Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="stat-card">
-          <div>
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Project Name</h3>
-            <p className="text-lg font-bold text-gray-900">{project_info.project_name}</p>
+      {/* Project Information Section */}
+      <div>
+        <h2 className="text-xl font-bold text-gray-900 mb-4">Project Information</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Project Name/Client</h3>
+              <p className="text-lg font-bold text-gray-900">{project_info.project_name}</p>
+              <p className="text-sm text-gray-600">{project_info.client}</p>
+            </div>
           </div>
-        </div>
 
-        <div className="stat-card">
-          <div>
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Project Lead</h3>
-            <p className="text-lg font-bold text-gray-900">{project_info.project_manager}</p>
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Project Lead</h3>
+              <p className="text-lg font-bold text-gray-900">{project_info.project_manager}</p>
+            </div>
           </div>
-        </div>
 
-        <div className="stat-card">
-          <div>
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Start Date</h3>
-            <p className="text-lg font-bold text-gray-900">{formatDate(project_info.start_date)}</p>
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Start Date</h3>
+              <p className="text-lg font-bold text-gray-900">{formatDate(project_info.start_date)}</p>
+            </div>
           </div>
-        </div>
 
-        <div className="stat-card">
-          <div>
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">End Date</h3>
-            <p className="text-lg font-bold text-gray-900">{formatDate(project_info.end_date)}</p>
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Projected Go-Live Date</h3>
+              <p className="text-lg font-bold text-gray-900">{formatDate(project_info.projected_go_live)}</p>
+            </div>
+          </div>
+
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Current Project Phase</h3>
+              <p className="text-lg font-bold text-blue-600">{project_info.current_phase}</p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Budget Information */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="stat-card">
-          <div>
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Allocated Budget</h3>
-            <p className="text-lg font-bold text-gray-900">{formatCurrency(budget_info.allocated_budget)}</p>
+      {/* Budget Section */}
+      <div>
+        <h2 className="text-xl font-bold text-gray-900 mb-4">Budget Information</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Spent Budget</h3>
+              <p className="text-lg font-bold text-red-600">{formatCurrency(budget_info.spent_budget)}</p>
+            </div>
           </div>
-        </div>
 
-        <div className="stat-card">
-          <div>
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Budget Utilized</h3>
-            <p className="text-lg font-bold text-gray-900">{formatCurrency(budget_info.utilized_budget)}</p>
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Remaining Budget</h3>
+              <p className="text-lg font-bold text-green-600">{formatCurrency(budget_info.remaining_budget)}</p>
+            </div>
           </div>
-        </div>
 
-        <div className="stat-card">
-          <div>
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Remaining Budget</h3>
-            <p className="text-lg font-bold text-gray-900">{formatCurrency(budget_info.remaining_budget)}</p>
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Hourly Rate</h3>
+              <p className="text-lg font-bold text-blue-600">{formatCurrency(hourly_rate)}</p>
+            </div>
           </div>
-        </div>
 
-        <div className="stat-card">
-          <div>
-            <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Budget Utilization</h3>
-            <p className="text-2xl font-bold text-gray-900">{budget_info.budget_utilization_percentage.toFixed(1)}%</p>
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Budget Utilization</h3>
+              <p className="text-2xl font-bold text-gray-900">{budget_info.budget_utilization_percentage.toFixed(1)}%</p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Task Metrics Grid + Completion Gauge */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Task Metrics - 2x2 Grid */}
-        <div className="lg:col-span-2">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="stat-card">
-              <div>
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Total Tasks</h3>
-                <p className="text-2xl font-bold text-gray-900">{task_metrics.total_tasks}</p>
+      {/* Progress Section */}
+      <div>
+        <h2 className="text-xl font-bold text-gray-900 mb-4">Project Progress</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Task Metrics - 2x2 Grid */}
+          <div className="lg:col-span-2">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="stat-card">
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks Completed</h3>
+                  <p className="text-2xl font-bold text-green-600">{task_metrics.tasks_completed}</p>
+                </div>
               </div>
-            </div>
 
-            <div className="stat-card">
-              <div>
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks Completed</h3>
-                <p className="text-2xl font-bold text-green-600">{task_metrics.tasks_completed}</p>
+              <div className="stat-card">
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks In Progress</h3>
+                  <p className="text-2xl font-bold text-blue-600">{task_metrics.tasks_in_progress}</p>
+                </div>
               </div>
-            </div>
 
-            <div className="stat-card">
-              <div>
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks In Progress</h3>
-                <p className="text-2xl font-bold text-blue-600">{task_metrics.tasks_in_progress}</p>
+              <div className="stat-card">
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks Open</h3>
+                  <p className="text-2xl font-bold text-gray-600">{task_metrics.tasks_open}</p>
+                </div>
               </div>
-            </div>
 
-            <div className="stat-card">
-              <div>
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks On Hold</h3>
-                <p className="text-2xl font-bold text-yellow-600">{task_metrics.tasks_on_hold}</p>
+              <div className="stat-card">
+                <div>
+                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Total Tasks</h3>
+                  <p className="text-2xl font-bold text-gray-900">{task_metrics.total_tasks}</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Completion Percentage Gauge */}
-        <div className="lg:col-span-1">
-          <div className="stat-card h-full flex flex-col items-center justify-center">
-            <ScoreGauge
-              score={Math.round(task_metrics.completion_percentage)}
-              rating="Completion"
-              maxScore={100}
-            />
+          {/* Completion Percentage Gauge */}
+          <div className="lg:col-span-1">
+            <div className="stat-card h-full flex flex-col items-center justify-center">
+              <ScoreGauge
+                score={Math.round(task_metrics.completion_percentage)}
+                rating="Completion Percentage"
+                maxScore={100}
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Task Breakdown Table */}
+      {/* Top Tasks by Billable Hours */}
       <BreakdownTable 
-        title="Task Status Breakdown"
-        description="Detailed breakdown of tasks by current status"
-        data={taskBredownData}
+        title="Top Tasks in Terms of Billable Hours"
+        description="Tasks with the highest billable hours and associated costs"
+        data={topTasksData}
         columns={[
-          { key: 'Category', header: 'Task Category', format: 'text', sortable: true },
-          { key: 'Count', header: 'Count', format: 'number', sortable: true },
-          { key: 'Percentage', header: 'Percentage', format: 'text', sortable: false },
-          { key: 'Status', header: 'Status', format: 'text', sortable: true }
+          { key: 'Task', header: 'Task', format: 'text', sortable: true },
+          { key: 'Billable Hours', header: 'Billable Hours', format: 'number', sortable: true },
+          { key: 'Total Cost', header: 'Total Cost', format: 'text', sortable: false }
         ]}
       />
     </div>

@@ -11,6 +11,7 @@ import pandas as pd
 import io
 import os
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -192,10 +193,13 @@ async def get_project_overview():
     """Get project management overview data with mock values"""
     return {
         "project_info": {
-            "project_name": "Digital Transformation",
+            "project_name": "Digital Transformation Initiative",
+            "client": "TechCorp Solutions",
             "project_manager": "Sarah Johnson",
             "start_date": "2024-01-15",
             "end_date": "2024-12-15",
+            "projected_go_live": "2024-12-01",
+            "current_phase": "Development",
             "status": "In Progress"
         },
         "task_metrics": {
@@ -207,12 +211,55 @@ async def get_project_overview():
             "completion_percentage": 57.1
         },
         "budget_info": {
-            "allocated_budget": 250000,
-            "utilized_budget": 142750,
-            "budget_utilization_percentage": 57.1,
-            "remaining_budget": 107250
-        }
+            "allocated_budget": 750000,
+            "spent_budget": 428750,
+            "utilized_budget": 428750,
+            "budget_utilization_percentage": 57.2,
+            "remaining_budget": 321250
+        },
+        "hourly_rate": 145,
+        "top_tasks": [
+            {
+                "task": "API Integration Development",
+                "billable_hours": 125.5,
+                "total_cost": 18197.5
+            },
+            {
+                "task": "Database Migration",
+                "billable_hours": 98.0,
+                "total_cost": 14210.0
+            },
+            {
+                "task": "Frontend UI/UX Implementation",
+                "billable_hours": 87.5,
+                "total_cost": 12687.5
+            },
+            {
+                "task": "Security Audit & Testing",
+                "billable_hours": 76.0,
+                "total_cost": 11020.0
+            },
+            {
+                "task": "Performance Optimization",
+                "billable_hours": 65.5,
+                "total_cost": 9497.5
+            }
+        ]
     }
+
+@app.get("/api/tasks")
+async def get_tasks():
+    """Get all task tracking data from tasks.json"""
+    try:
+        with open('tasks.json', 'r') as file:
+            tasks_data = json.load(file)
+        return {"tasks": tasks_data}
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Tasks data file not found")
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=500, detail="Error parsing tasks data file")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading tasks data: {str(e)}")
 
 
 if __name__ == "__main__":

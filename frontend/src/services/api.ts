@@ -57,9 +57,12 @@ export interface SampleBreakdownResponse {
 export interface ProjectOverviewResponse {
   project_info: {
     project_name: string;
+    client: string;
     project_manager: string;
     start_date: string;
     end_date: string;
+    projected_go_live: string;
+    current_phase: string;
     status: string;
   };
   task_metrics: {
@@ -72,10 +75,38 @@ export interface ProjectOverviewResponse {
   };
   budget_info: {
     allocated_budget: number;
+    spent_budget: number;
     utilized_budget: number;
     budget_utilization_percentage: number;
     remaining_budget: number;
   };
+  hourly_rate: number;
+  top_tasks: Array<{
+    task: string;
+    billable_hours: number;
+    total_cost: number;
+  }>;
+}
+
+export interface Task {
+  id: number;
+  category: string;
+  subcategory: string;
+  task_name: string;
+  description: string;
+  owner: string;
+  team: string;
+  status: string;
+  priority: string;
+  start_date: string;
+  due_date: string;
+  completion_percentage: number;
+  comments: string;
+  billable_hours: number;
+}
+
+export interface TasksResponse {
+  tasks: Task[];
 }
 
 
@@ -133,6 +164,12 @@ export const apiService = {
   // Get project overview data
   async getProjectOverview(): Promise<ProjectOverviewResponse> {
     const response = await api.get('/api/project-overview');
+    return response.data;
+  },
+
+  // Get task tracking data
+  async getTasks(): Promise<TasksResponse> {
+    const response = await api.get('/api/tasks');
     return response.data;
   },
 

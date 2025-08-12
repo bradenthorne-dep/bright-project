@@ -15,6 +15,7 @@ interface LayoutProps {
 const navigationItems = [
   { id: 'data-upload', label: 'File Upload' },
   { id: 'overview', label: 'Overview' },
+  { id: 'task-tracking', label: 'Task Tracking' },
 ];
 
 export default function Layout({ children, activeSection = 'data-upload', onSectionChange }: LayoutProps) {
