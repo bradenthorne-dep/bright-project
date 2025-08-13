@@ -182,7 +182,7 @@ export default function Home({ onSectionChange, showGerber = false }: HomeProps)
             onClick={() => handleProjectClick(project.client)}
             className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
           >
-            <div className={`h-20 bg-gray-800 flex items-center justify-center ${
+            <div className={`h-20 bg-white flex items-center justify-center ${
               project.client.toLowerCase().includes('gerber') ? 'p-2' : 'p-4'
             }`}>
               <img 
@@ -191,6 +191,18 @@ export default function Home({ onSectionChange, showGerber = false }: HomeProps)
                 className={`w-auto h-auto ${
                   project.client.toLowerCase().includes('gerber') ? 'max-h-[90%] max-w-[90%]' : 'max-h-[80%] max-w-[80%]'
                 } object-contain`}
+                onError={(e) => {
+                  console.log(`Failed to load logo for ${project.client}: ${getProjectLogo(project.client)}`);
+                  // Show client name as fallback
+                  e.currentTarget.style.display = 'none';
+                  const parent = e.currentTarget.parentElement;
+                  if (parent && !parent.querySelector('.logo-fallback')) {
+                    const fallback = document.createElement('div');
+                    fallback.className = 'logo-fallback text-gray-600 font-semibold text-sm text-center';
+                    fallback.textContent = project.client;
+                    parent.appendChild(fallback);
+                  }
+                }}
               />
             </div>
             <div className="p-6 space-y-4">

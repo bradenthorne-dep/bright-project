@@ -16,10 +16,24 @@ const PROJECT_LOGO_MAP: Record<string, string> = {
   'gerber': '/gerberlogo.avif',
   'Bright': '/bright_project_small_logo.png',
   'Bright Project': '/bright_project_main_logo.png',
-  // Add more project logos here as they become available
-  // 'TechCorp Solutions': '/techcorp.svg',
-  // 'Acme Manufacturing': '/acme.png',
-  // 'Global Retail Inc': '/globalretail.jpg',
+  'TechCorp Solutions': '/techcorp_logo.png',
+  'TechCorp': '/techcorp_logo.png',
+  'techcorp': '/techcorp_logo.png',
+  'EcoAtm': '/ecoatm_logo.png',
+  'EcoATM': '/ecoatm_logo.png',
+  'ecoatm': '/ecoatm_logo.png',
+  'Neovia': '/neovia_logo.png',
+  'neovia': '/neovia_logo.png',
+  'CDCBME': '/CDCBME_logo.png',
+  'cdcbme': '/CDCBME_logo.png',
+  'Acme Manufacturing': '/acme_logo.jpeg',
+  'Acme': '/acme_logo.jpeg',
+  'acme': '/acme_logo.jpeg',
+  'Global Retail Inc': '/globalretail_logo.png',
+  'GlobalRetail': '/globalretail_logo.png',
+  'globalretail': '/globalretail_logo.png',
+  'Patterson': '/patterson_logo.png',
+  'patterson': '/patterson_logo.png',
 };
 
 /**
@@ -28,8 +42,11 @@ const PROJECT_LOGO_MAP: Record<string, string> = {
  * @returns The path to the logo file
  */
 export function getProjectLogo(clientName: string): string {
+  console.log(`Looking for logo for client: "${clientName}"`);
+  
   // Try exact match first
   if (PROJECT_LOGO_MAP[clientName]) {
+    console.log(`Found exact match: ${PROJECT_LOGO_MAP[clientName]}`);
     return PROJECT_LOGO_MAP[clientName];
   }
   
@@ -37,6 +54,7 @@ export function getProjectLogo(clientName: string): string {
   const lowerClientName = clientName.toLowerCase();
   for (const [key, value] of Object.entries(PROJECT_LOGO_MAP)) {
     if (key.toLowerCase() === lowerClientName) {
+      console.log(`Found case-insensitive match: ${value}`);
       return value;
     }
   }
@@ -44,11 +62,13 @@ export function getProjectLogo(clientName: string): string {
   // Try partial match (useful for variations like "Gerber4" matching "gerber")
   for (const [key, value] of Object.entries(PROJECT_LOGO_MAP)) {
     if (lowerClientName.includes(key.toLowerCase()) || key.toLowerCase().includes(lowerClientName)) {
+      console.log(`Found partial match: ${value}`);
       return value;
     }
   }
   
   // Fall back to default logo
+  console.log(`No match found, using default: ${DEFAULT_LOGO}`);
   return DEFAULT_LOGO;
 }
 
