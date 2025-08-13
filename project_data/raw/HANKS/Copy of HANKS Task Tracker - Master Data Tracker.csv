@@ -1,0 +1,24 @@
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,DEP - Master Data Tracker,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,Master Data Element,Description,Help Site Link to Entity,Requested Date,Current Assigned Team,Notes on Status,Status
+,,,,,Item,"Done through Integration - Distinct type of item for sale, including all attributes that distinguish the item type from other item types, such as manufacturer, description, material, size, color, and packaging.
+
+",Item,ASAP,HANKS,- Few item fails,Complete
+,,,,,Pack Dimensions,Done through Integration - pack dimentions needed in order to utilize cartonization/autopopulate weight at packing,,ASAP,HANKS,*Pending Integration*,Complete
+,,,,,Locations,"Done through DE - specific areas in a facility that are used for tracking movement of physical objects such as inventory, containers, and shipments. A location can be a specific inventory storage shelf, or a location might represent an area like the receiving or shipping area of the facility.",Locations,ASAP,HANKS,*Need Pick Sequence and all Aisle Bins created*,Complete
+,,,,,Trading Partner,"Done through Integration - A trading partner in Deposco represents an external party to the company that is typically associated with an order, such as a supplier that provides products or services or a customer that purchases products from the company.",Trading Partners,TBD,,*Pending Design*,Hold
+,,,,,Storage Details,"Done through DE - Specifies the minimum and maximum inventory levels for the item in that picking location. When the stock in the location falls below the minimum, a warehouse replenishment task can be generated to move inventory from a reserve location so that the quantity of inventory at the picking location equals but does not exceed the specified maximum.",Storage Details,UAT,HANKS,,Complete
+,,,,,Stock Units,"Done through DE - A stock unit associates an item, pack, and quantity with a location, This enables you to track the actual quantity of stock for an item (by pack) that is available in a specific location.",Stock Units,Go-Live - TBD,HANKS,*Pending Go-Live*,Hold
+,,,,,Carton Types,"Done through DE - Carton types typically represent the different sizes of shipping boxes, and are used to facilitate the process of entering box dimensions during packing.",Carton Types,UAT,HANKS,,Complete
+,,,,,Printer Details,Done through DE - A printer detail record identifies the printer in Deposco so that the Deposco application can connect to the printer and sent print jobs to the printer through the Deposco Print Client.,Printer Details,UAT,HANKS,HANKS to upload all printers both ones already used as well as additional printers for eaches packing,Hold
+,,,,,Printer Resource,"Done though DE - Create a resource for each functional area that uses one or more printers. For example, you might create a resource for each packing station, which has its own label printer for shipping labels and document printer for packing slips.",Printer Resource,UAT,HANKS,*Pending Printer Detail upload*,Hold
+,,,,,Printer Assignments,Done through DE - A printer assignment specifies the printer that should be used to print a label or document for a resource.,Printer Assignments,UAT,HANKS,*Pending configuration to gather all reports needed*,Hold
+,,,,,Users,Done through DE or Manual Creation - all employees needing access to the Deposco solution will need users. To help with permission set up it is reccomended to create a user and assign all permissions and then copy like users,Users,UAT,HANKS,,Not Started
+,,,,,Trading Partner,"Done through DE or Manual Creation - an external party to the company that is typically associated with an order, such as a supplier that provides products or services or a customer that purchases products from the company.",Trading Partners,UAT,HANKS,,Complete
+,,,,,Item Vendor,Done through DE or Manual Creation - A table that ties items to their corresponding supplier. ,,UAT,HANKS,,Complete

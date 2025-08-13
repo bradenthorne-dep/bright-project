@@ -1,0 +1,265 @@
+HANKS - Company Test Cases,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+Process Category,Process Group,Ready for Testing,Scenario,Expected Results,Status,FreshDesk Ticket:,Comments
+Inbound,Pre-Receiving,,,,,,
+Inbound,Pre-Receiving,FALSE,,,,,
+Inbound,Pre-Receiving,FALSE,,,,,
+Inbound,Pre-Receiving,FALSE,,,,,
+Inbound,Pre-Receiving,FALSE,,,,,
+Inbound,Pre-Receiving,FALSE,,,,,
+Inbound,Pre-Receiving,FALSE,,,,,
+Inbound,Pre-Receiving,FALSE,,,,,
+Inbound,Receiving,,,,,,
+Inbound,Receiving - PO/Blind Order,FALSE,Receive the entirety of a PO (Happy Path),Stock Units are created in the receiving location with proper quantities,Passed,,
+Inbound,Receiving - PO/Blind Order,FALSE,Receive part of a PO line,Order line status goes into a  'Partial Receipt' status,Passed,,
+Inbound,Receiving - PO/Blind Order,FALSE,Receive a quantity greater than what is asked for on the PO,No errors are thrown and the number received is correcty populated on the received pack quantity field on the order line and all stock appears in the receiving location.,,,
+Inbound,Receiving - PO/Blind Order,FALSE,Receive a quantity greater than what is asked for on the PO but not twice as much,No errors are thrown and the number received is correcty populated on the received pack quantity field on the order line and all stock appears in the receiving location.,,,
+Inbound,Receiving - PO/Blind Order,FALSE,Receive a quantity greater than what is asked for on the PO but also more than twice as much,"Error ""You can only receive up to the max amount X of Each."" is thrown and user is not able to continue",,,
+Inbound,Receiving - PO/Blind Order,FALSE,Receive an item that is not on the Purchase Order,No errors are thrown and a new order line is created with the item received and all stock appears in the receiving location.,,,
+Inbound,Receiving - PO/Blind Order,FALSE,Receive a PO with a receiving note attached,After the purchase order entry screen the note is displayed to the user,,,
+Inbound,Receiving,FALSE,Receive Shortages,,,,
+Inbound,Receiving - PO/Blind Order,FALSE,Receive a Blind Order  ,An order with the type of 'Blind Receipt' is created and all items received show up as order lines with the accurate received pack quantities and all stock appears in the receiving location.,,,
+Inbound,Receiving - PO/Blind Order,FALSE,Unreceive a portion of a PO,Order line status and receive quantity change accordingly,,,
+Inbound,Receiving - PO/Blind Order,FALSE,,,,,
+Inbound,Receiving - PO/Blind Order,FALSE,,,,,
+Inbound,Receiving,FALSE,Receive by inbound LPN and sort to pallet,,,,
+Inbound,Returns,,,,,,
+Inbound,Returns,FALSE,Create Customer Return (RMA) within Deposco,,,,
+Inbound,Receiving - Returns,FALSE,Receive a Return,An order with the type of 'Blind RMA' is created and all items received show up as order lines with the accurate received pack quantities and all stock appears in the returns location.,,,
+Inbound,Warehouse Putaway,,,,,,
+Inbound,Warehouse Putaway,FALSE,Suggested Putaway locations from receiving (Warehouse Putaway),"Suggested locations appear as expected (1 consolidate/empty home location, 5 empty locations without storage records)",,,
+Inbound,Warehouse Putaway,FALSE,Put stock away using the Warehouse Putaway process by selecting the location from the list box,No errors and stock is correctly putaway to the specified location,,,
+Inbound,Warehouse Putaway,FALSE,Put stock away using the Warehouse Putaway process by scanning the location's barcode,No errors and stock is correctly putaway to the specified location,,,
+Inbound,Warehouse Putaway,FALSE,Put stock away into a location that does not appear in the suggest list box,No errors and stock is correctly putaway to the specified location,,,
+Inbound,Warehouse Putaway,FALSE,Put part of the stock into Damages and the other stock into a suggested location ,No errors and stock is correctly putaway to the specified location,,,
+Inbound,Warehouse Putaway,FALSE,"Put ""New"" stock away into an empty bin location and select the 'Create Storage Record' box",Item now has storage details in location putaway,,,
+Inbound,Warehouse Putaway,FALSE,,,,,
+Inbound,Warehouse Putaway,FALSE,,,,,
+Inbound,Putaway,FALSE,Total: 10,,,,
+Inbound,Returns Putaway,,,,,,
+Inbound,Returns Putaway,FALSE,Suggested Putaway locations from returns (Returns Putaway),Suggested locations appear as expected (Either the aisle Bin location or the stocked out bin location),,,
+Inbound,Putaway,FALSE,Suggested Putaway,,,,
+Inbound,Returns Putaway,FALSE,Put stock away using the Returns Putaway process by selecting the location from the list box,No errors and stock is correctly putaway to the specified location,,,
+Inbound,Returns Putaway,FALSE,Put stock away using the Returns Putaway process by scanning the Isle Bin's barcode,No errors and stock is correctly putaway to the specified location,,,
+Inbound,Returns Putaway,FALSE,,,,,
+Inbound,Returns Putaway,FALSE,,,,,
+Inbound,Returns Putaway,FALSE,,,,,
+Inbound,Returns Putaway,FALSE,,,,,
+Inbound,Returns Putaway,FALSE,,,,,
+Inbound,Returns Putaway,FALSE,,,,,
+Inventory Management,Inventory Inquiry View,FALSE,Inventory General Ledger,,Complete,,IGL inventory view is able to be used to see each transaction that increases or decreases inventory by item
+Inventory Management,Cycle Count,,,,,,
+Inventory Management,Inventory Inquiry View,FALSE,View Inventory Available to Release,,In Progress,,Warehouse on hand inventory minus allocated minus unpickable minus damaged
+Inventory Management,Inventory Inquiry View,FALSE,View Kit Available to Promise Inventory,,Complete,,"For bundled products that are composed of multiple individual items, the quantity of an item that can be sold from using components to make the finished good"
+Inventory Management,Inventory Inquiry View,FALSE,Look up inventory by Item in the UI,,Complete,,Ability to see inventory by item within the stock unit portion of the solution UI
+Inventory Management,Inventory Inquiry View,FALSE,Look up inventory by LPN in the UI,,Complete,,Ability to see inventory by LPN (container) within the stock unit portion of the solution UI
+Inventory Management,Inventory Inquiry View,FALSE,Look up inventory by Location in the UI,,Complete,,Ability to see inventory by location within the stock unit portion of the solution UI
+Inventory Management,Inventory Inquiry View,FALSE,Look up inventory by Location Zone in the UI,,Complete,,Ability to see inventory by zone within the stock unit portion of the solution UI
+Inventory Management,Inventory Inquiry View,FALSE,Look up inventory by Location in the Handheld,,UAT Ready,,Warehouse Lookup process can be utilized on the handheld app to scan/enter Location and view inventory in that location
+Inventory Management,Inventory Inquiry View,FALSE,Look up inventory by Item in the Handheld,,UAT Ready,,Warehouse Lookup process can be utilized on the handheld app to scan/enter Item and view inventory for that item in the warehouse
+Inventory Management,Cycle Count,FALSE,Generate a cycle count task using the Cycle Count by Location PAL,A task generates for that location,Passed,,
+Inventory Management,Cycle Count,FALSE,Generate a cycle count task using the Last Couted Date scheduler,20 Cycle count tasks generate,Passed,,
+Inventory Management,Item Tracking,FALSE,Lot Number Tracking,,Complete,,Ability to capture Lot Number during receiving or inventory creation. Lot number is stored on the stock unit record.
+Inventory Management,Cycle Count,FALSE,Generate a cycle count task with an exception,A task generates for that location,Passed,,
+Inventory Management,Cycle Count,FALSE,Count a cycle count task with no variance (Happy Path),The locations stock does not change,Passed,,
+Inventory Management,Cycle Count,FALSE,Count a cycle count task with a variance,"The user is prompted to enter in a quantity for the second time, the stock in the location is updated the variance quantity",Passed,,
+Inventory Management,Cycle Count,FALSE,Complete a count with no variance using the On Demand Cycle Count process,The locations stock does not change,,,
+Inventory Management,Cycle Count,FALSE,Complete a count with no variance using the On Demand Cycle Count process,"The user is prompted to enter in a quantity for the second time, the stock in the location is updated the variance quantity",,,
+Inventory Management,Cycle Count,FALSE,,,,,
+Inventory Management,Cycle Count,FALSE,,,,,
+Inventory Management,Cycle Count,FALSE,,,,,
+Inventory Management,Replenishments,,,,,,
+Inventory Management,Kitting,FALSE,View Kit Bill of Material in the UI,,UAT Ready,,"This allows a user to see the ""components"" that make up a finished good within the Deposco UI. A Bill of Materials is a list of the components and quantities needed to assemble a finished good product."
+Inventory Management,Kitting,FALSE,Kit to Stock: Assemble Kit and putaway to Stock,,UAT Ready,,Kit to Stock is used for a pre-assembly flow where a finished good needs to be assembled or built before it can be stocked and allocated against customer sales orders.
+Inventory Management,Kitting,FALSE,Kit to Order,,UAT Ready,,"If Kits do not need to be pre-built before picking, then Kit to Order functionality can be utilized. During wave release, if there are no stock units available for the Kit SKU, the component SKUs will be allocated for picking."
+Inventory Management,Replenishments,FALSE,,,,,
+Inventory Management,Replenishments,FALSE,,,,,
+Inventory Management,Replenishments,FALSE,,,,,
+Inventory Management,Replenishments,FALSE,,,,,
+Inventory Management,Replenishments,FALSE,,,,,
+Inventory Management,Replenishments,FALSE,,,,,
+Inventory Management,Cycle Counting,FALSE,"Supervisor Review for approval, rejection, adjustment of cycle count variances",,UAT Ready,,"When adjustments are made to stock unit records via the cycle count process, the adjustments can be placed in an approval queue before being committed, OR they can be automatically applied after process completion."
+Inventory Management,Cycle Counting,FALSE,Generate Cycle Count Task as result of Exception Pick,,UAT Ready,,"When a pick task is exceptioned, a cycle count task can be created automatically for a user to cycle count the location."
+Inventory Management,Cycle Counting,FALSE,Generate System Directed Cycle Count tasks by Item or Location,,UAT Ready,,Warehouse supervisors can configure Deposco to automatically generate cycle count tasks on a scheduled basis for either items or locations.
+Inventory Management,Cycle Counting,FALSE,Create Manual Cycle Count Task for Location,,UAT Ready,,"Supported by using Create Cycle Count (PAL), which can be triggered via UI or handheld device."
+Inventory Management,Cycle Counting,FALSE,On Demand Location Cycle Count,,UAT Ready,,Locations can by cycle counted on demand without a cycle count task being created.
+Inventory Management,Cycle Counting,FALSE,Start and Stop a Physical Count,,UAT Ready,,Process is used to Start a physical count or to Stop the users from doing a physical inventory count
+Inventory Management,Replenishments,FALSE,,,,,
+Inventory Management,Replenishments,FALSE,,,,,
+Inventory Management,Replenishments,FALSE,,,,,
+Inventory Management,Replenishments,FALSE,,,,,
+Inventory Management,Inventory Adjustments,,,,,,
+Inventory Management,Inventory Adjustments,FALSE,Adjust out all inventory in a location,All stock units in the location are decremented. Values in the inventory ledger are accurate,,,
+Inventory Management,Inventory Adjustments,FALSE,Adjust out a quantity of 1 item in a location,The stock unit in the location is decremented by 1. Values in the inventory ledger are accurate,,,
+Inventory Management,Inventory Adjustments,FALSE,Add a reason to an inventory adjustment,The reason correctly populates in the inventory ledger,,,
+Inventory Management,Inventory Adjustments,FALSE,Add a note to an inventory adjustment,The note correctly populates in the inventory ledger,,,
+Inventory Management,Inventory Adjustments,FALSE,Add stock to a Location ,A new stock unit is created in the location adjusted  ,,,
+Inventory Management,Move Item,,,,,,
+Inventory Management,Move Item,FALSE,Move part of a stock quantity from one location to another using Move Item,Stock is accurately moved from one location to the next,,,
+Inventory Management,Move Item,FALSE,Move items from one location to another using Move Item and selecting the 'Create Storage Record' checkbox,Stock is accurately moved from one location to the next and storage details are deleted in the original location and created in the destination location,,,
+Inventory Management,Move Item,FALSE,,,,,
+Inventory Management,Move Item,FALSE,,,,,
+Outbound,Outbound Order Management,FALSE,Cancel Outbound Orders using Deposco's Cancel Order process,,,,"Sales orders can be canceled in Deposco from either the desktop UI using a process action link or from the handheld device using a cancel order process button. The following use cases are supported;
+ Cancel Order
+ Cancel Order Line(s)
+ Cancel Partial Quantities on Order Line
+ Cancel Remaining Order Lines for an Order"
+Outbound,Outbound Order Management,FALSE,Cancel Outbound Order via Integration from another system,,,Order must be in 'New' status,"With certain developed integrations, Deposco can accept order cancellations that originate and are sent from another system. When this is supported, the cancellations can only occur if the order has yet to be allocated.
+ *Support of this must be confirmed specific to each integration"
+Inventory Management,Product Conversion,,,,,,
+Outbound,Outbound Order Management,FALSE,View Orders based on certain criteria,,,,"Filters can be created in Deposco to view orders that meet a certain criteria. Some examples include:
+ View orders by status
+ View orders by source
+ View orders by expected or actual ship date
+ View orders with backordered product"
+Inventory Management,Product Conversion,FALSE,,,,,
+Inventory Management,Product Conversion,FALSE,,,,,
+Inventory Management,Product Conversion,FALSE,,,,,
+Inventory Management,Product Conversion,FALSE,,,,,
+Inventory Management,Product Conversion,FALSE,,,,,
+Inventory Management,Product Conversion,FALSE,,,,,
+Inventory Management,Product Conversion,FALSE,,,,,
+Inventory Management,Product Conversion,FALSE,,,,,
+Inventory Management,Product Conversion,FALSE,,,,,
+Outbound,Pick Wave Management,FALSE,Manually build and release pick waves,,,,"You can manually build and release a pick wave either by using a process action link (PAL) or by selecting an option on the handheld menu. When you manually build and release a pick wave by using a PAL, you select the orders that you want to evaluate for the pick wave. When you manually build and release a pick wave from the handheld menu, the workflow process evaluates all eligible orders."
+Outbound,Pick Wave Management,FALSE,Undo Released Pick Wave,,,,"After a wave has been built and released, you can undo the pick wave before picking has begun."
+Inventory Management,Product Conversion,FALSE,,,,,
+Outbound,Pick Wave Management,FALSE,Order Release - Backorder Policy - All stock on order to fulfill (no partial release),,,,"Stock must be available to completely fulfill all order lines for an order. Otherwise, the order and its order lines are back-ordered. If stock is available to fulfill other orders on the pick wave, then those orders are released. Only orders that cannot be completely fulfilled are back-ordered."
+Outbound,Waving,,,,,,
+Outbound,Waving,FALSE,Manually wave an International wave,"Wave is created and in released status, all orders on wave are released",,,
+Outbound,Pick Wave Management,FALSE,Order Release - Order Close Policy - Don't close if backordered,,,,"The shortage quantity is reflected in the Shortage Pack Quantity field for the order line, the status of the order line moves to Partial Released, and the status of the order header moves to Back Ordered. The order can then be included on a different pick wave and fulfilled."
+Outbound,Waving,FALSE,Manually wave an Insured wave,"Wave is created and in released status, all orders on wave are released",,,
+Outbound,Pick Wave Management,FALSE,Wave kit orders of assembled kits (Kit to Stock),,,,"When kit items are on a customer sales order, Deposco will attempt to allocate the completed kit first. If no stock is available for the completed kit, Deposco will look to allocate the components of that kit. If you ONLY want to pick completed kits for an item, the ""Kit to Stock Only"" setting can be enabled on that kit item to prevent components from being allocated."
+Outbound,Pick Wave Management,FALSE,Wave order for components of a kit (Kit to Order),,,,"Only needed if the ""kit to order"" flow is being utilized to allocate and fulfill component inventory for a kit item on a customer sales order. Note: For kit component allocation, order can be released on wave if partial can be fulfilled but only when there is enough inventory to make a full finished product (no partial kits will be released)."
+Outbound,Waving,FALSE,Manually wave a Boxed wave,"Wave is created and in released status, all orders on wave are released",,,
+Outbound,Pick Wave Management,FALSE,Order release stock allocation (pick strategy) - based on Stock age attributes,,,,"Determine which stock is allocated when stock is available in multiple locations based on Stock age attributes;
+ FIFO – (First In First Out) 
+ LIFO – (Last In First Out) 
+ FEFO – (First Expiration First Out) 
+ LEFO – (Last Expiration First Out) 
+ Oldest Stock First
+ Sort by FEFO within an expiration day threshold"
+Outbound,Waving,FALSE,Manually wave an Priority Shipping wave,"Wave is created and in released status, all orders on wave are released",,,
+Outbound,Waving,FALSE,Manually wave a Woolx and Hanks singles wave,"Wave is created and in released status, all orders on wave are released",,,
+Outbound,Waving,FALSE,Manually wave a Woolx Upper multi wave,"Wave is created and in released status, all orders on wave are released",,,
+Outbound,Waving,FALSE,Manually wave a Woolx lower multi wave,"Wave is created and in released status, all orders on wave are released",,,
+Outbound,Waving,FALSE,Manually wave a Hanks multi wave,"Wave is created and in released status, all orders on wave are released",,,
+Outbound,Waving,FALSE,Manually plan an identicals wave,"Wave is created and in planned status, all orders on wave are new",Passed,,
+Outbound,Waving,FALSE,Release identicals wave through scheduler,"Wave is released, all orders on wave are released",Passed,,
+Outbound,Waving,FALSE,Release identicals wave through wave pal,"Wave is released, all orders on wave are released",Passed,,
+,,FALSE,,,,,
+Outbound,Picking,,,,,,
+Outbound,Singles Picking,FALSE,Pick the entirety of a Singles wave (Happy Path),"All stock is placed in Cart, no errors are shown and everything behaves as expected",Passed,,Woolx Lower Single_240401_10
+Outbound,Singles Picking,FALSE,Exception a Pick tasks because of no stock found in a location,"Location picked is placed on hold, order goes into a back ordered status, and a cycle count task is created",Passed,,Hanks Single_240401_20
+Outbound,Singles Picking,FALSE,Stage a singles cart because the cart is too full,"User is prompted for a new cart, no errors occur and user is able to continue picking into a new cart",Passed,,Hanks Single_240401_20
+Outbound,Singles Picking,FALSE,Stage a singles cart because the user needs to do another task,"User is prompted for a new cart, they can now back out of the process and select the same cart later",Passed,,Hanks Single_240401_20
+Outbound,Singles Picking,FALSE,Suspend a task because the stock cannot be picked at that moment,"The task is now moved to the end of the queue, it is picked last",Passed,,Hanks Single_240401_20
+Outbound,Singles Picking,FALSE,Pick an item using the manual pick check box,no errors are thrown and process behaves as if the item had been scanned,Passed,,Hanks Single_240401_20
+Outbound,Singles Picking,FALSE,,,,,bookmark
+Outbound,Singles Picking,FALSE,,,,,
+Outbound,Picking,FALSE,Picking exception: Skip a pick during picking and return later,,,,"Pick tasks can be skipped during the picking process. After the remaining pick tasks for the work group are complete, you are prompted again to pick the item that you skipped."
+Outbound,Picking,FALSE,Picking exception: No stock in a location,,,,"Picking exception can be raised from the picking screen when a picker identifies no stock in the location. Deposco can attempt to reallocate to another location, and also generate a cycle count task."
+Outbound,Picking,FALSE,Picking exception: Damaged stock in a location,,,,"Picking exception can be raised from the picking screen when a picker identifies damaged stock in the location. Deposco can attempt to reallocate to another location, and also generate a cycle count task."
+Outbound,Picking,FALSE,Rollback order after picking,,,,"You may decide to roll back an order if the order has been picked but has not yet shipped. You can roll back one order line at a time for each order. Depending on the configuration, the canceled stock can remain in the picking container, you can automatically stage the canceled stock to a specific default location, or you can require the user to select and scan a destination location for the canceled stock."
+Outbound,Singles Picking,FALSE,,,,,
+Outbound,Singles Picking,FALSE,,,,,
+Outbound,Picking,,,,,,
+Outbound,Multis Picking,FALSE,Pick the entirety of a Hanks Multis wave (Happy Path),"All stock is placed in accurate bins, no errors are shown and everything behaves as expected",Passed,,Hanks Multi_240401_12
+Outbound,Packing & Shipping,FALSE,Ship for customer outside of system,,,,"If any shipping carriers will be used that are NOT going to be integrated with Deposco, then the order can be set to ""Ship Outside System"""
+Outbound,Packing & Shipping,FALSE,Single Scan Packing process - ability to scan items into one or multiple outbound containers,,,,"Single scan packing is used to pack and ship items from an order after batch picking has occurred. During batch picking, a group of orders is picked at the same time and sorted into bins on carts or similar equipment. The items from an individual bin are then packed into a shipping container during single scan packing."
+Outbound,Multis Picking,FALSE,Pick the entirety of a Woolx Upper Multis wave (Happy Path),"All stock is placed in accurate bins, no errors are shown and everything behaves as expected, user is able to go up and select stock from upper locations accurately",,,Woolx Upper Multi Small_240402_3
+Outbound,Multis Picking,FALSE,Pick an item into a bin that has already been picked into,An error is thrown not allowing the user to pick into that bin and asked to select another one,Passed,,Hanks Multi_240402_1
+Outbound,Multis Picking,FALSE,Pick an item into a new bin when there is a suggested bin populated,An error is thrown not allowing the user to pick into that bin and asked to pick into the suggested bin,Passed,,Hanks Multi_240402_1
+Outbound,Packing & Shipping,FALSE,Single Container Packing process - pack & ship one order containers that have already been sorted,,,,"This process is used to pack and ship containers that have already been sorted, and do not need to be split. This process can also be used if multiple orders were consolidated into a single container for a single shipment."
+Outbound,Multis Picking,FALSE,Pick an order into multiple bins by selecting the New Bin button,The suggested bin is removed and the user is able to pick into a new bin,Passed,,Hanks Multi_240402_1
+Outbound,Packing & Shipping,FALSE,Repalletize,,,,This process allows for movement of inventory from one container to another between the picking and shipping steps.
+Outbound,Packing & Shipping,FALSE,Build Pallet,,,,The build pallet process allows user to scan stock units onto an LPN/pallet/container
+Outbound,Packing & Shipping,FALSE,Manage Outbound TL/LTL loads (trips) via Assign Trip to Container process. Scan pallet LPNs (containers) onto a load (trip).,,,,"The AssignTrip process will be used to load final outbound containers onto a trip for freight orders. Trips in Deposco represent a trailer load. Pallets are scanned and assigned to a dock door. After all pallets are loaded, the trip can be “soft-closed,” creating the shipment record in Deposco. The Shipment Lines will not be created until the trip is “Hard-Closed,” through the ManualCloseTrip process."
+Outbound,Multis Picking,FALSE,Exception a pick task in multis picking,"Location picked is placed on hold, order goes into a back ordered status, and a cycle count task is created",Passed,,Hanks Multi_240402_1
+Outbound,Multis Picking,FALSE,Stage a Multis Cart because the user is needed elsewhere,"User is exited from process, can use warehouse look up to determine wave, and wave is not visible to other users",Passed,,Hanks Multi_240402_1
+Outbound,Multis Picking,FALSE,Pick an item using the manual pick check box,no errors are thrown and process behaves as if the item had been scanned,Passed,,Hanks Multi_240402_1
+Outbound,Packing & Shipping,FALSE,Print shipping labels,,,,"When an order is shipping via an integrated shipping carrier, Deposco can print the shipping labels for the order at the time of shipping."
+Outbound,Multis Picking,FALSE,,,,,bookmark
+Outbound,Multis Picking,FALSE,,,,,
+Outbound,Picking,,,,,,
+Outbound,Identicals Picking,FALSE,Pick the entirety of an Identicals wave (Happy Path),"All stock is placed in Cart, no errors are shown and everything behaves as expected",Passed,,Identicals Hanks Belts_240401_751_1
+Outbound,Packing & Shipping,,,,,,bookmark
+Outbound,Cartonization,FALSE,Cartonization using Deposco Cartonization,,,,Deposco's Cartonization algorithm to be used
+Outbound,Singles Packing,FALSE,Pack out a Singles Carts (Happy Path),"No errors are thrown, each dimension for the order matches the items pack dimensions, each order is properly packed out with shipping label and tracking information",Passed,,
+Outbound,Singles Packing,FALSE,Pack out an order that will throw a shipping error,"User relays to a manager, manager fixes problem, user selects back and is able to pack out order",Passed,,
+Outbound,Packing & Shipping,,,,,,
+Outbound,Multis Packing,FALSE,Pack out a multis Bin by scanning each item (Happy Path),"No errors are thrown, the order is properly packed out with shipping label and tracking information",Passed,,
+Outbound,Multis Packing,FALSE,Pack out a Mutlis Bin into mutliple shipping containers,"No errors are thrown, the order is properly packed out with mutliple shipping labels and tracking numbers",Passed,,
+Outbound,Multis Packing,FALSE,Pack out an order that has been split across to picking bins,An error is thrown and does not let the user cotinue,Passed,,
+Outbound,Multis Packing,FALSE,Consolidate two picking bins into one picking bin and pack out,"No errors are thrown, all stock is moved into the appropriate bin and able to packed out",Passed,,
+Outbound,Multis Packing,FALSE,,,,,
+Outbound,Packing & Shipping,,,,,,
+Integration,Identicals Packing,FALSE,Pack out a Indenticals cart (Happy Path),"No errors are thrown, each order is properly packed out with shipping label and tracking information",Failed,,
+Integration,Identicals Packing,FALSE,Pack out a Indenticals cart with an intentional error,"Error file is generated, user instructs a manager, change is made and user is able to pack out",Passed,,
+,,FALSE,,,,,
+,,FALSE,,,,,
+,,FALSE,,,,,
+,,FALSE,,,,,
+,,FALSE,,,,,
+,,FALSE,,,,,
+,,FALSE,,,,,
+,,FALSE,,,,,
+Shipping,,,,,,,
+Shipping,,FALSE,,,,,
+Shipping,,FALSE,,,,,
+Shipping,,FALSE,,,,,
+Shipping,,FALSE,,,,,
+Shipping,,FALSE,,,,,
+Shipping,,FALSE,,,,,
+Shipping,,FALSE,,,,,
+Shipping,,FALSE,,,,,
+Shipping,,FALSE,,,,,
+Shipping,,FALSE,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+Setup,System Administration,FALSE,Assign Documents/Reports to Printers,,,,A printer assignment specifies the printer that should be used to print a label or document for a resource (a resource is associated to a user).
+Setup,System Administration,FALSE,Setup and Manage Printers,,,,"The two standard printers found at a warehouse are standard paper printers and label printers. Paper printers include both ink and laser printers, and label printers include ink, laser, and thermal printers. Once printers are configured, then they can be validated before being used with Deposco."
+Setup,System Administration,FALSE,Manage Printer Resources to dictate what users are eligible for printing certain documents,,,,"Each user is assigned to a single resource. However, users can change their resource assignment to print in a different location. For example, a packing/shipping user might work at Packing Station 1 on Monday but at Packing Station 3 on Tuesday."
+,,,,,,,
+Setup,System Administration,FALSE,Change a user's Printer Resource,,,,Users can change the resource that their account is assigned to by either editing the Resource field for their account profile or by using the handheld menu.
+,,,,,,,
+Setup,System Administration,FALSE,Change a user's Zone,,,,"The active zone for your user account determines the warehouse tasks that you can perform for workflow processes such as picking. Each user account can be assigned to multiple zones based on the zone assignment settings for the account, but can only be active in a single zone at a time."
+Setup,System Administration,FALSE,Create User Views and utilize the ability to copy User Views,,,,"A view is a defined set of filters for an entity list that enables you to quickly limit the list to specific data. For example, you can create a view for the Order Header List to display only sales orders with a status of Complete that shipped by UPS Ground"
+Setup,System Administration,FALSE,Manage User Application Menus (Left Side Bar Menu Structure),,,,"You can configure the application menus that appear in the left pane of the Deposco application - inclusive of renaming, reordering, and removing."
+Setup,System Administration,FALSE,"Manage Users, User Groups, and Permissions",,,,"User Groups enable you to assign access permissions to menus, report categories, and widget categories, and facilitate the process of managing permissions to applications, entities, and specific features or processes. Groups are typically created either for specific roles, such as administrators, or for functional areas, such as billing, inbound, or inventory."
+Setup,System Administration,FALSE,Define and Create Page Layouts,,,,"A page layout defines the tabs, sections, and fields that appear on an entity detail page for an entity. You can create multiple layouts to view different information for an entity."
+Setup,System Administration,FALSE,Setup and Manage Shipping Services (Ship Vias),,,,A shipping service determines how a package is going to be shipped and what documentation (such as a shipping label) needs to printed. An example would be UPS Ground.
+Setup,System Administration,FALSE,Setup and Support for International Shipping Services,,,,"International shipping services are used to enable packages to be shipped across country borders, and require additional data as well as shipping documentation."
+,,,,,,,
+,,,,,,,
+Setup,Data Maintenance,FALSE,Import or Create Trading Partners,,,,"A trading partner in Deposco represents an external party to the company, either a supplier that provides products or services, or a customer that purchases products from the company."
+Setup,Data Maintenance,FALSE,"Import or Create Items, Packs and UPCs",,,,"An item, or stock keeping unit (SKU), is a distinct type of item for sale, including all attributes that distinguish the item type from other item types.
+ Packs enable you to manage the stock of an item in multiple units of measure."
+,,,,,,,
+Setup,Data Maintenance,FALSE,Import or Create Kit Headers and Kit Details (Bill of Materials),,,,"A kit header is a parent record that identifies a kit that is built from items. Each kit header has one or more kit details, which describe the individual items that compose the kit."

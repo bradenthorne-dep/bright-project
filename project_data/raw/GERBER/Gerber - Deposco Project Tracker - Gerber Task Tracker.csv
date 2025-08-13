@@ -1,0 +1,194 @@
+,,,,,,,,,,,,,,,,,,
+,,1-Blocker (Blocking progress on the project within next week),,,,,,,,,,,,,,,,
+,,2-Critical (Critical to go-live and our path to completion),,,,,,,,,,,,,,,,
+,,3-High(Impacting our path to go-live but able to work around or deal),,,,,,,,,,,,,,,,
+,,4-Low (No impact to path to completion),,,,,,,,,,,,,,,,
+,,5- NTH (Nice to Have),,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+CATEGORY,DESCRIPTION,TYPE,STATUS,TEAM ,OWNER,SEVERITY,PRIORITY,UAT Critical?,Go Live Critical?,Needs to be on GERBER Jira?,Hours Estimate,DUE DATE,Comments,STEPS TO REPRODUCE,EXPECTED RESULT ,ACTUAL RESULT ,ETA,LINK TASK
+Design,Synthesizing design conversations and notes into master design document,Task,Completed,DEP,JM,Blocker,1,FALSE,FALSE,FALSE,,,,,,,,
+Design,Review Design document between Deposco and Mini teams and sign off,Discussion,Completed,DEP/Gerber,Gerber Team,Critical,1,FALSE,FALSE,FALSE,,,,,,,,
+Hardware / Physical,"Hardware Procument: Printers, tablets, scanners etc",Task,Closed,Gerber,Gerber Team,Critical,2,FALSE,FALSE,TRUE,,,,,,,,
+Hardware / Physical,Setup for printer config - Deposco shared printer config file per facility,Task,In Progress,Gerber,Lily,High,2,FALSE,FALSE,TRUE,,5/15/2025,"4/29 [GERBER] Lily and Randy support from Gerber side
+4/30 [DEP] Resent printer config info
+5/8/25 [GERBER] Need support from Calyx (DEP) for setup. Not printing currently even with configuration complete.
+5/14 [DEP] Call with Lily and Michael completed to help with setup.
+5/14 [GERBER/DEP] Can use template to upload multiple printers. There are 100-200 printers to setup. JM to send email with template to Lilly, Michael, and Donna
+5/29 [GERBER] Still completing setup for large number of printers, but some printers setup.",,,,,
+Integrations,Follow Deposco Help Site to set up UPS account within Deposco  & Updating payment information for UPS Account,Task,In Progress,Gerber,Donna,Critical,,FALSE,FALSE,TRUE,,5/12/2025,"4/29 [GERBER] UPS API errors from DEP
+4/30 [DEP] GERBER to go into UPS account and complete verification tasks
+5/8 [DEP] Account setup, but new error came up. Donna working on this.
+5/29 [GERBER] Trying to get in touch with rep for specific calls
+6/5 - UPS not setup for API, so planning to set this up",,,,,
+Integrations,Follow Deposco Help Site to set up Fedex account within Deposco ,Task,Completed,Gerber,Donna,Critical,,FALSE,FALSE,TRUE,,,4/29 [GERBER] Tested and done,,,,,
+Integrations,Follow Deposco Help Site to set up USPS account within Deposco ,Task,Completed,Gerber,Donna,Critical,,FALSE,FALSE,TRUE,,5/12/2025,"6/5 [GERBER] - Email sent to Nidhi and JM on this for testing.
+5/29 [GERBER] Are credentials not needed in the DEP system. DEP to look into login needs.
+4/29 [GERBER] API errors from DEP
+4/30 [DEP] GERBER to have USPS validate all credentials
+4/15 [GERBER] Received file yesterday, so planning to set up in next week.",,,,,
+Outbound,Configure and validate Inbound Shipment import mapping in Data Exchange (example SRB),Task,Completed,DEP,Nidhi,Medium,,FALSE,FALSE,FALSE,,,"4/25 [DEP] Tested, but adjustments needed
+4/30 [DEP] GERBER to update their file format to align
+5/5 [DEP] Created ticket related for dev review",,,,,
+Mapping,Configure and validate Storage import mapping in Data Exchange (example ALPI),Task,Completed,DEP,Nidhi,Medium,,FALSE,FALSE,FALSE,,,"4/25 [DEP] Field mapping created and tested; Donna completed upload for small subset testing
+4/30 [DEP] Next step for Donna to upload all master data",,,,,
+Inbound,Validate Receiving process,Task,Completed,Gerber,Nidhi,Medium,,FALSE,FALSE,FALSE,,5/7/2025,"4/25 [DEP] Completed and emailed to GERBER team
+4/30 [DEP] GERBER to complete testing on their end.",,,,,
+Inventory Management,Validate Cycle Count Profiles and scheduled task generation,Task,Completed,Gerber,,Medium,,FALSE,FALSE,FALSE,,5/13/2025,"4/29 [GERBER] Need training and more information
+4/30 [DEP] Plans to cover this in inventory mgt demo next Wed",,,,,
+Inventory Management,Validate On Demand Cycle Count process,Task,Completed,Gerber,,Medium,,FALSE,FALSE,FALSE,,5/13/2025,"4/29 [GERBER] Need training and more information
+4/30 [DEP] Plans to cover this in inventory mgt demo next Wed",,,,,
+Inventory Management,Validate scheduled replenishment task creation,Task,Completed,Gerber,,Medium,,FALSE,FALSE,FALSE,,5/13/2025,"4/29 [GERBER] Need training and more information
+4/30 [DEP] Plans to cover this in inventory mgt demo next Wed",,,,,
+Inventory Management,Validate Directed Replenishment,Task,Completed,Gerber,,Medium,,FALSE,FALSE,FALSE,,5/13/2025,"4/29 [GERBER] Need training and more information
+4/30 [DEP] Plans to cover this in inventory mgt demo next Wed",,,,,
+Inventory Management,Validate Manual Replenishment,Task,Completed,Gerber,,Medium,,FALSE,FALSE,FALSE,,5/13/2025,"4/29 [GERBER] Need training and more information
+4/30 [DEP] Plans to cover this in inventory mgt demo next Wed",,,,,
+Inventory Management,Validate queries for putaway logic,Task,Validation,Gerber,,Medium,,FALSE,FALSE,FALSE,,5/14/2025,"4/30 [DEP] Determining best option for putaway logic based on current system details
+5/6 [DEP] Discuss solution during weekly status
+7/23 [DEP] Need confirmation that this was tested",,,,,
+,Configure and validate Work Order import mapping in Data Exchange ,Task,Closed,DEP,DEP Team ,Medium,,FALSE,FALSE,FALSE,,,done and tested,,,,,
+,Configure and validate Product Conversion with Work Order process,Task,Closed,DEP,DEP Team ,Medium,,FALSE,FALSE,FALSE,,,,,,,,
+Mapping,Validate CoHeader import mapping in Data Exchange,Task,Open,Gerber,,Medium,,FALSE,FALSE,FALSE,,5/9/2025,"5/6 [DEP] Pending GERBER re-ording columns; needed for outbound testing to be fully completed prior to demo
+6/6 [GERBER] - Donna sent email with trading partner sites
+7/24 [DEP] Nidhi and Donna to work on some updates",,,,,
+Inbound,"Validate OMS processing of CoHeader (do not consider inventory attribute, just pass through OMS and create Sales Order for whatever is posted from SAP)",Task,Open,Gerber,,Medium,,FALSE,FALSE,FALSE,,5/9/2025,"4/30 [DEP] Initial testing complete, but more testing to be completed with correct data file
+5/6 [DEP] Requires updated file for DEP to be complete
+7/24 [DEP] Nidhi and Donna to work on some updates",,,,,
+Integrations,Configure and validate UPS shipping services,Task,In Progress,Gerber,Donna,Medium,,FALSE,FALSE,FALSE,,5/7/2025,4/30 [DEP] Will be able to test once authentication issue resolved.,,,,,
+Integrations,Configure and validate FedEx shipping services,Task,Completed,Gerber,,Medium,,FALSE,FALSE,FALSE,,5/7/2025,"4/30 [DEP] Tested a few scenarios, so GERBER can test during outbound testing.",,,,,
+Integrations,Configure and validate Stamps shipping services,Task,Completed,Gerber,,Medium,,FALSE,FALSE,FALSE,,5/7/2025,4/30 [DEP] Will be able to test once authentication issue resolved.,,,,,
+Outbound,Configure and validate rate shopping profiles,Task,Open,DEP/Gerber,Donna,Medium,,FALSE,FALSE,FALSE,,5/13/2025,"4/29 [GERBER] UPS API errors from DEP
+4/30 [DEP] GERBER to test once UPS & USPS account are set up
+7/24 [DEP] Donna and Nidhi to meet and setup profiles",,,,,
+Outbound,Configure and validate Kit to Order picking,Task,Closed,DEP,,Medium,,FALSE,FALSE,FALSE,,,Handled with autostore,,,,,
+Outbound,Configure waving rules,Task,Completed,DEP,Nidhi,Medium,,FALSE,FALSE,FALSE,,5/13/2025,,,,,,
+Outbound,Configure and validate BuildAndReleaseWave with cartonization and SSCC generation,Task,Completed,DEP,JM,,,FALSE,FALSE,FALSE,,5/13/2025,,,,,,
+Outbound,Configure and validate Carton Type import mapping in Data Exchange,Task,Completed,DEP,DEP Team ,,,FALSE,FALSE,FALSE,,5/13/2025,,,,,,
+Outbound,Configure and validate Cubed Packing (cartonization),Task,Completed,DEP,DEP Team ,,,FALSE,FALSE,FALSE,,5/13/2025,,,,,,
+Outbound,Configure and validate Pack Order by Item (with cartonization enabled),Task,Completed,DEP,DEP Team ,,,FALSE,FALSE,FALSE,,5/13/2025,,,,,,
+,Configure and validate Single Scan Packing (no cartonization),Task,Closed,DEP,DEP Team ,,,FALSE,FALSE,FALSE,,,,,,,,
+Outbound,Configure and validate Assign Trip to Container (soft close and hard close versions),Task,Completed,DEP,,,,FALSE,FALSE,FALSE,,5/20/2025,,,,,,
+Master Data,"Configure and validate EDI Trading Partner Documents (SSCC labels, packing slips)",Task,Validation,DEP,,Medium,,FALSE,FALSE,FALSE,,5/20/2025,,,,,,
+Integrations,Update FTP connector with a valid host,Task,Completed,Gerber,Randy/Donna,,,FALSE,FALSE,FALSE,,,"Jira:https://deposco.atlassian.net/browse/GERBERSUP-2?linkSource=email
+Email Thread: FTP Connector Setup
+",,,,,
+Outbound,Packing Slip Example,Task,Closed,Gerber,Bobby,,,FALSE,FALSE,FALSE,,,"Email Thread: Gerber Packing Slips
+Remaining packing slips not needed/descoped; Needed packing slip.
+JC Penny example needed.",,,,,
+Outbound,"Pallet Placard label (will be printed ad hoc via Print Report handheld process with a pallet scan, 4 per pallet, 1 label for each side)",Task,In Progress,DEP,Nidhi,Medium,,FALSE,FALSE,FALSE,,5/20/2025,"Email Thread: Content Label clarification and Pallet placard example
+5/15 [DEP] Donna provided example, and will be configured for OB config",,,,,
+Outbound,"Configure and validate Contents Labels (3 unique Contents Labels: 04, BRCD, and GMES). 04 and BRCD are B2B, GMES is B2C and includes a Gift Message",Task,In Progress,DEP,Nidhi,High,,,,FALSE,,5/20/2025,"Email Thread: Content Label clarification and Pallet placard example
+5/15 [DEP] Donna provided example, and will be configured for OB config
+7/23 [DEP] Donna to send some examples with the notes ; Pending mapping notes",,,,,
+Outbound,Configure and validate Embroidery Label (aka Contents Label COI),Task,In Progress,DEP,Nidhi,High,,,,FALSE,,,7/23 [DEP] Pending mapping notes,,,,,
+Outbound,Configure and validate Bill of Lading (BOL),Task,In Progress,DEP,Nidhi,High,,,,FALSE,,,,,,,,
+Integrations,Updating payment information for UPS Account,Task,Closed,Gerber,Donna,High,,FALSE,FALSE,FALSE,,5/7/2025,"4/29 [GERBER] UPS API errors from DEP
+4/30 [DEP] GERBER to go into UPS account and complete verification tasks, then can update payment information",,,,,
+Master Data,Provide customer order file,Task,Completed,Gerber,Donna,,,FALSE,FALSE,FALSE,,5/7/2025,4/29 [GERBER] Will reprogram on our side,,,,,
+Master Data,"Set unique line numbers for PO, ASN, and Customer Order files for SAP and Intradeco",Task,Completed,EcomServices,Beth,Medium,,FALSE,FALSE,FALSE,,5/7/2025,"4/29 [GERBER] Data issue with format and structure
+4/30 [DEP] Deposco requires a unique line number, so Gerber working to update
+5/8 [GERBER] Testing the change for GERBER, but Intradeco in progress
+5/15 [GERBER] XML still needs to be loaded
+5/22 [GERBER] Already have unique line numbers, so just need to see XML from intradeco
+6/6 [GERBER] Part of testing, so can close once passed",,,,,
+,"Set a column that populates ""CASE"" for PO, ASN, and Customer Order files for SAP and Intradeco",Task,Validation,Gerber,,,,FALSE,FALSE,FALSE,,5/16/2025,"4/29 [GERBER] Data issue with format and structure
+4/30 [DEP] Gerber to udpate data being sent
+5/1 [GERBER] POs and ASNs are complete, but ASNs needed to be re-aligned
+6/6 [GERBER] Part of testing, so can close once passed",,,,,
+,Set up Location Zone import,Task,Completed,DEP,Nidhi,,,,,,,,,,,,,
+,OMS configuration,Task,Closed,Gerber,,Medium,,,,FALSE,,5/13/2025,,,,,,
+Master Data,Update pack field mapping: Pack Dims/Weight must be set,Task,Validation,Gerber,Donna,Low,,,,FALSE,,5/13/2025,"5/8 [GERBER] To set up using item upload template.
+5/15 [DEP] DEP team to double check that this is setup
+6/6 [GERBER] May need more fields for national motor freight mode, but this is stored on the item. It needs to be included when uploading criticals. Need to update mapping to align, but may be able to add to pack template",,,,,
+Master Data,Update pack field mapping:  Pack Weight UOM must be set (LB) and Dim UOM must be set (IN),Task,Completed,Gerber,Donna,Medium,,,,FALSE,,5/13/2025,6/6 [DEP] Still need to validate but updated on DEP end. Email confirming updated and ready for testing.,,,,,
+,"Update Trading partner field mapping: Trading Partner ""SSCC Nbrs Reqd for Trip"" must be set to true",Task,Completed,DEP,Nidhi,,,,,,,,,,,,,
+,Update Trading partner field mapping: Trading Partner ZPL Report must be set to something,Task,Completed,DEP,Nidhi,,,,,,,,,,,,,
+Master Data,Upload Zones and Link them to Locations,Task,Completed,Gerber,Donna,Critical,,FALSE,FALSE,FALSE,,5/7/2025,"4/29 [GERBER] Sending Donna file
+4/30 [DEP] Gerber to use ""Location Zone"" field mapping and data exchange
+5/15 [GERBER] Locations are input, but still more to upload.",,,,,
+Design,Update Trading Partners to set SSCC Nbrs Reqd field and ZPL report field,Task,In Progress,DEP/Gerber,,High,,FALSE,FALSE,FALSE,,5/20/2025,"4/29 [GERBER] Meeting on data elements / routing
+4/30 [DEP] Gerber to use ""Update Trading Partner Fields"" field mapping and data exchange. Can have call to discuss if support needed.
+5/8 [DEP] Follow-up call on how to store trading partners - Book with JM
+6/6 [GERBER] Donna researching
+7/24 [GERBER/DEP] Routing design needs to be finalized to complete these - May be included in line 63 item",,,,,
+Master Data,"Team to complete uploads for storage details, stock units, items",Task,Completed,Gerber,Donna,Critical,,FALSE,FALSE,FALSE,,5/7/2025,,,,,,
+Inventory Management,Enter inventory adjustment reason codes,Task,Completed,Gerber,Donna,High,,TRUE,TRUE,FALSE,,5/14/2025,,,,,,
+Master Data,Updates to SAP to support multiple pack types (each and case) per item,Task,Validation,DEP/Gerber,Bob,,,FALSE,FALSE,FALSE,,5/7/2025,"4/29 [GERBER] Will reprogram on our side
+5/22 [GERBER] Currently testing
+6/6 [GERBER] Still open issues on transactions related to storage locations
+6/12 [DEP] Meeting scheduled for afternoon to discuss",,,,,
+Master Data,Determine process for Trading Partners - SAP ERP impacts and work-around for ZPL label forms for same trading partner/destination site instead of using unique trading partners,Task,In Progress,DEP,,High,,FALSE,FALSE,FALSE,,5/16/2025,"5/22 [DEP] Gerber uploaded shipping services. Would like to update all that already have codes set and relabel/rename to match however they're referred to. Next Steps - Jackie to schedule meeting for discussion/setup.
+6/6 [DEP] Creating ticket for development with label types. Multiple prefixes in Walmart documentation, but need to reply requesting feedback from Jorge and Andrea on requirements for prefixes.
+7/24 [GERBER/DEP] - Routing related",,,,,
+Inventory Management,Cycle Count Business rules - Configure rules to only display a single pack type based on the pack type of the stock unit that is in that location (either Each or Case),Task,Open,DEP,,Medium,,FALSE,FALSE,FALSE,,,5/09 - gerber team requested these rules during inventory management demo to prevent a user choosing eaches vs cases during cycle counting,,,,,
+Inventory Management,"Test following scenario:  if pallet01 is in loc1 systemically but then a user submits a count saying pallet01 is in loc2, what happens? does it move the pallet01 from loc1 to loc2?
+",Task,Open,DEP,,Low,,FALSE,FALSE,FALSE,,,,,,,,
+Inventory Management,Explore if notes captured during Inventory Adjustments can be displayed on the INV_LEDGER table,Task,Open,DEP,,Low,,FALSE,FALSE,FALSE,,,6/6 [DEP] JM: This is not supported with the new Inv Ledger and is not something included in the current InvAdjustment export to SAP.,,,,,
+Integrations,Send the USPS XML to Donna,Task,Completed,DEP,JM,Low,,FALSE,FALSE,FALSE,,6/6/2025,5/12 [DEP] - Deposco team currently prioritizing configuration for upcoming demos. USPS XML to be completed following demos being completed.,,,,,
+Testing,Test if SSCC labels can be held in a queue instead of automatically printing at the point of waving.,Task,Open,DEP,,Low,,FALSE,FALSE,FALSE,,5/30/2025,,,,,,
+Testing,"Relabel number, external order number, and customer order number fields to order number, pick ticket number, and po number",Task,Open,DEP,,Low,,,,FALSE,,5/30/2025,,,,,,
+Outbound,Ticket to complete configuration and validation Inbound Shipment import mapping in Data Exchange,Task,In Progress,DEP,Nidhi,Medium,,FALSE,FALSE,FALSE,,5/30/2025,,,,,,
+Integrations,Setup FTP connectors for additional folders,Task,Validation,Gerber,Donna,High,,FALSE,FALSE,FALSE,,6/27/2025,"6/12 [DEP] Need to complete full touchpoint validation following outbound testing.
+5/29 [DEP] Validated some, but still need to complete full validation
+5/22 [GERBER] Added FTP connectors, so in validation status",,,,,
+Integrations,Setup swisslog test server access,Task,In Progress,Gerber,Billy,Critical,,,,FALSE,,5/26/2025,,,,,,
+Outbound,Configure method of pre-creating trips with linked orders prior to ATTC,Task,Completed,DEP,DEP Team ,Medium,,,,FALSE,,5/30/2025,,,,,,
+Outbound,"Set up handheld Print Pallet Placard process (4 copies per pallet scanned, will be used for all B2B pallet labeling)",Task,Open,DEP,DEP Team ,Medium,,,,FALSE,,5/30/2025,,,,,,
+Outbound,Configure Close Trip and Print BOL PALs on Trip entity,Task,Validation,DEP,DEP Team ,Medium,,,,FALSE,,5/30/2025,,,,,,
+Outbound,"Update batch picking rules to prompt for Item/GTIN and SSCC for every case picked, also after staging require user to re-enter the picking location",Task,Validation,DEP,JM,Medium,,,,FALSE,,5/30/2025,,,,,,
+Outbound,"Configure warning message (one message, not a hard error message) if a user enters a different staging location than the one suggested (in scerarios where a staging area is full of pallets)",Task,Validation,DEP,JM,Medium,,,,FALSE,,5/30/2025,,,,,,
+Outbound,Validate Admin only pick exception privilege in picking processes,Task,Open,DEP/Gerber,,Low,,,,FALSE,,5/30/2025,7/24 [GERBER/DEP] - Further discussion required on how this should be handled.,,,,,
+Outbound,Determine process for Trading Partners - SAP ERP impacts and work-around for ZPL label forms for same trading partner/destination site instead of using unique trading partners,Discussion,Open,DEP/Gerber,,Medium,,,,FALSE,,6/5/2025,Duplicate?,,,,,
+Inventory Management,Discuss Movement Type Files statuses,Discussion,Validation,Gerber,Bob,High,,,,FALSE,,5/22/2025,"5/22 [DEP] - Send email update with codes
+5/29 [GERBER] - Bob shared issue with current format. Additional call needed to discuss with Nidhi",,,,,
+Outbound,"Add validation to prevent a trip from being closed unless SCAC, BOL Number, and PRO number have been added",Task,Validation,DEP,,Medium,,,,,,,"7/31: JM - I have added rules based validation messages. A trip will not close unless the SCAC, Pro Number, and BOL Number are all set at the trip level. Once set, the trip can be closed. Flipping to Validation and ready for Gerber to Test",,,,,
+Outbound,Add API SQL on trip to show if all pallets for orders tied to that trip have been added. Validate trip cannot be closed until all pallets have been added.,Task,Open,DEP,,Medium,,,,FALSE,,,,,,,,
+Outbound,Explore possible rules toggling Close Shipment SIs in Cubed Packing to use a single button for shipping Regular B2C orders & Amazon & Emboridery,Task,Open,DEP,,Medium,,,,FALSE,,,,,,,,
+Outbound,Configure and test grocery scan in Cubed Packing,Task,Open,DEP,,Medium,,,,FALSE,,,,,,,,
+Outbound,Explore use of Cubed Packing for both singles and multis. Gerber prefers a single B2C shipping button. Deposco typically uses POBI for Singles and Cubed Packing for Multis. Cubed Packing can be used for singles but after shipping a singles order it re-prompts for a cart scan each time unlike POBI which only scans the cart once.,Question,Closed,DEP,DEP Team ,Medium,,,,FALSE,,,"JM: in seperate task, have added screen validations to Cubed Packing and POBI so user is directed towards the correct process to use for a scanned bin",,,,,
+Design,China facility kickoff,Discussion,Completed,DEP/Gerber,Jackie,High,,,,FALSE,,6/6/2025,,,,,,
+Reporting,Add stock unit API SQL and storage API SQL on Location entity so Gerber can use in views/reports,Task,In Progress,DEP,JM,High,,,,FALSE,,6/30/2025,,,,,,
+Outbound,Add OH != Released to wave rule expressions to avoid issue of manually re-waving already waved order and seperating work group and ,Task,Validation,DEP,JM,High,,,,FALSE,,,"JM 6/4: updated waving rules, ready to test",,,,,
+Master Data,Configure and validate uploading kit items with Assembly components for Gerber Virtual Bundles,Task,Completed,DEP,Nidhi,High,,,,FALSE,,,,,,,,
+Master Data,"Use the ""Virtual Bundle Upload"" data exchange to upload kit items with Assembly components for Gerber Virtual Bundles",Task,Hold,Gerber,Donna,High,,,,FALSE,,6/30/2025,"6/12 [GERBER] Waiting for user to confirm the correct data before uploading
+7/24 [DEP] Pushing to phase 2 (Following go-live) since Gerber no longer doing this at JFC",,,,,
+Master Data,"Clarify how Deposco should tag orders as 'B2C'. Would suggest setting the Trading Partner's Order Type (CA1) to B2C OR perhaps if the Trading Partner's Bill to Attention Name contains 'B2C'? Noticed Walmart B2C, Target B2C, Amazon B2C, etc trading partners.",Discussion,In Progress,DEP,JM,Medium,,,,FALSE,,6/30/2025,"6/12 [DEP] Going to use CA1; Add CA1, CA2 to trading partner upload
+6/6 [DEP] Use attribute since it's a key piece of data",,,,,
+Admin,Additonal Onsite Support SOW,Request,Completed,DEP,Jackie,Critical,,,,FALSE,,6/9/2025,,,,,,
+Outbound,Configure screen message validations in Cubed Packing (if user scans a bulk picked singles orders cart) and POBI (if user scans multi unit / 1 order per bin) to direct user to correct packing process,Task,In Progress,DEP,JM,High,,,,FALSE,,,"JM 6/6: Configured and test screen message validations in both packing processes. Flipping to Gerber Validation.
+7/24 [DEP] - Pack container is doing what they want. Do not want to hit multi-pack and change back to single.",,,,,
+Integrations,look into Activity Log for creating an inventory movement export for pallet moves and replens,Task,Validation,Gerber,JM,High,,,,FALSE,,,,,,,,
+Reporting,"Add 'Eaches Quantity' API SQLs to receipt line, inv adjustment, and shipment line to be used in SAP exports. All quantities need to be converted from Cases to Eaches.",Task,Validation,DEP/Gerber,Bob,Medium,,,,FALSE,,,"JM added, Bob/Gerber to validate",,,,,
+,Resolve error message during B2B Routing via PAL,Task,Open,DEP,JM,Medium,,,,FALSE,,,"Seeing an error compiling script message when trying to run B2B routing on orders SO749- SO756
+
+Logs: https://logs.deposco.com/_dashboards/goto/16f26b69be90a972cefdeddb9b8cbe1d",,,,,
+,Look into rules based validation to prevent a receiving user from receiving multiple SKUs onto a pallet,Task,Validation,DEP/Gerber,John,Medium,,,,TRUE,,,"8/7: Added this task based on John's testing feedback email. 
+8/8: JM sent email to John and Gerber team that this is ready for Gerber to test",,,,,
+,Look into rules based validation to prevent putaway to a location without a storage record,Task,Validation,DEP/Gerber,John,Medium,,,,FALSE,,,"8/7: Added this task based on John's testing feedback email
+8/8: JM sent email to John and Gerber team that this is ready for Gerber to test",,,,,
+,"Issue discovered with case replenishments - replenishment task quantity is treating storage records for Case packs as if they are Each max's rather than Case max's. Also it created 2 replenishment tasks for 1 pallet. Want to not split a pallet during pulls for replenishments. Test data:  location M24F20 and item 585881G0103T
+",Task,Open,DEP,Nidhi,Medium,,,,FALSE,,,,,,,,
+,I have turned on the base validation in Single Scan Picking and added a business rule validation in Batch Picking. You should now get an error if you try to scan a pallet in either picking process which should not be used for picking. Gerber to test,Task,Validation,DEP/Gerber,Daniel,Medium,,,,FALSE,,,,,,,,
+,Request to require scan (i.e. do not allow a user to select a location) for Move Container,Task,Validation,DEP/Gerber,JM,Medium,,FALSE,FALSE,FALSE,,,,,,,,
+,,,,,,,,FALSE,FALSE,FALSE,,,,,,,,
+,,,,,,,,FALSE,FALSE,FALSE,,,,,,,,
+,,,,,,,,FALSE,FALSE,FALSE,,,,,,,,
+,,,,,,,,FALSE,FALSE,FALSE,,,,,,,,
+,,,,,,,,FALSE,FALSE,FALSE,,,,,,,,
+,,,,,,,,FALSE,FALSE,FALSE,,,,,,,,
+,,,,,,,,FALSE,FALSE,FALSE,,,,,,,,
+,,,,,,,,FALSE,FALSE,FALSE,,,,,,,,
+,,,,,,,,FALSE,FALSE,FALSE,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,
+,,,,,,,,FALSE,FALSE,,,,,,,,,

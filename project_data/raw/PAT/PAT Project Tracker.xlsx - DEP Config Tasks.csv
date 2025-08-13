@@ -1,0 +1,259 @@
+robin,,,,,,,,,,,
+,,  CONFIG TASK TRACKER,,,Task Summary,,,,,,
+,,,,,Total Count,In Validation,In Progress,Complete,% of Tasks Complete,% of Hours Complete,
+,,,,,74,7,4,16,21.62%,13.96%,
+,,,,,,,,,,,
+#,CATEGORY,SUB CATEGORY,DESCRIPTION,SCOPE,ESTIMATE,PRIORITY,OWNER,STATUS,ETA,NOTES,Congifuration Notes
+1,Inbound,LPN Receiving,LPN Number is auto generated based on Deposco Sequence,SIs,1,,Brandon,Complete,,This will be a dedicated LPN Receiving Button. Reach out to others using these SIs based on the SI lookup tool,Completed by using Deposco Sequence and setting container number attribute + prefix
+2,Inbound,LPN Receiving,LPN Number is required ,SIs,0.5,,Brandon,Complete,,This will be a dedicated LPN Receiving Button. Reach out to others using these SIs based on the SI lookup tool,Set on the SI
+3,Inbound,LPN Receiving,Print LPN Label after stock has been received onto the LPN ,Rules,4,,Brandon,Complete,,"This will be a dedicated LPN Receiving Button. Work with Neovia team to determine best time to print using the ""Receiving"" workflow process","Added rules to Receiving_ReceiveItemScreen-post2
+
+Needed rules as the SI only prints a label list label"
+4,Inbound,LPN Receiving,"Configure  4x3 LPN Label:
+
+- Business Unit
+- Container #
+- Date Received 
+- Item # 
+- Qty on the LPN
+",Report,4,,Sara,Complete,,,"""LPN Label 4x3"" is configured in labelList"
+5,Inbound,LPN  Receiving,"Locations for putaway will be only in the ""Receiving Zone""",Query Override,4,,Sara,Complete,,Determine if this is base logic (it most likely is) if it is not then override using the Putaway Query SI in Receiving,"Determine if this is base logic (it most likely is) if it is not then override using the Putaway Query SI in Receiving
+
+Putaway Query SI: SuggestedPutatway"
+6,Inbound,LPN Receiving,"Validation to only allow one lot per LPN captured during receiving. This should be an investigation first if this is base, can be handled via configuration, or if rules are needed. If rules are needed scope with Josiah or Brandon before beginning configuration",Rules,1,,Brandon,Hold,,"This is just an investigation/scoping for the requirement.
+
+JIRA ticket created - https://deposco.atlassian.net/browse/PATSUP-16",
+7,Inbound,LPN Receiving,Validatio to ensure only one item per lpn ,Rules,2,,Brandon,Complete,,,Completed using rules on Receiving_ReceiveItemScreen-post
+8,Inbound,Loose Stock Receiving,This will be a dedicated Loose Stock Receiving Button. Straightforward base configuration. Same putaway as LPN Receiving,Query Override,1,,Sara,Complete,,This is a dedicated Loose Stock Receiving button,"Handheld button: Loose Stock Receiving
+Putaway Query SI: SuggestedPutatwayLoose"
+9,Inbound,Damages Receiving,"Configure using a dedicated ""Damages Receiving"" button. Rule prop will be needed to mark receiptLine.disposition == ""Damaged"" receiptLine.damaged = ""true""",Rules,4,,Sara,Complete,,"These rules exist in Verst GeneralReceiving_LPNIdentifierScreen-post
+but will need to be in a different subcat since these will be received as loose stock.",Rules configured in GeneralReceiving_CreateStock-post
+10,Inbound,Damages Receiving,Configure Image capture and save to OrderHeader,Rules,2,,Sara,Complete,,"Rules exist in DRF, HSW 
+,  save to orderHeader not orderLine.",Rules configured in GeneralReceiving_IdentifierInputScreen-post
+11,Inbound,Returns Receiving,"Configure ""Returns Receiving"" handheld process. Blind RMAs and RMAs are eligible for this workflow. Stock will be received loosely and putaway to locations in the returns zone",Rules,2,,Sara,In Progress,,,
+12,Inbound,All receiving,Work with Patterson to get specifications of the Receivng level report that is to be sent after PO is received,Report,4,,Sara,Open,,Scale example,
+13,Reporting,Labels,Pallet Label,Report,4,,,,,,
+14,Reporting,Labels,Carton Label,Report,4,,,,,,
+15,Inventory,Move Container,Generic Move Container Process - base suggestions - detach stock from split case picking,SIs,1,,Brandon,Validation,,,
+16,Inventory,Move Item,Generic Move Item Process - base suggestions ,SIs,1,,Brandon,Validation,,,
+17,Inventory,Move Stock,Generic Move Stock Process - base suggestions ,SIs,1,,,,,,
+18,Inventory,Directed Putaway,Configure and test Directed Putaway Process - same validations need to exist as in Move Container but a different workflow,SIs,4,,Brandon,In Progress,,This is a new process so this must be tested thoroughly. Expect issues and document them appropriately - potentially need tickets for putaway,
+19,Inventory,Cycle Counts,Configure Generic Cycle Count Profile by Location for the HKC facility,SIs,1,,,,,Plenty of environments to emulate this with. No need to re-invent the wheel here.,
+20,Inventory,Cycle Counts,Configure Generic Cycle Count Profile by Item for the HKC facility,SIs,1,,,,,Plenty of environments to emulate this with. No need to re-invent the wheel here.,
+21,Inventory,Cycle Counts,Configure Cylce Count by Location Workflow Process,SIs,2,,,,,Plenty of environments to emulate this with. No need to re-invent the wheel here.,
+22,Inventory,Cycle Counts,Configure Cylce Count by Item Workflow Process,SIs,2,,,,,Plenty of environments to emulate this with. No need to re-invent the wheel here.,
+23,Inventory,Adjust Inventory,Configure base adjust inventory process.,SIs,2,,,,,Use reason codes defined in the MDD otherwise good to pull from another ENV,
+24,Inventory,Replenishments,Configure base storage based replenishment process. Will need to evaluate eligible stockUnit and override query if needed. ,Query Override,4,,Brandon,,,Use MDD for defined eligible stockUnit and replen logic. Many SIs can be re-used from other storage based replen processes.,
+25,Inventory,Replenishments,Configure base storage based replenishment process.,SIs,2,,Brandon,,,Use MDD for defined eligible stockUnit and replen logic. Many SIs can be re-used from other storage based replen processes.,
+26,Inventory,Replenishments,Configure Product Conversion with workorder replens. Look at VERST for this logic,Query Override,2,,Brandon,,,Use VERST environment for a template here,
+27,Inventory,Replenishments,Configure demand based replenishments. This is not outlined in the design document BUT this has been needed by almost all clients come go live. ,SIs,4,,Brandon,,,Use VERST environment for a template here,
+28,Inventory,Replenishments,Configure Top off replens,SIs,2,,Brandon,,,Use VERST environment for a template here. This is base and only generation of tasks,
+29,Inventory,Kitting,"Configure Kit-to-stock workflow process:
+
+Product conversion w/ workorder workflow ",SIs,4,,,,,Use MDD for key assumptions,
+30,Inventory,ATP Calculations,Verify and make changes to ATP calculations as defined in MDD,Query Override,2,,,,,,
+31,Outbound,Pre Processing,The Ship To contact name and Ship To address must be populated for the order. The validation is dependent on the Trading Partner code provided on the order. This logic is detailed above.,Rules,2,,,,,Use MDD ,
+32,Outbound,Pre Processing,"If Ship To Country is not ‘US’ then the following fields must be populated on all CoLines:
+HTS code: CoLine.item.harmonizedCode (this validation is evaluating the Item master data)
+Customs value: coLine.unitPrice
+When values are blank on the CoLine then set these values based on item master data. If data is still unavailable then order is set to “Review”
+Users are able to view the customer orders in review on their dashboard for visibility and timely resolutions.",Rules,6,,,,,Verst has the majority of rules - but will need to write the SET rules from scratch. test thoroughly ,
+33,Outbound,Pre Processing,Map ,Rules,6,,,,,Verst has the majority of rules - but will need to write the SET rules from scratch. test thoroughly ,
+33,Outbound,Pre Processing,Validate and test Co Revision modes defined in MDD,UI Configuration,4,,,,,This will involve some API testing - define scenarios and test cases. Report back to patterson so they understand the functionality fully,
+34,Outbound,Order Routing,Create default order routing profile ,UI Configuration,2,,,,,,
+35,Outbound,Order Routing,Create default Customer Order Management Profile,UI Configuration,2,,,,,,
+36,Outbound,Order Routing,create routing scheduler,UI Configuration,1,,,,,Pull from a number of OMS envs. All base,
+37,Outbound,Order Routing,create retry scheduler,UI Configuration,1,,,,,Pull from a number of OMS envs. All base,
+38,Reporting,Co Management,A dashboard widget is created to show all customer orders in a review status.,Report,2,,,,,,
+39,Outbound,Automations,Determine if the automations outlined in MDD can be handled via API or if truly needed,UI Configuration,2,,,,,Add tasks below as needed for automations,
+40,Outbound,POI,Set “POI Complete” (orderHeader.complete)  = “True” at the end of Post Order Import processing to confirm POI is executed properly on all orders. ,Rules,0.5,,Brandon,Closed,,,
+41,Outbound,POI,OrderLines are evaluated to determine if the order is Ready to Ship (RTS) or Not Ready To Ship (NRTS) The Value RTS or NRTS  is set on the orderHeader.customAttribute1 (Order Type),Rules,3,,Brandon,Closed,,,
+42,Outbound,POI ,Ship Vias are evaluated to determine if the shippingService.freightType == “Parcel”. If this is true orderHeader.customAttribute2 (Fulfillment Type) is set to “Parcel”.,Rules,1,,Brandon,Closed,,,
+43,Outbound,POI,Fedex AV,Rules,2,,,,,Pull a generic version that is being used in other environments. Ensure this is set up for the REST FedEx integration,
+44,Outbound,POI,"trading Partner = “Parts Orders”
+Orders come down with SCAC code= AM24 and if order exceeds 5 pounds and is a ceiling fan then ship Fedex Home Delivery
+If commercial ship as Fedex Ground, if residential ship Fedex Home Delivery.
+",Rules,3,,,,,,
+45,Outbound,ORP,Configure three ORPs for waving. These are defined in the MDD,UI Configuration,3,,Brandon,In Progress,,,
+46,Outbound,Waving,Configure RTS Delegator and scheduler,UI Configuration,4,,Brandon,Validation,,"This task needs to test cartonization of RTS items, ensure carrier calls are being made, SSCC Numbers genrerated, and shiping labels are generate.",
+47,Outbound,Waving,Configure NRTS Delegator and scheduler,UI Configuration,1,,Brandon,Validation,,,
+48,Outbound,Waving,Configure Undo Release WFP,UI Configuration,0.5,,Brandon,Closed,,,
+49,Outbound,Waving,Validate / Configure Stock Rollup functionality,UI Configuration,1,,Brandon,Validation,,,
+50,Outbound,Waving,Configure RTS Pick Wave Profiles,UI Configuration,2,,Brandon,Validation,,,
+51,Outbound,Waving,Configure NRTS Pick Wave Profiles,UI Configuration,2,,Brandon,Validation,,,
+52,Outbound,Waving,Configure Exception / Repick waves,UI Configuration,0.5,,,,,,
+53,Outbound,Picking,Configure RTS picking (base SIs),UI Configuration,2,,Brandon,Complete,,,
+54,Outbound,Picking,Configure RTS Picking - Prepopulate cartonized container,Rules,2,,Brandon,Complete,,"Pulled from Gerber 	
+BatchPicking_ItemEntryBinQtyScreen-pre",
+55,Outbound,Picking,Configure RTS Picking - Print LPN label after scanning RTS container,Rules,2,,Brandon,Complete,,"Added rules to 	
+BatchPicking_ItemEntryBinQtyScreen-post",
+56,Outbound,Picking,Configrure RTS Picking LPN Label for printing ,Report,2,,,,,Awaiting specs from PAT team,
+57,Outbound,Picking,"Configure NRTS, Singles Picking",SIs,2,,,,,"This should be your standard Bulk item pick done across many Deposco envs
+
+Key assumptions defined in MDD",
+58,Outbound,Picking,"Configure NRTS, Multis Picking",SIs,2,,,,,"This is your standard batch picking flow
+
+Key assumptions defined in MDD",
+59,Outbound,Picking,Configure Exception / Repick picking process,SIs,2,,,,,"This should be a batch picking flow
+
+Key assumptions defined in MDD",
+60,Outbound,Packing,Configure RTS Packing Process,SIs,8,,Brandon,In Progress,,"This process will print off SSCC labels using rules
+
+This process will prompt user to scan associated LPNs on the order
+
+This process will have validations defined in MDD",
+61,Outbound,Packing,"Configure NRTS, Singles Packing Process",SIs,4,,,,,"This is your standard POBI workflow. Needs to be retailer compatible
+
+ability to print packing slips and sscc labels",
+62,Outbound,Packing,"Configure NRTS, Multis Packing Process",SIs,4,,,,,"This is your standard SingleScanPacking workflow. Needs to be retailer compatible
+
+ability to print packing slips and sscc labels
+
+Defined in MDD",
+63,Outbound,Packing,Configure Hazmat Packing across all workflows,UI Configuration,10,,,,,Defined in MDD,
+64,Outbound,Packing,Configure Stamps integration,UI Configuration,8,,,,,,
+65,Outbound,Packing,Configure UPS integration,UI Configuration,8,,,,,,
+66,Outbound,Packing,Configure FedEx Integration,UI Configuration,8,,,,,,
+67,Outbound,Freight,Configure Create Trip PAL,Rules,4,,Brandon,,,"Use environments like SCALE, VERST, GULF, GERBER",
+68,Outbound,Freight,Configure Freight Picking Process,SIs,12,,Brandon,,,"Use environments like SCALE, VERST, GULF, GERBER
+
+Staging logic / follow the leader included",
+69,Outbound,Freight,Configure Print And Apply Process,SIs,4,,Brandon,,,"Use environments like SCALE, VERST, GULF, GERBER
+
+",
+70,Outbound,Freight,Configiure ATTC and add validations,Rules,8,,Brandon,,,"Use environments like SCALE, VERST, GULF, GERBER
+
+",
+71,Outbound,Freight,Configure Close Trip process and accompanying validations,Rules,8,,Brandon,,,"Use environments like SCALE, VERST, GULF, GERBER
+
+",
+72,Outbound,Freight,Configure OFP for Reset Orders,UI Configuration,8,,,,,This will require heavy testing and validations since this process is new,
+73,Inventory,Freight,Configure Reset Order Replenishments,UI Configuration,8,,,,,This will require heavy testing and validations since this process is new,
+74,,,,,,,,,,,
+75,,,,,,,,,,,
+76,,,,,,,,,,,
+77,,,,,,,,,,,
+78,,,,,,,,,,,
+79,,,,,,,,,,,
+80,,,,,,,,,,,
+81,,,,,,,,,,,
+82,,,,,,,,,,,
+83,,,,,,,,,,,
+84,,,,,,,,,,,
+85,,,,,,,,,,,
+86,,,,,,,,,,,
+87,,,,,,,,,,,
+88,,,,,,,,,,,
+89,,,,,,,,,,,
+90,,,,,,,,,,,
+91,,,,,,,,,,,
+92,,,,,,,,,,,
+93,,,,,,,,,,,
+94,,,,,,,,,,,
+95,,,,,,,,,,,
+96,,,,,,,,,,,
+97,,,,,,,,,,,
+98,,,,,,,,,,,
+99,,,,,,,,,,,
+100,,,,,,,,,,,
+101,,,,,,,,,,,
+102,,,,,,,,,,,
+103,,,,,,,,,,,
+104,,,,,,,,,,,
+105,,,,,,,,,,,
+106,,,,,,,,,,,
+107,,,,,,,,,,,
+108,,,,,,,,,,,
+109,,,,,,,,,,,
+110,,,,,,,,,,,
+111,,,,,,,,,,,
+112,,,,,,,,,,,
+113,,,,,,,,,,,
+114,,,,,,,,,,,
+115,,,,,,,,,,,
+116,,,,,,,,,,,
+117,,,,,,,,,,,
+118,,,,,,,,,,,
+119,,,,,,,,,,,
+120,,,,,,,,,,,
+121,,,,,,,,,,,
+122,,,,,,,,,,,
+123,,,,,,,,,,,
+124,,,,,,,,,,,
+125,,,,,,,,,,,
+126,,,,,,,,,,,
+127,,,,,,,,,,,
+128,,,,,,,,,,,
+129,,,,,,,,,,,
+130,,,,,,,,,,,
+131,,,,,,,,,,,
+132,,,,,,,,,,,
+133,,,,,,,,,,,
+134,,,,,,,,,,,
+135,,,,,,,,,,,
+136,,,,,,,,,,,
+137,,,,,,,,,,,
+138,,,,,,,,,,,
+139,,,,,,,,,,,
+140,,,,,,,,,,,
+141,,,,,,,,,,,
+142,,,,,,,,,,,
+143,,,,,,,,,,,
+144,,,,,,,,,,,
+145,,,,,,,,,,,
+146,,,,,,,,,,,
+147,,,,,,,,,,,
+148,,,,,,,,,,,
+149,,,,,,,,,,,
+150,,,,,,,,,,,
+151,,,,,,,,,,,
+152,,,,,,,,,,,
+153,,,,,,,,,,,
+154,,,,,,,,,,,
+155,,,,,,,,,,,
+156,,,,,,,,,,,
+157,,,,,,,,,,,
+158,,,,,,,,,,,
+159,,,,,,,,,,,
+160,,,,,,,,,,,
+161,,,,,,,,,,,
+162,,,,,,,,,,,
+163,,,,,,,,,,,
+164,,,,,,,,,,,
+165,,,,,,,,,,,
+166,,,,,,,,,,,
+167,,,,,,,,,,,
+168,,,,,,,,,,,
+169,,,,,,,,,,,
+170,,,,,,,,,,,
+171,,,,,,,,,,,
+172,,,,,,,,,,,
+173,,,,,,,,,,,
+174,,,,,,,,,,,
+175,,,,,,,,,,,
+176,,,,,,,,,,,
+177,,,,,,,,,,,
+178,,,,,,,,,,,
+179,,,,,,,,,,,
+180,,,,,,,,,,,
+181,,,,,,,,,,,
+182,,,,,,,,,,,
+183,,,,,,,,,,,
+184,,,,,,,,,,,
+185,,,,,,,,,,,
+186,,,,,,,,,,,
+187,,,,,,,,,,,
+188,,,,,,,,,,,
+189,,,,,,,,,,,
+190,,,,,,,,,,,
+191,,,,,,,,,,,
+192,,,,,,,,,,,
+193,,,,,,,,,,,
+194,,,,,,,,,,,
+195,,,,,,,,,,,
+196,,,,,,,,,,,
+197,,,,,,,,,,,
+198,,,,,,,,,,,
+199,,,,,,,,,,,
+200,,,,,,,,,,,
+201,,,,,,,,,,,

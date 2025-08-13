@@ -1,0 +1,82 @@
+System,Tasks/Touchpoints,Status,Go-Live Critical?,Current Team Owner,Owner,Due Date,Notes
+SAP (Daily Import/Exports),Customer Order - Inbound,In Progress,TRUE,GERBER,Beth/Bob,,
+,Purchase Order - Inbound,"Passed Connection Testing, Further Testing Required",TRUE,GERBER,Beth/Bob,,
+,ASN (Inbound Shipment),Testing in Progress,TRUE,GERBER,Beth/Bob,,
+,Return Authorization,Testing in Progress,TRUE,GERBER,Beth/Bob,,
+,Ship Confirmation - Outbound,Testing in Progress,TRUE,GERBER,Beth/Bob,,
+,Inventory Feed for SAP (Item) - Outbound,Testing in Progress,TRUE,GERBER,Beth/Bob,,
+,"Inventory Adjustments, Receipts (IGL) - Outbound",Testing in Progress,TRUE,GERBER,Beth/Bob,,
+,Verified ASN - Outbound,Testing in Progress,TRUE,GERBER,Beth/Bob,,
+,SAP Item Daily Import,Testing in Progress,TRUE,GERBER,Beth/Bob,,
+,Transfer Orders,In Progress,TRUE,GERBER,Beth/Bob,,
+,TP - Vendor,"Passed Connection Testing, Further Testing Required",TRUE,GERBER,Beth/Bob,,
+,TP - Customer,"Passed Connection Testing, Further Testing Required",TRUE,GERBER,Beth/Bob,,
+Master Data (One-time Uploads),Users,Ready for Go-Live / Complete,TRUE,GERBER,Donna,,
+,Trading Partners - Vendor,Ready for Go-Live / Complete,TRUE,GERBER,Donna,,
+,Trading Partners - Customer,Ready for Go-Live / Complete,TRUE,GERBER,Donna,,
+,Item ST+CQ (Item+Pack),Ready for Go-Live / Complete,TRUE,GERBER,Donna,,
+,Item UPCs,Ready for Go-Live / Complete,TRUE,GERBER,Donna,,
+,Locations,Ready for Go-Live / Complete,TRUE,GERBER,Donna,,
+,Storage Record,Ready for Go-Live / Complete,TRUE,GERBER,Donna,,
+,Stock Units,Ready for Go-Live / Complete,TRUE,GERBER,Donna,,
+Intradeco,Items / 832,Ready for Go-Live / Complete,TRUE,GERBER,Beth / Zack,,Deposco Setup Complete
+,Trading Partners / N/A,Not Applicable,FALSE,GERBER/DEP,,,No longer needed
+,Purchase Order / 943,Ready for Go-Live / Complete,TRUE,GERBER / ECOM,Beth / Zack,,Deposco Setup Complete
+,Inbound ASN / 943,Testing in Progress,TRUE,GERBER / ECOM,Beth / Zack,,Deposco Setup Complete
+,Customer Orders / 940,Testing in Progress,TRUE,GERBER / ECOM,Beth / Zack,,Deposco Setup Complete
+,Transfer Orders / 940,Testing in Progress,FALSE,GERBER/DEP,,,No longer needed
+,Customer Returns / 943,Testing in Progress,TRUE,GERBER / ECOM,Beth / Zack,,Deposco Setup Complete
+,Purchase Order Receipts / 944,Testing in Progress,TRUE,GERBER / ECOM,Beth / Zack,,Deposco Setup Complete
+,Customer Return Receipts/ 944,Testing in Progress,TRUE,GERBER / ECOM,Beth / Zack,,Deposco Setup Complete
+,Shipment Notifications / 945,Testing in Progress,TRUE,GERBER / ECOM,Beth / Donna,,Deposco Setup Complete
+,Inventory Adjustments / 846,Testing in Progress,TRUE,GERBER / ECOM,Beth / Donna,,Deposco Setup Complete
+Swisslog Autostore,Export Items,Not Started,TRUE,GERBER / SWISSLOG,Billy / Swisslog,,
+,Replen Request,Not Started,TRUE,GERBER / SWISSLOG,Billy / Swisslog,,
+,Replen confirm,Not Started,TRUE,GERBER / SWISSLOG,Billy / Swisslog,,
+,Wave Release,Not Started,TRUE,GERBER / SWISSLOG,Billy / Swisslog,,
+,Pick Complete,Not Started,TRUE,GERBER / SWISSLOG,Billy / Swisslog,,
+,Inventory Adjustment,Not Started,TRUE,GERBER / SWISSLOG,Billy / Swisslog,,
+,Cycle Count Request,Not Started,TRUE,GERBER / SWISSLOG,Billy / Swisslog,,
+,Cycle Count Confirm,Not Started,TRUE,GERBER / SWISSLOG,Billy / Swisslog,,
+Palantir,Master Data ,"Passed Connection Testing, Further Testing Required",FALSE,GERBER,Daniel,,
+,Inventory,"Passed Connection Testing, Further Testing Required",FALSE,GERBER,Daniel,,
+Misc,SOP Creation,In Progress,TRUE,GERBER,John - JFC Team,,8/11: About 58% complete
+WMS Configuration,Master Data Setup,Ready for Go-Live / Complete,TRUE,GERBER,Donna,,
+,Document Printer Setup,In Progress,TRUE,GERBER,Randy / Lily,,
+,Label Printer Setup,In Progress,TRUE,GERBER,Randy / Lily,,
+,BOL Setup,In Progress,TRUE,GERBER / DEP,Nolan,8/20/25,
+,SSCC Label - 30+ labels - Big impact,In Progress,TRUE,DEP,Nidhi / Nolan,,Gerber provided feedback
+,Pallet Placards,Testing in Progress,TRUE,GERBER,,,
+,Embroidery Label,In Progress,TRUE,DEP,Nidhi,8/20/25,
+,Gift Label,In Progress,TRUE,DEP,Nidhi,8/20/25,"Initial label and query have been set up, Nidhi requested an example from Donna, JM to write printing rules"
+,Shipping Labels,Testing in Progress,TRUE,GERBER,John - JFC Team,,"UPS still behind schedule, so not completed"
+,Carton Label,Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,
+,EDI Trading Partner Documents,Testing pending DEP updates,TRUE,DEP,Nidhi,8/20/25,Carton label updates
+,Cycle Counting,Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,
+,Cartonization,Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,
+,Packing / Shipping,Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,
+,Replenishment,Testing pending DEP updates,TRUE,GERBER,JM / Nidhi,,
+,Putaway,Testing pending DEP updates,TRUE,DEP,JM,,Container rule error investigation; Error compiling script message
+,Transfer Orders,Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,
+,Post Order Import Logic,Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,
+,Kitting,Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,Have kits been created/uploaded for testing?
+,Rate Shopping,In Progress,TRUE,GERBER,Donna,,Need to create rate shop rules
+,Waving / Picking,Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,
+,Receiving,Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,
+,Staging / Loading,Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,
+,Bright Order Setup/Config,In Progress,TRUE,DEP,Nidhi,8/13/25,Reporcess scheduler or routing scheduler
+Bright Socket,UPS,In Progress,TRUE,GERBER,Donna / Beth,,
+,FedEx,Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,
+,USPS (Stamps.com),Ready for Gerber Testing,TRUE,GERBER,John - JFC Team,,
+,Global-e,Ready for Gerber Testing,TRUE,GERBER,,,Descoped
+,SAP S4 Hana (Flat File),Ready for Gerber Testing,TRUE,GERBER,,Listed above,
+,Routing (Flat File),Ready for Gerber Testing,TRUE,GERBER,,,B2B freight orders
+,Swisslog Autostore,Ready for Gerber Testing,TRUE,GERBER,,,Listed above
+,Deposco API Support,Ready for Gerber Testing,TRUE,GERBER,,,Task to support API setup - Example: Palentir
+,NuOrder,Ready for Gerber Testing,TRUE,GERBER,,,Descoped
+,ChannelAdvisor,Ready for Gerber Testing,TRUE,GERBER,,,Descoped
+,Shopify,Ready for Gerber Testing,TRUE,GERBER,,,Descoped
+,Intradeco Flat File Exchange,Ready for Gerber Testing,TRUE,GERBER,,Listed above,
+,Data Exchange (File Imports),Ready for Gerber Testing,TRUE,GERBER,,,Stock transfers
+Bright Performance,Reports and Dashboards,In Progress,FALSE,GERBER,Daniel / Nidhi,,Nidhi supporting where needed
+,Data Archive,Not Started,FALSE,GERBER,,,Not available until go-live
