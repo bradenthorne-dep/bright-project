@@ -242,6 +242,8 @@ $RECYCLE.BIN/
 cache/
 *.log
 config.json
+ai_project_info.json
+ai_tasks.json
 
 # IDE
 .vscode/
