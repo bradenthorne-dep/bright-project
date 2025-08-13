@@ -15,6 +15,11 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+  
+  // Category navigation state
+  const [categories, setCategories] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
 
   useEffect(() => {
     loadTasks();
@@ -32,10 +37,32 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
       const project = selectedProject || undefined;
       const data: TasksResponse = await apiService.getTasks(project);
       setTasks(data.tasks);
+      
+      // Extract unique categories
+      const uniqueCategories = Array.from(new Set(data.tasks.map(task => task.category)));
+      setCategories(['All', ...uniqueCategories.sort()]);
+      
+      // Reset to "All" when project changes
+      setSelectedCategory('All');
+      
+      // Set filtered tasks
+      setFilteredTasks(data.tasks);
     } catch (err: any) {
       setError(err.response?.data?.detail || err.message || 'Failed to load tasks');
     } finally {
       setLoading(false);
+    }
+  };
+  
+  // Handle category selection
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+    
+    // Filter tasks based on selected category
+    if (category === 'All') {
+      setFilteredTasks(tasks);
+    } else {
+      setFilteredTasks(tasks.filter(task => task.category === category));
     }
   };
 
@@ -121,6 +148,32 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
         <p className="text-gray-600">Comprehensive view of all project tasks and current status</p>
       </div>
 
+      {/* Category Tabs Navigation */}
+      <div className="border-b border-gray-200">
+        <nav className="flex -mb-px space-x-8 overflow-x-auto">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => handleCategorySelect(category)}
+              className={`
+                whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm
+                ${selectedCategory === category
+                  ? 'border-orange-500 text-orange-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}
+              `}
+            >
+              {category}
+              {selectedCategory === category && (
+                <span className="ml-2 bg-orange-100 text-orange-600 py-0.5 px-2.5 rounded-full text-xs font-medium">
+                  {category === 'All' 
+                    ? tasks.length 
+                    : tasks.filter(t => t.category === category).length}
+                </span>
+              )}
+            </button>
+          ))}
+        </nav>
+      </div>
 
       {/* Tasks Table */}
       <div className="bg-white rounded-lg shadow overflow-hidden relative">
@@ -128,9 +181,6 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Category
-                </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Subcategory
                 </th>
@@ -164,16 +214,13 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {tasks.map((task) => (
+              {filteredTasks.map((task) => (
                 <tr
                   key={task.id}
                   className="hover:bg-gray-50 cursor-pointer relative"
                   onMouseEnter={() => setHoveredRow(task.id)}
                   onMouseLeave={() => setHoveredRow(null)}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {task.category}
-                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {task.subcategory}
                   </td>
