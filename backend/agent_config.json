@@ -1,0 +1,39 @@
+{
+  "agents": {
+    "project_info_extractor": {
+      "name": "Project Information Extractor",
+      "description": "Extracts key project information from design documents and populates project_info.json",
+      "model": "claude",
+      "temperature": 0.1,
+      "max_tokens": 2000,
+      "prompt": "You are a project information extraction specialist. Analyze the provided design document and extract key project information.\n\nExtract the following information:\n- Client name/company\n- Project manager name (if mentioned)\n- Start date (if mentioned)\n- End date or go-live date (if mentioned)\n- Current phase (if mentioned)\n- Project status\n- Budget information (if mentioned)\n- Any other relevant project metadata\n\nReturn ONLY the JSON object using the exact template structure provided. Fill in the values based on the document content, but maintain the exact field names and structure. Use null for any information not found in the document. Return only valid JSON without any surrounding text, markdown formatting, or code blocks.",
+      "input_file": "design_doc.txt",
+      "output_file": "project_info.json",
+      "template_file": "json_templates/project_info_template.json",
+      "enabled": true
+    },
+    "task_extractor": {
+      "name": "Task List Extractor",
+      "description": "Extracts tasks and requirements from design documents and creates a structured task list",
+      "model": "claude",
+      "temperature": 0.2,
+      "max_tokens": 3000,
+      "prompt": "You are a task extraction specialist. Analyze the provided design document and extract all tasks, requirements, and deliverables mentioned.\n\nCreate a structured task list where each task has:\n- Unique ID (use format: TASK-001, TASK-002, etc.)\n- Clear title\n- Detailed description\n- Category (Development, Integration, Testing, Documentation, Other)\n- Priority (High, Medium, Low)\n- Estimated hours (if mentioned or can be reasonably estimated)\n- Dependencies (list of other task IDs this depends on)\n- Assigned to (if mentioned)\n- Due date (if mentioned, format: YYYY-MM-DD)\n- Status (Not Started, In Progress, Completed)\n- Progress (0-100)\n\nReturn ONLY the JSON object using the exact template structure provided. Focus on actionable items, implementation requirements, and specific deliverables mentioned in the document. Return only valid JSON without any surrounding text, markdown formatting, or code blocks.",
+      "input_file": "design_doc.txt",
+      "output_file": "extracted_tasks.json",
+      "template_file": "json_templates/tasks_template.json",
+      "enabled": false
+    }
+  },
+  "api_config": {
+    "claude": {
+      "default_model": "us.anthropic.claude-sonnet-4-20250514-v1:0"
+    }
+  },
+  "settings": {
+    "max_retries": 1,
+    "timeout_seconds": 20,
+    "backup_original_files": false,
+    "log_level": "INFO"
+  }
+}

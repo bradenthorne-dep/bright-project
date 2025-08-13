@@ -1,0 +1,17 @@
+{
+  "tasks": [
+    {
+      "id": null,
+      "title": null,
+      "description": null,
+      "category": null,
+      "priority": null,
+      "estimated_hours": null,
+      "dependencies": [],
+      "assigned_to": null,
+      "due_date": null,
+      "status": null,
+      "progress": null
+    }
+  ]
+}

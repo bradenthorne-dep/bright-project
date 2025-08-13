@@ -1,17 +1,21 @@
 """
 FastAPI backend for project management applications
 
-Provides API endpoints for project overview, task tracking, and file uploads.
+Provides API endpoints for project overview, task tracking, file uploads, and AI agent execution.
 """
 
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from typing import List, Dict, Any, Optional
 import os
 import logging
 import json
+import asyncio
 from project_calculations import calculate_project_overview, calculate_risk_assessment
 from pdf_processor import pdf_processor
 from docx_processor import docx_processor
+from ai_agent_system import AIAgentSystem
 
 logger = logging.getLogger(__name__)
 
@@ -21,9 +25,31 @@ os.chdir(backend_dir)
 
 app = FastAPI(
     title="Project Management API",
-    description="Backend API for project management and task tracking",
+    description="Backend API for project management, task tracking, and AI agent execution",
     version="1.0.0"
 )
+
+# Initialize AI Agent System
+agent_system = AIAgentSystem()
+
+# Pydantic models for API requests/responses
+class AgentExecuteRequest(BaseModel):
+    agent_id: str
+
+class AgentResponse(BaseModel):
+    agent_id: str
+    status: str
+    message: Optional[str] = None
+    error: Optional[str] = None
+    output_file: Optional[str] = None
+    result_preview: Optional[str] = None
+
+class AgentInfo(BaseModel):
+    id: str
+    name: str
+    description: str
+    enabled: bool
+    model: str
 
 # Enable CORS for frontend development
 app.add_middleware(
@@ -189,6 +215,84 @@ async def get_extracted_text():
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error retrieving extracted text: {str(e)}")
+
+# AI Agent System Endpoints
+
+@app.get("/api/agents", response_model=List[AgentInfo])
+async def list_agents():
+    """Get list of available AI agents"""
+    try:
+        agents = agent_system.list_agents()
+        return [AgentInfo(**agent) for agent in agents]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error listing agents: {str(e)}")
+
+@app.post("/api/agents/execute", response_model=AgentResponse)
+async def execute_agent(request: AgentExecuteRequest):
+    """Execute a specific AI agent"""
+    try:
+        result = await agent_system.execute_agent(request.agent_id)
+        return AgentResponse(**result)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error executing agent: {str(e)}")
+
+@app.post("/api/agents/execute-all", response_model=List[AgentResponse])
+async def execute_all_agents():
+    """Execute all enabled AI agents"""
+    try:
+        results = await agent_system.execute_all_agents()
+        return [AgentResponse(**result) for result in results]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error executing agents: {str(e)}")
+
+@app.post("/api/agents/{agent_id}/enable")
+async def enable_agent(agent_id: str):
+    """Enable a specific AI agent"""
+    try:
+        success = agent_system.enable_agent(agent_id)
+        if not success:
+            raise HTTPException(status_code=404, detail=f"Agent not found: {agent_id}")
+        return {"message": f"Agent {agent_id} enabled successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error enabling agent: {str(e)}")
+
+@app.post("/api/agents/{agent_id}/disable")
+async def disable_agent(agent_id: str):
+    """Disable a specific AI agent"""
+    try:
+        success = agent_system.disable_agent(agent_id)
+        if not success:
+            raise HTTPException(status_code=404, detail=f"Agent not found: {agent_id}")
+        return {"message": f"Agent {agent_id} disabled successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error disabling agent: {str(e)}")
+
+@app.post("/api/agents/extract-project-info")
+async def extract_project_info():
+    """Convenience endpoint to extract project info from design document"""
+    try:
+        result = await agent_system.execute_agent("project_info_extractor")
+        if result["status"] == "success":
+            return {
+                "message": "Project information extracted successfully",
+                "output_file": result.get("output_file"),
+                "result_preview": result.get("result_preview")
+            }
+        else:
+            raise HTTPException(
+                status_code=500, 
+                detail=result.get("error", "Failed to extract project information")
+            )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error extracting project info: {str(e)}")
 
 
 if __name__ == "__main__":
