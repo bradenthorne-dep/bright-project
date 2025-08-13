@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import apiService, { ProjectOverviewResponse } from '@/services/api';
 import { formatDate, formatCurrency } from '@/utils/formatters';
+import { getProjectLogo, getProjectLogoAlt } from '@/utils/projectLogos';
 
 interface HomeProps {
   onSectionChange?: (section: string) => void;
@@ -148,8 +149,8 @@ export default function Home({ onSectionChange }: HomeProps) {
           >
             <div className="h-16 bg-gray-800 flex items-center justify-center">
               <img 
-                src="/gerberlogo.avif" 
-                alt="Gerber Logo" 
+                src={getProjectLogo(project.client)} 
+                alt={getProjectLogoAlt(project.client)} 
                 className="w-[90%] h-[90%] object-cover"
               />
             </div>

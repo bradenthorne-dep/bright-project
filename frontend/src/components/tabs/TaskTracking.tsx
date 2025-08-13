@@ -7,9 +7,10 @@ import { formatDateShort } from '@/utils/formatters';
 
 interface TaskTrackingProps {
   onSectionChange?: (section: string) => void;
+  selectedProject?: string;
 }
 
-export default function TaskTracking({}: TaskTrackingProps) {
+export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -19,12 +20,17 @@ export default function TaskTracking({}: TaskTrackingProps) {
     loadTasks();
   }, []);
 
+  useEffect(() => {
+    loadTasks();
+  }, [selectedProject]);
+
   const loadTasks = async () => {
     setLoading(true);
     setError(null);
     
     try {
-      const data: TasksResponse = await apiService.getTasks();
+      const project = selectedProject || undefined;
+      const data: TasksResponse = await apiService.getTasks(project);
       setTasks(data.tasks);
     } catch (err: any) {
       setError(err.response?.data?.detail || err.message || 'Failed to load tasks');
@@ -32,6 +38,7 @@ export default function TaskTracking({}: TaskTrackingProps) {
       setLoading(false);
     }
   };
+
 
 
   const getStatusColor = (status: string): string => {
@@ -69,6 +76,10 @@ export default function TaskTracking({}: TaskTrackingProps) {
       default:
         return 'bg-gray-100 text-gray-800';
     }
+  };
+
+  const getTeamDisplayName = (team: string): string => {
+    return team.toLowerCase() === 'client' ? 'Gerber4' : team;
   };
 
   if (loading) {
@@ -109,6 +120,7 @@ export default function TaskTracking({}: TaskTrackingProps) {
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Task Tracking</h1>
         <p className="text-gray-600">Comprehensive view of all project tasks and current status</p>
       </div>
+
 
       {/* Tasks Table */}
       <div className="bg-white rounded-lg shadow overflow-hidden relative">
@@ -173,7 +185,7 @@ export default function TaskTracking({}: TaskTrackingProps) {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getTeamColor(task.team)}`}>
-                      {task.team}
+                      {getTeamDisplayName(task.team)}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
