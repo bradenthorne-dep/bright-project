@@ -1,0 +1,856 @@
+PDF Text Extraction Results
+Original File: Sunrise Brand_MSA_13FEB2024.pdf
+Extracted: 2025-08-13 12:47:45
+Total Pages: 14
+==================================================
+
+--- Page 1 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+MASTER SAAS
+AGREEMENT
+TERMSANDCONDITIONS
+This Master SaaS Agreement (this "Agreement") is made effective as of February 13, 2024 (the “Effective Date”) by and between
+Deposco, Inc., a Delaware corporation ("Deposco") and the undersigned (“Sunrise Brands”) ("Company”). This Agreement consists of
+the Signature Page, Terms and Conditions, one or more Order Forms (attached as Schedule A), and a description of Support Services
+(attached as Schedule B).
+By executing this Agreement, Company acknowledges that it has reviewed the Terms and Conditions and Schedules incorporated into
+this Agreement and agrees to be legally bound by the same. For and in consideration of the mutual promises and obligations herein,
+the receipt and sufficiency of which is hereby acknowledged and agreed, the parties hereby cause this Agreement to be executed by
+their duly authorized representative effective as of the last date written below.
+DEPOSCO,INC. SUNRISEBRANDS
+ADELAWARECORPORATION ACALIFORNIACORPORATION
+By: By:
+Bill Gibson Maria Fajardo
+Name: Name:
+CEO IT Director
+Title: Title:
+2/14/2024 2/13/2024
+Date: Date:
+Address: 11605HaynesBridgeRoad,Suite200 Address:801SFigueroaStreet,Suite2500
+Alpharetta,GA30009 LosAngeles,CA90017
+
+--- Page 2 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+MASTER SAAS
+AGREEMENT
+TERMSANDCONDITIONS
+1.0 GENERAL. The following terms and conditions 3.7 Subcontractors. Deposco may, as it deems
+(“Terms and Conditions”) provide for terms that are appropriate, use subcontractors for all or any
+common tothisAgreement,includingallSchedules. In portion of the ProfessionalServices. Deposcomay
+the event of a conflict between these Terms and at any time remove and replace any such
+Conditions and any Schedule, the Schedule will subcontractors.
+control, unlessexpresslystatedtothecontraryinthese
+3.8 Up-TimeCommitment
+TermsandConditions.
+(a) Availability. The Software Services will be
+2.0 DEFINITIONS. As used in this Agreement, and in
+provided to Company and its End Users,
+addition to any other defined terms, the capitalized
+using commercially reasonable efforts,
+terms used herein are defined in the Glossary at the
+twenty-four hours a day, seven days a week
+endoftheseTermsandConditions.
+less the period during which the Software
+3.0 SERVICES. Services are not availableduetooneormore
+of the following events (collectively, the
+3.1 General. AllServiceswillbeprovidedtoCompany
+“ExcusableDowntime”):
+according to the Service TermsandConditions,the
+Schedule describing the Service, and one or more 1) Scheduled network, hardware or service
+OrderForms. maintenance, which is typically between
+the hours of midnight and 4am Eastern
+3.2 Software Services. Deposco will provide
+Standard Time with at least fourteen(14)
+Company and End Users with access to the
+days prior written notice of such
+applicable Deposco Software selected and
+maintenance;
+described on Schedule A (“Order Form) (“Software
+2) The acts or omissions of Company or
+Services”). During the Term and subject to
+Company’s employees, agents,
+Company’s compliance with this Agreement,
+contractors, vendors, or anyone gaining
+Deposco grants Company the non-exclusive,
+access to the Software Services by
+nontransferable, non-assignable, and limited rights
+meansofCompany’sAccount;
+andlicensesasfollows:
+3) A failure of the Internet and/or the public
+(a) To allow End Users to remotely access the switchedtelephonenetwork;
+Deposco Software that is located on the 4) Company’s failure to complywithSection
+Deposco Server in accordancewiththeterms 6below;
+ofthisAgreement. 5) The occurrence of any event that is
+beyondDeposco’sreasonablecontrol;or
+(b) To use the Deposco Software to create
+6) At Company’s direction, Deposco
+customized user applications (“Customized
+restricting Company and its End Users’
+Software”) in accordance with the
+accesstotheSoftwareServices.
+Documentation.
+(b) Commitment. Subject to Company
+3.3 Professional Services. Deposco will provide
+satisfying its obligation herein, Deposco
+consulting or software development services to
+guarantees that the Software Services willbe
+Company as described on Schedule A or in a
+available to Company and End Usersatleast
+separate professionalservicesagreementexecuted
+99% of the time during each calendar month,
+bytheauthorizedrepresentativesoftheparties.
+excluding Excusable Downtime (“Uptime
+3.4 Support Services. Deposco will provide Commitment”). If Deposco fails to satisfy the
+customer careandsupportservicestoCompanyas Uptime Commitment during a month then
+describedonScheduleB(“SupportServices”). Deposco will credit to the Company a
+pro-rated portion of the Software Services
+3.5 Service Delivery. Deposco may provide the Fee (as defined in Schedule A) in the first
+Services fromanyfacilityandmayfromtimetotime month of the next succeeding calendar year
+transfer any or all of the Services being provided following the failure. For purpose of this
+hereunder to any new facility(ies) or relocate the Section 3.6(b), “pro-rated portion of the
+personnel, equipment and other resources used in Software Services Fee” means the product
+providingthoseServices. obtained by multiplying the applicable
+Services Fee during the month of the failure
+3.6 Project Control. Deposco has thesolerightand
+by a fraction, the numerator of which will be
+obligation to supervise, manage, contract, direct,
+the number of hours that the Software
+procure, perform, or cause to be performed the
+Services did not satisfy the Uptime
+Professional Services to be performed byDeposco
+Commitment, and the denominator of which
+hereunderunlessotherwiseprovidedherein.
+will be the total number of hours during the
+month that such failure occurred less
+
+--- Page 3 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+MASTER SAAS
+AGREEMENT
+TERMSANDCONDITIONS
+excusable Downtime. The foregoing refund 5.3 Taxes. ThefeesandexpensesduetoDeposcoas
+will be Company’s sole andexclusiveremedy set forth in this Agreement are net amounts to be
+for Deposco’s failure to comply with the received by Deposco, exclusive of all sales, use,
+UptimeCommitment. withholding, excise, value added, ad valoremtaxes
+or duties incurred by Company or imposed on
+4.0 RIGHTS RESERVED. Title ownership rights, and
+Deposco in the performance of this Agreement or
+Intellectual Property Rights in and to the Deposco
+otherwise due as a result of this Agreement. This
+Software, Customized Software, all Deposco Marks
+section will not apply to taxes based solely on
+(and all Derivative Works thereto and copies thereof)
+Deposco'sincome.
+will remain in possession of Deposco. Company and
+Deposco agrees to abide by the patent and copyright 5.4 Offset. Fees and expenses due from Company
+laws and all otherapplicablelawsoftheUnitedStates. under this Agreement may notbewithheldoroffset
+Company acknowledges that the Deposco Softwarein byCompanyagainstotheramountsforanyreason.
+source code form remains Proprietary Information of
+6.0 COMPANYOBLIGATIONS
+Deposco and that the source code is not licensed to
+Company by this Agreement or any Schedule and will 6.1 Technical Requirements. Companymusthave
+not be provided by Deposco. No right or implied required equipment, software, and Internet access
+license or right of any kind is granted to Company to be able tousetheSoftwareServices. Acquiring,
+regarding the Services, including, but not limited to, installing, maintaining and operating equipment,
+any right to use, reproduce, market, sell, translate, any Company Software, and Internet access is
+distribute, transfer, adopt, disassemble, decompile, solely Company's responsibility, except as
+reverse engineer the Deposco Software or the otherwise expressly provided in an Order Form.
+Documentation thereof, or any portions thereof, or Compatible browsers include, but are not limitedto
+obtain possession of any source code or other Chrome, Firefox, and Safari current editions plus
+technical material relating to the Deposco Software. typically four (4) previous editions as well as Edge
+Company further agrees not to lease, license, sell, (editions subject to change based on security
+sublicense or otherwise transfer its accesstooruseof matters and updates). Deposco neither represents
+the Software Services. The Software Services may nor warrants that the Deposco Software will be
+only be used by Company and its employees, and accessiblethroughallwebbrowserreleases.
+agents or representatives acting onCompany’sbehalf.
+In addition, Company agrees not to modify the 6.2 Privacy Policy. Company’s use of the Deposco
+Deposco Software, create Derivative Worksorattempt website is subject to the terms oftheprivacypolicy
+to decipher, decompile, disassemble or reverse set forth on the website from time to time that
+engineer the Deposco Software, except to exercise governs the use of information by Company
+thoserightssetforthinSection3.2.(b)above. received from Deposco or a thirdpartyandtheuse
+of information by DeposcofromCompany(“Privacy
+5.0 FEESANDPAYMENTTERMS Policy”). The Privacy Policy is intended to be
+complementary and additive to the terms of this
+5.1 Services Fees. For the Services provided under
+Agreement, including the confidentiality provisions
+this Agreement, Company willpayDeposcothefee
+thereof. In the event of any directconflictbetween
+in the amount set forth in the applicable Order
+the Privacy Policy and this Agreement the termsof
+Form(s). Initial Services Fees will be invoiced to
+thisAgreementshallcontrol.
+Company upon execution oftheAgreementperthe
+terms of Schedule A. Subsequent invoices as 6.3 Use of Deposco Website. Company shall not
+applicable will be delivered on a monthly basis via and shall not permit others inusingtheSoftwareor
+email unless otherwise denoted in Schedule A Software Services to: (i) defame, abuse, harass,
+and all payments for Service Fees shall be due 30 stalk, threaten or otherwise violate or infringe the
+days from the date of invoice. Service Fees are legal rights (such as rights of privacy, publicity and
+non-cancelable and non-refundable. All fees paid intellectual property) of others or Deposco; (ii)
+and expenses reimbursed under this Agreement publish, ship, distribute ordisseminateanyharmful,
+willbeinUnitedStatescurrency. profane, vulgar, infringing, obscene, false,
+fraudulent, tortuous, indecent, unlawful, immoral or
+5.2 Late Fees. Company will pay a late fee of 1½%
+otherwise objectionable material or information
+per month (not to exceed the maximum allowed
+(including any unsolicited commercial
+under state law) on all reasonably uncontested
+communications); (iii) publish, ship, distribute or
+balances notpaidwhendue.Deposco,atitsoption,
+disseminate material or information that
+may suspend the Services, in whole or in part, if
+encourages conduct that couldconstituteacriminal
+Deposco does not receive an amount due and
+offense or give rise to civil liability; (iv) engage in
+owing under this Agreementwithinfifteen(15)days
+any conduct that could constituteacriminaloffense
+after written notice of non-payment is delivered by
+or give rise to civil liability for Deposco; (v)
+Deposco.
+
+--- Page 4 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+MASTER SAAS
+AGREEMENT
+TERMSANDCONDITIONS
+misrepresent or in any other way falsely identify either with or withouttheknowledgeofCompanyor
+Company’s identity or affiliation, including through the applicableEndUser. NorwillDeposcobeliable
+impersonation or altering any technical information or responsible for any unauthorized access and/or
+in communicationsusingtheSoftwareServices;(vi) misuse of the Software Services by Company or
+transmit or upload any material through the anyofitsEndUsers.
+Software Services contains viruses, trojan horses,
+6.5 Compliance with Law. Company is solely
+worms, time bombs, cancelbots, or any other
+responsible for any and all improper use of the
+programs with the intent or effect of damaging,
+Software Services thatoccursasadirectorindirect
+destroying, disrupting or otherwise impairing
+result of any act or omission of Company.
+Deposco’s, or any other person’s or entity's,
+Company will notify Deposco immediately of any
+network, computer system,orotherequipment;(vii)
+unauthorized use of the Software Services or any
+interfere with or disrupt the Software Services,
+other breach of security that isknownorsuspected
+networks or servers connected to the Deposco
+byCompany.
+systems or violate the regulations, policies or
+procedures of such networks or servers, including 7.0 NON-DISCLOSUREANDCONFIDENTIALITY.
+unlawful or unauthorized altering any of the
+information submitted through the Software 7.1 Disclosure. Each party may disclose totheother
+party certain Trade Secrets and Confidential
+Services; (viii) attempt to gain unauthorizedaccess
+Information of such party or of such party's
+to the Software, other Deposco customers'
+associated companies, distributors, licensors,
+computer systems or networks using the Software
+suppliers, or customers. For purposes of this
+Services through any means; or (ix) interfere with
+Agreement, “Trade Secrets”meansinformationthat
+another party’s use of the Software Services,
+is a trade secret under law; “Confidential
+including any parties Company has done business
+Information” means information, other than Trade
+with or choose not to do business with through the
+Secrets, that is of value to its owner and is treated
+Software Services, (x) use the Service(s) for the
+as confidential; “Proprietary Information” means
+purposes of cookie tracking, ad exchanges, ad
+Trade Secrets and Confidential Information; the
+networks, data brokerages, or sending electronic
+“Disclosing Party” refers to the party disclosing
+communications (including e-mail) in violation of
+Proprietary Information hereunder, whether such
+applicable law (xi) use the Service(s) to store or
+disclosure is directly from Disclosing Party or
+transmit any “protected health information” as that
+through Disclosing Party’s employees or agents;
+term is defined in 45 C.F.R. 160.103 unless
+and “Recipient” refers to the party receiving any
+expressly agreedtootherwiseinasignedwritingby
+Proprietary Information hereunder, whether such
+Deposco; or (xii) use the Service(s) to store or
+disclosureisreceiveddirectlyorthroughRecipient's
+transmit any “Payment Card Industry” data as that
+term is defined by Payment Card Industry Data
+employeesoragents.
+Security Standards unless expressly agreed to
+7.2 Requirement of Confidentiality. Recipient
+otherwise inasignedwritingbyDeposco. Deposco
+agrees toholdtheProprietaryInformationdisclosed
+has no obligation to monitor Company's use of the
+by Disclosing Party in confidence and not to,
+Software and Software Services. However,
+directly or indirectly, copy, reproduce, distribute,
+Deposco reserves the right (but has no obligation)
+manufacture, duplicate, reveal, report, publish,
+at alltimestomonitor,review,retainand/ordisclose
+disclose, cause to be disclosed, or otherwise
+any information as necessary to satisfy or
+transfer the Proprietary Information disclosed by
+cooperate with any applicable law, regulation,legal
+Disclosing Party to any third party, or utilize the
+processorgovernmentalrequest.
+Proprietary Information disclosed by Disclosing
+Party for any purpose whatsoever other than as
+expressly contemplated by this Agreement.
+6.4 Password Confidentiality. Each End User that
+Company acknowledges that the Software and
+uses the Software Serviceswillchooseapassword
+Documentation are the Proprietary Information of
+when registering. Such End Users are responsible
+Deposco. With regard to the Trade Secrets, the
+for maintaining the confidentialityofthepasswords.
+obligations in this Section shallcontinueforsolong
+Company will also be assigned a password or
+assuchinformationconstitutesatradesecretunder
+passwords for access to and use of the Software
+applicable law. With regard to the Confidential
+Services. Company and its End Users are fully
+Information, the obligations in this Section shall
+responsible for all activities that occur using the
+continue for the term of this Agreement and for a
+passwords. Company acknowledges and agrees
+period of three (3) years thereafter. The foregoing
+that Deposco will not be liable for any loss that
+obligations shall not apply if and to the extent that:
+Company or any End User may incur asaresultof
+(i) Recipient establishes that the information
+someone else using a password that has been
+communicated was publicly known at the time of
+assigned byDeposcotoCompanyoritsEndUsers,
+Recipient's receipt or has become publicly known
+
+--- Page 5 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+MASTER SAAS
+AGREEMENT
+TERMSANDCONDITIONS
+other than by a breach of this Agreement; or (ii) Information Security Policy, the Work Order and/or
+Recipient is ordered byanadministrativeagencyor Statement of Work. Other than as expressly set forth
+other governmental body of competent jurisdiction in this section, neither Deposco, its affiliates, licensors
+todisclosetheProprietaryInformation. or suppliers, nor their officers, directors, employees,
+shareholders, agents or representatives makes any
+7.3 Data Use. Company agrees that data derived by
+express or implied warranties, conditions, or
+Deposco from Deposco’s performance of the
+representations to company, or any other person or
+Services or input by Company may beusedforthe
+entity with respect to the Services or otherwise
+purposes of analysis, including, without limitation,
+regarding this Agreement, whether oral or written,
+statistical analysis, trend analysis, creation of data
+express, implied or statutory. Without limiting the
+models, and creation ofstatisticalrules,exceptthat
+foregoing, any implied warranty or condition of
+suchanalysisshallbeperformedsolelybyDeposco
+merchantability, the implied warranty against
+and such analysis shall be performed only in
+infringement, the implied warranty or condition of
+conjunction with data derived by Deposco from
+fitness for a particular purpose, and those arisingfrom
+Deposco’s performance of Services for other
+a course of dealing or usage of trade are expressly
+customers, input by other Deposco customers or
+excluded and disclaimed. No warranty is made that
+obtained from party data sources. The results of
+use of the Services will be error free or uninterrupted,
+suchanalysis(“De-identifiedData”)maybeusedby
+that any errors or defects in the Services will be
+Deposco for any lawful purpose, including, without
+corrected, or that the Services functionality will meet
+limitation, determining future hardware and
+company’s requirements, Deposco shall use
+communications needs for Deposco systems and
+commercially reasonable efforts to correct known
+determining trends associated withwarehouseuse,
+errors or defects within the Service in ordertoachieve
+operation, and efficacy. Notwithstanding anything
+functionality consistent with the Documentation under
+contained in this Agreement, De-identified Data
+normaluseandcircumstances.
+shall not contain (i) any Proprietary Information of
+Company, (ii) any information that identifies or can 10.0 LIMITATIONOFLIABILITY.
+be reasonably used toidentifyanindividualperson,
+10.1 LIMITATION OF REMEDY. In no event shall
+(iii) any information that identifies or can be
+either party, its affiliates, licensors or suppliers, or
+reasonably used toidentifyCompanyoritsaffiliates
+any of their officers, directors, employees,
+and their suppliers, or (iv) any information that
+shareholders, agents or representativesbeliableto
+identifies or can be reasonably used toidentifyany
+the other party,oranyotherpersonorentityforany
+activitiesorbehaviorsofCompany.
+indirect, special, incidental, exemplary or
+8.0 TRADEMARKS AND TRADE NAMES. Nothing in consequential damages or loss of goodwill in any
+this Agreement confers upon either party any right to way relating to this Agreementorresultingfromthe
+use the other party's Marks, except in Deposco’s use of or inability to use the deliverables or the
+performance of the Services. All use of suchMarksby performance or non-performance of any Services,
+either party will inure to the benefit of the owner of including the failure of essential purpose, even if
+such Marks, use of which will be subject to either party has been notified of the possibility or
+specificationscontrolledbytheowner. likelihood of such damages occurring, andwhether
+such liability is based on contract, tort, negligence,
+9.0 LIMITED WARRANTY. Each party represents and
+strictliability,productsliabilityorotherwise.
+warrants that it has the legal power and authority to
+enter into this Agreement. Deposco represents and 10.2 MAXIMUM LIABILITY. In no event shall either
+warrants that it will provide the Services in a manner party’s liability for any damages to the other party
+consistent with general industry standards reasonably regardless of the form of action, whether based on
+applicable to the provision thereofandthattheService contract, tort, negligence, strict liability, products
+will perform substantially in accordance with the liability or otherwise, exceed the fees received by
+Documentation under normal use and circumstances. Deposco under this Agreement during thethree(3)
+Deposco further represents and warrants that it shall months immediately preceding the events giving
+provide the Services in compliance with all applicable risetosuchclaim.
+laws, including applicable data privacy and protection
+11.0 INDEMNIFICATION.
+laws and regulations that govern the processing or
+personally-identifiable data (without limitation, names, 11.1 Mutual Indemnification. The parties will each
+physical addresses, email addresses, IP addresses), indemnify, defend, and hold the other party
+including but not limitedtotheGeneralDataProtection harmless againstallclaims,actionsorproceedings,
+Regulation (EU) 2016/679 (“GDPR”) and California arising out of any claim that any third-party
+Customer Privacy Act (“CCPA”). Other than as software, any content, data, Marks or other
+expressly set forth in this Agreement, the Client Materials provided by CompanyandDeposcoorits
+Agreement, the General Terms, the Deposco employees or inputted into the Deposco/Company
+
+--- Page 6 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+MASTER SAAS
+AGREEMENT
+TERMSANDCONDITIONS
+Software, or the permitted use of the same by Renewal Term at least 90 days before the end of
+Deposco and Company, infringes or violates any thethen-currentInitialorRenewalTerm.
+third-party patent, copyright or trade secret right
+12.2 Termination. Without prejudice to any other
+enforceableintheUnitedStates.
+remedies and in addition to any other termination
+11.2 Third Party Software. During the term of this rights herein, the parties shall have the right to
+Agreement, Company may provide or make terminatethisAgreementasprovidedbelow:
+available to Deposco certain third-party software
+(a) By either party if the other party commits a
+and other Company and third-party Materials in
+material breach of this Agreement and such
+connection with Deposco performing
+breach remains uncured 30 days afterwritten
+Implementation or Support Services. Company
+notice of such breach is delivered to such
+represents and warrants that Company is
+other party including the failure to pay any
+authorized to provide Deposco such third-party
+feesduetoDeposco;or
+software and Company and third-party Materials
+and that Deposco is authorized to use such (b) By either party if the other party makes an
+third-party software and such Materials solely for assignment for the benefit of creditors, or
+the purpose of providing the ProfessionalServices. commences orhascommencedagainstitany
+Inadditiontoanyotherindemnificationobligationsit proceeding in bankruptcy, insolvency, or
+may have under the Agreement, Company will reorganization pursuant to bankruptcy laws,
+indemnify, defend andholdharmlessDeposcofrom lawsofdebtor’smoratoriumorsimilarlaws.
+and against any and all claims (including, but not
+12.3 Effect. Upon termination of this Agreement for
+limited to, claims of infringement of Intellectual
+any reason, all rights and licenses granted by
+Property Rights), liabilities, losses, damages,
+Deposco hereunder to Company will immediately
+causes of action orinjuries,togetherwithcostsand
+cease. Within thirty (30) days after termination or
+expenses, including reasonable attorneys’ fees,
+expiration of this Agreement and so long as
+arising out of or resultingfromCompany'sfailureto
+Company has paid all outstanding amounts due to
+comply with the foregoing representations and
+Deposco, Deposco shall provide to Company a
+warranties.
+copy of Company’s data on an agreed upon
+11.3 Obligations. Company and Deposco will pay electronicmedia.
+damages, settlements, expenses, costs and
+reasonable attorney’s fees, incurred by the other, 12.4 Survival. Termination of this Agreement or any
+arising out of the matters set forth in this Section, Schedule will not affect the provisions regarding
+provided that such payment will be contingent on: Deposco’s or Company’s treatment of Confidential
+(i) prompt notice by the indemnified party to the Information and Trade Secrets, provisions relating
+indemnifying partyinwritingofsuchclaimtoenable to the payments of amounts due, indemnification
+Company and Deposco, as the case may be, to provisions,orprovisionslimitingordisclaimingeach
+defend or mitigate the same; (ii) cooperation by party’s liability, which provisions will survive such
+Deposco and Company in the defense and/or termination. Each party will indemnify,defend,and
+settlement thereof, at the indemnifying party’s hold harmless the other party against all claims,
+expense; and, (iii) the indemnified party allows the actions, proceedings, losses and damages
+indemnifying party to control the defense and all whatsoever arising out of or in any manner related
+relatedsettlementnegotiations,althoughtheparties to such party’s:(i)unauthorizeduseorreproduction
+willconsultwitheachother. of the Deposco Software or the Customized
+Software; and (ii) violation of Section 7.2 of this
+12.0 TERMANDTERMINATION.
+Agreement.
+12.1 Initial Term. ThisAgreementshallcommenceon
+13.0 GENERAL. This Agreement will be exclusively
+the Effective Date and shall continue in full force
+construed, governed and enforced in all respects in
+and effect for a period of three years following the
+accordance with the internallaws(excludingallconflict
+Effective Date (“Initial Term”), unless earlier
+of lawrules)oftheStateofGeorgiaandanyapplicable
+terminated as provided for below. Thereafter, the
+federal laws of the United States of America, as from
+Initial Termshallautomaticallyrenewforsuccessive
+time to time amended and in effect.Eachpartyagrees
+periods of two (2) years each (each a "Renewal
+that any claim or cause of action whether in law or
+Term"), unless either party provides written notice
+equity, arising under or relatingtothisAgreementshall
+(email acceptable) to the other party’s CFO or
+be brought in a State orfederalcourtinFultonCounty,
+similar at least 90 days prior to the end of the
+Georgia and each party hereby consents to thevenue
+then-current Initial or Renewal Term of its intent to
+of such courts. The parties agree that the United
+not renew the Agreement. Deposco shall give
+Nations Convention on Contracts for the International
+Company prior written notice of an upcoming
+Sale of Goods will not apply in any respect to this
+
+--- Page 7 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+MASTER SAAS
+AGREEMENT
+TERMSANDCONDITIONS
+Agreement or the parties hereto. Notwithstanding the or powertobindtheother,ortocontractinthenameof
+content of any Company purchase order or any other or create a liability against the other, in any way orfor
+document or record, whether in writing or electronic, anypurpose.
+relating to the subject matter of this Agreement, the
+terms of this Agreement shall govern and any
+conflicting, inconsistent, or additional terms contained
+in such documents shall be null and void. All
+communications required or otherwise provided under
+this Agreement shall beinwritingandshallbedeemed
+given when delivered (i) by hand, (ii) by registered or
+certified mail, postage prepaid, return receipt
+requested; (iii) by a nationally recognized overnight
+courier service; or (iv) by facsimile (with confirmation
+copy availableuponrequest)totheaddresssetforthin
+the signature section of this Agreement, as may be
+amended by the parties by written notice to the other
+party in accordance with this Section. Company may
+not assign its rights and duties under this Agreement
+without the prior written consent of Deposco except
+that Company may assign this Agreement in wholeas
+part of a merger, or sale of substantially all of its
+assets. Any assignment in violation of this Section
+shall be void and of noeffect.ThisAgreementshallbe
+binding upon and inuretothebenefitofthepartiesand
+their successors and permitted assigns. Should any
+provision of this Agreement require judicial
+interpretation, the parties agree that the court
+interpreting or construing the same shall not apply a
+presumption that the terms of this Agreement shall be
+more strictly construed against one party than against
+another. In case any one or more of the provisionsof
+this Agreement should be invalid, illegal or
+unenforceable in any respect, the validity, legality and
+enforceability of the remaining provisions contained
+herein shall not in any way be affected or impaired
+thereby. This Agreement constitutes the entire
+Agreement between the partiesconcerningthesubject
+matter hereof and supersedes all written or oral prior
+agreements or understandings with respect thereto.
+No modification, extension or waiver of or under this
+Agreement shall be valid unless made in writing and
+signed by an authorized representative of the party
+sought to be charged therewith. No written waiver
+shall constitute, or be construed as, a waiver of any
+other obligation or condition of this Agreement.
+Deposco and Company shall not be liable for delay or
+failure in performing any of its obligations hereunder
+due to causes beyond its reasonablecontrol,including
+an act of nature, war, natural disaster, governmental
+regulations, terrorism, communication or utility failures
+or casualties or the failures or acts of thirdparties. All
+Schedules attached to thisAgreementorsubsequently
+added hereto by mutual consent of the parties are
+incorporated into this Agreement for all purposes.
+Nothing in this Agreement shall constitute or be
+deemed toconstituteapartnershipbetweentheparties
+hereto or constitute or be deemed to constitute one
+party as agent of the other, for any purpose
+whatsoever, and neither party shall have the authority
+
+--- Page 8 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+MASTER SAAS
+AGREEMENT
+TERMSANDCONDITIONS
+GLOSSARY
+1.0 Company Software means the software and/or any other materials owned or used by Company (other than theDeposco
+Software).
+2.0 Deposco Servermeansthehardwareplatformornetworksystemownedoroperatedby,oronbehalfof,Deposcowherethe
+Deposco Software resides and is accessed by Company via an internet connection to the server using an approved Web
+browser.
+3.0 Deposco Software means the Internet-based Deposco Software products and related Services providedbyDeposco,that
+are more particularly described on Schedule A and that are accessible to Company and its End Users via a Web browser
+throughtheInternetfortheiruseoftheSoftwareServices.
+4.0 Derivative Works means any suggestions, contributions, enhancements, improvements, additions, modifications, or
+DerivativeWorkstothereferencedsoftwareorothermaterials.
+5.0 Documentationmeanstheuserdocumentationandanyotheroperating,training,andreferencemanualsrelatingtotheuse
+oftheSoftwareServices,assuppliedbyDeposcotoCompany,aswellasanyDerivativeWorksthereof.
+6.0 End User means all Company agents and employees, whether full-time, part-time, on-leave, or on vacation who are
+authorizedtousetheSoftwareServicesandhavebeenprovidedapasswordforthesame.
+7.0 Intellectual Property Rights means any and all rights to exclude, existing from time to time in any jurisdiction, under
+patent law, copyright law, moral rights law, trade-secret law, semiconductor chip protection law, trademark law, unfair
+competitionlaw,orothersimilarrights.
+8.0 Marks means service marks, trademarks, trade names, logos, and any modifications to the foregoing that may be created
+duringtheTerm.
+9.0 Materials means data, materials, pictures, documentation, audio, video, artistic works, writings, and other works of
+authorship.
+10.0 Services means all services provided by Deposco under this Agreement including, without limitation, theSoftwareServices
+andSupportServices.
+11.0 Systems Administrator means an individual or individuals authorized by Company to contact Deposco regarding
+problems,errors,ortechnicalquestionsconcerningtheDeposcoSoftware.
+12.0 NormalBusinessHoursmeansMondaythroughFriday,8amto8pmEasternTime.
+13.0 Go-LivemeanstheactivationofCompany’sproductionsoftwareenvironment.
+
+--- Page 9 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+S A
+CHEDULE
+ORDERFORMANDFEES
+ThisScheduleA-OrderFormandFees("ScheduleA")isbetweenDeposco("Deposco")andtheundersigned("CompanyName").
+EXPIRATIONDATEOFORDERFORM:36MonthsfromEffectiveDate
+TERRITORY: NorthAmerica
+DeposcoSoftwareServices SubscriptionFees
+SolutionBundleTotal $165,000/year
+● InvoicedannuallybeginningonEffectiveDate
+DeposcoBrightWarehouseApplication:
+Includes:
+● BrightWarehouseSolution ● Includedinsolutionbundlefees
+● Users
+o UnlimitedUsersfor1Facilities ● Includedinsolutionbundlefees
+▪ TejonRanch,CA
+DeposcoBrightWarehouse(AdvancedOptions):
+● RateShopping ● Includedinsolutionbundlefees
+DeposcoBrightOrderApplication:
+Includes:
+● EnterpriseOrderManagementSolution ● Includedinsolutionbundlefees
+DeposcoBrightSocketApplication:
+Includes:
+● BrightSocketSolution ● Includedinsolutionbundlefees
+DeposcoBrightSocket(SocketConnectors): ● Includedinsolutionbundlefees
+● StandardSockets
+o UPS
+▪ (1)instanceincluded
+ProprietaryandConfidential Page9of14 ScheduleA
+©Deposco,Inc.
+
+--- Page 10 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+S A
+CHEDULE
+ORDERFORMANDFEES
+o FedEx
+▪ (1)instanceincluded
+o USPS/Stamps.com
+▪ (1)instanceincluded
+o DHLExpress
+▪ (1)instanceincluded
+o DHLEcommerce
+▪ (1)instanceincluded
+o Ontrac
+▪ (1)instanceincluded
+DeposcoBrightPerformanceApplication:
+Includes:
+● StandardDashboardandReportingSolution ● Includedinsolutionbundlefees
+DeposcoBrightPerformance:
+● Includedinsolutionbundlefees
+● DataArchive
+DeposcoProfessionalServices ServiceFees
+ProfessionalServicesTotal $220,520
+● $185/hourappliedtothefirst1192projecthourscompleted
+DeposcoProfessionalServices
+● DeploymentRetainer ● $43,216dueatsigningandwillbeappliedtoImplementation
+Services. Remainingprofessionalservicesbilledasincurred.
+● $205/hourappliedtoprofessionalservicescompletedbeyond
+● OngoingProfessionalServices theinitial(ratewillremainvalidforoneyearfromdateof
+Agreement;maybeadjustedthereafter)
+● Atcost(billedasincurred),subjecttoSection2oftheSpecial
+● ReasonableandCustomaryTravelExpenses
+Termsbelow
+ProprietaryandConfidential Page10of14 ScheduleA
+©Deposco,Inc.
+
+--- Page 11 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+S A
+CHEDULE
+ORDERFORMANDFEES
+OtherItems ServiceFees
+DeposcoBrightCloudSolution: ● Includedwithbundlesubscriptionfees
+Includes:
+● Tier2Solution
+● (2)TenantEnvironments:
+o (1)Production
+o (1)Sandbox
+● DisasterRecoveryService
+DeposcoSupportServices:
+DeposcosupportservicesaredetailedinScheduleB.
+● SupportPackageLevel1 ● Includedwithbundlesubscriptionfees
+● SupportPackageLevel2 ● Additional$2,000/month
+● SupportPackageLevel3 ● Additional$3,000/month
+Support Package Levels 2 and 3 billed monthly as incurred (15
+daysadvancenoticerequired).
+SpecialTerms
+1. Each party shall present for review and approval to theotherpartypriortopublicdisseminationallpressreleases,marketing
+materials, advertisements and other external communications in which either party directly references the other party by
+name or reasonably infers arelationship. Eachparty'sapprovalofsuchcommunicationswillnotbeunreasonablywithheldor
+delayed andwillbedeemedgivenifnocontraryindicationisreceivedfromtheotherpartywithinseven(7)daysfromthedate
+the notice is received. Upon Company’s approval, Company agrees to participate in the followingmarketingactivities:(1)a
+joint press release; (2) limited interviews with press and analysts related to the press releases; (3) presentations at trade
+shows; (4) on-site demonstrations during normal business hours to potential clients of Deposco; and (5) one case study.
+CompanygrantsDeposcopermissionandalimitedlicensetouseCompany’slogo(s)toidentifyCompanyasDeposco’sclient
+on Deposco’s websiteandinsalespresentations.Companyalsoagreestoprovidereferencebytelephonecall,forDeposco’s
+prospectiveclient(s).
+ProprietaryandConfidential Page11of14 ScheduleA
+©Deposco,Inc.
+
+--- Page 12 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+S A
+CHEDULE
+ORDERFORMANDFEES
+2. Deposco shall obtain Company’s prior written consent before incurring any travel and related expenses. Upon receiving
+Company’sconsent,DeposcomayinvoiceCompanyforsuchexpensespursuanttotheAgreement.
+ProprietaryandConfidential Page12of14 ScheduleA
+©Deposco,Inc.
+
+--- Page 13 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+SCHEDULE B
+SUPPORTSERVICES
+ThisScheduleB—SupportServicesPackage("ScheduleB")isbetweenDeposco("Deposco")andtheundersigned("Company").
+1.0 DEFINITIONS. As used in this Schedule B, and in Thanksgiving Day, and day after
+addition to any other terms defined herein, the Thanksgiving, Christmas Eve and Christmas
+capitalized terms used herein will have the meanings Day, concerning emergency problems and
+set forth in the Glossary at the end of the Agreement questions;
+TermsandConditions.
+(c) Clarify functions and features of the Software
+2.0 MAINTENANCESERVICES. Services during Deposco’s normal business
+hours;
+2.1 Deposco’s General Responsibilities. During
+the Term of this Agreement and with respecttothe (d) Provide technical support andguidanceinthe
+Deposco Software, Deposco will provide the operation of the Software Services to
+following Maintenance Services for Support Company’s Systems Administrator during
+ServicesPackageLevel1: Deposco’snormalbusinesshours;
+(a) Respond to any defect report it receives in (e) Provide error analysis and correction as set
+accordance with the schedule set forth in forthinthescheduleinSection2.2below;
+Section2.2below;
+(f) Provide prompt notification andassistance,at
+(b) Support Services Package Level 1 - Deposco’s reasonable discretion, in theevent
+Maintain a telephone number and technician Deposco determines a problem that is
+to receive calls on a five (5) days a week, coveredbythisSectionexists;and
+twelve (12) hours a day basis, nationally
+(g) Provide a designated, knowledgeablesupport
+recognized holidays and specific Deposco
+contact for providing technical support, who
+holidays, excepted, which include NewYear’s
+maybechangedfromtimetotime.
+Day, Martin Luther King, Jr. Day, Memorial
+Day, Independence Day, Labor Day, 2.2 ResponseTimes. Deposcowillusecommercially
+Thanksgiving Day, and day after reasonable efforts to provide Support Services
+Thanksgiving, Christmas Eve and Christmas during Deposco’s normal business hours in
+Day, concerning emergency problems and accordance with the following response times
+questions; (Classification will be determined by the support
+specialist):
+Support Services Package Level 2
+(applicable fees provided in Schedule A) -
+Severity Severity Response ResolutionGoalTime
+Maintain a telephone number and technician Level Classification GoalTime
+to receive calls on a seven (7) days a week,
+twelve (12) hours a day basis, nationally S1 Critical 1hour 8hours
+recognized holidays and specific Deposco
+holidays, excepted, which include NewYear’s
+S2 Significant 4 2businessdays
+Day, Martin Luther King, Jr. Day, Memorial
+Day, Independence Day, Labor Day,
+Thanksgiving Day, and day after
+Thanksgiving, Christmas Eve and Christmas
+Day, concerning emergency problems and
+questions;
+Support Services Package Level 3
+S3 Less 24 5businessdays
+(applicable fees provided in Schedule A) -
+Maintain a telephone number and technician Significant
+to receive calls on a seven (7) days a week,
+twenty four (24) hours a day basis, nationally
+recognized holidays and specific Deposco
+holidays, excepted, which include NewYear’s
+Day, Martin Luther King, Jr. Day, Memorial
+Day, Independence Day, Labor Day,
+ProprietaryandConfidential Page13of14 ScheduleB
+©Deposco,Inc.
+
+--- Page 14 ---
+DocuSign Envelope ID: 24E29379-0A19-4E09-9F4F-151CA869B7CC
+SCHEDULE B
+SUPPORTSERVICES
+the scope of this Section, Deposco will notify
+S4 Low 24 NextRelease
+Company to that effect and reserves the right to
+charge Company pursuant to the hourly rate set
+forth in Schedule A, for which Company agrees to
+pay Deposco pursuant to the Terms and
+Conditions of the Agreement. If a reported
+problem is a result of Company’s creation of
+Customized Software, Deposco will charge
+Company on time and materials basis for such
+"Response Goal Time" is the time for a return call from
+Maintenance Services for the second incident of
+Deposco to Company to acknowledge the defect and to
+providing such services and all further incidents
+estimatethetimeforprovidingtheresolution.
+thereafter pursuant to the hourly rate set forth in
+"Resolution Goal Time" is the timetoprovideadocumented ScheduleA.
+fix or repair (which may be a workaround) that restores full
+2.4 Company’s General Responsibilities.
+functionality. Anysuchfixwillbedeemedan"Update".
+Company will be responsible for: (a) Reporting
+SeverityClassifications: errors promptly; (b) Providing sufficient information
+for Deposco to duplicate the circumstances of a
+S1 / Critical: is a defect or issue where Company’s
+reported defect or duplicate the error, as described
+production use of the systemisstoppedorsoseverely
+in the Documentation, so Deposco can duplicate
+impacted that the Company cannot reasonably
+the error, assess the situation, and/or undertake
+continue business operations. It may result in a
+any needed or appropriate corrective action
+material and immediate interruption of Company’s
+hereunder; (c) Otherwise following instructions or
+business operation that may result in a loss of
+suggestions from Deposco regarding use,
+Company data and/or restrict availability to such data
+maintenance, upgrades, repairs, workarounds, or
+and/orcausesignificantfinancialimpact.
+other related matters; and (d) Designating two (2)
+S2 / Significant: means a defect orissuewhereone members of its stafftoserveasCompany’sSystem
+or more important functions of the system are Administrators to contact Deposco with support
+unavailable with no acceptable alternative. Company's issues. Company understands and agrees that
+production use of the system is continuing but not Deposco’s successful response and provision of
+stopped; however, there is a serious impact on the Support Services to Company is subject to
+Company'sbusinessoperations. Company’sassistanceandcomplianceregarding(i)
+at Deposco’s reasonable request, Company will
+S3 / Less Significant: means a defect or issue
+provide Deposco with reasonable access to
+where: (a) important select system features are
+Company’spersonnelandequipmentduringnormal
+unavailable butareasonablealternativeisavailable,or
+business hours to discuss and assess any
+(b)lesssignificantsystemfeaturesareunavailablewith
+problems and/or requests for assistance; and (ii)
+no reasonable alternative; Company’s experience a
+Company will document and promptly report to
+minorlossofbusinessoperationfunctionality.
+Deposco all errors or malfunctions of the Software
+S4 / Low: means (a) a defect or issue that has a Services. ItisCompany’sresponsibilitytocarryout
+minimal impact on Company operations or basic procedures necessary at Company's facilities for
+functionality of the system or (b) Company poses the rectification of errors or malfunctions within a
+questionsregardingbasicfunctionalityofthesystem. reasonable time after such procedures have been
+receivedfromDeposco.
+2.3 Additional Charges. If a problem reported (or if
+Company otherwise requestsassistance)isoutside
+ProprietaryandConfidential Page14of14 ScheduleB
+©Deposco,Inc.
+

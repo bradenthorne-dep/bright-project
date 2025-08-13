@@ -1,0 +1,141 @@
+PDF Text Extraction Results
+Original File: Radicle Order Form_7NOV2024.pdf
+Extracted: 2025-08-13 12:47:42
+Total Pages: 5
+==================================================
+
+--- Page 1 ---
+Docusign Envelope ID: 7EC81E79-51E4-47A7-9DFC-5DC5820A988A
+ORDER FORM
+Order Form November 8, 2024
+Order Form No. 001 Initial Term 36 months
+Offer Expiration
+Prepared by Email Phone
+Ryan Sykora ryan.sykora@deposco.com 630.290.1138
+Billed to:
+Company Name
+Radicle Inc.
+Address
+2250 S Chicago St
+City State Zip Code
+Joliet IL 60436
+Contact Name Email Phone
+Andrew Barta Andrew@rad3pl.com 630.863.4621
+Invoicing Contact Name Email Phone
+Andrew Barta Andrew@rad3pl.com
+Payment Terms: Net 30 Currency: USD ($) EUR (€) GBP (£)
+Payment Schedule: (i)Subscription Fees (ii)Professional Services
+Quarterly - See Special Terms Retainer due upon execution; monthly on a time and materials
+basis thereafter
+Deposco Software:
+License Type Total Subscription Fees
+Annual Total See Special Terms
+Deposco Software Solution Bundle
+$195,000.00
+Initial Term Total
+©Deposco, Inc. 1 of 5 Proprietary and Confidential
+
+--- Page 2 ---
+Docusign Envelope ID: 7EC81E79-51E4-47A7-9DFC-5DC5820A988A
+ORDER FORM
+Included in Deposco Software Solution Bundle:
+Bright Warehouse
+Included in License Users
+¨ Carton Optimization ¨ 3PL Billing Unlimited
+¨ Rate Shopping
+Facilities
+# of Facilities 1 Facility Joliet Illinois
+included: Location(s):
+Additional Information
+Bright Order
+Included in License Facilities
+¨ Purchase Experience ¨ Distributed Order Mgmt # of Virtual
+Facilities included:
+¨ Enterprise Inventory ¨ Order Consolidation
+¨ Inventory Segmentation
+Additional Information
+Bright Socket
+Included in License
+Standard 3 Select Advanced
+Additional Information
+UPS, USPS (Stamps), DHL eCommerce, (25 Instances)
+©Deposco, Inc. 2 of 5 Proprietary and Confidential
+
+--- Page 3 ---
+Docusign Envelope ID: 7EC81E79-51E4-47A7-9DFC-5DC5820A988A
+ORDER FORM
+Bright Performance
+Included in License
+¨ Data Archive ¨ Additional Report Schedulers
+(20 reports per purchase)
+Additional Information
+Bright Store
+Included in License
+¨ Storefronts
+Additional Information
+Supply Chain Planning
+Bright Source Bright Forecast Bright Inventory
+¨ Enterprise PO Mgmt ¨ Standard ¨ Standard
+¨ Supplier Collaboration ¨ Causal Data
+Additional Information
+©Deposco, Inc. 3 of 5 Proprietary and Confidential
+
+--- Page 4 ---
+Docusign Envelope ID: 7EC81E79-51E4-47A7-9DFC-5DC5820A988A
+ORDER FORM
+Bright Cloud
+Included in License
+Production 1 Sandbox 1 Solution 2 ¨ Disaster Recovery Service
+Environment Environment Tier
+Additional Information
+Bright Certification
+Included in License
+Bright Performance users Bright Warehouse users Bright Order users
+Additional Information
+©Deposco, Inc. 4 of 5 Proprietary and Confidential
+
+--- Page 5 ---
+Docusign Envelope ID: 7EC81E79-51E4-47A7-9DFC-5DC5820A988A
+ORDER FORM
+Deposco Support Offering:
+Included in License Additional Information
+Level 2 – Additional $2,000/month
+Level 1 – Included at no cost
+Level 3 – Additional $3,000/month
+Deposco Professional Services:
+Professional Service Hourly Rates Estimated Professional Service Fees for Initial Implementation
+$150.00 $10,590.00
+Initial Hourly Rate: Retainer Due at Execution:
+Post-Implementation & $225.00 $105,900.00
+Estimated Implementation Services*:
+Out-of-Scope Hourly Rate:
+* This amount is only an estimate of the Professional Service hours needed and does not include travel expenses, which will
+be invoiced pursuant to the T&Cs. Once the Estimated Implementation Services amount has been fully billed, the post-
+implementation hourly rate will apply. Any out-of-scope work or additional SOW(s) agreed upon by the Parties will be subject
+to the Post-Implementation and Out-of-Scope Hourly Rate, even if such additional Professional Services are agreed upon during
+the initial Implementation Services.
+Special Terms
+Payment Terms: 3 year Agreement
+Year 1: Quarterly payments of $12,000.00. Total annual subscription year 1: $48,000.00
+Years 2 and 3: Quarterly payments of $18,375.00. Total annual subscription for year 2 and year 3, respectively:
+$73,500.00 per year
+TERMS AND CONDITIONS
+December 15, 2024
+1. This Order Form is effective as of (“Effective Date”) by and between Deposco, Inc., (“Deposco”)
+and Company. This Order Form is subject to the Deposco Master Terms and Conditions (“T&Cs”), which are incorporated
+herein by reference. Capitalized terms used but not defined herein shall have the meanings set forth in the T&Cs.
+2. The pricing and any Special Terms listed in this Order Form are Deposco Confidential Information.
+3. This Order Form’s terms, including the T&Cs, supersede any previous agreement(s) between the Parties as it relates to the
+purchase of Deposco Services.
+IN WITNESS HEREOF, the Parties hereto have executed this Order Form and agree the Order Form is effective as of the Effective
+Date. Each Party’s signature represents each Party’s acceptance of their respective rights and obligations in the T&Cs.
+Deposco, Inc. Radicle Foods
+By By
+Bill Gibson Andrew Barta
+Name Name
+CEO CEO
+Title Title
+11/7/2024 11/7/2024
+Date Date
+©Deposco, Inc. 5 of 5 Proprietary and Confidential
+

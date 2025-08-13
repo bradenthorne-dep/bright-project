@@ -1,0 +1,324 @@
+PDF Text Extraction Results
+Original File: Evereve_SOW_4457_P276903_08-05-2025 (vendor).docx.pdf
+Extracted: 2025-08-13 12:47:51
+Total Pages: 9
+==================================================
+
+--- Page 1 ---
+Docusign Envelope ID: 9276EFF1-A8E2-4D89-81F7-6DA43F27658E
+Exhibit A
+Form of Order Form
+Order Form No. P276903
+Order Form Effective Date: 08/05/2025
+This Order Form No. P276903 (the “Order Form”) is entered into between Deposco, Inc. (“Vendor”) and either (i) United Parcel
+Service, Inc., an Ohio corporation or (ii) the entity identified on the Jurisdiction-Specific Terms Appendix attached to and incorporated
+within the General Terms for the applicable Jurisdiction of Client Establishment (“UPS Customer Solutions”), is effective as of the
+date specified above (the “Order Form Effective Date”) and governed by that certain Collaboration Agreement dated 09/20/2019
+between Client and UPS Customer Solutions (the “Collaboration Agreement”).
+Jurisdiction of Performance: United States
+Customer Name: Evereve
+Initial Contract Term: 60 months
+1. PROJECT DESCRIPTION:
+Pursuant to this Order Form, UPS contracts Deposco to perform activities for Evereve (“Client”) with respect to Project
+Initiation, Analysis & Design, Build & Configure, Training, Client’s testing program, Go-Live & Follow-Up, Project
+Closure and Overall project management associated with Bright Suite Warehouse Management System for Evereve.
+2. PROJECT COST ESTIMATE AND BUDGET:
+Project cost based on sixty (60) month subscription as quoted below. Price contingent on full sixty (60) month
+execution of Order Form which supersedes the Collaboration Agreement Subscription Term.
+3. DEPOSCO SOFTWARE
+Software Services Subscription Fees
+Solution Bundle Total Year 1: $180,000/ year*
+Year 2: $220,000/year
+Year 3: $220,000/year
+Year 4: $240,000/year
+Year 5: $260,000/year
+*Subscription Start Date to commence 90 days after execution of
+this Order Form. 50% of the year one annual subscription shall
+be due at signature of this Order Form, the remaining 50% due
+November 1st, 2025
+Deposco Bright Warehouse Application:
+Includes:
+ Bright Warehouse Solution  Included in solution bundle fees
+ Users
+ Unlimited Users for (1) Facility
+ Minnetonka, MN  Included in solution bundle fees
+Deposco Bright Warehouse (Advanced Add-ons):
+ Rate Shopping  Included in solution bundle fees
+ Carton Optimization  Included in solution bundle fees
+LEGAL02/42475651v6
+
+--- Page 2 ---
+Docusign Envelope ID: 9276EFF1-A8E2-4D89-81F7-6DA43F27658E
+Deposco Bright Socket Application:
+Includes:
+ Bright Socket Solution  Included in solution bundle fees
+Deposco Bright Socket (Socket Connectors):
+ Standard Sockets
+o Stamps.com (Endicia – USPS): 116 Instances
+o UPS: 116 Instances  Included in solution bundle fees
+o “Alternate” Carrier: 116 Instances  Included in solution bundle fees
+o Shopify: 116 Instances  Included in solution bundle fees
+o Shopify POS: 116 Instances  Included in solution bundle fees
+ Included in solution bundle fees
+Deposco Bright Order Application:
+Includes:
+ Included in solution bundle fees
+ Enterprise Inventory
+ Included in solution bundle fees
+ Order Consolidation
+Deposco Bright Store Application:
+Includes:
+ 115 Storefronts
+ Bright Store operations capabilities  Included in solution bundle fees
+ Additional Stores may be added
+ Additional $748/store/year for Initial 5-Year Term
+ Store Operations Additional Stores (includes Bright
+Store operations capabilities and associated supporting
+socket instances (carriers + Shopify POS Integration)
+Deposco Bright Performance Application
+Includes:
+ Data Archive  Included in solution bundle fees
+ Standard Dashboard and Reporting  Included in solution bundle fees
+Deposco Bright Certification Application
+Include Licenses:
+ Bright Performance: 4 Users  Included in solution bundle fees
+ Bright Warehouse: 4 Users  Included in solution bundle fees
+ Bright Order: 4 Users  Included in solution bundle fees
+4. DEPOSCO PROFESSIONAL SERVICES
+Professional Services Service Fees
+Professional Services Total $151,463.20
+ $125.80/hour applied to the first 1,204 project hours
+completed
+Professional Services
+ Deployment Retainer  $30,292.64 due at signing and will be applied to
+Implementation Services for the first 240.80 hours.
+Remaining professional services hours to be billed monthly
+as incurred.
+ $125.80/hour applied to professional services completed
+under a contract post-implementation and for out-of-scope
+ Ongoing Professional Services
+ This amount is only an estimate of the Professional Service
+hours needed and does not include travel expenses, which
+will be invoiced pursuant to the T&Cs. Travel expenses
+incurred by UPS or Deposco in connection with Professional
+Services shall be approved in writing in advance by Evereve.
+LEGAL02/42475651v6
+
+--- Page 3 ---
+Docusign Envelope ID: 9276EFF1-A8E2-4D89-81F7-6DA43F27658E
+Once the Estimated Implementation Services amount has
+been fully billed, the post implementation hourly rate will
+apply. Any out-of-scope work or additional change requests
+agreed upon by the Parties will be subject to the Post-
+Implementation and Out-of-Scope Hourly Rate, even if such
+additional Professional Services are agreed upon during the
+initial Implementation Services.
+ All work determined to be outside of the defined scope of
+services shall be subject to mutual written agreement. Out-
+of-scope services shall be invoiced at the post-
+implementation hourly rate of $125.80/hour only after
+approval by UPS through a formal change order.
+Other Items Services Free
+Other Total $0
+Deposco Bright Cloud Solution:
+Includes:
+ Tier 2 Solution  Included with bundle subscription fees
+ (2) Tenant Environments:
+o (1) Production
+o (1) Sandbox
+ Disaster Recovery Service
+ Included with bundle subscription fees
+Deposco Support Services:
+Deposco support services are detailed in Deposco Master
+Terms and Conditions.
+ Included with bundle subscriptions fees
+ Standard Deposco Support included in bundled
+Subscription Fees. Evereve shall also receive
+additional success services as detailed below:
+ Dedicated Deposco Customer Success Manager
+ 24x7 Support
+5. DEPOSCO SOW DETAILS
+SOW SCOPE – ENTIRE UNDERSTANDING
+All Professional Services referenced in this SOW below, including any referenced or incorporated documentation
+outlining further project details, are the Parties’ entire understanding of the scope of this SOW. To the extent Professional
+Services outside the scope of this SOW are needed, the Parties shall enter into a mutually executed Change Order or
+SOW.
+Delivery Element Estimated Total Estimated Amount
+Hours
+Project Management 144 $26,640
+Orientation 12 $2,220
+Design 192 $35,520
+Bright Performance Configuration 50 $9,250
+Bright Socket Configuration 136 $25,160
+Bright Store Configuration 62 $11,470
+Bright Warehouse Configuration 192 $35,520
+LEGAL02/42475651v6
+
+--- Page 4 ---
+Docusign Envelope ID: 9276EFF1-A8E2-4D89-81F7-6DA43F27658E
+Bright Order Configuration 36 $6,600
+Validate 80 $14,800
+Deploy 300 $55,500
+Subtotal: 1204 $222,740
+Task Management:
+Project Management Estimated Details
+Task Hours
+Project Management 144 6 hrs/ week x 24 weeks
+Internal project meetings
+Client meetings
+**Any additional project
+management time
+Subtotal 144
+Orientation:
+Orientation Tasks Estimated Details
+Hours
+Account Management 2
+Initial Environment 2
+Sales Transition 4
+Professional Services and 4
+CS Intro Call
+Subtotal 12
+Design:
+Design Tasks Estimated Details
+Hours
+Onsite Design 120 Onsite design - 3 resources for 5 days
+Design Document 48
+Internal Design Review 8
+External Design Review 16
+Subtotal 192
+Bright Warehouse:
+Bright Warehouse Tasks Estimated Details
+Hours
+LEGAL02/42475651v6
+
+--- Page 5 ---
+Docusign Envelope ID: 9276EFF1-A8E2-4D89-81F7-6DA43F27658E
+UI Configuration 12
+Master Data Setup 12 Setup/Config of Data Exchange to support master data imports
+Receiving 12
+Returns 8
+Put-Away 12
+Cycle Counting 12
+Replenishment 12
+Outbound Order Management 12
+Pick Wave Management 12
+Picking 24
+Packing & Shipping 24
+Cartonization 8
+Rate Shopping 8
+Transfer Order Support 12 Support for transfer orders across facilities to support DC to
+Store, Store to Store, Store to DC transfers.
+TOs to be sent to DEP via API
+Transfer Orders 12
+Subtotal 192
+Bright Performance:
+Bright Performance Tasks Estimated Details
+Hours
+Globla Reports 4
+Company Reports / Report 12 Base report builder reports included If additional custom reports
+Builder are required, CR/SOW may be needed
+Reporting Scheduling 2
+Dashboards 12
+Inventory Consolidation Report 4 Configuration of report to guide inventory consolidation moves
+within warehouse
+Store Reporting 16 Setup/configuration of retail store reports
+Subtotal 50
+Bright Order:
+Bright Order Tasks Estimated Details
+Hours
+LEGAL02/42475651v6
+
+--- Page 6 ---
+Docusign Envelope ID: 9276EFF1-A8E2-4D89-81F7-6DA43F27658E
+Enterprise Order Management 12 Setup/ Configuration of base Enterprise Order Management
+Order Consolidation 12
+Enterprise Inventory 12
+Management
+Subtotal 36
+Bright Store:
+Bright Store Tasks Estimated Details
+Hours
+Store Fulfillment 30 Support of fulfillment from retail stores Ship from Store -
+pick/pack process deployed at store locations.
+Pickup from Store - will call pickup
+Store Receiving 8 Support of transfer order/purchase order receiving at retail stores
+Store Returns 8
+Store Counting 16
+Subtotal 62
+Bright Socket:
+Bright Socket Tasks Estimated Details
+Hours
+Shopify 32 Setup/Configuration of Shopify socket for ecommerce
+-Item Pull
+-Customer Order Pull
+-Inventory Push
+-Ship Notice Push
+Shopify POS 40 Shopify POS Socket configuration Testing & Training
+-POS Sale/ return
+-Inventory Sync
+API Support 40 Support for use of Deposco APIs for integration between
+Deposco & Celerant
+UPS 8
+USPS 8
+“Alternate Carrier” 8
+Subtotal 136
+LEGAL02/42475651v6
+
+--- Page 7 ---
+Docusign Envelope ID: 9276EFF1-A8E2-4D89-81F7-6DA43F27658E
+Validate Tasks Estimated Details
+Hours
+Shopify 48 Onsite UAT support – 2 resources for 3 days
+Shopify POS 32 2 resources for 2 days
+Subtotal 80
+Deploy Tasks Estimated Details
+Hours
+Operational Go Live 80 Warehouse go live - 2 resources for 5 days
+(Warehouse)
+Post Go-Live Support 40
+Operational Go-Live (Stores) 120 Anticipated go live support for initial 10 store rollout.
+Store Rollout Support 60 Anticipated support for rollout of subsequent retail stores after go
+live of initial 10 locations.
+**Any additional store rollout support will be subject to
+CR/SOW
+Subtotal 300
+LEGAL02/42475651v6
+
+--- Page 8 ---
+Docusign Envelope ID: 9276EFF1-A8E2-4D89-81F7-6DA43F27658E
+6. DEPOSCO INTEGRATION DIAGRAM
+7. SOFTWARE SUBSCRIPTION AND SERVICES INVOICING
+Implementation:
+ Due at signing (May 2025) - $30,292.64
+ 20% Implementation Retainer
+ Remaining Implementation hours are billed monthly as consumed: $121,170.56
+Subscription:
+ Year 1 (50% Due at signing + 50% due November 1st, 2025) - $180,000
+ May 2025 - $90,000
+ November 2025 - $90,000
+ Year 2
+ Annually on Subscription Start Date Anniversary of (August 2026) - $220,000
+ Year 3
+ Annually on Subscription Start Date Anniversary of (August 2027) - $220,000
+ Year 4
+ Annually on Subscription Start Date Anniversary of (August 2028) - $240,000
+ Year 5
+ Annually on Subscription Start Date Anniversary of (August 2029) - $260,000
+All payments are due: Forty-five (45) days from invoice date per Collaboration Agreement
+Capitalized terms not defined in this Order Form have the same meanings ascribed in the Client Agreement. The parties agree that any
+change to this Order Form must be agreed to in writing by the parties pursuant to a change order. For avoidance of doubt, any software
+licensed to Client pursuant to the Client Agreement will not be considered a “Deliverable” under any agreement between the parties.
+The parties hereto confirm their express agreement that this Order Form, and all documents and agreements directly or indirectly relating
+hereto, be drawn up in the English language.
+LEGAL02/42475651v6
+
+--- Page 9 ---
+Docusign Envelope ID: 9276EFF1-A8E2-4D89-81F7-6DA43F27658E
+IN WITNESS WHEREOF, UPS Customer Solutions and Client have so agreed as of the date written above:
+Vendor: Deposco, Inc. UNITED PARCEL SERVICE, INC., an Ohio corporation
+By: /CSSignHere1/ By: /CSSignHere2/
+Name: /CBiSlFlu llGNiabmseo1n/ Name: /CCShFruilslN Satmaep2l/ e s
+Title: /CCSETOitle1/ Title: /CPSrTeistlied2/e nt
+Date: /C5S/D25a/te2S0ig2n5e d|1 / 5:55 AM PDT Date: /C5S/D27a/te2S0ig2n5e d|2 / 6:51 AM PDT
+LEGAL02/42475651v6
+

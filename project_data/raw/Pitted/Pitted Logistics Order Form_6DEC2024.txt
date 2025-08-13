@@ -1,0 +1,136 @@
+PDF Text Extraction Results
+Original File: Pitted Logistics Order Form_6DEC2024.pdf
+Extracted: 2025-08-13 12:47:43
+Total Pages: 5
+==================================================
+
+--- Page 1 ---
+Docusign Envelope ID: D2376467-65B6-4A9B-B4F6-C6E397AFBFB9
+ORDER FORM
+Order Form
+Order Form No. 1 December 6, 2024 Initial Term 24 months
+Offer Expiration
+Prepared by Email Phone
+Austin Hannasch ahannasch@deposco.com (678) 677-2432
+Billed to:
+Company Name
+Pitted Logistics LLC
+Address
+111 E Sego Lily Dr Suite 275
+City State Zip Code
+Sandy Utah 84070
+Contact Name Email Phone
+Tyler Allgaier tyler@pittedlabs.com (801) 994-4806
+Invoicing Contact Name Email Phone
+Pitted Accounting Team accounting@pittedlogistics (801) 994-4806
+Payment Terms: Net 30 Currency: USD ($) EUR (€) GBP (£)
+Payment Schedule: (i)Subscription Fees (ii)Professional Services
+Quarterly for the first year only. Retainer due upon execution; monthly on a time and materials
+Annual for years two and three basis thereafter
+Deposco Software:
+License Type Total Subscription Fees
+Annual Total $70,000
+Deposco Software Solution Bundle
+Initial Term Total $140,000
+©Deposco, Inc. 1 of 5 Proprietary and Confidential
+
+--- Page 2 ---
+Docusign Envelope ID: D2376467-65B6-4A9B-B4F6-C6E397AFBFB9
+ORDER FORM
+Included in Deposco Software Solution Bundle:
+Bright Warehouse
+Included in License Users
+¨ Carton Optimization ¨ 3PL Billing Unlimited
+¨ Rate Shopping
+Facilities
+# of Facilities Facility
+1 North Salt Lake, UT
+included: Location(s):
+Additional Information
+Bright Order
+Included in License Facilities
+¨ Purchase Experience ¨ Distributed Order Mgmt # of Virtual
+Facilities included:
+¨ Enterprise Inventory ¨ Order Consolidation
+¨ Inventory Segmentation
+Additional Information
+Bright Socket
+Included in License
+Standard 5 Select 1 Advanced
+Additional Information
+- Standard Sockets: UPS, USPS, QBOnline, Shopify, & Walmart Marketplace (all up to 25 instances), Select
+Sockets: eHub (all up to 10 instances)
+Additional Socket Instance Bundles (new)- Standard Sockets ($3,600/ year/ up to 25 instances), Select Sockets
+($6,200/ year/ up to 10 instances), and Advanced Sockets ($8,500/ year/ instance)
+©Deposco, Inc. 2 of 5 Proprietary and Confidential
+
+--- Page 3 ---
+Docusign Envelope ID: D2376467-65B6-4A9B-B4F6-C6E397AFBFB9
+ORDER FORM
+Bright Performance
+Included in License
+¨ Data Archive ¨ Additional Report Schedulers
+(20 reports per purchase)
+Additional Information
+Bright Store
+Included in License
+¨ Storefronts
+Additional Information
+Supply Chain Planning
+Bright Source Bright Forecast Bright Inventory
+¨ Enterprise PO Mgmt ¨ Standard ¨ Standard
+¨ Supplier Collaboration ¨ Causal Data
+Additional Information
+©Deposco, Inc. 3 of 5 Proprietary and Confidential
+
+--- Page 4 ---
+Docusign Envelope ID: D2376467-65B6-4A9B-B4F6-C6E397AFBFB9
+ORDER FORM
+Bright Cloud
+Included in License
+Production 1 Sandbox 1 Solution 2 ¨ Disaster Recovery Service
+Environment Environment Tier
+Additional Information
+Bright Certification
+Included in License
+Bright Performance 2 users Bright Warehouse 2 users Bright Order 2 users
+Additional Information
+©Deposco, Inc. 4 of 5 Proprietary and Confidential
+
+--- Page 5 ---
+Docusign Envelope ID: D2376467-65B6-4A9B-B4F6-C6E397AFBFB9
+ORDER FORM
+Deposco Customer Success Level:
+¨ Standard Bundled / Annual ¨ Premium / Annual
+Total Annual Fee: Annual Subscription Fee + Customer Success Fee 70,000
+Deposco Professional Services:
+Professional Service Hourly Rates Estimated Professional Service Fees for Initial Implementation
+Retainer Due at Execution: $10,956
+Initial Hourly Rate: $165
+Estimated Implementation Services*: $109,560
+* This amount is only an estimate of the Professional Service hours needed and does not include travel expenses, which will
+be invoiced pursuant to the T&Cs. The Initial Hourly Rate shall apply to all Professional Services provided under the initial
+implementation SOW. Upon completion of the initial implementation SOW, Deposco’s then-current Professional Services rate
+that is made available by Deposco from time to time will apply. Any out-of-scope work or additional SOW(s) agreed upon by
+the Parties will be subject to such then-current rate(s), even if such additional Professional Services are agreed upon during the
+initial implementation Professional Services.
+Special Terms
+The attached Exhibit 1 applies to this Order Form and is incorporated herein by reference.
+TERMS AND CONDITIONS
+1. This Order Form is effective as of Dec ember 6, 2024 (“Effective Date”) by and between Deposco, Inc., (“Deposco”)
+and Company. This Order Form is subject to the Deposco Master Terms and Conditions (“T&Cs”), which are incorporated
+herein by reference. Capitalized terms used but not defined herein shall have the meanings set forth in the T&Cs.
+2. The pricing and any Special Terms listed in this Order Form are Deposco Confidential Information.
+3. This Order Form’s terms, including the T&Cs, supersede any previous agreement(s) between the Parties as it relates to the
+purchase of Deposco Services.
+IN WITNESS HEREOF, the Parties hereto have executed this Order Form and agree the Order Form is effective as of the Effective
+Date. Each Party’s signature represents each Party’s acceptance of their respective rights and obligations in the T&Cs.
+Deposco, Inc. Pitted Logistics LLC
+By By
+Name Bill Gibson Name Tyler Allgaier
+Title Title
+CEO Founder & CEO
+Date 12/6/2024 Date
+12/6/2024
+©Deposco, Inc. 5 of 5 Proprietary and Confidential
+

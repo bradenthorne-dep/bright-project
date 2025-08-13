@@ -1,12 +1,12 @@
 {
   "project_info": {
-    "client": "Gerber Childrenswear",
-    "project_manager": null,
-    "start_date": null,
-    "end_date": null,
-    "projected_go_live": null,
-    "current_phase": null,
-    "status": null
+    "client": "Gerber4",
+    "project_manager": "Jackie Morsberger",
+    "start_date": "2024-01-15",
+    "end_date": "2024-12-15",
+    "projected_go_live": "2024-12-01",
+    "current_phase": "Development",
+    "status": "In Progress"
   },
   "budget_info": {
     "allocated_budget": null,

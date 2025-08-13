@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import Layout from '@/components/layout/Layout';
+import Home from '@/components/tabs/Home';
 import FileUpload from '@/components/tabs/FileUpload';
 import Overview from '@/components/tabs/Overview';
 import TaskTracking from '@/components/tabs/TaskTracking';
 import RiskManagement from '@/components/tabs/RiskManagement';
 
 export default function DiagnosticPage() {
-  const [activeSection, setActiveSection] = useState('data-upload');
+  const [activeSection, setActiveSection] = useState('home');
 
   const setDataAvailable = () => {
     // Data availability callback - currently unused
@@ -24,6 +25,8 @@ export default function DiagnosticPage() {
 
   const renderActiveSection = () => {
     switch (activeSection) {
+      case 'home':
+        return <Home onSectionChange={handleNavigationChange} />;
       case 'data-upload':
         return <FileUpload onDataUploaded={handleDataUpload} onDataAvailable={setDataAvailable} />;
       case 'overview':
@@ -33,7 +36,7 @@ export default function DiagnosticPage() {
       case 'risk-management':
         return <RiskManagement onSectionChange={handleNavigationChange} />;
       default:
-        return <FileUpload onDataUploaded={handleDataUpload} onDataAvailable={setDataAvailable} />;
+        return <Home onSectionChange={handleNavigationChange} />;
     }
   };
 
