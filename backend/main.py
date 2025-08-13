@@ -12,7 +12,7 @@ import os
 import logging
 import json
 import asyncio
-from project_calculations import calculate_project_overview, calculate_risk_assessment
+from project_calculations import calculate_project_overview, calculate_risk_assessment, get_ai_risk_assessment
 from pdf_processor import pdf_processor
 from docx_processor import docx_processor
 from ai_agent_system import AIAgentSystem
@@ -293,6 +293,47 @@ async def extract_project_info():
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error extracting project info: {str(e)}")
+
+@app.post("/api/agents/analyze-risks")
+async def analyze_risks():
+    """Convenience endpoint to analyze project risks from design document"""
+    try:
+        result = await agent_system.execute_agent("risk_analyzer")
+        if result["status"] == "success":
+            return {
+                "message": "Risks analyzed successfully",
+                "output_file": result.get("output_file"),
+                "result_preview": result.get("result_preview")
+            }
+        else:
+            raise HTTPException(
+                status_code=500, 
+                detail=result.get("error", "Failed to analyze risks")
+            )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error analyzing risks: {str(e)}")
+
+@app.get("/api/ai-risks")
+async def get_ai_risks():
+    """Get risk assessment data from AI analysis"""
+    try:
+        ai_risks = get_ai_risk_assessment()
+        if not ai_risks:
+            return {
+                "risks": [],
+                "summary": {
+                    "high_risk_count": 0,
+                    "medium_risk_count": 0,
+                    "low_risk_count": 0
+                }
+            }
+              
+        return ai_risks
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading AI risk assessment: {str(e)}")
+
 
 
 if __name__ == "__main__":

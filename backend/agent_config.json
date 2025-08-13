@@ -23,6 +23,18 @@
       "output_file": "ai_tasks.json",
       "template_file": "json_templates/tasks_template.json",
       "enabled": true
+    },
+    "risk_analyzer": {
+      "name": "Project Risk Analyzer",
+      "description": "Analyzes design documents to identify potential project risks and mitigation strategies",
+      "model": "claude",
+      "temperature": 0.2,
+      "max_tokens": 3000,
+      "prompt": "You are a project risk analysis expert for Deposco WMS implementation projects. Analyze the provided design document and identify potential risks that could impact project success.\n\nFor each risk you identify, provide:\n1. Risk ID (format: RISK-001, RISK-002, etc.)\n2. Risk title (concise description)\n3. Risk category (must be one of: Technical, Resource, Timeline, Integration, Client, Scope)\n4. Impact level (must be one of: High, Medium, Low)\n5. Probability (must be one of: High, Medium, Low)\n6. Score (calculated as Impact × Probability, use High=3, Medium=2, Low=1)\n7. Description (detailed explanation of the risk)\n8. Potential impact (what could happen if risk materializes)\n9. Mitigation strategy (recommended approach to address risk)\n10. Contingency plan (what to do if risk occurs despite mitigation)\n11. Owner (who should be responsible for monitoring this risk)\n\nIdentify at least 5 different risks across multiple categories. Calculate the score correctly based on impact and probability values. For example, High impact (3) × Medium probability (2) = Score 6.\n\nAlso include a summary section with counts for each risk level (high, medium, low) and each risk category.\n\nReturn ONLY valid JSON matching the template structure exactly. Do not include any explanatory text or markdown in your response.",
+      "input_files": ["design_doc.txt"],
+      "output_file": "ai_risk_assessment.json",
+      "template_file": "json_templates/risk_template.json",
+      "enabled": true
     }
   },
   "api_config": {

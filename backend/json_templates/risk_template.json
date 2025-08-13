@@ -1,0 +1,28 @@
+{
+  "risks": [
+    {
+      "risk_id": "RISK-001",
+      "title": "",
+      "category": "",
+      "impact": "",
+      "probability": "",
+      "score": 0,
+      "description": "",
+      "potential_impact": "",
+      "mitigation_strategy": "",
+      "contingency_plan": "",
+      "owner": ""
+    }
+  ],
+  "summary": {
+    "high_risk_count": 0,
+    "medium_risk_count": 0,
+    "low_risk_count": 0,
+    "technical_risk_count": 0,
+    "resource_risk_count": 0,
+    "timeline_risk_count": 0,
+    "integration_risk_count": 0,
+    "client_risk_count": 0,
+    "scope_risk_count": 0
+  }
+}
