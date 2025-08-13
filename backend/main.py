@@ -10,6 +10,7 @@ import os
 import logging
 import json
 from project_calculations import calculate_project_overview, calculate_risk_assessment
+from pdf_processor import pdf_processor
 
 logger = logging.getLogger(__name__)
 
@@ -43,28 +44,48 @@ async def root():
 
 @app.post("/api/upload-file")
 async def upload_file(file: UploadFile = File(...)):
-    """Generic file upload endpoint"""
+    """PDF file upload endpoint"""
     try:
+        # Validate file type - only accept PDF files
+        if file.content_type != 'application/pdf':
+            raise HTTPException(status_code=400, detail="Only PDF files are supported")
+        
+        # Validate file extension
+        if not file.filename or not file.filename.lower().endswith('.pdf'):
+            raise HTTPException(status_code=400, detail="File must have a .pdf extension")
+        
         # Read file content
         content = await file.read()
         
         # Get file information
         file_size = len(content)
-        file_extension = file.filename.split('.')[-1] if '.' in file.filename else 'unknown'
         
-        return {
-            "message": "File uploaded successfully",
+        # Process PDF and extract text
+        extraction_result = pdf_processor.extract_text_from_pdf(content, file.filename)
+        
+        # Prepare response
+        response_data = {
+            "message": "PDF uploaded and processed successfully",
             "filename": file.filename,
             "file_info": {
                 "size_bytes": file_size,
                 "size_mb": round(file_size / (1024 * 1024), 2),
-                "file_type": file_extension,
+                "file_type": "pdf",
                 "content_type": file.content_type
-            }
+            },
+            "extraction_result": extraction_result
         }
+        
+        # Add processing status to message if extraction failed
+        if not extraction_result.get("success", False):
+            response_data["message"] = "PDF uploaded but text extraction failed"
+        
+        return response_data
     
+    except HTTPException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Error processing uploaded file: {str(e)}")
+        raise HTTPException(status_code=400, detail=f"Error processing PDF file: {str(e)}")
 
 @app.get("/api/project-overview")
 async def get_project_overview():
@@ -127,6 +148,27 @@ async def get_risk_assessment():
         raise HTTPException(status_code=500, detail="Error parsing tasks data file")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading risk assessment: {str(e)}")
+
+@app.get("/api/extracted-text")
+async def get_extracted_text():
+    """Get the extracted text from the most recent PDF upload"""
+    try:
+        if not pdf_processor.has_extracted_text():
+            raise HTTPException(status_code=404, detail="No extracted text available. Please upload a PDF first.")
+        
+        content = pdf_processor.get_extracted_text()
+        if content is None:
+            raise HTTPException(status_code=500, detail="Error reading extracted text file")
+        
+        return {
+            "content": content,
+            "size": len(content),
+            "available": True
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error retrieving extracted text: {str(e)}")
 
 
 if __name__ == "__main__":

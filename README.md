@@ -26,9 +26,10 @@ This is a modern project management application built with Next.js and FastAPI, 
 - **Overdue Task Tracking**: Highlights tasks that have passed their due dates
 - **Priority-Based Risk Scoring**: Considers task priority in risk calculations
 
-### File Upload
-- **Generic File Upload**: Support for all file types
-- **Drag & Drop**: Modern file upload interface
+### Document Processing
+- **Text Extraction**: Automatic text extraction using pdfplumber
+- **Document Storage**: Extracted text saved to `design_doc.txt`
+- **Drag & Drop**: Modern file upload interface with PDF validation
 - **Status Feedback**: Real-time upload progress and success/error states
 
 ## Technology Stack
@@ -46,6 +47,7 @@ This is a modern project management application built with Next.js and FastAPI, 
 - **Data Storage**: JSON file-based task storage
 - **HTTP Server**: Uvicorn
 - **Data Processing**: Dynamic project metrics calculation
+- **PDF Processing**: pdfplumber for text extraction
 
 ## Application Architecture
 
@@ -59,7 +61,7 @@ frontend/src/
 │   ├── layout/
 │   │   └── Layout.tsx     # Navigation with File Upload, Overview, Task Tracking, Risk Management
 │   ├── tabs/              # Main application screens
-│   │   ├── FileUpload.tsx # Generic file upload interface
+│   │   ├── FileUpload.tsx # PDF document upload with text extraction
 │   │   ├── Overview.tsx   # Project dashboard with dynamic metrics
 │   │   ├── TaskTracking.tsx # Comprehensive task management table
 │   │   └── RiskManagement.tsx # At-risk task identification and monitoring
@@ -77,27 +79,31 @@ frontend/src/
 backend/
 ├── main.py                # FastAPI application with project management endpoints
 ├── project_calculations.py # Logic module for project metrics and risk assessment
+├── pdf_processor.py       # PDF text extraction module using pdfplumber
 ├── project_info.json      # Centralized project information
 ├── tasks.json            # Task data storage with 10 sample tasks
-└── requirements.txt       # Python dependencies
+├── design_doc.txt         # Extracted text from uploaded PDF documents
+└── requirements.txt       # Python dependencies including pdfplumber
 ```
 
 ## API Endpoints
 
 ### Core Endpoints
 - `GET /` - Health check
-- `POST /api/upload-file` - Generic file upload
+- `POST /api/upload-file` - File upload with text extraction
 - `GET /api/project-overview` - Dynamic project metrics from task data
 - `GET /api/tasks` - Complete task data with all attributes
 - `GET /api/risk-assessment` - Pre-calculated risk analysis with summary statistics
+- `GET /api/extracted-text` - Retrieved extracted text from uploaded PDF
 
 ### Data Flow
 1. **Project Configuration**: Centralized in `project_info.json` (budget, rates, project details)
 2. **Task Data**: Stored in `tasks.json` with comprehensive task attributes
 3. **Business Logic**: Calculations handled by `project_calculations.py` module
-4. **Dynamic Metrics**: Project overview and risk assessment
-5. **Real-time Updates**: Metrics reflect current task completion status
-6. **Centralized Formatting**: Consistent currency, date, and number formatting
+4. **PDF Processing**: Text extraction handled by `pdf_processor.py` module
+5. **Dynamic Metrics**: Project overview and risk assessment
+6. **Real-time Updates**: Metrics reflect current task completion status
+7. **Centralized Formatting**: Consistent currency, date, and number formatting
 
 ## Key Features
 
@@ -171,7 +177,7 @@ python main.py  # Configure for production environment
 ## Usage
 
 ### Navigation
-1. **File Upload**: Upload any file type with drag & drop support
+1. **File Upload**: Upload PDF design documents with automatic text extraction
 2. **Overview**: View project dashboard with real-time metrics
 3. **Task Tracking**: Manage all project tasks with comprehensive details
 4. **Risk Management**: Monitor at-risk tasks and identify potential delays
@@ -208,9 +214,10 @@ Edit `backend/tasks.json` to add/modify tasks. The overview dashboard and risk a
 
 ## Production Considerations
 
-- **File Upload**: Generic file handling for future extensions
+- **PDF Processing**: Single PDF document handling with text extraction to `design_doc.txt`
 - **Scalability**: JSON file can be replaced with database
 - **Security**: CORS configured for development, update for production
 - **Performance**: In-memory calculations for fast dashboard updates
+- **Document Storage**: Extracted text overwrites previous uploads (single document system)
 
 This application provides a solid foundation for project management with room for custom business logic and extended functionality.

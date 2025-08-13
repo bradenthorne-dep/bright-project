@@ -241,7 +241,6 @@ $RECYCLE.BIN/
 # Project-specific
 cache/
 *.log
-snowflake_config.json
 config.json
 
 # IDE
@@ -260,8 +259,5 @@ config.json
 *.bak
 *.backup
 
-# Internal briefing documents
-CLAUDE_BRIEFING.md
-
-# Insight queries
-insight-queries/
+# Design Doc
+design_doc.txt

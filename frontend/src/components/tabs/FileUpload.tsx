@@ -19,6 +19,12 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = (selectedFile: File) => {
+    // Validate file type - only accept PDF files
+    if (selectedFile.type !== 'application/pdf') {
+      setUploadError('Only PDF files are supported. Please select a PDF file.');
+      return;
+    }
+    
     setFile(selectedFile);
     setUploadError(null);
     setUploadSuccess(false);
@@ -75,7 +81,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
       <div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">File Upload</h1>
         <p className="text-gray-600">
-          Upload your files for processing
+          Upload Design Document Here
         </p>
       </div>
 
@@ -102,8 +108,8 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
         <div className="max-w-lg mx-auto">
           <div className="card">
             <div className="card-content">
-              <h3 className="font-semibold text-gray-900 mb-2">File Upload</h3>
-              <p className="text-sm text-gray-600 mb-4">Upload your file for processing</p>
+              <h3 className="font-semibold text-gray-900 mb-2">Design Document Upload</h3>
+              <p className="text-sm text-gray-600 mb-4">Upload Design Document (PDF)</p>
               
               <div
                 className={`file-upload-area ${dragOver ? 'dragover' : ''}`}
@@ -115,6 +121,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
                 <input
                   ref={fileInputRef}
                   type="file"
+                  accept=".pdf,application/pdf"
                   onChange={(e) => {
                     const selectedFile = e.target.files?.[0];
                     if (selectedFile) {
@@ -149,10 +156,10 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
                   <div>
                     <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-gray-600 mb-2">
-                      Drop your file here or click to browse
+                      Drop your document here or click to browse
                     </p>
                     <p className="text-sm text-gray-500">
-                      All file types supported
+                      PDF files only (.pdf)
                     </p>
                   </div>
                 )}
@@ -174,7 +181,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
                 <span>Uploading...</span>
               </div>
             ) : (
-              'Upload File'
+              'Upload PDF'
             )}
           </button>
         </div>
