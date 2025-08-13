@@ -38,12 +38,72 @@ export default function Home({ onSectionChange }: HomeProps) {
       try {
         setLoading(true);
         
+        // Define the fallback sample data
+        const sampleData: ProjectSummary[] = [
+          {
+            client: "TechCorp Solutions",
+            projectManager: "Sarah Johnson",
+            startDate: "2024-01-15",
+            projectedGoLiveDate: "2024-12-01",
+            status: "In Progress",
+            currentPhase: "Development",
+            completionPercentage: 45,
+          },
+          {
+            client: "EcoAtm",
+            projectManager: "Michael Chen",
+            startDate: "2024-02-20",
+            projectedGoLiveDate: "2024-11-15",
+            status: "In Progress",
+            currentPhase: "API Integration",
+            completionPercentage: 60,
+          },
+          {
+            client: "Neovia",
+            projectManager: "Alex Rodriguez",
+            startDate: "2024-04-05",
+            projectedGoLiveDate: "2025-01-10",
+            status: "In Progress",
+            currentPhase: "Design",
+            completionPercentage: 25,
+          },
+          {
+            client: "CDCBME",
+            projectManager: "Emily Watson",
+            startDate: "2024-03-18",
+            projectedGoLiveDate: "2024-09-30",
+            status: "On Hold",
+            currentPhase: "Requirements Gathering",
+            completionPercentage: 15,
+          },
+          {
+            client: "Acme Manufacturing",
+            projectManager: "David Wilson",
+            startDate: "2024-03-10",
+            projectedGoLiveDate: "2024-10-15",
+            status: "On Hold",
+            currentPhase: "Design",
+            completionPercentage: 30,
+          },
+          {
+            client: "Global Retail Inc",
+            projectManager: "Jennifer Martinez",
+            startDate: "2024-05-22",
+            projectedGoLiveDate: "2025-02-28",
+            status: "Complete",
+            currentPhase: "Implementation",
+            completionPercentage: 100,
+          }
+        ];
+        
+        let apiProject = null;
+        
         // Try to fetch data from API
         try {
           const data = await apiService.getProjectOverview();
           
           // Transform the data into our ProjectSummary format
-          const projectSummary: ProjectSummary = {
+          apiProject = {
             client: data.project_info.client,
             projectManager: data.project_info.project_manager,
             startDate: data.project_info.start_date,
@@ -52,43 +112,24 @@ export default function Home({ onSectionChange }: HomeProps) {
             currentPhase: data.project_info.current_phase,
             completionPercentage: data.task_metrics.completion_percentage,
           };
-
-          setProjects([projectSummary]);
+          
+          // Combine API project with sample data
+          // Check if the API project is already in the sample data (by client name)
+          const apiClientExists = sampleData.some(project => project.client === apiProject.client);
+          
+          if (!apiClientExists && apiProject) {
+            // Add the API project to the beginning of the array
+            setProjects([apiProject, ...sampleData]);
+          } else {
+            // Just use the sample data as is
+            setProjects(sampleData);
+          }
+          
           setError(null);
         } catch (apiError) {
           console.error('API error:', apiError);
           
-          // If API is not available, use fallback sample data
-          const sampleData: ProjectSummary[] = [
-            {
-              client: "TechCorp Solutions",
-              projectManager: "Sarah Johnson",
-              startDate: "2024-01-15",
-              projectedGoLiveDate: "2024-12-01",
-              status: "In Progress",
-              currentPhase: "Development",
-              completionPercentage: 45,
-            },
-            {
-              client: "Acme Manufacturing",
-              projectManager: "David Wilson",
-              startDate: "2024-03-10",
-              projectedGoLiveDate: "2024-10-15",
-              status: "On Hold",
-              currentPhase: "Design",
-              completionPercentage: 30,
-            },
-            {
-              client: "Global Retail Inc",
-              projectManager: "Jennifer Martinez",
-              startDate: "2024-05-22",
-              projectedGoLiveDate: "2025-02-28",
-              status: "Complete",
-              currentPhase: "Implementation",
-              completionPercentage: 100,
-            }
-          ];
-          
+          // If API is not available, just use the sample data
           setProjects(sampleData);
           setError("Using sample data (backend unavailable)");
         }

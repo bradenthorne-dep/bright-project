@@ -10,14 +10,16 @@ const DEFAULT_LOGO = '/deposco_primary-logo_color_rev.svg';
 
 // Mapping of client names to their logo files
 const PROJECT_LOGO_MAP: Record<string, string> = {
-  'Gerber4': '/logos/gerber.avif',
-  'GERBER': '/logos/gerber.avif',
-  'Gerber': '/logos/gerber.avif',
-  'gerber': '/logos/gerber.avif',
+  'Gerber4': '/gerberlogo.avif',
+  'GERBER': '/gerberlogo.avif',
+  'Gerber': '/gerberlogo.avif',
+  'gerber': '/gerberlogo.avif',
+  'Bright': '/bright_project_small_logo.png',
+  'Bright Project': '/bright_project_main_logo.png',
   // Add more project logos here as they become available
-  // 'TechCorp Solutions': '/logos/techcorp.svg',
-  // 'Acme Manufacturing': '/logos/acme.png',
-  // 'Global Retail Inc': '/logos/globalretail.jpg',
+  // 'TechCorp Solutions': '/techcorp.svg',
+  // 'Acme Manufacturing': '/acme.png',
+  // 'Global Retail Inc': '/globalretail.jpg',
 };
 
 /**

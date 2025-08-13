@@ -5,8 +5,10 @@ Contains functions for calculating project metrics, budget information,
 and task-related statistics.
 """
 
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from datetime import datetime
+import os
+import json
 
 
 def calculate_task_metrics(tasks_data: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -193,6 +195,44 @@ def format_days_remaining(days: int) -> str:
         return f"{days} days remaining"
 
 
+def get_ai_risk_assessment() -> Optional[Dict[str, Any]]:
+    """
+    Load AI-generated risk assessment data from file
+    
+    Returns:
+        Dictionary containing AI-identified risks, or None if file not found/readable
+    """
+    risk_file_path = "ai_risk_assessment.json"
+    if not os.path.exists(risk_file_path):
+        return None
+        
+    try:
+        with open(risk_file_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except (json.JSONDecodeError, IOError):
+        return None
+
+
+def calculate_ai_risk_score(impact: str, probability: str) -> int:
+    """
+    Calculate risk score based on impact and probability
+    
+    Args:
+        impact: Impact level (High, Medium, Low)
+        probability: Probability level (High, Medium, Low)
+        
+    Returns:
+        Risk score (1-9)
+    """
+    impact_values = {"High": 3, "Medium": 2, "Low": 1}
+    probability_values = {"High": 3, "Medium": 2, "Low": 1}
+    
+    impact_value = impact_values.get(impact, 1)
+    probability_value = probability_values.get(probability, 1)
+    
+    return impact_value * probability_value
+
+
 def calculate_risk_assessment(tasks_data: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Calculate complete risk assessment for all tasks
@@ -237,12 +277,42 @@ def calculate_risk_assessment(tasks_data: List[Dict[str, Any]]) -> Dict[str, Any
     medium_risk_count = sum(1 for task in risk_tasks if task['risk_level'] == 'Medium')
     low_risk_count = sum(1 for task in risk_tasks if task['risk_level'] == 'Low')
     
+    # Try to load AI-identified risks
+    ai_risks = get_ai_risk_assessment()
+    
+    # Combine risk data if AI risks are available
+    if ai_risks and 'risks' in ai_risks:
+        ai_summary = ai_risks.get('summary', {})
+        
+        # Update summary to include AI-identified risks
+        combined_summary = {
+            "total_at_risk": len(risk_tasks) + len(ai_risks['risks']),
+            "high_risk_count": high_risk_count + ai_summary.get('high_risk_count', 0),
+            "medium_risk_count": medium_risk_count + ai_summary.get('medium_risk_count', 0),
+            "low_risk_count": low_risk_count + ai_summary.get('low_risk_count', 0),
+            "technical_risk_count": ai_summary.get('technical_risk_count', 0),
+            "resource_risk_count": ai_summary.get('resource_risk_count', 0),
+            "timeline_risk_count": ai_summary.get('timeline_risk_count', 0),
+            "integration_risk_count": ai_summary.get('integration_risk_count', 0),
+            "client_risk_count": ai_summary.get('client_risk_count', 0),
+            "scope_risk_count": ai_summary.get('scope_risk_count', 0),
+            "ai_identified": True
+        }
+        
+        return {
+            "risk_tasks": risk_tasks,
+            "ai_risks": ai_risks['risks'],
+            "summary": combined_summary
+        }
+    
+    # Return only task-based risks if no AI risks available
     return {
         "risk_tasks": risk_tasks,
         "summary": {
             "total_at_risk": len(risk_tasks),
             "high_risk_count": high_risk_count,
             "medium_risk_count": medium_risk_count,
-            "low_risk_count": low_risk_count
+            "low_risk_count": low_risk_count,
+            "ai_identified": False
         }
     }
