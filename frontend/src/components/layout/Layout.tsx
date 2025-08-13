@@ -18,7 +18,7 @@ interface LayoutProps {
 
 const navigationItems = [
   { id: 'home', label: 'Home' },
-  { id: 'data-upload', label: 'File Upload' },
+  { id: 'data-upload', label: 'New Project' },
   { id: 'overview', label: 'Overview' },
   { id: 'task-tracking', label: 'Task Tracking' },
   { id: 'risk-management', label: 'Risk Management' },

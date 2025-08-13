@@ -14,7 +14,6 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const [editingTask, setEditingTask] = useState<number | null>(null);
   const [editFormData, setEditFormData] = useState<TaskUpdate | null>(null);
   const [isSaving, setIsSaving] = useState(false);
@@ -125,13 +124,11 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
       setTasks(updatedTasks);
       
       // Update filtered tasks if needed
-      setFilteredTasks(prevFiltered => {
-        if (selectedCategory === 'All') {
-          return updatedTasks;
-        } else {
-          return updatedTasks.filter(task => task.category === selectedCategory);
-        }
-      });
+      if (selectedCategory === 'All') {
+        setFilteredTasks(updatedTasks);
+      } else {
+        setFilteredTasks(updatedTasks.filter(task => task.category === selectedCategory));
+      }
       
       // Reset editing state
       setEditingTask(null);
@@ -160,7 +157,7 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
     setIsAddingTask(true);
     // If a category is selected, pre-fill it
     if (selectedCategory !== 'All') {
-      setNewTaskData(prev => ({
+      setNewTaskData((prev: any) => ({
         ...prev,
         category: selectedCategory
       }));
@@ -327,9 +324,21 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Task Tracking</h1>
-        <p className="text-gray-600">Comprehensive view of all project tasks and current status</p>
+      <div className="relative">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Task Tracking</h1>
+          <p className="text-gray-600">Comprehensive view of all project tasks and current status</p>
+        </div>
+        <div className="absolute top-20 right-0">
+          <button 
+            onClick={handleAddTaskClick} 
+            className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-md flex items-center space-x-2"
+            disabled={isAddingTask}
+          >
+            <Plus className="h-5 w-5" />
+            <span>Add Task</span>
+          </button>
+        </div>
       </div>
 
       {/* Category Tabs Navigation */}
@@ -360,16 +369,6 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
       </div>
 
       {/* Tasks Table */}
-      <div className="flex justify-end mb-4">
-        <button 
-          onClick={handleAddTaskClick} 
-          className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-md flex items-center space-x-2"
-          disabled={isAddingTask}
-        >
-          <Plus className="h-5 w-5" />
-          <span>Add Task</span>
-        </button>
-      </div>
 
       {/* New Task Form */}
       {isAddingTask && (
@@ -578,8 +577,6 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
                 <tr
                   key={task.id}
                   className={`hover:bg-gray-50 cursor-pointer relative ${editingTask === task.id ? 'bg-blue-50' : ''}`}
-                  onMouseEnter={() => setHoveredRow(task.id)}
-                  onMouseLeave={() => setHoveredRow(null)}
                   onClick={() => {
                     if (editingTask === null) {
                       handleEditClick(task.id);
