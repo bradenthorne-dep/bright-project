@@ -17,18 +17,24 @@ async def test_agents():
             status = "Enabled" if agent["enabled"] else "Disabled"
             print(f"  - {agent['id']}: {agent['name']} ({agent['model']}) - {status}")
         
-        print(f"\nTesting project_info_extractor...")
-        result = await system.execute_agent('project_info_extractor')
+        # Test all enabled agents
+        enabled_agents = [agent for agent in agents if agent["enabled"]]
+        all_success = True
         
-        print(f"Status: {result['status']}")
-        if result['status'] == 'success':
-            print(f"Success! Output saved to: {result.get('output_file', 'N/A')}")
-            if result.get('result_preview'):
-                print(f"Preview: {result['result_preview'][:100]}...")
-        else:
-            print(f"Failed: {result.get('error', 'Unknown error')}")
+        for agent in enabled_agents:
+            print(f"\nTesting {agent['id']}...")
+            result = await system.execute_agent(agent['id'])
+            
+            print(f"Status: {result['status']}")
+            if result['status'] == 'success':
+                print(f"Success! Output saved to: {result.get('output_file', 'N/A')}")
+                if result.get('result_preview'):
+                    print(f"Preview: {result['result_preview'][:100]}...")
+            else:
+                print(f"Failed: {result.get('error', 'Unknown error')}")
+                all_success = False
         
-        return result['status'] == 'success'
+        return all_success
         
     except Exception as e:
         print(f"Test failed with error: {e}")
