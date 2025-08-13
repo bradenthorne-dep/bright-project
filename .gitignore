@@ -260,6 +260,3 @@ ai_tasks.json
 *.temp
 *.bak
 *.backup
-
-# Design Doc
-design_doc.txt
