@@ -9,7 +9,7 @@
     "status": "In Progress"
   },
   "budget_info": {
-    "allocated_budget": null,
-    "hourly_rate": null
+    "allocated_budget": 300000,
+    "hourly_rate": 225
   }
 }

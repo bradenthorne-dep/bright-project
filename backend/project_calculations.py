@@ -54,10 +54,13 @@ def calculate_top_tasks(tasks_data: List[Dict[str, Any]], hourly_rate: float, li
     top_tasks = []
     
     for task in sorted_tasks[:limit]:
+        # Handle None hourly_rate
+        total_cost = task['billable_hours'] * hourly_rate if hourly_rate is not None else None
+        
         top_tasks.append({
             "task": task['task_name'],
             "billable_hours": task['billable_hours'],
-            "total_cost": task['billable_hours'] * hourly_rate
+            "total_cost": total_cost
         })
     
     return top_tasks
@@ -77,16 +80,23 @@ def calculate_budget_info(tasks_data: List[Dict[str, Any]], allocated_budget: fl
     """
     # Calculate total spent budget from billable hours
     total_billable_hours = sum(task['billable_hours'] for task in tasks_data)
-    spent_budget = total_billable_hours * hourly_rate
-    remaining_budget = allocated_budget - spent_budget
-    budget_utilization = (spent_budget / allocated_budget) * 100 if allocated_budget > 0 else 0
+    
+    # Handle None values
+    if hourly_rate is not None and allocated_budget is not None:
+        spent_budget = total_billable_hours * hourly_rate
+        remaining_budget = allocated_budget - spent_budget
+        budget_utilization = (spent_budget / allocated_budget) * 100 if allocated_budget > 0 else 0
+    else:
+        spent_budget = None
+        remaining_budget = None
+        budget_utilization = 0
     
     return {
         "allocated_budget": allocated_budget,
-        "spent_budget": round(spent_budget, 2),
-        "utilized_budget": round(spent_budget, 2),
+        "spent_budget": round(spent_budget, 2) if spent_budget is not None else None,
+        "utilized_budget": round(spent_budget, 2) if spent_budget is not None else None,
         "budget_utilization_percentage": round(budget_utilization, 1),
-        "remaining_budget": round(remaining_budget, 2)
+        "remaining_budget": round(remaining_budget, 2) if remaining_budget is not None else None
     }
 
 
