@@ -48,7 +48,7 @@ export default function Home({ onSectionChange, showGerber = false }: HomeProps)
             projectedGoLiveDate: "2024-12-01",
             status: "In Progress",
             currentPhase: "Development",
-            completionPercentage: 45,
+            completionPercentage: 50,
           },
           {
             client: "EcoAtm",

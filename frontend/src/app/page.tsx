@@ -8,6 +8,7 @@ import Overview from '@/components/tabs/Overview';
 import TaskTracking from '@/components/tabs/TaskTracking';
 import RiskManagement from '@/components/tabs/RiskManagement';
 
+
 export default function DiagnosticPage() {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedProject, setSelectedProject] = useState('');

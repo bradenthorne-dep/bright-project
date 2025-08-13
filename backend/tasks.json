@@ -106,7 +106,7 @@
     "status": "In Progress",
     "priority": "High",
     "start_date": "2025-10-25",
-    "due_date": "2025-11-20",
+    "due_date": "2025-11-22",
     "completion_percentage": 0,
     "comments": "Test environment setup complete, beginning load test execution.",
     "billable_hours": 28.0
