@@ -148,9 +148,9 @@ export default function Home({ onSectionChange }: HomeProps) {
           >
             <div className="h-16 bg-gray-800 flex items-center justify-center">
               <img 
-                src="/deposco_primary-logo_color_rev.svg" 
-                alt="Project Logo" 
-                className="h-8"
+                src="/gerberlogo.avif" 
+                alt="Gerber Logo" 
+                className="w-[90%] h-[90%] object-cover"
               />
             </div>
             <div className="p-6 space-y-4">
