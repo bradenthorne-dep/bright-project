@@ -1,17 +1,18 @@
-{
-  "tasks": [
-    {
-      "id": null,
-      "title": null,
-      "description": null,
-      "category": null,
-      "priority": null,
-      "estimated_hours": null,
-      "dependencies": [],
-      "assigned_to": null,
-      "due_date": null,
-      "status": null,
-      "progress": null
-    }
-  ]
-}
+[
+  {
+    "id": null,
+    "category": null,
+    "subcategory": null,
+    "task_name": null,
+    "description": null,
+    "owner": null,
+    "team": null,
+    "status": null,
+    "priority": null,
+    "start_date": null,
+    "due_date": null,
+    "completion_percentage": null,
+    "comments": null,
+    "billable_hours": null
+  }
+]

@@ -6,7 +6,7 @@
       "model": "claude",
       "temperature": 0.1,
       "max_tokens": 2000,
-      "prompt": "You are a project information extraction specialist. Analyze the provided design document and extract key project information.\n\nExtract the following information:\n- Client name/company\n- Project manager name (if mentioned)\n- Start date (if mentioned)\n- End date or go-live date (if mentioned)\n- Current phase (if mentioned)\n- Project status\n- Budget information (if mentioned)\n- Any other relevant project metadata\n\nReturn ONLY the JSON object using the exact template structure provided. Fill in the values based on the document content, but maintain the exact field names and structure. Use null for any information not found in the document. Return only valid JSON without any surrounding text, markdown formatting, or code blocks.",
+      "prompt": "You are a project information extraction specialist. Analyze the provided design document and extract key project information.\n\nYour task is to populate the JSON template with information found in the document. Look for:\n- Client name/company\n- Project manager name\n- Start date\n- End date or go-live date\n- Current phase\n- Project status\n- Budget information (allocated_budget and hourly_rate)\n\nReturn ONLY the populated JSON template with values filled in from the document. Use null for any information not found. Return only valid JSON without any surrounding text, markdown formatting, or code blocks.",
       "input_files": ["design_doc.txt"],
       "output_file": "ai_project_info.json",
       "template_file": "json_templates/project_info_template.json",
@@ -18,11 +18,11 @@
       "model": "claude",
       "temperature": 0.2,
       "max_tokens": 3000,
-      "prompt": "You are a task extraction specialist. Analyze the provided design document and extract all tasks, requirements, and deliverables mentioned.\n\nCreate a structured task list where each task has:\n- Unique ID (use format: TASK-001, TASK-002, etc.)\n- Clear title\n- Detailed description\n- Category (Development, Integration, Testing, Documentation, Other)\n- Priority (High, Medium, Low)\n- Estimated hours (if mentioned or can be reasonably estimated)\n- Dependencies (list of other task IDs this depends on)\n- Assigned to (if mentioned)\n- Due date (if mentioned, format: YYYY-MM-DD)\n- Status (Not Started, In Progress, Completed)\n- Progress (0-100)\n\nReturn ONLY the JSON object using the exact template structure provided. Focus on actionable items, implementation requirements, and specific deliverables mentioned in the document. Return only valid JSON without any surrounding text, markdown formatting, or code blocks.",
+      "prompt": "You are a task extraction specialist. Analyze the provided design document and extract all tasks, requirements, and deliverables mentioned.\n\nYour task is to populate the JSON template with 10 tasks found in the document. For each task, provide:\n- Unique numeric ID (starting from 1)\n- Category (Orientation, Design, Configuration, UAT, etc.)\n- Subcategory (specific area like API, Database, Security, etc.)\n- Task name (clear, concise title)\n- Detailed description\n- Owner (person responsible, use placeholder names if not specified)\n- Team (Deposco, Client, or other team name)\n- Status (Complete, In Progress, Validation, etc.)\n- Priority (High, Medium, Low)\n- Start date (format: YYYY-MM-DD, estimate if not specified)\n- Due date (format: YYYY-MM-DD, estimate if not specified)\n- Completion percentage (0-100)\n- Comments (relevant notes or status updates)\n- Billable hours (estimated hours for the task)\n\nReturn ONLY the populated JSON template as an array of tasks. Focus on actionable items, implementation requirements, and specific deliverables. Return only valid JSON without any surrounding text, markdown formatting, or code blocks.",
       "input_files": ["design_doc.txt"],
       "output_file": "ai_tasks.json",
       "template_file": "json_templates/tasks_template.json",
-      "enabled": false
+      "enabled": true
     }
   },
   "api_config": {
