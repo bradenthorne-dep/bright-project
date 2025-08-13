@@ -7,6 +7,7 @@ import { getProjectLogo, getProjectLogoAlt } from '@/utils/projectLogos';
 
 interface HomeProps {
   onSectionChange?: (section: string) => void;
+  showGerber?: boolean;
 }
 
 interface ProjectSummary {
@@ -19,7 +20,7 @@ interface ProjectSummary {
   completionPercentage: number;
 }
 
-export default function Home({ onSectionChange }: HomeProps) {
+export default function Home({ onSectionChange, showGerber = false }: HomeProps) {
   // Fallback function for formatDate if the formatter utility fails
   const safeDateFormat = (dateString: string) => {
     try {
@@ -182,7 +183,9 @@ export default function Home({ onSectionChange }: HomeProps) {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, index) => (
+        {projects
+          .filter(project => showGerber || project.client !== "Gerber")
+          .map((project, index) => (
           <div
             key={index}
             onClick={() => handleProjectClick(project.client)}

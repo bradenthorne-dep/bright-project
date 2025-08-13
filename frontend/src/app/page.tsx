@@ -11,13 +11,15 @@ import RiskManagement from '@/components/tabs/RiskManagement';
 export default function DiagnosticPage() {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedProject, setSelectedProject] = useState('');
+  const [showGerber, setShowGerber] = useState(false);
 
   const setDataAvailable = () => {
     // Data availability callback - currently unused
   };
 
   const handleDataUpload = () => {
-    // Data upload callback - currently unused
+    // Enable Gerber project visibility when a file is uploaded
+    setShowGerber(true);
   };
 
   const handleNavigationChange = (section: string) => {
@@ -31,7 +33,7 @@ export default function DiagnosticPage() {
   const renderActiveSection = () => {
     switch (activeSection) {
       case 'home':
-        return <Home onSectionChange={handleNavigationChange} />;
+        return <Home onSectionChange={handleNavigationChange} showGerber={showGerber} />;
       case 'data-upload':
         return <FileUpload onDataUploaded={handleDataUpload} onDataAvailable={setDataAvailable} />;
       case 'overview':

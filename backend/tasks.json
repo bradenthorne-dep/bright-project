@@ -11,7 +11,7 @@
     "priority": "High",
     "start_date": "2025-06-15",
     "due_date": "2025-06-17",
-    "completion_percentage": 100,
+    "completion_percentage": 0,
     "comments": "Successfully completed with all key stakeholders present.",
     "billable_hours": 8.5
   },
@@ -27,7 +27,7 @@
     "priority": "Medium",
     "start_date": "2025-06-20",
     "due_date": "2025-07-15",
-    "completion_percentage": 75,
+    "completion_percentage": 0,
     "comments": "Authentication layer completed, working on rate limiting implementation.",
     "billable_hours": 92.0
   },
@@ -43,7 +43,7 @@
     "priority": "High",
     "start_date": "2025-07-01",
     "due_date": "2025-07-28",
-    "completion_percentage": 85,
+    "completion_percentage": 0,
     "comments": "Initial configuration complete, pending client validation of mapping rules.",
     "billable_hours": 67.5
   },
@@ -59,7 +59,7 @@
     "priority": "Medium",
     "start_date": "2025-08-20",
     "due_date": "2025-09-15",
-    "completion_percentage": 40,
+    "completion_percentage": 0,
     "comments": "Basic integration tests passing, working on complex scenarios.",
     "billable_hours": 45.0
   },
@@ -75,7 +75,7 @@
     "priority": "High",
     "start_date": "2025-07-25",
     "due_date": "2025-08-10",
-    "completion_percentage": 100,
+    "completion_percentage": 0,
     "comments": "Schema design approved and implemented successfully.",
     "billable_hours": 78.0
   },
@@ -91,7 +91,7 @@
     "priority": "Medium",
     "start_date": "2025-08-05",
     "due_date": "2025-09-01",
-    "completion_percentage": 60,
+    "completion_percentage": 0,
     "comments": "Email notifications configured, working on SMS integration.",
     "billable_hours": 35.5
   },
@@ -107,7 +107,7 @@
     "priority": "High",
     "start_date": "2025-10-25",
     "due_date": "2025-11-20",
-    "completion_percentage": 25,
+    "completion_percentage": 0,
     "comments": "Test environment setup complete, beginning load test execution.",
     "billable_hours": 28.0
   },
@@ -123,7 +123,7 @@
     "priority": "Medium",
     "start_date": "2025-09-01",
     "due_date": "2025-09-25",
-    "completion_percentage": 20,
+    "completion_percentage": 0,
     "comments": "Training materials in development, scheduling user sessions.",
     "billable_hours": 15.5
   },
@@ -139,7 +139,7 @@
     "priority": "Medium",
     "start_date": "2025-08-10",
     "due_date": "2025-12-29",
-    "completion_percentage": 90,
+    "completion_percentage": 0,
     "comments": "Security audit completed, addressing final compliance requirements.",
     "billable_hours": 87.5
   },
@@ -155,7 +155,7 @@
     "priority": "Low",
     "start_date": "2025-09-05",
     "due_date": "2025-10-01",
-    "completion_percentage": 10,
+    "completion_percentage": 0,
     "comments": "UAT planning complete, beginning test case execution.",
     "billable_hours": 12.0
   }
