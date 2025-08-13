@@ -5,6 +5,7 @@ import { AlertCircle } from 'lucide-react';
 import { apiService, ProjectOverviewResponse } from '@/services/api';
 import ScoreGauge from '@/components/ui/ScoreGauge';
 import BreakdownTable from '@/components/ui/BreakdownTable';
+import { formatCurrency, formatDate } from '@/utils/formatters';
 
 interface OverviewProps {
   onSectionChange?: (section: string) => void;
@@ -33,21 +34,6 @@ export default function Overview({}: OverviewProps) {
     }
   };
 
-  const formatCurrency = (amount: number): string => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-    }).format(amount);
-  };
-
-  const formatDate = (dateString: string): string => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
 
   if (loading) {
     return (
@@ -104,18 +90,18 @@ export default function Overview({}: OverviewProps) {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Project Overview</h1>
-        <p className="text-gray-600">Comprehensive view of project status and metrics</p>
+        <p className="text-gray-600">Comprehensive view of project status</p>
       </div>
 
       {/* Project Information Section */}
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Project Information</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        {/* Top Row: Client and Project Lead */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div className="stat-card">
             <div>
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Project Name/Client</h3>
-              <p className="text-lg font-bold text-gray-900">{project_info.project_name}</p>
-              <p className="text-sm text-gray-600">{project_info.client}</p>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Client</h3>
+              <p className="text-lg font-bold text-gray-900">{project_info.client}</p>
             </div>
           </div>
 
@@ -125,7 +111,10 @@ export default function Overview({}: OverviewProps) {
               <p className="text-lg font-bold text-gray-900">{project_info.project_manager}</p>
             </div>
           </div>
+        </div>
 
+        {/* Bottom Row: Start Date, Go-Live Date, Current Phase */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="stat-card">
             <div>
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Start Date</h3>
@@ -143,7 +132,7 @@ export default function Overview({}: OverviewProps) {
           <div className="stat-card">
             <div>
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Current Project Phase</h3>
-              <p className="text-lg font-bold text-blue-600">{project_info.current_phase}</p>
+              <p className="text-lg font-bold text-gray-900">{project_info.current_phase}</p>
             </div>
           </div>
         </div>
@@ -151,33 +140,33 @@ export default function Overview({}: OverviewProps) {
 
       {/* Budget Section */}
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Budget Information</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Budget Information</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="stat-card">
             <div>
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Spent Budget</h3>
-              <p className="text-lg font-bold text-red-600">{formatCurrency(budget_info.spent_budget)}</p>
+              <p className="text-xl font-bold text-red-600">{formatCurrency(budget_info.spent_budget)}</p>
             </div>
           </div>
 
           <div className="stat-card">
             <div>
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Remaining Budget</h3>
-              <p className="text-lg font-bold text-green-600">{formatCurrency(budget_info.remaining_budget)}</p>
+              <p className="text-xl font-bold text-green-600">{formatCurrency(budget_info.remaining_budget)}</p>
             </div>
           </div>
 
           <div className="stat-card">
             <div>
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Hourly Rate</h3>
-              <p className="text-lg font-bold text-blue-600">{formatCurrency(hourly_rate)}</p>
+              <p className="text-xl font-bold text-gray-900">{formatCurrency(hourly_rate)}</p>
             </div>
           </div>
 
           <div className="stat-card">
             <div>
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Budget Utilization</h3>
-              <p className="text-2xl font-bold text-gray-900">{budget_info.budget_utilization_percentage.toFixed(1)}%</p>
+              <p className="text-xl font-bold text-gray-900">{budget_info.budget_utilization_percentage.toFixed(1)}%</p>
             </div>
           </div>
         </div>
@@ -185,7 +174,7 @@ export default function Overview({}: OverviewProps) {
 
       {/* Progress Section */}
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Project Progress</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Progress</h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Task Metrics - 2x2 Grid */}
           <div className="lg:col-span-2">
@@ -225,8 +214,9 @@ export default function Overview({}: OverviewProps) {
             <div className="stat-card h-full flex flex-col items-center justify-center">
               <ScoreGauge
                 score={Math.round(task_metrics.completion_percentage)}
-                rating="Completion Percentage"
+                rating="Completion"
                 maxScore={100}
+                showPercentage={true}
               />
             </div>
           </div>

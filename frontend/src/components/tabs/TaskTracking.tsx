@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { AlertCircle } from 'lucide-react';
 import { apiService, Task, TasksResponse } from '@/services/api';
+import { formatDateShort } from '@/utils/formatters';
 
 interface TaskTrackingProps {
   onSectionChange?: (section: string) => void;
@@ -32,13 +33,6 @@ export default function TaskTracking({}: TaskTrackingProps) {
     }
   };
 
-  const formatDate = (dateString: string): string => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
-  };
 
   const getStatusColor = (status: string): string => {
     switch (status.toLowerCase()) {
@@ -195,10 +189,10 @@ export default function TaskTracking({}: TaskTrackingProps) {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {formatDate(task.start_date)}
+                    {formatDateShort(task.start_date)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {formatDate(task.due_date)}
+                    {formatDateShort(task.due_date)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <div className="flex items-center">

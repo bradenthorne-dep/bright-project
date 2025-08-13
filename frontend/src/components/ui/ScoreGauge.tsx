@@ -7,13 +7,15 @@ interface ScoreGaugeProps {
   rating: string;
   minScore?: number;
   maxScore?: number;
+  showPercentage?: boolean;
 }
 
 export default function ScoreGauge({ 
   score, 
   rating, 
   minScore = 0, 
-  maxScore = 100 
+  maxScore = 100,
+  showPercentage = false 
 }: ScoreGaugeProps) {
   // Calculate angle for the score (semicircle gauge)
   const normalizedScore = Math.max(minScore, Math.min(maxScore, score));
@@ -105,7 +107,7 @@ export default function ScoreGauge({
         {/* Score text overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center mt-4">
           <div className="text-5xl font-bold text-gray-900 mb-2">
-            {score}
+            {score}{showPercentage ? '%' : ''}
           </div>
           <div className="text-md font-medium text-gray-600 uppercase tracking-wide">
             {rating}

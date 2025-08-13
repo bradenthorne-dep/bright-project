@@ -8,55 +8,19 @@ const api = axios.create({
 });
 
 // Basic types for API responses
-export interface DataPreviewResponse {
-  preview: Record<string, any>[];
-  total_rows: number;
-  columns: string[];
-}
-
-export interface DataStatusResponse {
-  data_loaded: boolean;
-  data_info?: {
-    row_count: number;
-    column_count: number;
-    columns: string[];
+export interface FileUploadResponse {
+  message: string;
+  filename: string;
+  file_info: {
+    size_bytes: number;
+    size_mb: number;
+    file_type: string;
+    content_type: string;
   };
-  source?: string;
-}
-
-export interface DataSummaryResponse {
-  summary_statistics: Record<string, any>;
-  data_types: Record<string, string>;
-  null_counts: Record<string, number>;
-  shape: {
-    rows: number;
-    columns: number;
-  };
-}
-
-export interface SampleMetricsResponse {
-  data_cards: Array<{
-    title: string;
-    value: string;
-    change: string;
-    trend: 'up' | 'down';
-  }>;
-  score_gauge: {
-    value: number;
-    max: number;
-    label: string;
-    color: string;
-  };
-}
-
-export interface SampleBreakdownResponse {
-  title: string;
-  data: Record<string, any>[];
 }
 
 export interface ProjectOverviewResponse {
   project_info: {
-    project_name: string;
     client: string;
     project_manager: string;
     start_date: string;
@@ -118,46 +82,16 @@ export const apiService = {
     return response.data;
   },
 
-  // Data upload - simplified to single file
-  async uploadData(file: File) {
+  // Generic file upload
+  async uploadFile(file: File): Promise<FileUploadResponse> {
     const formData = new FormData();
     formData.append('file', file);
 
-    const response = await api.post('/api/upload-data', formData, {
+    const response = await api.post('/api/upload-file', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
-    return response.data;
-  },
-
-  // Get data status
-  async getDataStatus(): Promise<DataStatusResponse> {
-    const response = await api.get('/api/data-status');
-    return response.data;
-  },
-
-  // Get data preview
-  async getDataPreview(): Promise<DataPreviewResponse> {
-    const response = await api.get('/api/data-preview');
-    return response.data;
-  },
-
-  // Get data summary
-  async getDataSummary(): Promise<DataSummaryResponse> {
-    const response = await api.get('/api/data-summary');
-    return response.data;
-  },
-
-  // Get sample metrics for testing components
-  async getSampleMetrics(): Promise<SampleMetricsResponse> {
-    const response = await api.get('/api/sample-metrics');
-    return response.data;
-  },
-
-  // Get sample breakdown data for testing table component
-  async getSampleBreakdown(): Promise<SampleBreakdownResponse> {
-    const response = await api.get('/api/sample-breakdown');
     return response.data;
   },
 

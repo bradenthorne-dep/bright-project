@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { Upload, FileText, AlertCircle, CheckCircle, X } from 'lucide-react';
 import { apiService } from '@/services/api';
 
@@ -9,55 +9,16 @@ interface FileUploadTabProps {
   onDataAvailable: () => void;
 }
 
-interface DataStatus {
-  data_loaded: boolean;
-  data_info?: {
-    row_count: number;
-    column_count: number;
-    columns: string[];
-  };
-  source?: string;
-}
-
 export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileUploadTabProps) {
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [dragOver, setDragOver] = useState(false);
-  const [dataStatus, setDataStatus] = useState<DataStatus | null>(null);
-  const [isCheckingStatus, setIsCheckingStatus] = useState(true);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Check data status on component mount
-  useEffect(() => {
-    checkDataStatus();
-  }, []);
-
-  const checkDataStatus = async () => {
-    try {
-      setIsCheckingStatus(true);
-      const status = await apiService.getDataStatus();
-      setDataStatus(status);
-      
-      if (status.data_loaded) {
-        // Call onDataAvailable() for loaded data
-        onDataAvailable();
-      }
-    } catch (error) {
-      console.error('Error checking data status:', error);
-    } finally {
-      setIsCheckingStatus(false);
-    }
-  };
-
   const handleFileSelect = (selectedFile: File) => {
-    if (selectedFile.type !== 'text/csv' && !selectedFile.name.endsWith('.csv')) {
-      setUploadError('Please select a CSV file only');
-      return;
-    }
-    
     setFile(selectedFile);
     setUploadError(null);
     setUploadSuccess(false);
@@ -88,7 +49,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
 
   const handleUpload = async () => {
     if (!file) {
-      setUploadError('Please select a CSV file');
+      setUploadError('Please select a file');
       return;
     }
 
@@ -96,11 +57,9 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
     setUploadError(null);
 
     try {
-      const result = await apiService.uploadData(file);
+      const result = await apiService.uploadFile(file);
       
       setUploadSuccess(true);
-      // Update data status
-      await checkDataStatus();
       onDataUploaded();
       
     } catch (error: any) {
@@ -116,36 +75,9 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
       <div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">File Upload</h1>
         <p className="text-gray-600">
-          Upload your CSV file to begin processing
+          Upload your files for processing
         </p>
       </div>
-
-      {/* Data Status */}
-      {isCheckingStatus ? (
-        <div className="flex items-center space-x-2 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-          <p className="text-blue-700">Checking for existing data...</p>
-        </div>
-      ) : dataStatus?.data_loaded ? (
-        <div className="flex items-center justify-between p-4 bg-green-50 border border-green-200 rounded-lg">
-          <div className="flex items-center space-x-2">
-            <CheckCircle className="h-5 w-5 text-green-600" />
-            <div>
-              <p className="text-green-700 font-medium">
-                Data already loaded
-              </p>
-              {dataStatus.data_info && (
-                <p className="text-green-600 text-sm">
-                  {dataStatus.data_info.row_count} rows, {dataStatus.data_info.column_count} columns
-                </p>
-              )}
-            </div>
-          </div>
-          <p className="text-green-600 text-sm">
-            Upload new file to replace
-          </p>
-        </div>
-      ) : null}
 
       {/* Status Messages */}
       {uploadError && (
@@ -166,8 +98,8 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
       <div className="max-w-lg mx-auto">
         <div className="card">
           <div className="card-content">
-            <h3 className="font-semibold text-gray-900 mb-2">CSV Data File</h3>
-            <p className="text-sm text-gray-600 mb-4">Upload your CSV file for analysis</p>
+            <h3 className="font-semibold text-gray-900 mb-2">File Upload</h3>
+            <p className="text-sm text-gray-600 mb-4">Upload your file for processing</p>
             
             <div
               className={`file-upload-area ${dragOver ? 'dragover' : ''}`}
@@ -179,7 +111,6 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
               <input
                 ref={fileInputRef}
                 type="file"
-                accept=".csv"
                 onChange={(e) => {
                   const selectedFile = e.target.files?.[0];
                   if (selectedFile) {
@@ -214,10 +145,10 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
                 <div>
                   <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-gray-600 mb-2">
-                    Drop your CSV file here or click to browse
+                    Drop your file here or click to browse
                   </p>
                   <p className="text-sm text-gray-500">
-                    CSV files only
+                    All file types supported
                   </p>
                 </div>
               )}
@@ -239,7 +170,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
               <span>Uploading...</span>
             </div>
           ) : (
-            'Upload Data'
+            'Upload File'
           )}
         </button>
       </div>

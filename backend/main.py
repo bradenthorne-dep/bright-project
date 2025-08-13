@@ -1,14 +1,11 @@
 """
-FastAPI backend template for data processing applications
+FastAPI backend for project management applications
 
-Provides generic API endpoints for CSV data upload, preview, and basic processing.
+Provides API endpoints for project overview, task tracking, and file uploads.
 """
 
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
-import pandas as pd
-import io
 import os
 import logging
 import json
@@ -19,17 +16,10 @@ logger = logging.getLogger(__name__)
 backend_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(backend_dir)
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """Initialize application on startup"""
-    load_default_data()
-    yield
-
 app = FastAPI(
-    title="Data Processing Application API",
-    description="Generic backend API for data processing and analysis",
-    version="1.0.0",
-    lifespan=lifespan
+    title="Project Management API",
+    description="Backend API for project management and task tracking",
+    version="1.0.0"
 )
 
 # Enable CORS for frontend development
@@ -41,211 +31,112 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global variables for data storage
-app_data = {
-    "data_df": None,
-    "data_source": None,
-}
-
-def load_default_data():
-    """Initialize application - no default data to load"""
-    print("Application initialized - ready for data upload")
-    return True
-
 @app.get("/")
 async def root():
     """Health check endpoint"""
     return {
-        "message": "Data Processing Application API",
+        "message": "Project Management API",
         "version": "1.0.0",
         "status": "running"
     }
 
-@app.get("/api/data-status")
-async def get_data_status():
-    """Check if data is loaded and from what source"""
-    data_loaded = app_data["data_df"] is not None
-    
-    if data_loaded:
-        return {
-            "data_loaded": True,
-            "data_info": {
-                "row_count": len(app_data["data_df"]),
-                "column_count": len(app_data["data_df"].columns),
-                "columns": list(app_data["data_df"].columns)
-            },
-            "source": app_data["data_source"]
-        }
-    else:
-        return {
-            "data_loaded": False,
-            "data_info": None,
-            "source": None
-        }
-
-@app.post("/api/upload-data")
-async def upload_data(file: UploadFile = File(...)):
-    """Upload and validate CSV data file"""
+@app.post("/api/upload-file")
+async def upload_file(file: UploadFile = File(...)):
+    """Generic file upload endpoint"""
     try:
-        # Validate file type
-        if not file.filename.endswith('.csv'):
-            raise HTTPException(status_code=400, detail="Only CSV files are supported")
-        
-        # Read CSV file
+        # Read file content
         content = await file.read()
         
-        # Parse CSV data
-        app_data["data_df"] = pd.read_csv(io.StringIO(content.decode('utf-8')))
-        
-        # Mark data source as uploaded
-        app_data["data_source"] = "upload"
+        # Get file information
+        file_size = len(content)
+        file_extension = file.filename.split('.')[-1] if '.' in file.filename else 'unknown'
         
         return {
-            "message": "Data uploaded successfully",
+            "message": "File uploaded successfully",
             "filename": file.filename,
-            "data_info": {
-                "row_count": len(app_data["data_df"]),
-                "column_count": len(app_data["data_df"].columns),
-                "columns": list(app_data["data_df"].columns)
+            "file_info": {
+                "size_bytes": file_size,
+                "size_mb": round(file_size / (1024 * 1024), 2),
+                "file_type": file_extension,
+                "content_type": file.content_type
             }
         }
     
     except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Error processing uploaded data: {str(e)}")
-
-@app.get("/api/data-preview")
-async def get_data_preview():
-    """Get preview of loaded data"""
-    if app_data["data_df"] is None:
-        raise HTTPException(status_code=400, detail="No data loaded")
-    
-    try:
-        return {
-            "preview": app_data["data_df"].head(10).to_dict('records'),
-            "total_rows": len(app_data["data_df"]),
-            "columns": list(app_data["data_df"].columns)
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error generating data preview: {str(e)}")
-
-@app.get("/api/data-summary")
-async def get_data_summary():
-    """Get basic statistical summary of the data"""
-    if app_data["data_df"] is None:
-        raise HTTPException(status_code=400, detail="No data loaded")
-    
-    try:
-        # Get basic statistics
-        summary = app_data["data_df"].describe(include='all').to_dict()
-        
-        # Get data types
-        dtypes = app_data["data_df"].dtypes.to_dict()
-        dtypes = {k: str(v) for k, v in dtypes.items()}
-        
-        # Get null counts
-        null_counts = app_data["data_df"].isnull().sum().to_dict()
-        
-        return {
-            "summary_statistics": summary,
-            "data_types": dtypes,
-            "null_counts": null_counts,
-            "shape": {
-                "rows": len(app_data["data_df"]),
-                "columns": len(app_data["data_df"].columns)
-            }
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error generating data summary: {str(e)}")
-
-@app.get("/api/sample-metrics")
-async def get_sample_metrics():
-    """Sample metrics for testing UI components"""
-    return {
-        "data_cards": [
-            {"title": "Total Records", "value": "125,847", "change": "+12.5%", "trend": "up"},
-            {"title": "Processing Rate", "value": "94.2%", "change": "+2.1%", "trend": "up"},
-            {"title": "Error Rate", "value": "0.8%", "change": "-0.3%", "trend": "down"},
-            {"title": "Avg Response Time", "value": "2.4s", "change": "+0.2s", "trend": "up"}
-        ],
-        "score_gauge": {
-            "value": 85,
-            "max": 100,
-            "label": "Data Quality Score",
-            "color": "green"
-        }
-    }
-
-@app.get("/api/sample-breakdown")
-async def get_sample_breakdown():
-    """Sample breakdown data for testing table component"""
-    return {
-        "title": "Data Processing Breakdown",
-        "data": [
-            {"Category": "Successful Records", "Count": 118550, "Percentage": "94.2%", "Status": "Good"},
-            {"Category": "Warning Records", "Count": 6297, "Percentage": "5.0%", "Status": "Warning"},
-            {"Category": "Error Records", "Count": 1000, "Percentage": "0.8%", "Status": "Error"},
-            {"Category": "Total Processed", "Count": 125847, "Percentage": "100%", "Status": "Complete"}
-        ]
-    }
+        raise HTTPException(status_code=400, detail=f"Error processing uploaded file: {str(e)}")
 
 @app.get("/api/project-overview")
 async def get_project_overview():
     """Get project management overview data with mock values"""
-    return {
-        "project_info": {
-            "project_name": "Digital Transformation Initiative",
-            "client": "TechCorp Solutions",
-            "project_manager": "Sarah Johnson",
-            "start_date": "2024-01-15",
-            "end_date": "2024-12-15",
-            "projected_go_live": "2024-12-01",
-            "current_phase": "Development",
-            "status": "In Progress"
-        },
-        "task_metrics": {
-            "total_tasks": 156,
-            "tasks_completed": 89,
-            "tasks_in_progress": 34,
-            "tasks_on_hold": 8,
-            "tasks_open": 25,
-            "completion_percentage": 57.1
-        },
-        "budget_info": {
-            "allocated_budget": 750000,
-            "spent_budget": 428750,
-            "utilized_budget": 428750,
-            "budget_utilization_percentage": 57.2,
-            "remaining_budget": 321250
-        },
-        "hourly_rate": 145,
-        "top_tasks": [
-            {
-                "task": "API Integration Development",
-                "billable_hours": 125.5,
-                "total_cost": 18197.5
+    try:
+        # Load tasks from tasks.json
+        with open('tasks.json', 'r') as file:
+            tasks_data = json.load(file)
+        
+        # Calculate task metrics from actual data
+        total_tasks = len(tasks_data)
+        tasks_completed = sum(1 for task in tasks_data if task['status'].lower() == 'complete')
+        tasks_in_progress = sum(1 for task in tasks_data if task['status'].lower() == 'in progress')
+        tasks_on_hold = sum(1 for task in tasks_data if task['status'].lower() == 'on hold')
+        tasks_open = sum(1 for task in tasks_data if task['status'].lower() not in ['complete', 'in progress', 'on hold'])
+        
+        # Calculate completion percentage based on actual completion percentages
+        avg_completion = sum(task['completion_percentage'] for task in tasks_data) / total_tasks if total_tasks > 0 else 0
+        
+        # Get top 5 tasks by billable hours
+        sorted_tasks = sorted(tasks_data, key=lambda x: x['billable_hours'], reverse=True)
+        hourly_rate = 145
+        top_tasks = []
+        
+        for task in sorted_tasks[:5]:
+            top_tasks.append({
+                "task": task['task_name'],
+                "billable_hours": task['billable_hours'],
+                "total_cost": task['billable_hours'] * hourly_rate
+            })
+        
+        # Calculate total spent budget from billable hours
+        total_billable_hours = sum(task['billable_hours'] for task in tasks_data)
+        spent_budget = total_billable_hours * hourly_rate
+        allocated_budget = 750000
+        remaining_budget = allocated_budget - spent_budget
+        budget_utilization = (spent_budget / allocated_budget) * 100 if allocated_budget > 0 else 0
+        
+        return {
+            "project_info": {
+                "client": "TechCorp Solutions",
+                "project_manager": "Sarah Johnson",
+                "start_date": "2024-01-15",
+                "end_date": "2024-12-15",
+                "projected_go_live": "2024-12-01",
+                "current_phase": "Development",
+                "status": "In Progress"
             },
-            {
-                "task": "Database Migration",
-                "billable_hours": 98.0,
-                "total_cost": 14210.0
+            "task_metrics": {
+                "total_tasks": total_tasks,
+                "tasks_completed": tasks_completed,
+                "tasks_in_progress": tasks_in_progress,
+                "tasks_on_hold": tasks_on_hold,
+                "tasks_open": tasks_open,
+                "completion_percentage": round(avg_completion, 1)
             },
-            {
-                "task": "Frontend UI/UX Implementation",
-                "billable_hours": 87.5,
-                "total_cost": 12687.5
+            "budget_info": {
+                "allocated_budget": allocated_budget,
+                "spent_budget": round(spent_budget, 2),
+                "utilized_budget": round(spent_budget, 2),
+                "budget_utilization_percentage": round(budget_utilization, 1),
+                "remaining_budget": round(remaining_budget, 2)
             },
-            {
-                "task": "Security Audit & Testing",
-                "billable_hours": 76.0,
-                "total_cost": 11020.0
-            },
-            {
-                "task": "Performance Optimization",
-                "billable_hours": 65.5,
-                "total_cost": 9497.5
-            }
-        ]
-    }
+            "hourly_rate": hourly_rate,
+            "top_tasks": top_tasks
+        }
+        
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Tasks data file not found")
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=500, detail="Error parsing tasks data file")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading project overview: {str(e)}")
 
 @app.get("/api/tasks")
 async def get_tasks():
