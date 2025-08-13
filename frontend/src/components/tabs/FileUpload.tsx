@@ -156,7 +156,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">File Upload</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Add a New Project</h1>
         <p className="text-gray-600">
           Upload Project Documents
         </p>
@@ -166,7 +166,6 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Design Document Section */}
         <div className="space-y-6">
-          <h2 className="text-xl font-semibold text-gray-900">Design Document</h2>
           
           {/* Status Messages */}
           {designUploadError && (
@@ -186,7 +185,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
           {/* Design File Upload Box */}
           <div className="card">
             <div className="card-content">
-              <h3 className="font-semibold text-gray-900 mb-2">Design Document Upload</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Design Document</h3>
               <p className="text-sm text-gray-600 mb-4">Upload Design Document (PDF or DOCX)</p>
               
               <div
@@ -266,7 +265,6 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
 
         {/* MSA Document Section */}
         <div className="space-y-6">
-          <h2 className="text-xl font-semibold text-gray-900">MSA Document</h2>
           
           {/* Status Messages */}
           {msaUploadError && (
@@ -286,7 +284,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
           {/* MSA File Upload Box */}
           <div className="card">
             <div className="card-content">
-              <h3 className="font-semibold text-gray-900 mb-2">MSA Document Upload</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">MSA Document</h3>
               <p className="text-sm text-gray-600 mb-4">Upload Master Service Agreement (PDF or DOCX)</p>
               
               <div
