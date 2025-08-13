@@ -73,6 +73,22 @@ export interface TasksResponse {
   tasks: Task[];
 }
 
+export interface RiskTask extends Task {
+  days_remaining: number;
+  days_remaining_formatted: string;
+  risk_level: 'High' | 'Medium' | 'Low';
+}
+
+export interface RiskAssessmentResponse {
+  risk_tasks: RiskTask[];
+  summary: {
+    total_at_risk: number;
+    high_risk_count: number;
+    medium_risk_count: number;
+    low_risk_count: number;
+  };
+}
+
 
 // API functions
 export const apiService = {
@@ -104,6 +120,12 @@ export const apiService = {
   // Get task tracking data
   async getTasks(): Promise<TasksResponse> {
     const response = await api.get('/api/tasks');
+    return response.data;
+  },
+
+  // Get risk assessment data
+  async getRiskAssessment(): Promise<RiskAssessmentResponse> {
+    const response = await api.get('/api/risk-assessment');
     return response.data;
   },
 

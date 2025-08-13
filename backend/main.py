@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 import logging
 import json
+from project_calculations import calculate_project_overview, calculate_risk_assessment
 
 logger = logging.getLogger(__name__)
 
@@ -67,74 +68,31 @@ async def upload_file(file: UploadFile = File(...)):
 
 @app.get("/api/project-overview")
 async def get_project_overview():
-    """Get project management overview data with mock values"""
+    """Get project management overview data from project_info.json and tasks.json"""
     try:
+        # Load project info from project_info.json
+        with open('project_info.json', 'r') as file:
+            project_data = json.load(file)
+        
         # Load tasks from tasks.json
         with open('tasks.json', 'r') as file:
             tasks_data = json.load(file)
         
-        # Calculate task metrics from actual data
-        total_tasks = len(tasks_data)
-        tasks_completed = sum(1 for task in tasks_data if task['status'].lower() == 'complete')
-        tasks_in_progress = sum(1 for task in tasks_data if task['status'].lower() == 'in progress')
-        tasks_on_hold = sum(1 for task in tasks_data if task['status'].lower() == 'on hold')
-        tasks_open = sum(1 for task in tasks_data if task['status'].lower() not in ['complete', 'in progress', 'on hold'])
+        # Extract values from project_data
+        project_info = project_data['project_info']
+        allocated_budget = project_data['budget_info']['allocated_budget']
+        hourly_rate = project_data['budget_info']['hourly_rate']
         
-        # Calculate completion percentage based on actual completion percentages
-        avg_completion = sum(task['completion_percentage'] for task in tasks_data) / total_tasks if total_tasks > 0 else 0
+        # Calculate and return project overview using the calculations module
+        return calculate_project_overview(tasks_data, project_info, allocated_budget, hourly_rate)
         
-        # Get top 5 tasks by billable hours
-        sorted_tasks = sorted(tasks_data, key=lambda x: x['billable_hours'], reverse=True)
-        hourly_rate = 145
-        top_tasks = []
-        
-        for task in sorted_tasks[:5]:
-            top_tasks.append({
-                "task": task['task_name'],
-                "billable_hours": task['billable_hours'],
-                "total_cost": task['billable_hours'] * hourly_rate
-            })
-        
-        # Calculate total spent budget from billable hours
-        total_billable_hours = sum(task['billable_hours'] for task in tasks_data)
-        spent_budget = total_billable_hours * hourly_rate
-        allocated_budget = 750000
-        remaining_budget = allocated_budget - spent_budget
-        budget_utilization = (spent_budget / allocated_budget) * 100 if allocated_budget > 0 else 0
-        
-        return {
-            "project_info": {
-                "client": "TechCorp Solutions",
-                "project_manager": "Sarah Johnson",
-                "start_date": "2024-01-15",
-                "end_date": "2024-12-15",
-                "projected_go_live": "2024-12-01",
-                "current_phase": "Development",
-                "status": "In Progress"
-            },
-            "task_metrics": {
-                "total_tasks": total_tasks,
-                "tasks_completed": tasks_completed,
-                "tasks_in_progress": tasks_in_progress,
-                "tasks_on_hold": tasks_on_hold,
-                "tasks_open": tasks_open,
-                "completion_percentage": round(avg_completion, 1)
-            },
-            "budget_info": {
-                "allocated_budget": allocated_budget,
-                "spent_budget": round(spent_budget, 2),
-                "utilized_budget": round(spent_budget, 2),
-                "budget_utilization_percentage": round(budget_utilization, 1),
-                "remaining_budget": round(remaining_budget, 2)
-            },
-            "hourly_rate": hourly_rate,
-            "top_tasks": top_tasks
-        }
-        
-    except FileNotFoundError:
-        raise HTTPException(status_code=404, detail="Tasks data file not found")
+    except FileNotFoundError as e:
+        if 'project_info.json' in str(e):
+            raise HTTPException(status_code=404, detail="Project info data file not found")
+        else:
+            raise HTTPException(status_code=404, detail="Tasks data file not found")
     except json.JSONDecodeError:
-        raise HTTPException(status_code=500, detail="Error parsing tasks data file")
+        raise HTTPException(status_code=500, detail="Error parsing data files")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading project overview: {str(e)}")
 
@@ -151,6 +109,24 @@ async def get_tasks():
         raise HTTPException(status_code=500, detail="Error parsing tasks data file")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading tasks data: {str(e)}")
+
+@app.get("/api/risk-assessment")
+async def get_risk_assessment():
+    """Get risk assessment data with pre-calculated risk levels and summary statistics"""
+    try:
+        # Load tasks from tasks.json
+        with open('tasks.json', 'r') as file:
+            tasks_data = json.load(file)
+        
+        # Calculate and return risk assessment using the calculations module
+        return calculate_risk_assessment(tasks_data)
+        
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Tasks data file not found")
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=500, detail="Error parsing tasks data file")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading risk assessment: {str(e)}")
 
 
 if __name__ == "__main__":

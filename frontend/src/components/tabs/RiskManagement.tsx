@@ -2,87 +2,32 @@
 
 import { useState, useEffect } from 'react';
 import { AlertCircle } from 'lucide-react';
-import { apiService, Task, TasksResponse } from '@/services/api';
+import { apiService, RiskAssessmentResponse } from '@/services/api';
 import { formatDateShort } from '@/utils/formatters';
 
 interface RiskManagementProps {
   onSectionChange?: (section: string) => void;
 }
 
-interface RiskTask extends Task {
-  daysRemaining: number;
-  riskLevel: 'High' | 'Medium' | 'Low';
-}
-
 export default function RiskManagement({}: RiskManagementProps) {
-  const [riskTasks, setRiskTasks] = useState<RiskTask[]>([]);
+  const [riskData, setRiskData] = useState<RiskAssessmentResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
 
   useEffect(() => {
-    loadRiskTasks();
+    loadRiskAssessment();
   }, []);
 
-  const calculateDaysRemaining = (dueDate: string): number => {
-    const today = new Date();
-    const due = new Date(dueDate);
-    const diffTime = due.getTime() - today.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-  };
-
-  const calculateRiskLevel = (task: Task, daysRemaining: number): 'High' | 'Medium' | 'Low' => {
-    // High risk: Overdue or due within 3 days with less than 90% completion
-    if (daysRemaining < 0) return 'High';
-    if (daysRemaining <= 3 && task.completion_percentage < 90) return 'High';
-    
-    // Medium risk: Due within 7 days with less than 75% completion, or high priority behind schedule
-    if (daysRemaining <= 7 && task.completion_percentage < 75) return 'Medium';
-    if (task.priority === 'High' && task.completion_percentage < 80) return 'Medium';
-    
-    // Low risk: Due within 14 days with less than 50% completion
-    if (daysRemaining <= 14 && task.completion_percentage < 50) return 'Low';
-    
-    return 'Low';
-  };
-
-  const filterAtRiskTasks = (tasks: Task[]): RiskTask[] => {
-    const today = new Date();
-    
-    return tasks
-      .filter(task => task.status !== 'Complete') // Only include incomplete tasks
-      .map(task => {
-        const daysRemaining = calculateDaysRemaining(task.due_date);
-        const riskLevel = calculateRiskLevel(task, daysRemaining);
-        return { ...task, daysRemaining, riskLevel };
-      })
-      .filter(task => {
-        // Include tasks that are at risk based on our criteria
-        return task.daysRemaining < 0 || // Overdue
-               (task.daysRemaining <= 14 && task.completion_percentage < 90) || // Due soon and not nearly complete
-               (task.priority === 'High' && task.completion_percentage < 80); // High priority behind schedule
-      })
-      .sort((a, b) => {
-        // Sort by risk level (High > Medium > Low), then by days remaining (ascending)
-        const riskOrder = { 'High': 3, 'Medium': 2, 'Low': 1 };
-        if (riskOrder[a.riskLevel] !== riskOrder[b.riskLevel]) {
-          return riskOrder[b.riskLevel] - riskOrder[a.riskLevel];
-        }
-        return a.daysRemaining - b.daysRemaining;
-      });
-  };
-
-  const loadRiskTasks = async () => {
+  const loadRiskAssessment = async () => {
     setLoading(true);
     setError(null);
     
     try {
-      const data: TasksResponse = await apiService.getTasks();
-      const atRiskTasks = filterAtRiskTasks(data.tasks);
-      setRiskTasks(atRiskTasks);
+      const data = await apiService.getRiskAssessment();
+      setRiskData(data);
     } catch (err: any) {
-      setError(err.response?.data?.detail || err.message || 'Failed to load risk data');
+      setError(err.response?.data?.detail || err.message || 'Failed to load risk assessment');
     } finally {
       setLoading(false);
     }
@@ -114,24 +59,12 @@ export default function RiskManagement({}: RiskManagementProps) {
     }
   };
 
-  const formatDaysRemaining = (days: number): string => {
-    if (days < 0) {
-      return `${Math.abs(days)} days overdue`;
-    } else if (days === 0) {
-      return 'Due today';
-    } else if (days === 1) {
-      return '1 day remaining';
-    } else {
-      return `${days} days remaining`;
-    }
-  };
-
   if (loading) {
     return (
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Risk Management</h1>
-          <p className="text-gray-600">Loading risk assessment data...</p>
+          <p className="text-gray-600">Tasks at risk of not being completed on time</p>
         </div>
 
         <div className="flex items-center justify-center py-12">
@@ -168,12 +101,13 @@ export default function RiskManagement({}: RiskManagementProps) {
       </div>
 
       {/* Risk Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="stat-card">
           <div>
             <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">High Risk</h3>
             <p className="text-2xl font-bold text-red-600">
-              {riskTasks.filter(task => task.riskLevel === 'High').length}
+              {riskData?.summary.high_risk_count || 0}
             </p>
             <p className="text-sm text-gray-600 mt-1">Requires immediate attention</p>
           </div>
@@ -183,7 +117,7 @@ export default function RiskManagement({}: RiskManagementProps) {
           <div>
             <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Medium Risk</h3>
             <p className="text-2xl font-bold text-yellow-600">
-              {riskTasks.filter(task => task.riskLevel === 'Medium').length}
+              {riskData?.summary.medium_risk_count || 0}
             </p>
             <p className="text-sm text-gray-600 mt-1">Monitor closely</p>
           </div>
@@ -193,15 +127,16 @@ export default function RiskManagement({}: RiskManagementProps) {
           <div>
             <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Low Risk</h3>
             <p className="text-2xl font-bold text-green-600">
-              {riskTasks.filter(task => task.riskLevel === 'Low').length}
+              {riskData?.summary.low_risk_count || 0}
             </p>
             <p className="text-sm text-gray-600 mt-1">Keep on schedule</p>
           </div>
         </div>
       </div>
-
+      </div>
+      
       {/* Risk Tasks Table */}
-      {riskTasks.length === 0 ? (
+      {!riskData || riskData.summary.total_at_risk === 0 ? (
         <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
           <h3 className="text-lg font-semibold text-green-800 mb-2">No Tasks at Risk</h3>
           <p className="text-green-600">All tasks are on track for completion within their scheduled timelines.</p>
@@ -233,7 +168,7 @@ export default function RiskManagement({}: RiskManagementProps) {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {riskTasks.map((task) => (
+                {riskData.risk_tasks.map((task) => (
                   <tr 
                     key={task.id} 
                     className="hover:bg-gray-50 cursor-pointer relative"
@@ -252,13 +187,13 @@ export default function RiskManagement({}: RiskManagementProps) {
                       {formatDateShort(task.due_date)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <span className={task.daysRemaining < 0 ? 'text-red-600 font-medium' : ''}>
-                        {formatDaysRemaining(task.daysRemaining)}
+                      <span className={task.days_remaining < 0 ? 'text-red-600 font-medium' : ''}>
+                        {task.days_remaining_formatted}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getRiskLevelColor(task.riskLevel)}`}>
-                        {task.riskLevel}
+                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getRiskLevelColor(task.risk_level)}`}>
+                        {task.risk_level}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -278,11 +213,11 @@ export default function RiskManagement({}: RiskManagementProps) {
                    left: '50%',
                    transform: 'translate(-50%, -50%)'
                  }}>
-              {riskTasks.find(task => task.id === hoveredRow) && (
+              {riskData?.risk_tasks.find(task => task.id === hoveredRow) && (
                 <div className="space-y-2">
                   <div>
                     <strong>Description:</strong>
-                    <p className="mt-1">{riskTasks.find(task => task.id === hoveredRow)?.description}</p>
+                    <p className="mt-1">{riskData.risk_tasks.find(task => task.id === hoveredRow)?.description}</p>
                   </div>
                 </div>
               )}
