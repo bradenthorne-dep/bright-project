@@ -85,15 +85,6 @@ export default function Home({ onSectionChange, showGerber = false }: HomeProps)
             status: "On Hold",
             currentPhase: "Design",
             completionPercentage: 30,
-          },
-          {
-            client: "Global Retail Inc",
-            projectManager: "Jennifer Martinez",
-            startDate: "2024-05-22",
-            projectedGoLiveDate: "2025-02-28",
-            status: "Complete",
-            currentPhase: "Implementation",
-            completionPercentage: 100,
           }
         ];
         
