@@ -65,9 +65,9 @@ export default function TaskTracking({}: TaskTrackingProps) {
   const getTeamColor = (team: string): string => {
     switch (team.toLowerCase()) {
       case 'deposco':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-orange-100 text-orange-800';
       case 'client':
-        return 'bg-purple-100 text-purple-800';
+        return 'bg-blue-100 text-blue-800';
       default:
         return 'bg-gray-100 text-gray-800';
     }
@@ -109,7 +109,7 @@ export default function TaskTracking({}: TaskTrackingProps) {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Task Tracking</h1>
-        <p className="text-gray-600">Comprehensive view of all project tasks and their current status</p>
+        <p className="text-gray-600">Comprehensive view of all project tasks and current status</p>
       </div>
 
       {/* Tasks Table */}
@@ -206,7 +206,7 @@ export default function TaskTracking({}: TaskTrackingProps) {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {task.billable_hours}h
+                    {task.billable_hours}
                   </td>
 
                 </tr>
@@ -216,7 +216,7 @@ export default function TaskTracking({}: TaskTrackingProps) {
         </div>
         
         {/* Tooltip */}
-        {hoveredRow && (
+        {/* {hoveredRow && (
           <div className="absolute z-50 bg-gray-900 text-white text-sm rounded-lg shadow-lg max-w-md p-4 pointer-events-none" 
                style={{
                  top: '50%',
@@ -236,7 +236,7 @@ export default function TaskTracking({}: TaskTrackingProps) {
               </div>
             )}
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
