@@ -13,13 +13,14 @@ interface LayoutProps {
 }
 
 const navigationItems = [
+  { id: 'home', label: 'Home' },
   { id: 'data-upload', label: 'File Upload' },
   { id: 'overview', label: 'Overview' },
   { id: 'task-tracking', label: 'Task Tracking' },
   { id: 'risk-management', label: 'Risk Management' },
 ];
 
-export default function Layout({ children, activeSection = 'data-upload', onSectionChange }: LayoutProps) {
+export default function Layout({ children, activeSection = 'home', onSectionChange }: LayoutProps) {
   const [currentSection, setCurrentSection] = useState(activeSection);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
