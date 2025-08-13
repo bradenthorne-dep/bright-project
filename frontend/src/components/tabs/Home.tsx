@@ -80,7 +80,7 @@ export default function Home({ onSectionChange, showGerber = false }: HomeProps)
           {
             client: "Acme Manufacturing",
             projectManager: "David Wilson",
-            startDate: "2024-03-10",
+            startDate: "2024-03-11",
             projectedGoLiveDate: "2024-10-15",
             status: "On Hold",
             currentPhase: "Design",
