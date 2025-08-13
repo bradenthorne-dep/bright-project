@@ -362,6 +362,16 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
           </div>
         </div>
       </div>
+
+      {/* Create Project Button */}
+      <div className="flex justify-center pt-8">
+        <button
+          disabled={!designUploadSuccess || !msaUploadSuccess}
+          className={`btn ${designUploadSuccess && msaUploadSuccess ? 'btn-primary' : 'btn-secondary'} px-12 py-4 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none`}
+        >
+          Create Project
+        </button>
+      </div>
     </div>
   );
 }
