@@ -1,0 +1,182 @@
+PDF Text Extraction Results
+Original File: Fit2Run Order Form (30.May.2024) (1).pdf
+Extracted: 2025-08-13 12:47:44
+Total Pages: 6
+==================================================
+
+--- Page 1 ---
+DocuSign Envelope ID: E0D7184F-841A-4F27-89EB-0ED86AC27A1C
+ORDER FORM
+Order Form No. 1 Order Form [May 30, 2024] Initial Term 36 months
+Offer Expiration
+Prepared by Email Phone
+Heath Judeh hjudeh@deposco.com 678.763.5619
+Billed to:
+Company Name
+Robinson Sports Inc.
+Address
+311 Manatee Avenue West
+City State Zip Code
+Bradenton FL 34205
+Contact Name Email Phone
+Matthew Sibley matt.sibley@fit2run.com 727.688.4295
+Invoicing Contact Name Email Phone
+Matthew Sibley matt.sibley@fit2run.com 727.688.4295
+Payment Terms: 30 Currency: USD ($) EUR (€) GBP (£)
+Payment Schedule: (i)Subscription Fees (ii)Professional Services
+Annual Retainer due upon execution; monthly on a time and materials
+basis thereafter
+Deposco Software:
+License Type Total Subscription Fees
+Annual Total $415,000
+Deposco Software Solution Bundle
+Initial Term Total $1,245,000
+©Deposco, Inc. 1 of 5 Proprietary and Confidential
+
+--- Page 2 ---
+DocuSign Envelope ID: E0D7184F-841A-4F27-89EB-0ED86AC27A1C
+ORDER FORM
+Included in Deposco Software Solution Bundle:
+Bright Warehouse
+Included in License Users
+¨ Carton Optimization ¨ 3PL Billing Unlimited
+¨ Rate Shopping
+Facilities
+# of Facilities Facility
+1 Bradenton, Florida
+included: Location(s):
+Additional Information
+Bright Order
+Included in License Facilities
+¨ Purchase Experience ¨ Distributed Order Mgmt # of Virtual
+Facilities included:
+¨ Enterprise Inventory ¨ Order Consolidation
+¨ Inventory Segmentation
+Additional Information
+Bright Socket
+Included in License
+Standard 7 Select 1 Advanced
+Additional Information
+Standard: UPS, Stamps.com (USPS), Fedex, Shopify, Shopify POS, Amazon Seller Central, Amazon FBA
+Select: Netsuite
+©Deposco, Inc. 2 of 5 Proprietary and Confidential
+
+--- Page 3 ---
+DocuSign Envelope ID: E0D7184F-841A-4F27-89EB-0ED86AC27A1C
+ORDER FORM
+Bright Performance
+Included in License
+¨ Data Archive ¨ Additional Report Schedulers
+(20 reports per purchase)
+Additional Information
+Bright Store
+Included in License
+¨ Storefronts 43
+Additional Information
+Up to 43 Storefronts
+Additional storefronts - Company may purchase additional storefronts for $2,000 per store (per year) for the
+duration of the Initial Term.
+Supply Chain Planning
+Bright Source Bright Forecast Bright Inventory
+¨ Enterprise PO Mgmt ¨ Standard ¨ Standard
+¨ Supplier Collaboration ¨ Causal Data
+Additional Information
+Company shall have the option to purchase the Supply Chain Planning - Bright Forecast (Standard) Deposco
+Software license for $87,000.00 per year
+©Deposco, Inc. 3 of 5 Proprietary and Confidential
+
+--- Page 4 ---
+DocuSign Envelope ID: E0D7184F-841A-4F27-89EB-0ED86AC27A1C
+ORDER FORM
+Bright Cloud
+Included in License
+Production 1 Sandbox 1 Solution 2 ¨ Disaster Recovery Service
+Environment Environment Tier
+Additional Information
+Bright Certification
+Included in License
+Bright Performance users Bright Warehouse users Bright Order users
+Additional Information
+©Deposco, Inc. 4 of 5 Proprietary and Confidential
+
+--- Page 5 ---
+DocuSign Envelope ID: E0D7184F-841A-4F27-89EB-0ED86AC27A1C
+ORDER FORM
+Deposco Support Offering:
+Included in License Additional Information
+Level 2 – Additional $2,000/month
+Level 1 – Included at no cost
+Level 3 – Additional $3,000/month
+Deposco Professional Services:
+Professional Service Hourly Rates Estimated Professional Service Fees for Initial Implementation
+Initial Hourly Rate: $175 Retainer Due at Execution: $35,962.50
+Post-Implementation &
+$225 Estimated Implementation Services*: $239,750
+Out-of-Scope Hourly Rate:
+* This amount is only an estimate of the Professional Service hours needed and does not include travel expenses, which will
+be invoiced pursuant to the T&Cs. Once the Estimated Implementation Services amount has been fully billed, the post-
+implementation hourly rate will apply. Any out-of-scope work or additional SOW(s) agreed upon by the Parties will be subject
+to the Post-Implementation and Out-of-Scope Hourly Rate, even if such additional Professional Services are agreed upon during
+the initial Implementation Services.
+Special Terms
+1. Exhibit 1, which is attached hereto, applies to this Order Form and is incorporated herein by reference.
+TERMS AND CONDITIONS
+1. This Order Form is effective as of M ay 30, 20 24 (“Effective Date”) by and between Deposco, Inc., (“Deposco”)
+and Company. This Order Form is subject to the Deposco Master Terms and Conditions (“T&Cs”), which are incorporated
+herein by reference. Capitalized terms used but not defined herein shall have the meanings set forth in the T&Cs.
+2. The pricing and any Special Terms listed in this Order Form are Deposco Confidential Information.
+3. This Order Form’s terms, including the T&Cs, supersede any previous agreement(s) between the Parties as it relates to the
+purchase of Deposco Services.
+IN WITNESS HEREOF, the Parties hereto have executed this Order Form and agree the Order Form is effective as of the Effective
+Date. Each Party’s signature represents each Party’s acceptance of their respective rights and obligations in the T&Cs.
+Deposco, Inc. Robinson Sports Inc.
+By By
+Bill Gibson Matthew Sibley
+Name Name
+CEO CFO
+Title Title
+5/30/2024 5/30/2024
+Date Date
+©Deposco, Inc. 5 of 5 Proprietary and Confidential
+
+--- Page 6 ---
+DocuSign Envelope ID: E0D7184F-841A-4F27-89EB-0ED86AC27A1C
+Deposco, Inc.
+11605 Haynes Bridge Road, Suite 200
+Alpharetta, GA 30009
++ 1 . 8 7 7 . 7 7 0 . 1 1 1 0
+EXHIBT 1
+1. Notwithstanding anything to the contrary in the Agreement, this Order Form shall be
+invo•iced as shown in this Section 1. $87,837.50
+Amount Due on signing of Order Form: (1/8th of the annual Deposco
+Software Subscription Fees ($51,875.00) and the Professional Services Retainer
+($35,962.50).
+The remaining Professional Services fees will be invoiced pursuant to the Agreement. For the
+Deposco Software Subscription Fees, the remaining amounts due will be payable to Deposco
+as shown below. For the avoidance of doubt, the below dates are when payment from
+Com•pany is due (the 30-day net payment term shall not apply to the below dates).
+•
+September 1, 2024: $155,625.00;
+•
+December 1, 2024: $103,750.00;
+•
+March 1, 2025: $103,750.00;
+•
+June 1, 2025: $103,750.00;
+•
+September 1, 2025: $103,750.00;
+•
+December 1, 2025: $103,750.00;
+•
+March 1, 2026: $103,750.00;
+•
+June 1, 2026: $103,750.00;
+•
+September 1, 2026: $103,750.00;
+•
+December 1, 2026: $103,750.00; and
+March 1, 2027: $103,750.00.
+2. The Subscription Fees for the Deposco Software shall not increase by more than ten
+percent (10%) for Company's first Renewal Term after the Initial Term's expiration.
+© Deposco, Inc. - 2024 - Proprietary and Confidential Page 1 of 1 Deposco Exhibit 1
+

@@ -1,0 +1,142 @@
+PDF Text Extraction Results
+Original File: Baseball Lifestyle 101_Order Form (12 Months)_30OCT2024.pdf
+Extracted: 2025-08-13 12:47:43
+Total Pages: 5
+==================================================
+
+--- Page 1 ---
+Docusign Envelope ID: CDDA0E3D-B700-43B6-B13A-EFD0F2F967EB
+ORDER FORM
+Order Form
+Order Form No. 01 October 31, 2024 Initial Term 12 months
+Offer Expiration
+Prepared by Email Phone
+Erick Dauberger edauberger@deposco.com 901-461-8177
+Billed to:
+Company Name
+Baseball Lifestyle 101
+Address
+70 Carolyn Blvd
+City State Zip Code
+Farmingdale NY 11735
+Contact Name Email Phone
+Dennis Dietz dennis@bl101.com
+Invoicing Contact Name Email Phone
+Matt Sommers matt@solidratio.com
+Payment Terms: Net 30 Currency: USD ($) EUR (€) GBP (£)
+Payment Schedule: (i)Subscription Fees (ii)Professional Services
+Annual Retainer due upon execution; monthly on a time and materials
+basis thereafter
+Deposco Software:
+License Type Total Subscription Fees
+Annual Total $103,545
+Deposco Software Solution Bundle
+Initial Term Total $113,900
+©Deposco, Inc. 1 of 5 Proprietary and Confidential
+
+--- Page 2 ---
+Docusign Envelope ID: CDDA0E3D-B700-43B6-B13A-EFD0F2F967EB
+ORDER FORM
+Included in Deposco Software Solution Bundle:
+Bright Warehouse
+Included in License Users
+¨ Carton Optimization ¨ 3PL Billing Unlimited
+¨ Rate Shopping
+Facilities
+# of Facilities Facility
+2 Farmingdale, NY & Denver, CO
+included: Location(s):
+Additional Information
+Bright Order
+Included in License Facilities
+¨ Purchase Experience ¨ Distributed Order Mgmt # of Virtual 0
+Facilities included:
+¨ Enterprise Inventory ¨ Order Consolidation
+¨ Inventory Segmentation
+Additional Information
+Bright Socket
+Included in License
+Standard 2 Select 0 Advanced 1
+Additional Information
+Standard = UPS (3 Instances) and Stamps.com/USPS (3 Instances)
+Advanced = NetSuite with SPS Commerce Bundle (1 Instance)
+Company may add up to two (2) additional Parcel Carrier Sockets (3 instances each) via a signed Statement of Work for no additional Subscription Fees
+during the Initial Term. These additional sockets can be named later but must be from Deposco's then current parcel carrier socket list. Company would be
+responsible for any Professional Service fee required to implement the additional sockets.
+©Deposco, Inc. 2 of 5 Proprietary and Confidential
+
+--- Page 3 ---
+Docusign Envelope ID: CDDA0E3D-B700-43B6-B13A-EFD0F2F967EB
+ORDER FORM
+Bright Performance
+Included in License
+¨ Data Archive ¨ Additional Report Schedulers
+(20 reports per purchase)
+Additional Information
+Bright Store
+Included in License
+¨ Storefronts
+Additional Information
+Supply Chain Planning
+Bright Source Bright Forecast Bright Inventory
+¨ Enterprise PO Mgmt ¨ Standard ¨ Standard
+¨ Supplier Collaboration ¨ Causal Data
+Additional Information
+Tier 1 SCP Option (Inclusive of Bright Source, Bright Forecast, and Bright Inventory): The Parties have also discussed the
+possibility of Company purchasing the SCP solution bundle in addition to the WMS Solution Bundle set forth above. If Company
+agrees via a signed Order Form and Statement of Work to purchase SCP between the Effective Date (10/30/2024) and the date
+of the first yearly anniversary of the Effective Date (10/30/2025), the pricing for such SCP solution bundle shall be an additional
+$48,200 per year and co-term with the existing Term.
+©Deposco, Inc. 3 of 5 Proprietary and Confidential
+
+--- Page 4 ---
+Docusign Envelope ID: CDDA0E3D-B700-43B6-B13A-EFD0F2F967EB
+ORDER FORM
+Bright Cloud
+Included in License
+Production 1 Sandbox 1 Solution 1 ¨ Disaster Recovery Service
+Environment Environment Tier
+Additional Information
+Bright Certification
+Included in License
+Bright Performance users Bright Warehouse users Bright Order users
+Additional Information
+©Deposco, Inc. 4 of 5 Proprietary and Confidential
+
+--- Page 5 ---
+Docusign Envelope ID: CDDA0E3D-B700-43B6-B13A-EFD0F2F967EB
+ORDER FORM
+Deposco Customer Success Level:
+¨ Standard $10,355 / Annual ¨ Premium $ / Annual
+Total Annual Fee: Annual Subscription Fee + Customer Success Fee $113,900
+Deposco Professional Services:
+Professional Service Hourly Rates Estimated Professional Service Fees for Initial Implementation
+Retainer Due at Execution: $34,965
+Initial Hourly Rate: $185
+Estimated Implementation Services*: $139,860
+* This amount is only an estimate of the Professional Service hours needed and does not include travel expenses, which will
+be invoiced pursuant to the T&Cs. The Initial Hourly Rate shall apply to all Professional Services provided under the initial
+implementation SOW. Upon completion of the initial implementation SOW, Deposco’s then-current Professional Services rate
+that is made available by Deposco from time to time will apply. Any out-of-scope work or additional SOW(s) agreed upon by
+the Parties will be subject to such then-current rate(s), even if such additional Professional Services are agreed upon during the
+initial implementation Professional Services.
+Special Terms
+TERMS AND CONDITIONS
+1. This Order Form is effective as of Oct ober, 30, 2 024 (“Effective Date”) by and between Deposco, Inc., (“Deposco”)
+and Company. This Order Form is subject to the Deposco Master Terms and Conditions (“T&Cs”), which are incorporated
+herein by reference. Capitalized terms used but not defined herein shall have the meanings set forth in the T&Cs.
+2. The pricing and any Special Terms listed in this Order Form are Deposco Confidential Information.
+3. This Order Form’s terms, including the T&Cs, supersede any previous agreement(s) between the Parties as it relates to the
+purchase of Deposco Services.
+IN WITNESS HEREOF, the Parties hereto have executed this Order Form and agree the Order Form is effective as of the Effective
+Date. Each Party’s signature represents each Party’s acceptance of their respective rights and obligations in the T&Cs.
+Deposco, Inc. Baseball Lifestyle 101
+By By
+Bill Gibson Dennis Dietz
+Name Name
+CEO COO
+Title Title
+10/30/2024 10/30/2024
+Date Date
+©Deposco, Inc. 5 of 5 Proprietary and Confidential
+

@@ -1,0 +1,1112 @@
+DOCX Text Extraction Results
+Original File: Copy of EcoATM Master Design Document 0325.docx
+Extracted: 2025-08-13 12:47:51
+Total Paragraphs: 534
+Total Tables: 3
+==================================================
+
+`
+
+EcoATM Master Design Document
+
+Document v1.0
+
+Deposco, Inc.
+1-877-770-1110 | www.deposco.com
+© Copyright 2025. All Rights Reserved.
+
+Table Of Contents
+
+Overview
+
+Introduction
+
+This document describes the functionality that is implemented for Customer EcoATM during the Phase 1 Deposco Implementation.  The success criteria of this project are as follows:
+
+To decrease touches on each device
+
+Scales 2-3x growth
+
+Increase inventory visibility at all times
+
+Store skus attributes like battery health, grade etc to leverage in distinct warehouse flows
+
+Wholesale and Retail opportunity down the road
+
+Same day shipping
+
+Improve turnaround time inbound
+
+Scope
+
+The full scope of this project is outlined in the Order Form and Statement of Work (SOW).  This document is used to align both Deposco and EcoATM (EcoATM) on functionality to be implemented and is not considered a new Scope or Change Request (CR).  The SOW contains estimates of effort and duration to implement functionality outlined in this document.  Estimates are not fixed, nor to be considered maximum/ ‘Not To Exceed’ (NTE) estimates and may change based on new information, design gaps, functionality gaps, or other. If estimates change before or during a task’s execution, Deposco will notify EcoATM to review options.
+
+Changes in functionality requested by EcoATM (EcoATM) after Design Document sign off that require significant rework may lead to overages beyond original estimate; therefore, a CR is required to execute so all parties are aware of the change.  The purpose of a CR is to define all requirements of change to mitigate future rework.
+
+Inbound Processes
+
+This section outlines all inbound related processes used by EcoATM. This includes receiving at the warehouse, returns processing, staging logic, putaway/user directed moves, and inbound order management.
+
+Inbound Order Management
+
+Inbound order management outlines how inbound orders (inventory coming into the warehouse) are defined, managed, and monitored in Deposco.
+
+Inbound Order Types and Origins
+
+Purchase Orders IMEI
+
+Stock that is ordered from a vendor or supplier is tracked and managed by using a purchase order. This process is used when ordering and receiving individual IMEIs.
+
+EcoATM creates purchase orders in Deposco in the following way:
+
+A manifest is uploaded through Data Exchange using the following field mapping “Manifest Upload” and the following Data Exchange “Manifest Upload”
+
+The orders come into Deposco in a Draft status with unknown skus (INT101)  already pre-set in the field mapping
+
+Automations are used to set a Sort Type (inventoryCondition) equal to “TINC” on every order line for unit level manifests. This is determined by order “type” equal to “Purchase Order” and “importType” equal to “IMEI” .
+
+EcoATM sends GET call to retrieve PO  and PO Line information
+
+EcoATM posts a Purchase Order Update to change the unknown skus (INT101) in the order lines to the ungraded skus
+
+EcoATM sends a current status update to change the status from “Draft” to “Hold” to avoid API calls from retrieving the same PO information
+
+EcoATM  also pushes a order status update in the same payload used above to change the status of the Order Header from “Hold” to “New”
+
+EcoATM would need to get a report at order line level for Manifest that has Order header status = “New” but still contains INT101 SKUs
+
+Purchase Orders Case Lots
+
+This process is used when sales directs operations to receive a purchase order or part of a purchase order as case lots rather than individual IMEIs.
+
+A manifest is uploaded through Data Exchange using the following field mapping “Case Lot Manifest Upload” and the following Data Exchange “Case Lot Manifest Upload”
+
+The orders come into Deposco in a New status with known skus.
+
+Inbound Transfer Orders
+
+Stock that is sent from one external system to Deposco with the intent to bring inventory on hand  is tracked and managed by using inbound transfer orders. I
+
+EcoATM creates inbound transfer orders in Deposco the following way:
+
+A manifest is uploaded through Data Exchange using the following field mapping “Inbound Transfer Order Upload” and the following Data Exchange “Inbound Transfer Order Upload”
+
+In contrast with the Purchase Orders, Inbound Transfer orders contain the fully graded and known skus that are ready for putaway
+
+Marked as New
+
+Future state → API Post Calls to create Inbound Transfer Orders
+
+Customer Returns
+
+Stock that was sent to a customer for a sales order but that the customer sends back for an exchange or refund is managed by using a customer return. A customer return may also be referred to as a return merchandise authorization or RMA.
+
+EcoATM creates customer returns in Deposco in one of the following ways:
+
+Post to Deposco’s Customer Return API after the RMA process has been started in the sales portal and then communicated to Oracle
+
+A manifest is uploaded through Data Exchange using the following field mapping “Customer Return Upload” and the following Data Exchange “Customer Return Upload”
+
+Customer Returns will automatically have a Sort Type (inventoryCondition) of “TINC” set on each line using Automations. This represents that testing needs to be performed on each unit.
+
+Inbound Order Updates
+
+Inbound Order Updates
+
+Inbound orders and inbound order lines are updated by the following method
+
+Imported updates via API integration once the manifest has been uploaded into Deposco and the order is in ‘Draft’ Status
+
+The inbound order or line must be in one of the below eligible statuses in order to perform the update.
+
+Draft
+
+Hold
+
+Orders in Draft status are not yet eligible for Receiving. Only orders in a New or Partial Receipt status can be received
+
+Inbound Order Cancellation
+
+Users may cancel inbound orders, inbound order lines, or quantities from inbound order lines in the following ways:
+
+Manually in Deposco via the “Cancel Entire Order” or “Cancel Order Line” process action link.
+
+Imported updates via API integration
+
+The inbound order or line must be in one of the below eligible statuses in order to perform the cancellation.
+
+New
+
+Draft
+
+Receiving Processes
+
+The Receiving process is used to perform the receipts of the POs, Inbound Transfer Orders and Customer Returns  outlined above and create inventory in Deposco.
+
+Receiving Strategies
+
+In all receiving strategies, users scan the order number (manifest number) of the inbound order to be received to begin the process flow.
+
+IMEI Receiving
+
+In this handheld button, EcoATM receives Purchase Orders uploaded via the “Manifest Upload” Data Exchange. In the system the users are required to scan a container and then the manifest number to begin the process. Then the users scan the IMEI number to receive that SKU into  inventory and auto stage to the Receiving location.Once the user determines that the cart is full, the user selects “New Cart” to receive into a different container. In this process, the IMEI number is also stamped at the receipt line and stock unit level from the attributes provided at the order line level.
+
+It is important to note that the IMEI number stored in the Serial Number field is stamped in an inventory Attribute at the stock unit level and in the Serial Number field at the receipt level. The Sort Type (pre-set to TINC) is stamped at the stock unit level as well.
+
+In this process, an error will be displayed if an associate scans a manifest with an import type of “Case”.
+
+Case Lots Receiving (Box Receiving)
+
+In this handheld button, EcoATM receives Purchase Orders uploaded via the “Case Lot Manifest” Data Exchange. Users are required to scan the order number to begin the process. Unlike the IMEI Receiving process, the users  receive full cases without validating the inside contents. They achieve this by scanning the inbound container number associated with the order line. The inventory is received into the generic Receiving location to later be putaway.
+
+In this process, the IMEI number is also stamped at the receipt line and stock unit level from the attributes provided at the order line level.
+
+It is important to note that if the associate tries to scan a manifest with an import type of “Unit” then an error will be displayed.
+
+Customer Returns Receiving
+
+EcoATM uses the Returns Receiving button to receive against Customer Return order types. This process flow is identical to the IMEI receiving in the sense that the user scans the IMEI number to receive the sku into inventory. In this process, the user has the ability to select a disposition code regarding the return reason for each serial received which will be displayed to the receiver as a note on the screen. Furthermore, a customer reason code is uploaded with the manifest in order to compare the two (one provided by client vs operations team).
+
+The reason codes will be available to the receiving users:
+
+Defect confirmed (no restocking fee)
+
+No defect found (apply restocking fee)
+
+Unexpected device (50% restock fee)
+
+Inbound Transfer Receiving
+
+EcoATM uses the Inbound Transfer Receiving button to receive against Inbound Transfer Orders. This process follows the Case Lot Receiving process, meaning that the user scans container numbers associated with the order lines instead of IMEIs. With one single scan, the user could finish the receipt if the whole transfer order comes boxed up in one container. The inventory in the ITO is fully graded and eligible for putaway straight after receiving into the Receiving location. No extra testing needs to be done.
+
+Unreceiving
+
+EcoATM has access to the Unreceiving process. This process is used to undo the receipt of an inbound order that was received through one of the previous methods. This creates negative receipt lines against inventory that has already been received against an inbound order.  For stock to be unreceived, the stock must still be in the "Receiving" location. This process does cancel inbound order lines and does not allow for the unreceived lines to be received again at a later date if needed.
+
+Receiving Configurations
+
+Partial/Under Receiving
+
+Users can always partially receive an inbound order by clicking “Finish” on the “Receive Item Screen” after receiving the desired units and quantity. The user  decides if they want to close the order or leave the order open. The inbound order status moves to “Partial Receipt” if decided to be kept open until the remaining quantity is received at a later date.
+
+Unexpected Item Handling
+
+EcoATM does not allow receiving items not found on an order line for an inbound order. Any unexpected items that arrive with an inbound order need to be received into the system against a new manifest.
+
+Receiving Staging Location
+
+All inbound orders automatically stage newly created stock to the "Receiving" location from which putaway processes are used to move inventory to proper locations in the warehouse.
+
+Repalletization (Split Multi SKU Box)
+
+EcoATM uses this process when wanting to split multi-sku boxes. The goal is to have the inventory separated by sku into multiple boxes ending with a distinct count of  1 sku per box.
+
+Once the inventory has been split into multiple boxes, the user moves them into the final destination (pick face).
+
+This process will be used solely for Case Lots that need to be split into individual boxes.
+
+Inventory Attributes in Receiving
+
+Required inventory attributes are configured and maintained at the Item level by EcoATM.
+
+Serial Tracking Enabled
+
+EcoATM has their items marked as Serial Tracking enabled. The system takes the serial numbers instead of the item number in the workflow processes such as Receiving, Picking, Packing etc.
+
+It is important to note that the serial number during receiving equals IMEI.
+
+Putaway Processes
+
+The putaway processes are used to move inventory from one location to another.
+
+Move Item
+
+The MoveItem process allows a user to scan a location, enter a quantity, and scan a destination location; used for simple non-LPN inventory movements.
+
+After selecting a location to move stock from, the user sees a list of all stock in the source location. Here, they select or scan a serial number.
+
+EcoATM uses Move Item for both Sortation and Putaway to Pick Face locations. For sortation, Suggested Putaway - Sortation logic (defined below) is invoked. For putaway, Suggested Putaway - Pickface logic (defined below) is invoked.
+
+Move Container
+
+The MoveContainer (Link) process allows a user to scan a container then the destination location; simple, fast method to move a container between locations. When the user scans the destination location using Move Container, the LPN is  emptied and the stock  placed in the destination location without an LPN associated.  This Move Process is used to move inventory from the Receiving to the Testing Location.
+
+EcoATM uses Move Container to move received units to their next location as well as for adhoc container movements. When using Move Container from the “Receiving” location, Suggested Putaway - From Receiving logic (defined below) is invoked.
+
+Move Stock
+
+The Move Stock (Link) process enables the user to load a cart or other equipment such as a forklift to move stock from one or more source locations to one or more destination locations.
+
+Unlike the Move Item process, which requires the user to move stock for a single item from a single source location to a single destination location, the Move Stock process enables the user to move stock for multiple items from multiple source locations to multiple destination locations.
+
+EcoATM uses Move Stock on an as needed basis. Suggested Putaway – Pickface logic is invoked when used.
+
+Suggested Putaway Strategies
+
+The following suggested putaway strategies are invoked in various process instances to achieve EcoATM’s business requirements. In all cases, users must select a suggested location from the provided list and are not allowed to override the suggested location.
+
+Suggested Putaway Logic - Sortation
+
+EcoATM uses the MoveItem process to perform their sortation flow. During this flow the user scans the location and zone where they are currently located. After this, the user scans the Serial Number to determine which box (location) to place it. Users are prompted through this process to consolidate stock units by matching sort type (inventoryCondition) at their sort station. When a box is full or a user is out of items to sort, the MoveItem process is used again to put the stock into pick locations.
+
+Data Requirements:
+
+Stock Unit inventoryCondition update to provide the sort type (eg: PWS-Iphones)
+
+Slot value stamped in the location’s customAttribute1 (Deposco owned)
+
+The detailed scanning flow is the following:
+
+The user scans the zone where they are located (Barcoded in their station)
+
+The user scans the location they are at (barcoded in their station, generic testing station)
+
+The user grabs a device from their lane and scans the SerialNumber
+
+At this time, Deposco appends the user’s assigned zone to the end of the unit’s sort type. This allows the system to only recommend boxes at a given user’s station.
+
+The user assigns a slot number to visually see where the box is located in their sorting station. This will only need to be done if the box is empty.
+
+If no device has been assigned to a box then the “Suggested Putaway” screen is blank and the system prints a new label containing sortation type and container number after a container barcode has been scanned
+
+If a device type has been previously assigned to a box then the “Suggested Putaway” screen will display the slot of the box that the user needs to scan.
+
+Repeat the process until the maximum capacity in the box has been reached. (The capacity will be set at the storage detail level. EcoATM has the ability to modify the value)
+
+The following logic is used to determine the box to select:
+
+Unknown SKU
+
+Any device that certifies PWS or retail but the Oracle SKU cannot be determined.
+
+Testing Incomplete
+
+Any device that has not completed testing and the final sort cannot be determined without additional testing (i.e., device passed data wipe but has not gone through functional testing).
+
+PWS.
+
+Any device that meets Premium Wholesale certification criteria.  These devices are further sorted by category (i.e., cell phone, tablet) and brand (i.e., Apple vs other) for efficient putaway.
+
+Contact Sales
+
+Any device that failed to certify into the target channel.  These units are aggregated by manifest and the final action is determined with sales as either (1) retest, (2) return to vendor, or (3) transfer to wholesale.
+
+WS
+
+Any device that meets wholesale criteria but was expected (based on the target sales channel on the manifest) to route to wholesale.
+
+Retail
+
+Any device that meets retail certification criteria.  These devices are further sorted by category and brand for efficient putaway.
+
+Table of Sortation Logic
+
+Sortation Exceptions - Retest
+
+In the event that units must be re-tested, a bulk inventory movement process allows EcoATM to send all units from a specified box back to the Device Testing location. In this process, the user must only scan the box to confirm the move. The result is that all units associated with the box are moved to the Device Testing location and their Sort Type is reset to “TINC”  to signify that testing must be performed again.
+
+Suggested Putaway Logic -  Pickface
+
+Item Consolidation and Age
+
+The system recommends locations where the item already exists, and no device is older than X days and the pick location has capacity. This allows EcoATM to get their aging inventory out of the warehouse faster
+
+Fill Empty Locations within the same Zone
+
+If the item does not match the #1 criteria then the system recommends empty locations that are in a zone matching the item’s product category (locations with no stock units present) excluding staging locations such as Receiving, Damages, and Shipping.
+
+Capacity Checks based on Storage Details and Sortable Color
+
+EcoATM establishes the min and max capacities (unit capacity) of each location for Deposco to reference in this third rule. The system allows having up to 5 (this is configurable by the client) distinct skus per location with the caveat of only allowing one sortable color per location. In this logic the user does not have the ability to override the suggested putaway recommendation. In order to trigger this rule, the first two have to return empty values.
+
+*There will be a separate button to move inventory from Contact Sales boxes back into Device Testing. The user will scan the box number and the system will move the inventory back to device testing
+
+Suggested Putaway Logic -  From Receiving
+
+As noted previously, this logic is only invoked when moving from the “Receiving” location.
+
+If unit was received on a unit level manifest → Suggest location “Device Testing”
+
+If unit was received on a Customer Return → Suggest location “Device Testing”
+
+If unit was received on a case level manifest → Suggest locations in Zone “Case Lot”
+
+If unit was received on an Inbound Transfer → Invoke Suggested Putaway - Pickface logic from previous sections
+
+Inventory Processes
+
+This section outlines all inventory management related processes.  This includes inventory counts, adjustments and reporting measures.
+
+Inventory Count Strategies
+
+Inventory counting is used to audit the inventory in the warehouse by going to a location and verifying the contents of the location. These can be system directed (Cycle Counts) or user directed (Physical Counts) depending on the need.
+
+Changes to inventory made during a count get recorded as inventory adjustments and are extracted or transmitted to other systems in the following ways:
+
+Queried as an Inventory Adjustment via API Integration
+
+Queried as an Inventory Sync via API Integration
+
+Physical Counts
+
+Physical Counts (link) establish accurate stock unit quantities in Deposco for a large section of the warehouse. During a physical count, the quantity of inventory at a specific location is counted and then updated in Deposco.
+
+Physical counts must be managed, meaning that a supervisor initiates a physical count, users count the inventory at various locations, and then the supervisor stops the physical count when the count is complete.
+
+The physical count is user directed in that any user authorized to participate in the physical count can scan any location and perform the count without a pre-existing count task present.
+
+EcoATM executes Physical Counts infrequently as the use of regular Cycle Counts prevents the need for a Physical Count.
+
+Cycle Counts
+
+Regular Cycle Counts (link) help to ensure that the inventory quantity in Deposco is as accurate as possible. During a cycle count, the quantity of inventory at a specific location is counted and then compared against the inventory quantity that is stored in Deposco.
+
+If the quantity that is entered is different from the system quantity (a cycle count variance), then a supervisor can review the variance and either accept the quantity entered during the count, reject the quantity entered during the count and use the system quantity, or initiate a recount.
+
+The cycle count is system directed in that users are directed to perform counts based on pre-set tasks in a cycle count queue. Tasks are sequenced first by task priority, then by the pick sequence of the locations to count.
+
+Cycle Counts offer the ability to capture reason codes that EcoATM uses to capture any variance that might occur.
+
+Please note that for a cycle count to be generated, the location and item must have Cycle Count = True (Shown Below).  Automations will be used to ensure all items have Cycle Count = true.
+
+Generation Methods
+
+Cycle count tasks are generated for EcoATM in one of the following ways:
+
+System Generated Tasks
+
+Attached to a process during exception; by default, this is incorporated into picking such that if a user is unable to complete their pick and clicks Exception → No Stock, the stock unit is put on Hold and a Cycle Count is created for an inventory auditor to count the location.
+
+Cycle Count Queue task is created with Type = Picking Audit when created as a result of an exception.
+
+Scheduler Task / Cycle Count Profile by Location
+
+Cycle Count Queue Priority:
+
+Cycle Count Limit:
+
+Cycle Count Frequency:
+
+Facilities:
+
+Zones:
+
+Record Selector:
+
+User Generated Tasks
+
+Manual, where an inventory supervisor selects a set of locations and uses the Create Cycle Count action.
+
+Manual, where an inventory supervisor uses the handheld button “Schedule Cycle Count by Location” to scan a location and schedule a count to be completed at a later time.
+
+Manual, where an inventory control team member uses the handheld button “On Demand Cycle Count” to scan a location and immediately perform a count of the location scanned.
+
+Prioritization
+
+When cycle counts are generated, a priority is assigned so that certain counts are completed first.  When users perform Cycle Counting, they are directed in order of Cycle Count → Priority then by Location →  Pick Sequence to provide an efficient travel path.
+
+Cycle count tasks generated via a picking exception are higher priority than cycle counts generated manually so that they are completed first by the inventory team.
+
+Prior to executing a full Physical Inventory, all other cycle count tasks must be completed. The Admin users have the ability to manually mark cycle counts as Completed.
+
+Managing Cycle Count Variances
+
+After cycle counts are completed, any variances are stored in the Manage Cycle Count Variance table.
+
+From this screen an admin user has a variety of options:
+
+Accept adjusts the inventory to the value of the cycle count
+
+Reject leaves inventory levels as they currently are
+
+Recount triggers a recount of this stock stock unit
+
+Please note that if variances are not accepted, stock quantities do not change.  Any adjustments that are made in this process are written to the Inventory Ledger with an Action Type of ADJ.
+
+Inventory Count Configurations
+
+*When executed, the user scans the device Serial Number.
+
+Grocery Scan Count
+
+With Grocery Scan Counts, the user must scan a barcode(Serial Number) once for each stock unit (“grocery scan”) for an item at the location instead of entering the total quantity of stock for the item. The Scan Item Screen displays a running count of the number of stock units that are scanned for the specific item.
+
+If the quantity scanned is different than the quantity in Deposco, then a message appears and prompts the user to count the items again. If the count doesn’t match with what is in the system then a variance is created for a supervisor to approve or reject.
+
+Scanning a Serial Number not in the location displays an error to the user.
+
+*With the current state of the product, if an incorrect serial is scanned, then the user will put it aside to then find the correct location where the serial is systematically.
+
+Inventory Attributes in Counting
+
+Required inventory attributes are configured and maintained at the Item level by EcoATM.
+
+Serial Tracking Enabled
+
+When Serial Tracking Enabled is set to true for an item, users who count the item must enter the Serial Number  associated with each unit as they are counted. Serial Numbers must be unique per item.
+
+EcoATM has all of its items marked as Serial Tracking Enabled.
+
+Inventory Adjustments
+
+The AdjustInventory process is used to add or remove inventory from a location.  This differs from a count in that it is incremental instead of a complete location verification and used primarily for adding found inventory to a location or removing damaged inventory.
+
+During the adjustment, the user is prompted for an adjustment code, which is stored against the transaction so that it can be extracted or transmitted to another system.  The following adjustment codes have been identified:
+
+Users also have the ability to add notes in a text field to further specify the reason for an adjustment.
+
+Inventory Attributes in Adjustments
+
+Required inventory attributes are configured and maintained at the Item level by EcoATM.  However, we will also store the original IMEI at the stock unit level attributes.
+
+Serial Tracking Enabled
+
+EcoATM scans the serial numbers that need to be adjusted out from the system. In pre-grading scenarios the serial number in Deposco equals the IMEI number. However, post-grading the serial number is the IMEI number.
+
+EcoATM has all of its items marked as Serial Tracking Enabled.
+
+Inventory Calculations
+
+Deposco calculates different types of inventory classifications. Starting with On Hand Inventory, Deposco always displays the total on hand inventory for items. Other calculations like Available to Promise and Available to Release are done in Deposco; adjustments to these calculation queries can be done and require specific approval. These inventory calculations are typically viewed on the Item UI.
+
+Total On Hand Qty API
+
+The Total On Hand calculates all inventory that is physically in the EcoATM warehouse.
+
+Total ATP Qty API
+
+Total Available to Promise (ATP) calculates the inventory across the warehouse that is available in a pickable location minus Outbound Orders, Unshipped Orders, and damaged and quarantined inventory.
+
+EcoATM only includes inventory in pickable locations in the Total ATP Qty calculation.
+
+Total ATR Qty API
+
+Available to Release (ATR) is the inventory that is available to release and fulfill Sales Orders.
+
+ATR = On-Hand - Allocated - Unpickable - Damaged
+
+Whse On Back Order API
+
+Total quantity on Sales Orders which are backordered due to lack of availability or another reason.
+
+Reserve Loc Qty API
+
+This is the total inventory of an item existing in Reserve Locations.
+
+Pickable Loc Qty API
+
+This is the total inventory of an item existing in Pickable Locations.
+
+Open Pick Task Qty API
+
+Total quantity of an item that is allocated to open/active pick tasks and therefore unavailable to allocate to Sales Orders.
+
+Open Order Line Qty
+
+Total quantity of an item that is required to fulfill New/Back Ordered order lines and does not include already fulfilled/canceled order line quantities.
+
+Qty On Purchase Order API
+
+Total quantity of an item that is on Purchase Orders and yet to be received and does not include already received/canceled order line quantities.
+
+Fulfillment Order Types and Origins
+
+Sales Order
+
+Posted via Sales Order API → Integration Built into Deposco APIs
+
+Outbound Transfer Order
+
+Created in Deposco using Build Transfer Order Process
+
+Fulfillment Order Pre-Processing
+
+Automations
+
+Automations enable users to process orders after they are pulled into Deposco through a socket integration, API integration, or Data Exchange import.
+
+During this processing, a set of predefined actions are performed on orders if they meet certain conditions.
+
+EcoATM uses the following Automations on all newly created fulfillment orders:
+
+If any sales order line is missing the unit price then Deposco sets the order into a Hold status for further inspection
+
+If a Sales Order has the Ship Via “2 Day” then Deposco sets the Ship Via to “FedEx 2Day”
+
+EcoATM is responsible for maintaining changes to Automation logic after initial configuration by the Deposco team.
+
+Post Order Import
+
+Post Order Import (POI) logic is applied upon fulfillment order creation in a similar fashion to Automations. Post Order Import logic is used in the event that complex conditions or behaviors are needed that are not available via Automations.
+
+EcoATM uses the following POI rules on all newly created fulfillment orders:
+
+FedEX Address Validation - Fulfillment order’s Ship To Address information is passed to the FedEX Address Validation API. The returned results from the API call yield the following behavior in Deposco:
+
+Validation passed →  no action taken
+
+Validation failed with recommended change → Fulfilment order moves to status “Hold - AV” and note is created for the fulfillment order with the recommended updates.
+
+Validation failed with no recommended change → Fulfillment order moves to status “Hold - AV” and note is created indicating that no suggestions to update the address could be identified.
+
+Set “POI Done” (customAttribute7)  = “True” at the end of Post Order Import processing to confirm POI is executed properly on all orders.
+
+Stamp Freight Bill to Account field if the Trading Partner has multiple FedEx/UPS accounts stored in the Lookup Table.( We will need to have an identifier at the OrderHeader level to decide which one of the multiple accounts will be used to make the carrier call).
+
+Stamp Total Shipping Box Count (Total Unit Count/50) for Phones in customAttribute1
+
+Stamp Total Shipping Box Count (Total Unit Count/10) for Tablets in customAttribute2
+
+Determine Freight vs Parcel using TP field customAttribute1
+
+When Freight Terms Type is Third Party and no Ship Via is present, set default Ship Via from the Trading Partner on the order.
+
+POI rules are configured by Deposco consultants and may be altered or updated by EcoATM  once configured.
+
+Fulfillment Order Updates and Cancellations
+
+Fulfillment Order Updates
+
+Outbound orders and outbound order lines may be updated by one of the following methods:
+
+Manual updates in Deposco’s user interface
+
+Imported updates via API integration
+
+Uploaded updates via CSV file using Deposco’s Data Exchange
+
+The outbound order or line must be in one of the below eligible statuses in order to perform an update.
+
+New
+
+Back Ordered
+
+Outbound order updates that take place in Deposco do not update the outbound order in the external system.
+
+Fulfillment Order Cancellation
+
+Users may cancel outbound orders, outbound order lines, or quantities from outbound order lines in the following ways:
+
+Manually in Deposco via the “Cancel Entire Order” or “Cancel Order Line” process action link.
+
+Imported updates via API integration
+
+The outbound order or line must be in one of the below eligible statuses in order to perform the cancellation.
+
+New
+
+Back Order
+
+Outbound order cancellation that takes place in Deposco does not update the outbound order in the external system.
+
+Fulfillment Processes
+
+Build Transfer Order Strategies
+
+EcoATM utilizes the BuildTransferOrder process to ship inventory out that has to go to RTV (Return to Vendor). In this process the user selects the facility that the inventory is being shipped to. In this case RTV. The user then proceeds to scan the inventory into the shipping container that is leaving the facility (this can be an already existing container or it can be created in the system as it is scanned). Lastly, the user scans the location where the transfer order is being shipped out from. For EcoATM it is the Shipping Location.
+
+The user selects the Close Trip button to generate the shipping labels and decrement the inventory.
+
+Picking Strategies
+
+The following picking strategies are available for EcoATM
+
+Single Order Picking
+
+EcoATM utilizes the Single Scan Picking or bulk picking process to pick individual orders.
+
+Picking Configurations
+
+Split task screens
+
+EcoATM uses split screen task execution for the Single Scan Picking process. Users perform a single scan or entry on each screen when picking an item instead of entering the location, serial, and quantity on a single Item Entry Screen. In this process the serial number is  scanned instead of the item number/upc.
+
+Item Substitution
+
+Item substitution is  available for picking purposes within Deposco. Any serial number that has a matching item number is available to be scanned (picked.) In the event that the unit scanned was assigned to a pick task for another order, it is reassigned and a different unit is assigned for the following order.
+
+Inventory Attributes in Picking
+
+Required inventory attributes are configured and maintained at the Item level by EcoATM.
+
+Serial Tracking Enabled
+
+EcoATM will be scanning the Serial Number instead of the item/number when scanning the item’s barcode.
+
+EcoATM has all items marked as Serial Tracking Enabled.
+
+Exceptions in Picking
+
+In the above picking process, a picker may exception a pick task if they are unable to complete the task. If stock for that item exists in a secondary location, they are rerouted to the location with the next highest pick sequence.
+
+When a pick task is exceptioned, the SO and Order Line is placed on Back Order.  In this scenario the stock unit status is placed on Hold rather than the location. This makes the other skus allocatable and pickable) and a cycle count task is generated to ensure that the stock unit quantity is correct.  The order line remains in a Back Ordered status until either a re-pick is issued and performed (unlikely for EcoATM) or the rest of the order is shipped. Once an order is shipped, all back ordered lines (or quantities) are canceled automatically.
+
+Build Pick Wave Strategies
+
+Pick waves organize the daily flow of outbound order fulfillment work within a warehouse or distribution center. Waving is an application of short-interval scheduling that selects a set of orders based on properties like planned release or ship time, then releases the work needed for those orders in an organized fashion, so that the work can be performed efficiently by a set of users within a work shift.
+
+Waving enables management to monitor and manage performance throughput throughout the day so that problems can be addressed quickly and staffing can be more effectively utilized throughout the shift.
+
+The following logic is used to classify and wave orders for processing.
+
+PWS Orders
+
+All orders are waved separately regardless of the order pack quantity, number of lines, weight etc.
+
+Order is in “New” or “Back Ordered” status
+
+“POI Done” is “true”
+
+Up to 1 order in wave
+
+Zone Picking
+
+Maximum of 50 pick tasks for the Phones Zone
+
+Maximum of 10 pick tasks for the Tablets Zone
+
+Maximum of 3 pick tasks for the Case Lot Zone
+
+EcoATM uses Single Order Picking (Link) to pick orders. Created containers outside of Deposco are scanned when picking an order. These containers are only two sizes which are later on to be turned into shipping containers.
+
+Exception Re-Picks
+
+After an exception has been performed and the cycle count task associated has been executed, the Back Ordered order is now eligible to be waved again onto an “Exception Re-Pick” pickwave. These orders are not processed together with other exceptioned orders. We follow the same logic as one order per wave.
+
+Orders in a “Back Ordered” status (“Back Ordered” status here means warehouse back order)
+
+Orders are associated with an existing PickWave
+
+“POI Done” is “true”
+
+Up to 1 order in wave
+
+Zone Picking
+
+Maximum of 50 pick tasks for the Phones Zone
+
+Maximum of 10 pick tasks for the Tablets Zone
+
+Maximum of 3 pick tasks for the Case Lot Zone
+
+EcoATM uses Single Order Picking (Link) to re-pick exceptioned orders. Pickers are prompted to pick the remaining order lines into the shipping containers used for the initial pick tasks if still assigned to the order. A summary list of containers needed for picking is  available on the Pickwave Summary Screen and the More Details screen of the Single Order Picking process.
+
+Release Pick Wave Strategies
+
+An order release profile defines how orders are processed when a pick wave is released. EcoATM uses the following Order Release Profile options.
+
+Zone Picking
+
+EcoATM splits up pick tasks within a pickwave by Zone so that work may be shared across users. A work group is created for each Zone that users must enter while picking. Also, a new workgroup is created when the number of picktasks is exceeded.
+
+Backorder Management
+
+EcoATM uses Backorder Policy “Some stock on order line to fulfill.”
+
+With this backorder policy, allocation happens as long as we have some stock units to allocate to the order lines. Stock must be in a pickable location for allocation to occur.
+
+Due to this order release profiles, users are able to partially pack and partially ship orders in Deposco.
+
+Back Ordered lines are canceled automatically when the remainder of the order ships.
+
+Pick Strategy
+
+EcoATM uses the Pick Strategy “Oldest Stock Then Location Pick Sequence” to allocate stock first from the location with the oldest stock first and then lowest pick sequence.
+
+Order Close Policy
+
+EcoATM uses Order Close Policy of “Close if backordered. Cancel single orders on Exception. (Fill or Cancel)” With this configuration, shorted items are "killed" (canceled) from the order when the order ships, and the order is closed (the order moves to a Complete status). A shipment line with qty of 0 (zero) is created for the killed line. If an exception is entered for a pick task that is associated with the order, then the order line is canceled.
+
+Build and Release Mechanisms
+
+Orders are automatically waved and released via scheduler. One scheduler runs daily and evaluates all eligible orders for Build and Release.
+
+Build and Release Wave - Runs at 8:00 AM, 11:45 AM, and 2:00 PM daily
+
+Any schedulers can be run manually at any time throughout the day if additional waves need to be released (shown below).
+
+Users are able to select orders to build and release waves as needed (shown below).
+
+As waves are released, they are made visible in the appropriate handheld buttons. When pickers select a wave, they should choose from the top of the list box.
+
+Should the allocation of stock have to be undone before picking begins, a user can enter any wave in Released status and select Actions > Undo Release (Shown Below). After picking has begun, the allocation of stock cannot be rolled back.
+
+Post-Picking Strategies
+
+Picking users must stage their picked inventory to designated areas in preparation for packing and shipping. EcoATM uses the following post-picking strategies to properly stage orders for packing and shipping:
+
+Automatic Staging Location
+
+EcoATM stages all orders to the “Shipping” location automatically upon the completion of the picking process.
+
+Packing Strategies
+
+The packing processes in Deposco are used to confirm exactly what is being shipped, confirm items and quantities, and print documentation such as packing slips, shipping labels, etc.
+
+Box Audit (Single Scan Packing)
+
+All picked orders that require a box audit use the SingleScanPacking (Link) process. This process is used to validate the contents that were picked Deposco will display the total unit count for better visibility and faster auditing above the Item/LPN box.
+
+The user can either click “Pack Remainder” to confirm both contents or scan each individual Serial Number to confirm box contents
+
+At this moment, no shipping label is generated. Furthermore, the user stages the container to wait for payment approval.  Users are prompted for staging on the  staging location screen. Here, the user can then scan an empty staging location. Once the first box has been scanned into a location for an order, the system will force the user to scan into the same one for other boxes tied to the same order. The user cannot scan an order into a location already occupied by another order.
+
+In this process, Deposco shows an error message if a Case Lot order is scanned.
+
+Label Generation (SingleContainerPacking)
+
+The Single Container Packing (Link) process is used to generate labels for an order when the order has already been audited (unit level pick) or was picked into a shipping container that requires no audit of the contents (case lot pick). In this process, users must only confirm the carton type and weight of the package. The carton type is autopopulated based on the picking container and the weight is populated using a scale. In this process, shipping labels will be generated but the shipment is not closed.
+
+Parcel Assign Trip (Assign Trip To Container)
+
+EcoATM uses  the “Assign Trip” process to pack and ship out pallets associated with parcel orders. This step officially marks orders as shipped and decrements stock from the system. In this process, the user scans orders with shipping labels into a carrier dock as the day goes by. Once the boxes have left the warehouse, the user closes the shipment in Deposco. No BOL is generated.
+
+In this process Deposco validates that no shipping carrier dock door is mixed. In other words, FedEx orders can only be assigned to the FedEx door.
+
+Build Pallet (Build Pallet)
+
+EcoATM uses  the “Build Pallet” process to build out pallets that later need to be closed out using the process below. The user will scan individual cartons into a pallet that is created outside of Deposco. Once the user scans the pallet barcode, the container will be created in the system.
+
+The user will continue to add individual cartons into the pallets throughout the day. Once a container is staged to a pallet, only containers for the same shipping carrier may be staged to the same pallet.
+
+Freight Assign Trip (Assign Trip To Container)
+
+EcoATM uses  the “Assign Trip” process to pack and ship out pallets associated with freight orders. This step officially marks orders as shipped and decrements stock from the system. In this process, the user scans a large order into a pallet and closes the trip in order to generate a BOL.
+
+Exceptions in Packing
+
+The VoidAndReprocessShipment (Link) process undoes the shipment of an order. Previously shipped stock is returned to the original picking container. From here, the order can be reshipped or rolled back using the process detailed below.
+
+EcoATM uses a custom solution to void and generate new labels for express orders that weren’t picked up by the carrier truck. There are two ways of achieving this:
+
+Manually removing the shipping container tracking number and deleting the shipping labels
+
+Custom Process Action Link that automatically does the manual step listed above. Both are available to EcoATM team
+
+The GPRollBackOrderAfterPicking (Link) allows stock to be staged to a predefined “Rollback” location. From this location, MoveItem is used to return stock to a pickable location.
+
+Rate Shop Profiles
+
+A rate shop profile defines how a shipping service is assigned to different types of orders.
+
+A rate shop profile consists of a set of rules. Each rule defines:
+
+Conditions that must be met before the rule applies.
+
+Shipping services that are rate shopped.
+
+The rate selection method, which is whether the fastest or cheapest shipping service is selected for orders that qualify for the rule.
+
+EcoATM uses the following Rate Shop Profiles:
+
+FedEx 2Day
+
+Condition
+
+Order Header Ship Via is FedEx 2Day
+
+Services
+
+FedEx 2Day
+
+Method
+
+Select the cheapest shipping method.
+
+Only orders with Freight Terms Type of “Prepaid” are eligible for rate shopping.
+
+Shipping Requirements
+
+EcoATM uses a variety of shipping methods for domestic and international shipments. Below is an outline of the shipping carriers, whether they are directly integrated and which documents and shipping options they require:
+
+FedEx Parcel - integrated
+
+Services:
+
+FedEx Ground
+
+FedEx Home Delivery
+
+FedEx 2Day
+
+Documents:
+
+Shipping Label
+
+Digital Manifest
+
+UPS Parcel - integrated
+
+Services:
+
+UPS Ground
+
+UPS Next Day
+
+Documents:
+
+Shipping Label
+
+Commercial Invoice
+
+Digital Manifest
+
+FedEx Freight- integrated
+
+Services:
+
+FedEx Freight
+
+Documents:
+
+BOL
+
+Shipping Label
+
+Ship Outside System - non-integrated
+
+Services:
+
+Ship Outside System
+
+Will-Call
+
+DHL - integrated
+
+Services:
+
+DHL SM Parcel Ground
+
+DHL SM Parcel Expedited
+
+USPS - integrated
+
+Services:
+
+USPS Priority Mail
+
+USPS First Class Mail
+
+Labels and Documents
+
+The following documents are configured for various shipping scenarios.
+
+Shipping Label
+
+UPS, FedEx, USPS and DHL shipping labels are returned from the UPS, FedEx, USPS and DHL integrations respectively.
+
+Commercial Invoice (International)
+
+The commercial invoice is generated through our shipping carriers with the ability to be printed out and sent electronically.
+
+Certificate of Origin (International)
+
+Deposco has the ability to request Certificate of Origin documentation by selecting that option through our Shipping Options configurations.
+
+ACE Form (International)
+
+EcoATM generates an ACE form for international shipments outside of Deposco. Once completed, the ITN provided by the ACE form will be manually added to the Order/Shipment in Deposco. This value is then included in the customs documentation for the Shipping Label and Commercial Invoice request for FedEx shipments.
+
+BOL
+
+The BOL is printed at the close action of Freight Assign Trip. Deposco has a pregenerated out of the box that can be used. However, Deposco has the ability to recreate EcoATM’s internal BOL.
+
+Freight Terms Type
+
+EcoATM only utilizes one shipping account per carrier. However, there are scenarios in which parties other than EcoATM are responsible for paying for shipping costs. The account that is responsible for payment of shipping costs for a shipment is determined based on the Freight Terms Type field on the associated order header for the shipment. EcoATM uses Cross References and Sales Order Automations to define which of the below Freight Terms Type options apply to fulfillment order scenarios.
+
+Prepaid
+
+Set the Freight Terms Type field to a value of Prepaid on the order header if the shipping carrier account that created the shipment is responsible for payment of shipping costs.
+
+Third Party
+
+Set the Freight Terms Type field to a value of Third Party on the order header to set up payment by a trading partner for a shipment. This is the most common scenario for EcoATM and is utilized on the majority of shipments
+
+Provide the carrier account information for the trading partner by using one of the following options:
+
+On the order header, enter the shipping carrier account number in the Freight Bill To Account field, the name on the account in either the Freight Bill To Name or Freight Bill To Attention field, and the country in the Freight Bill To Country field.
+
+Deposco needs to know which account to select and stamp in the Freight Bill To Account field. In both scenarios , Deposco will stamp the remainder of the Freight Bill To fields using Post Order Import Logic for consistency purposes.
+
+The implementation process uses  the  following implementation logic:
+
+Storing of account numbers into Lookup Table (Upload using Data Exchange)
+
+Set a box threshold to determine if Parcel or Freight account needs to be used based on the Trading Partner
+
+Stamp the order header with the correct account number during POI processing
+
+Shipping Options
+
+EcoATM uses shipping options to populate the reference fields in both UPS and FedEx shipping labels.
+
+Reference Field Mappings FedEx & UPS
+
+Reference Field #1 → Order Number
+
+Reference Field #2 → LPN Number (Shipping Container Number)
+
+Unless configured otherwise the reference fields are populated with the values above. EcoATM has the ability to configure this on a trading partner basis under Shipping Options.
+
+Reference Field Mappings DHL
+
+No customization was identified for DHL labels
+
+International Shipping Options
+
+No VAT
+
+No IOSS
+
+DDP Incoterm (Delivery Duty Paid)
+
+Custom Value Declared → Order Line Unit Price
+
+Certificate of Origin
+
+In general, there haven’t been any special options identified for international shipments for EcoATM
+
+Special Services
+
+Saturday Delivery
+
+Saturday Delivery allows EcoATM to deliver orders on the weekend. In order to request these services, the Saturday Delivery flag needs to be checked at the Order Header level
+
+Hazmat
+
+All phone items set to be Hazmat flagged in the Item Level and OH Level if order contains phone skus.
+
+Automations are used to flag all products in the product category Phones as Hazmat.
+
+Deposco uses Post Order Import rules to flag orders as hazmat if phones are present in the order lines.
+
+Insurance Required
+
+EcoATM has the ability to set which orders require Insurance by marking the insurance required flag in the order to true. If this is a constant need, Automations can be used to flag orders based on Trading Partners.
+
+Delivery Confirmation
+
+Delivery Confirmation is used when requiring the customer to confirm that the package has been delivered. EcoATM doesn’t require this functionality.
+
+Misc. Handheld Processes
+
+Change Resource
+
+A resource connects a user to a printer assignment, and enables the Deposco system to direct print jobs to specific printers for processes that the user performs. The Change Resource process allows users to verify their active Resource assignment and change their Resource to Resources within their current facility assignment.
+
+Change Zone
+
+The active zone for your user account determines the warehouse tasks that you can perform for workflow processes such as SingleScanPicking (Link). Each user account can be assigned to multiple zones based on the zone assignment settings for the account, but can only be active in a single zone at a time. The Change User Zone (Link) process allows users to verify and/or change their active Zone assignment.
+
+Reprint
+
+The Reprint (Link) process can be used to reprint shipping labels and documents. Deposco will configure this in two different sections:
+
+1- At the Order Header level to be trigger using a Process Action Link
+
+2- A separate button to be triggered by entering the order number
+
+Warehouse Lookup
+
+The Warehouse Lookup (link) process in the handheld user interface provides a fast and efficient way to view information for a specific item, location, shipment, container, sales order, or purchase order in Deposco. Users scan or enter an identifier for the entity, and then key information for the entity appears on the lookup screen, such as the locations, packs, and quantities for an item or the order status, shipping status, and shipping method for a sales order.
+
+Reporting
+
+Process Reports
+
+EcoATM utilizes the following process reports:
+
+Standard VICS BOL
+
+Shipping Labels
+
+Operational Reports
+
+EcoATM uses the following operational reports:
+
+Scheduled Email Reports
+
+Report of encumbrance and count of associated items
+
+Aging inventory report for each of the testing locations
+
+Report of units/IMEI in contact sales location with the incumbrance detail and Manifest Number
+
+Report Builder Reports
+
+Orders shipped by date range with filters for zones.
+
+Stock on hand reports with filters for zones and locations
+
+Count of items on order compared to count of items in container for Items in Contact Sales Location Report
+
+Dashboard
+
+Orders Shipped per Day
+
+Shipments created per Day
+
+Aged Orders
+
+Aged Units in Receiving
+
+Number of units and orders unshipped
+
+Open orders
+
+Orders on hold
+
+Stock Unit On Hold
+
+Sale Summary widget
+
+Count of items in each process in warehouse (testing, received, sorted) (Report of units/IMEI in contact sales location with the incumbrance detail and Manifest Number)
+
+Summary
+
+Drilled in version
+
+Ready to ship orders
+
+* Special Callout that some of the Reports and Widgets mentioned above will need backend configuration. EcoATM needs to identify which of the reports are critical for Go-Live and which ones can be pushed for Post Go-Live Support.
+
+Customer Agreement
+
+Your signature is required as proof of understanding and acceptance of the design document as described above.  Upon acknowledgement of your approval, Deposco will engage in development of the work stated in this document and the design specification.  Please review this document in its entirety.   Upon approval, please sign, date and return.
+
+--- Table 1 ---
+Adjustment Code | Description
+TW | Transfer to Wholesale
+TR | Transfer to Retail
+WO | Writeoff
+SF | Stock Found
+
+--- Table 2 ---
+Deposco, Inc.
+11605 Haynes Bridge Road
+Suite 200
+Alpharetta, GA 30009
+By: | Deposco, Inc.
+11605 Haynes Bridge Road
+Suite 200
+Alpharetta, GA 30009
+By:
+Name:
+Title:
+Date:
+
+--- Table 3 ---
+ecoATM
+10121 Barnes Canyon Rd.
+               San Diego, CA 92121
+
+By: | ecoATM
+10121 Barnes Canyon Rd.
+               San Diego, CA 92121
+
+By:
+Name:
+Title:
+Date:
+

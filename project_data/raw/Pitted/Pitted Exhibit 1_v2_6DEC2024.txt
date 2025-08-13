@@ -1,0 +1,28 @@
+PDF Text Extraction Results
+Original File: Pitted Exhibit 1_v2_6DEC2024.pdf
+Extracted: 2025-08-13 12:47:43
+Total Pages: 1
+==================================================
+
+--- Page 1 ---
+Docusign Envelope ID: D2376467-65B6-4A9B-B4F6-C6E397AFBFB9
+Exhibit 1
+1. The SOW Terms and Conditions shall be amended as follows:
+a. Deposco must notify Company prior to exceeding the total estimated hours for
+the implementation.
+2. The Agreement shall be amended as follows:
+a. The last sentence in Section 3.2.3 “Service Credit(s) will be Company’s sole and
+exclusive remedy for Deposco’s failure to comply with the Uptime Commitment.”
+is hereby amended and replaced with the following: “Should Deposco fail to
+comply with 99.5% Uptime Commitment for three (3) consecutive months,
+provided such unavailability is reported by Company to Deposco in writing within
+30 days of its occurrence with sufficient evidence of the unavailability, such as
+the date and time of the occurrence, Company shall have the right to terminate
+this Agreement.
+b. Section 15.3 is hereby amended to remove “Except in the event the Agreement
+is terminated by Deposco pursuant to Section 15.1 or if Company has any
+outstanding payments due to Deposco,”.
+c. Section 15.3 is hereby amended to add “In the event the Agreement is
+terminated by Company for Deposco’s breach of the agreement, Company will
+be reimbursed for any amounts prepaid for subscription fees”.
+

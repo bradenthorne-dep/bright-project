@@ -1,0 +1,708 @@
+PDF Text Extraction Results
+Original File: Williams Trading_EXHIBIT A (P265405)_01MAY2024 (Client).pdf
+Extracted: 2025-08-13 12:47:48
+Total Pages: 22
+==================================================
+
+--- Page 1 ---
+EXHIBIT A
+Consulting and Professional Services Work Order
+UPS CUSTOMER SOLUTIONSWO02-0718
+PROJECT ID/PMD P265405 (Williams Trading Company)
+THIS WORK ORDER is submitted this 1st day of May, 2024 to Williams Trading Company
+Client Customer Solutions Client Agreement between Client
+and UPS Customer Solutions Client This Work Order is subject to the
+Deposco Master Terms and Conditions
+Capitalized terms used but not defined herein shall have the meanings set forth in the T&Cs.
+1. SCOPE OF WORK. UPS Customer Solutions will provide services to perform the work
+outlined in Schedule A for PMD P265405 by designated contractor, Deposco, Inc.
+2. INVOICE SCHEDULE.
+a. UPS Customer Solutions will be paid by Client according to the schedule outlined
+below.
+i. Implementation
+1. 25% of estimated hours will be invoiced on signature of this Work
+Order
+2. Balance will be invoiced monthly as consumed.
+ii. Subscription
+1. Annual subscription will be payable at signing of the [Work Order / or
+Client Agreement] and at the beginning of each additional service year
+as outlined in PROJECT COST ESTIMATE AND BUDGET.
+3. PROJECT COST ESTIMATE AND BUDGET. Project cost based on three (3) year
+subscription as quoted below. Price contingent on full three (3) year execution of Client
+Agreement. Early termination will result in collection of outstanding fees as well termination
+fees as outlined in section 11.3.
+Software Services Subscription Fees
+Solution Bundle Total $71,000 in Year 1 Invoiced According to
+Schedule C
+Deposco Bright Warehouse Application:
+Includes:
+Bright Warehouse Solution Included in solution bundle fees
+Users
+o Unlimited Users for (1) Facility Included in solution bundle fees
+Pennsauken, NJ
+Deposco Bright Warehouse (Advanced Add-ons):
+Carton Optimization Included in solution bundle fees
+UPS Customer Solutions_Williams Trading Company Confidential A-4
+
+--- Page 2 ---
+Deposco Bright Socket Application:
+Includes:
+Bright Socket Solution Included in solution bundle fees
+Deposco Bright Socket (Socket Connectors):
+Standard Sockets
+o ShipExec Cloud (1 instance) Included in solution bundle fees
+Select Sockets
+o Deposco APIs (1 instance) Included in solution bundle fees
+Deposco Bright Performance Application
+Includes:
+Standard Dashboard and Reporting Included in solution bundle fees
+Professional Services Service Fees
+Professional Services Total $126,170
+$185/hour applied to the first 682 project hours
+completed
+Professional Services
+Deployment Retainer $31,542.50 due at signing and will be applied to
+Implementation Services for the first 170.5 hours.
+Remaining professional services hours to be billed
+monthly as incurred.
+Ongoing Professional Services $240/hour applied to professional services
+completed under a contract post-implementation
+and for out-of-scope
+This amount is only an estimate of the Professional
+Service hours needed and does not include travel
+expenses, which will be invoiced pursuant to the
+T&Cs. Once the Estimated Implementation
+Services amount has been fully billed, the post
+implementation hourly rate will apply. Any out-of-
+scope work or additional change requests agreed
+upon by the Parties will be subject to the Post-
+Implementation and Out-of-Scope Hourly Rate,
+even if such additional Professional Services are
+agreed upon during the initial Implementation
+Services.
+UPS Customer Solutions_Williams Trading Company Confidential A-5
+
+--- Page 3 ---
+Other Items Services Free
+Other Total $0
+Deposco Bright Cloud Solution:
+Includes:
+Tier 1 Solution Included with bundle subscription fees
+(2) Tenant Environments:
+o (1) Production
+o (1) Sandbox
+Deposco Support Services:
+Deposco support services are detailed in Schedule B.
+Support Package Level 1 Included with bundle subscriptions fees
+Support Package Level 2 Additional $2,000/month
+Support Package Level 3 Additional $3,000/month
+UPS Customer Solutions_Williams Trading Company Confidential A-6
+
+--- Page 4 ---
+4. PROJECT TIMELINE. The project will start within approximately four to six (4-6) weeks
+from the date this Work Order is authorized by Williams Trading Company. The detailed
+timeline will be provided after the scope and start date has been agreed upon and accepted by
+all parties involved.
+Note: The timeline is 100% contingent upon Williams Trading Company resource and
+requirements adherence.
+5. ELECTRONIC DATA ACCESS AND EXCHANGE AGREEMENT. UPS Customer
+Solutions will have complete access and rights to Client data to support Client, Deposco and
+UPS Customer Solutions steering and Quarterly Business Reviews (QBR) to ensure full
+leverage of the Solution provided hereunder.
+6. WORK ORDER MANAGERS.
+a. The Work Order manager for UPS Customer Solutions is Chris Vallone | Solutions
+Development Manager.
+b. The Work Order manager and authorized change request submitter for Williams
+Trading Company is Rich Pyne | President.
+Capitalized terms not defined in this Work Order have the same meanings ascribed in the Client
+Agreement. The parties agree that any change to this Work Order must be agreed to in writing by
+the parties pursuant to a change order. For avoidance of doubt, any software licensed to Client
+pursuant to the C
+between the parties. The parties hereto confirm their express agreement that this Work Order, and
+all documents and agreements directly or indirectly relating hereto, be drawn up in the English
+language.
+IN WITNESS WHEREOF, the Parties hereto have executed this Work Order and agree the
+acceptance of their respective rights and obligations in the T&Cs.
+Client: Williams Trading Company United Parcel Service, Inc. (an Ohio
+Corporation)
+By: By:
+Name: Name:
+Title: Title:
+Date: Date:
+[End of Exhibit]
+UPS Customer Solutions_Williams Trading Company Confidential A-7
+
+--- Page 5 ---
+Schedule A to Work Order
+Statement of Work
+Client: Williams Trading Company
+1 | Change Management
+1.1 | Change Management
+2 | Professional Services Methodology
+2.1 | Client Application Instance and Configuration
+2.2 | Go-Live and Support
+2.3 | Professional Services Description
+2.4 | Project Management
+2.5 | Requirements Definition and Gap Analysis
+2.6 | Training
+2.7 | User Acceptance Testing
+3 | Project Roles and Responsibilities
+3.1 | Client
+3.2 | Deposco
+3.3 | Estimated Hours
+3.4 | Add-On Details
+3.5 | Integration Diagram
+UPS Customer Solutions_Williams Trading Company Confidential B-1
+
+--- Page 6 ---
+1 | CHANGE MANAGEMENT
+1.1 | Change Management
+Any additional project work required to be performed, not included in the applicable Work Order or this
+Statement of Work, must undergo the following change control process. Please note that additional
+-
+cost.
+1. Submit Change Request - A formal change request email with completed change request form
+(Schedule D) must be submitted by Client to UPS Customer Solutions. Include in the request a detailed
+description of the business problem and desired solution. If the request is technology-related, also include
+a use case example, and a suggestion on how the feature needs to function. This request will help
+facilitate communication regarding the change request.
+2. Change Request Review - After receipt of the change request, UPS Customer Solutions and Deposco
+Consulting and Product Management will work together to determine the scope of the change request. If
+necessary, back and forth communication between the Client, UPS Customer Solutions and Deposco will
+occur to ensure exactness of the feature/process request.
+3. Statement of Work Execution - Once the change request has undergone formal review and the specifics
+have been flushed out, documented, and mutually agreed upon (revisions to the Change Order Request
+Form), Client and UPS Customer Solutions will sign-off. Work will begin as soon as the document has
+been signed by both Parties.
+4. Client Specific Process Estimates - Typical technology related change requests center on process (e.g.,
+fulfillment) modifications. Deposco refers to these configurations as Client Specific Processes (CSPs).
+Below are average times for CSPs:
+1. Complex Process 10-15 days
+2. Moderately Complex Process 7-10 days
+3. Simple Process 3-6 days
+UPS Customer Solutions_Williams Trading Company Confidential B-2
+
+--- Page 7 ---
+2 | PROFESSIONAL SERVICES METHODOLOGY
+2.1 | Client Application Instance and Configuration
+This stage involves the activation and configuration of the Client application instance. The scope of this
+stage will vary depending on the platform package and features purchased by the Client.
+The Deposco project team will support the configuration of the system by leading the Client through
+configuration sessions that detail system functionality and configuration options. The functional
+during the deployment, including any additional configuration and / or development. The site will be
+configured in accordance with the functional requirements document. If applicable, an Integration Design
+document will summarize how each integration point will function, including the integration method. The
+site will be configured in accordance with the Integration Design document.
+After the Client has approved the Functional Requirements Document, the Deployment team will initiate
+the tenant enablement process, which creates the Client
+data, only basic configuration information.
+The Deposco deployment team will configure the Test Site, load Client provided master data, and setup
+business processes. Actual activities will vary depending on the platform functionality being deployed;
+but will generally cover the following:
+Client Application Instance Configuration
+Configuration Activity Detailed Description
+Client Users, Groups and Setup Users, Groups and Permissio
+Permissions user base.
+Master Data Setup Client is responsible for completing the WMDIT (Warehouse
+Management Data Input Template) in the specified WMDIT format.
+Deposco will load the following master data elements contained in the
+WMDIT into the application. Integration points surrounding master
+data will be built and tested during the integration phase.
+Facility
+Zones
+Product Categories
+Items
+Components
+Pack
+Stock Unit
+Container
+Associate
+Resource
+Users
+Company Parameter
+Trading Partner
+UPS Customer Solutions_Williams Trading Company Confidential B-3
+
+--- Page 8 ---
+Development of Under a separate statement of work, Deposco development team will
+Custom Processes and develop new functionality according to the contract with the Client
+Gap functionality and the requirements and gaps identified.
+Business Process Enable configuration settings and workflow processes for one or more
+Configuration of the following:
+Receiving
+Put-away
+Picking
+Shipping
+Inventory
+Business Intelligence Deposco deployment team will enable operational, financial,
+Enablement performance and general warehousing dashboards by Client user role.
+All out-of-the-box analytical reports will be enabled.
+Client Facility Readiness Client prepares the facility for the deployment:
+Labels on locations
+Wi-Fi for handheld devices
+Wi-Fi site survey
+IPP Printers
+Pre-
+Final Review and Application Instance Testing - facilitate testing the instance to verify
+Site/Remote Go-Live that it is setup to the Client
+workflows operate correctly.
+Application Instance Approval notify the Client when the system is
+ready to be reviewed and ensure that the Client signs off on any Client
+specific information. Clients can test their use cases at this time.
+Test Application Instance to Production Application Instance
+Migration The approved business process configurations in the
+Client
+instance.
+Launch Production On an agreed upon date and time, Deposco will activate the application
+Environment Production environment for the Client and provide access information
+to the Client project team. The Client will inform all users how to
+access the site and handheld devices.
+UPS Customer Solutions_Williams Trading Company Confidential B-4
+
+--- Page 9 ---
+2.2 | Go-Live and Support
+Go-Live At this point in the project, the team will review the final site with the Client and receive sign
+off from the Client before transferring the system into the production state.
+Wrap-Up/Transition At the conclusion of the project, the Deposco Project Manager will schedule a
+project wrap-up meeting with the Client and UPS Customer Solutions to ensure there are no remaining
+issues and that all deliverables were met. The Project Manager will transition the Client to the Deposco
+Customer Support.
+Support Documentation Deposco will include an ongoing support summary document to identify all
+available support services (Customer Support, Product Support, Account Management, etc.) that the
+Client can access, when those services become available to the Client, and how to access those services.
+2.3 | Professional Services Description
+Implementation methodology ensures that:
+Deliverables are well-defined, documented and signed off
+Technical pre-requisites are documented and communicated
+Delivery process is understood and agreed to by all key participants
+Solution is designed and tested to meet client specifications
+Progress is documented and communicated to key participants and sponsors
+Changes are managed and controlled
+Issues are logged, tracked, and acted upon
+The deployment of the solution is controlled and risk-free
+Go-live is fully supported
+Knowledge is shared and reused
+2.4 | Project Management
+The project management methodology uses tried and trusted tools to ensure the successful completion of
+the project.
+Deposco provides the Client with a Project Manager as a single point of contact for coordination of the
+progress and success of the project. The responsibilities of the project manager have been defined above.
+A key part of the methodology involves a Project Kickoff meeting to set consistent expectations of scope,
+scale, duration, timing, deliverables, roles and responsibilities, escalation path and communication plan
+for the project. This will include reviewing the project plan that includes all necessary tasks for
+deployment. This meeting confirms and sets the contents of the Project Charter document.
+The Deposco Project Manager will serve as the primary point of contact for identifying, reporting,
+escalating, and ensuring the ultimate resolution for any issues that arise over the course of the project.
+UPS Customer Solutions_Williams Trading Company Confidential B-5
+
+--- Page 10 ---
+2.5 | Requirements Definition and Gap Analysis
+A critical phase of the project is to get clear understanding of the requirements. This phase
+generates a Functional Requirements document that details the functionality expected of the application.
+These requirements are measured against system functionality and a Gap analysis is performed. Requests
+for feature changes and new designs will be handled through UPS Customer Solutions, with support from
+the project manager, and the change control process.
+In addition, the Client develops a Test Case document to be used in development of the solution by
+Deposco and to validate in User Acceptance Testing (UAT) by the Client.
+2.6 | Training
+-the-
+methodology. Deposco trainers are experienced warehouse and order management operators who have
+worked in environments with varying levels of technology sophistication; enabling them to facilitate a
+smooth transition to new technology and business processes.
+The training environment is classroom based. PC workstations are required. Configured and connected
+printers are required. Handheld devices are required. In some instances, training can be done in the
+facility using actual items, orders etc.
+guration should attend the
+Activities include:
+Creation of users
+Layout configuration
+Printer configuration
+How to liaison with Deposco on process configuration
+Defining user groups, roles, and permissions
+Staff interacting with the system using the web interface on a PC or staff interacting with the system
+through handheld devices should attend the End User training course (typically administered by the
+Activities include:
+Viewing/managing master data (as permissions allow)
+Viewing/managing operational data (as permissions allow)
+Running reports
+Running processes in the Web UI or on the handheld
+UPS Customer Solutions_Williams Trading Company Confidential B-6
+
+--- Page 11 ---
+2.7 | User Acceptance Testing
+The foundation of a successful project is the clear identification of requirements and test cases to validate
+that the Client requirements are met. The user acceptance-testing (UAT) phase of the project is the
+gatekeeper to go-live.
+The Client is responsible for ensuring all requirements are detailed in the requirements phase and that a
+test case document is available to validate against. While the Client is responsible for testing unique
+processes and system integration, the Deposco team will support the testing process by facilitating Client
+activities. The Deposco Project Manager will serve as the primary point of identifying, reporting,
+escalating, and ensuring the ultimate resolution for any issues that arise over the course of the testing and
+validation phase.
+Deposco provides a UAT environment that is technically a replica of the production environment. Clients
+can connect third party applications to this environment with defined interfaces. This environment is
+available during the deployment and after go-live. New releases are made available in this environment
+for Client testing prior to migration to production.
+UPS Customer Solutions_Williams Trading Company Confidential B-7
+
+--- Page 12 ---
+3 | PROJECT ROLES AND RESPONSIBILITIES
+3.1 | Client
+Client Roles and Responsibilities
+Project Sponsor Assign a Project Manager
+Assist with the definition of overall project
+vision
+Provide guidance for high-level issue
+resolution
+Provide senior leadership communication in support of
+the project
+Monitor status reports and timelines
+Sponsor change management initiatives to drive
+project acceptance
+Project Manager
+Point of contact for overall deployment
+Secure appropriate resources and ensure
+availability
+Ensure participation of all required
+resources
+Manage project timeline and ensure schedule
+adherence
+Provide business and technical guidance
+Facilitate configuration
+sessions
+Participate in project status
+meetings
+Provide timely resolution of any escalated issues
+Manage communication plan development and project-
+wide communications to key stakeholders
+Provide/coordinate signoff on all
+deliverables
+Participate in all transition and wrap-up
+discussions
+Coordinate stakeholders as needed
+Ensure site readiness
+Functional Lead (may be the same as Project Identify, escalate, resolve project issues
+Manager) Participate in configuration workshops
+Develop test cases and test scripts
+Plan, manage, and conduct system testing
+Plan, manage, and conduct user acceptance testing
+Complete the WMDIT
+Validate master data elements and business processes
+Develop cutover plan and manage cutover execution
+UPS Customer Solutions_Williams Trading Company Confidential B-8
+
+--- Page 13 ---
+Technical Lead Technical contact for all Deposco
+interaction/coordination
+Participate in configuration sessions
+Oversight of integration development and testing
+Oversee unit testing, integration testing and issue
+resolution
+Participate in integration testing and UAT as needed
+Map or provide file format specifics
+Define or provide integration transport methods
+Issue investigation and resolution
+Define scheduling scripts
+Secure additional technical resources as necessary
+Conduct cutover activities
+Training Lead Overall responsibility for coordinating all training
+activity for end-users
+Ensure training needs are addressed/issues escalated
+appropriately
+Develop training approach
+Develop supplemental training documentation
+Plan and manage training delivery
+Ensure training plan is in sync with overall project plan
+Administrator/Process Experts (may be the Client functional and technical expert on the Deposco
+same as another role above) platform
+Administer users, groups, and provide process guidance
+and support
+Submit and track technical issues
+Primary contact for Deposco Client Support after
+deployment
+Pilot Users Provide input to the Configuration sessions
+Provide input to test case development
+Participate in UAT
+Receive training
+UPS Customer Solutions_Williams Trading Company Confidential B-9
+
+--- Page 14 ---
+3.2 | Deposco
+Execution of Deposco deployment service is contingent on shared responsibility between Deposco and
+the Client. The Client takes overall responsibility for the deployment with the assistance of Deposco.
+The following table summarizes the general responsibilities for the Deposco resources.
+Deposco Roles and Responsibilities throughout Implementation Phase
+Role Responsibilities
+Project Sponsor Assign a Project Manager
+Help define overall project vision
+Provide guidance for high-level issue resolution
+Provide senior leadership communication in support of the
+project
+Monitor status reports and timelines
+Liaison to the Deployment Team for scope issues
+Project Manager / Design Lead Point of contact for overall deployment
+Ensure resources are available and properly assigned
+Ensure participation across all project resources
+Manage project timeline to help ensure timely completion
+of all project tasks
+Identify and address resource needs (in addition to
+resources outlined in the project organizational structure)
+Provide project roles, responsibilities, and issue escalation
+path
+Identify and escalates, as appropriate, project issues
+Ensure timely project communication and status updates
+Provide documentation on Client support services
+Distribute project wrap-up document at the conclusion of
+the project
+Functional Lead (may be the same as Project Facilitate configuration sessions
+Manager) Provide sample test cases/scripts. Client is responsible for
+use case and script development
+Assist with troubleshooting and issue resolution
+Assist in user acceptance testing, integration testing, and
+related issue resolution
+Technical Lead Educate Client Technical Team on integration platform
+Review data for completeness and assists in data issue
+resolution
+Assist with technical aspects of site configuration
+Assist in user acceptance testing, integration testing, and
+related issue resolution
+UPS Customer Solutions_Williams Trading Company Confidential B-10
+
+--- Page 15 ---
+3.3 Estimated Hours
+Consulting Development Testing Total
+Product Description
+Hours Hours Hours Hours
+Design 100.0 0.0 0.0 100.0
+General
+Project Management 100.0 0.0 0.0 100.0
+Configuration (UI) 12.0 0.0 0.0 12.0
+System
+Master Data Setup 12.0 0.0 0.0 12.0
+Configuration
+Printing 4.0 0.0 0.0 4.0
+Cycle Counting 8.0 0.0 0.0 8.0
+Cartonization 12.0 0.0 0.0 12.0
+Packing / Shipping 36.0 0.0 0.0 36.0
+Replenishment 16.0 0.0 0.0 16.0
+Bright
+Put-Away 12.0 0.0 0.0 12.0
+Warehouse
+Waving / Picking 32.0 0.0 0.0 32.0
+Receiving 10.0 0.0 0.0 10.0
+Automations (Post Order Import)
+20.0 0.0 0.0 20.0
+& Address Validation
+ShipExec Cloud 20.0 0.0 0.0 20.0
+Bright Socket Deposco API Support (D1 ERP) 40.0 0.0 0.0 40.0
+Deposco API Support (Cubiscan) 20.0 0.0 0.0 20.0
+Bright
+Reports & Dashboards 24.0 0.0 0.0 24.0
+Performance
+User Acceptance Testing (UAT) 64.0 0.0 0.0 64.0
+Go Live
+Go Live 140.0 0.0 0.0 140.0
+Total: 682.00 0.00 0.00 682.00
+UPS Customer Solutions_Williams Trading Company Confidential B-11
+
+--- Page 16 ---
+3.4 Add-On Details
+Name Description
+Anticipated weekly project management support for: Internal project
+Project Management
+meetings, Client project meetings, Project planning and updates
+Printing Printer configuration & setup, Print client setup assistance
+Master Data Setup Support for preliminary master data setup
+Setup and configuration for Deposco's Receiving process for PO and RMA
+Receiving
+receipts
+Setup and configuration of putaway processes with anticipated putaway
+Put-Away
+rules for: Item Consolidation, Pallet Put-Away by empty location
+Setup and configuration for cycle count process and cycle count profiles
+Cycle Counting
+for task generation
+Setup and configuration for: Build waves rules & release wave process,
+Waving / Picking
+Picking: Deposco's Batch Picking and Single Scan Picking processes
+Setup and configuration for: Packing & shipping: Deposco's Build Pallet,
+Packing / Shipping Repalletize, and ATTC processes, Pack by Container or Single Scan
+Packing and/or Pack Order by Item, Bulk Packing
+Static Replenishment Task Creation: by Storage records (min/max)
+Replenishment
+Replenishment Process: execute directed replenishment tasks
+Packing process to be configured using Deposco's base cartonization
+Cartonization
+algorithm
+Automations (Post
+Anticipated support for configuration of post order import (POI) logic
+Order Import) &
+using Automations, and Address Validation enablement
+Address Validation
+Support for D1's integration to Deposco's REST APIs: Items, Trading
+Deposco API Support
+Partners, Purchase Orders, Receipts, Sales Orders, Shipments, Inventory
+(D1 ERP)
+Adjustments
+Reports & Dashboards Anticipated support for setting up initial set of dashboards and reports
+Onsite User Acceptance Testing (UAT) support: Onsite UAT with 2
+User Acceptance
+resources across 4 days (64 hours) ***Any additional hours needed will
+Testing (UAT)
+require SOW/CR
+Support and configuration for ShipExec including shipment, rate shopping,
+ShipExec Cloud
+Onsite go live support support for 2 resources for 5 days (80 hours) -Post
+Go Live go live support (60 hours) ***Any additional hours needed will require
+SOW/CR
+Deposco API Support Support for Cubiscan's integration to Deposco's REST API: -Container
+(Cubiscan) API - to pass Deposco the dims/weights of the package
+Onsite design for 3 resources for 2.5 days (60 hours) -Deliverables for
+Design design document development and design review meetings (40 hours)
+***Any additional hours needed will require SOW/CR
+Configuration (UI) Assistance with UI menu, layout, and view configuration and training
+UPS Customer Solutions_Williams Trading Company Confidential B-12
+
+--- Page 17 ---
+3.5 Integration Diagram
+Client: Williams Trading Company United Parcel Service, Inc. (an Ohio
+Corporation)
+By: By:
+Name: Name:
+Title: Title:
+Date: Date:
+UPS Customer Solutions_Williams Trading Company Confidential B-13
+
+--- Page 18 ---
+Schedule B
+Support Services Package
+1.0 DEFINITIONS. As used in this Schedule B and in addition to any other terms defined herein, the
+capitalized terms used herein will have the meanings set forth in the Client Agreement.
+2.0 MAINTENANCE SERVICES.
+2.1 m of the Client Agreement and with respect
+to the Deposco Software, Deposco will provide the following Maintenance Services for Support
+Services Package Level 1:
+(a) Respond to any defect report it receives in accordance with the schedule set forth in Section
+2.2 below.
+(b) Support Services Package Level 1 - Maintain a telephone number and technician to receive
+calls on five (5) days a week, twelve (12) hours a day basis, nationally recognized holidays
+and specific Deposco holidays, excepted, which include New Year
+King, Jr. Day, Memorial Day, Independence Day, Labor Day, Thanksgiving Day, and day
+after Thanksgiving, Christmas Eve and Christmas Day, concerning emergency problems
+and questions.
+Support Services Package Level 2 (applicable fees provided in Schedule A) - Maintain a
+telephone number and technician to receive calls on seven (7) days a week, twelve (12)
+hours a day basis, nationally recognized holidays and specific Deposco holidays, excepted,
+Independence Day, Labor Day, Thanksgiving Day, and day after Thanksgiving, Christmas
+Eve and Christmas Day, concerning emergency problems and questions.
+Support Services Package Level 3 (applicable fees provided in Schedule A) - Maintain a
+telephone number and technician to receive calls on seven (7) days a week, twenty-four
+(24) hours a day basis, nationally recognized holidays and specific Deposco holidays,
+Independence Day, Labor Day, Thanksgiving Day, and day after Thanksgiving, Christmas
+Eve and Christmas Day, concerning emergency problems and questions.
+(c)
+hours.
+(d) Provide technical support and guidance in the operation of the Software Services to Client
+hours.
+(e) Provide error analysis and correction as set forth in the schedule in Section 2.2 below.
+(f)
+Deposco determines a problem that is covered by this Section exists; and
+(g) Provide a designated, knowledgeable support contact for providing technical support, who
+may be changed from time to time.
+UPS Customer Solutions_Williams Trading Company Confidential B-14
+
+--- Page 19 ---
+2.2 Response Times. Deposco will use commercially reasonable efforts to provide Support Services
+(Classification will be determined by the support specialist):
+Severity Severity Response Goal Resolution Goal
+Level Classification Time Time
+S1 Critical 1 hour 8 hours
+S2 Significant 4 hours 2 business days
+S3 Less 24 hours 5 business days
+Significant
+S4 Low 24 hours Next Release
+"Response Goal Time" is the time for a return call from Deposco to Client to
+acknowledge the defect and to estimate the time for providing the resolution.
+"Resolution Goal Time" is the time to provide a documented fix or repair (which may be
+a workaround) that restores full functionality. Any such fix will be deemed an "Update".
+Severity Classifications:
+S1 / Critical: is a defect or issue where Client
+severely impacted that the Client cannot reasonably continue business operations. It may result in
+a material and immediate interruption of Client may result in a loss of
+Client data and/or restrict availability to such data and/or cause significant financial impact.
+S2 / Significant: means a defect or issue where one or more important functions of the system are
+unavailable with no acceptable alternative. Client's production use of the system is continuing but
+not stopped; however, there is a serious impact on the Client's business operations.
+S3 / Less Significant: means a defect or issue where: (a) important select system features are
+unavailable but a reasonable alternative is available, or (b) less significant system features are
+unavailable with no reasonable alternative; Client
+functionality.
+S4 / Low: means (a) a defect or issue that has a minimal impact on operations or basic
+functionality of the system or (b) Client poses questions regarding basic functionality of the system.
+2.3 Additional Charges. If a problem reported (or if Client otherwise requests assistance) is outside
+the scope of this Section, UPS Customer Solutions will notify Client to that effect and reserves
+the right to charge Client pursuant to the hourly rate set forth, for which Client agrees to pay
+pursuant to the Terms and Conditions of the Client Agreement. If a reported problem is a result
+of creation of Customized Software, UPS Customer Solutions will charge Client on
+time and materials basis for such Maintenance Services for the second incident of providing
+such services and all further incidents thereafter pursuant to the hourly rate set forth.
+UPS Customer Solutions_Williams Trading Company Confidential B-15
+
+--- Page 20 ---
+2.4 Client Client will be responsible for: (a) Reporting errors
+promptly; (b) Providing sufficient information for Deposco to duplicate the circumstances of a
+reported defect or duplicate the error, as described in the Documentation, so Deposco can
+duplicate the error, assess the situation, and/or undertake any needed or appropriate corrective
+action hereunder; (c) Otherwise following instructions or suggestions from Deposco regarding
+use, maintenance, upgrades, repairs, workarounds, or other related matters; and (d) Designating
+two (2) members of its staff to serve as Client
+support issues. Client on
+of Support Services to Client is subject to Client ance and compliance regarding (i) at
+Depos will provide Deposco with reasonable access to Client
+personnel and equipment during normal business hours to discuss and assess any problems
+and/or requests for assistance; and (ii) Client will document and promptly report to Deposco all
+errors or malfunctions of the Software Services. It is Client
+procedures necessary at Client's facilities for the rectification of errors or malfunctions within a
+reasonable time after such procedures have been received from Deposco.
+UPS Customer Solutions_Williams Trading Company Confidential B-16
+
+--- Page 21 ---
+Schedule C
+Invoice Schedule
+Implementation:
+Due at signing (May 2024) - $31,542.50
+o 25% Implementation Retainer
+Remaining Implementation hours are billed monthly as consumed: $94,627.50
+Subscription:
+Year 1
+o May 2024 - $71,000
+Year 2
+o May 2025 - $75,000
+Year 3
+o May 2026 - $75,000
+UPS Customer Solutions_Williams Trading Company Confidential B-17
+
+--- Page 22 ---
+Schedule D
+Change Request Form
+Change Request #: Date:
+Requested By:
+Change Description: (Affected Component/Phase/Project)
+Change Priority
+High Priority Medium Priority Low Priority
+High Complexity Medium Complexity Low Complexity
+Impact Analysis
+Cost
+Schedule
+Quality
+Resources
+Other
+Parties/Projects
+Decision
+Reason:
+Approved
+Not Approved
+Project Manager Signature:
+Project Owner Signature
+UPS Customer Solutions_Williams Trading Company Confidential B-18
+

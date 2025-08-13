@@ -1,0 +1,582 @@
+DOCX Text Extraction Results
+Original File: Copy of HANKS Master Design Document 0324.docx
+Extracted: 2025-08-13 12:47:51
+Total Paragraphs: 270
+Total Tables: 3
+==================================================
+
+Hanks Clothing Design Document
+
+Design Document v1.0
+
+Deposco, Inc.
+1-877-770-1110 | www.deposco.com
+© Copyright 2019. All Rights Reserved.
+
+Table Of Contents
+
+Overview
+
+Introduction
+
+This document describes the functionality that is implemented for Customer HANKS Phase 1 Deposco Implementation.  The success criteria of this project are as follows:
+
+Improve operational visibility throughout every step of the fulfillment process
+
+Increase warehouse efficiency through automated tasks and system direction → remove all paper processes
+
+Gain better real-time visibility and control of inventory
+
+Reduce the organizations dependency on legacy, manual solutions to run the business
+
+Seamless Integration with existing technology stack
+
+Scope
+
+The full scope of this project is outlined in the Master SaaS Agreement and Statement of Work (SOW).  This document is used to align both Deposco and Customer HANKS on functionality to be implemented and is not considered a new Scope or Change Request (CR).  A separate task list is provided with estimates of effort and duration to implement functionality outlined in this document.  Estimates are not fixed, nor to be considered maximum/ ‘Not To Exceed’ (NTE) estimates and may change based on new information, design gaps, functionality gaps, or other.  If estimates change before or during a task’s execution, Deposco attempts to notify HANKS to review options. The Deposco UI and Handhelds only support English natively.
+
+Changes in functionality requested by Customer (HANKS) after Design Document sign off that require significant rework may lead to overages beyond original estimate; therefore, a CR is required to execute so all parties are aware of the change.  The purpose of a CR is to define all requirements of change to mitigate future rework.
+
+Inbound Processes
+
+This section outlines all inbound related processes.  This includes receiving at the warehouse, returns processing, staging logic, putaway/user directed moves, and PO management.
+
+Purchase Order Management
+
+Types of Purchase Orders
+
+Purchase Orders
+
+Inventory is listed on a PO with items, pack types, and quantities listed as separate lines.  As inventory is received againsts, unique receipts are tied to the PO line, and the net received quantity is updated.
+
+Customer Returns
+
+HANKS receives returns using the Blind RMA process. Deposco creates an order with the type ‘Blind RMA’. This stock is staged into the ‘Returns’ location.
+
+Blind Orders
+
+HANKS sometimes receives stock using the Blind Order process. Deposco creates an order with the type ‘Blind Order’. This stock is staged into the ‘Receiving’ location.
+
+Purchase Order Management
+
+Purchase Order Creation
+
+Purchase orders are created via Data Exchange and/or PO entry.
+
+A report generates all items needing to be ordered based on past sales history. This report is exported and uploaded as a PO using the Data Exchange application.
+
+HANKS at anytime can create POs using PO entry
+
+Receiving Processes
+
+The GeneralReceiving (Link) process is used to perform the receipts of Purchase Orders and Customer Returns and create inventory in Deposco.
+
+General Receiving
+
+In this handheld process, users are prompted to scan/select an item and count the quantity to receive. Once received, a putaway process is used to suggest putaway locations using logic found under the Putaway section of the document.
+
+UnReceiving
+
+HANKS has access to the UnReceiving process. This process is used to undo the receipt of a PO that was fully or partially received.  For stock to be unreceived, the stock must still be in the "Receiving" location. This process allows for the unreceived lines to be received again at a later date if needed.
+
+Configuration Options, Validations
+
+Over/Under Receiving
+
+HANKS allows users to over-receive any amount above the specified line quantity on a PO.
+
+Items Not on PO
+
+HANKS allows users to receive items not specified on a PO.
+
+Putaway Processes
+
+Move Item (Item Putaway)
+
+Allows a user to scan a location, enter a quantity, and scan a destination location. After selecting a location to move an item from, the user sees a list of all stock in the receiving location. Here, they select or scan an item number or UPC. Once the item is selected, the user is given suggested locations based on the putaway logic below:
+
+The putaway logic outlined below is applied to the MoveItem process.
+
+HANKS Suggested Putaway Logic For Received POs
+
+Locations populate in the suggested location listbox in the following order:
+
+Consolidatable Locations: If the item being put away has stock that already exists in a warehouse location that location populates first on the suggested location list.
+
+Storage Detail Locations: If a location has no stock associated but does have a defining storage detail this location populates on the suggested location list.
+
+Empty Locations: If a location has no stock associated and there are locations without storage details these locations populate on the suggested location list. These locations are shown in order of pick sequence (location.pickSequence). Deposco limits the number of Empty Locations in the listbox to 5. Only Woolx locations are suggested for Woolx items being put away. Only Hanks locations are suggested for Hanks items being put away.
+
+HANKS Suggested Putaway Logic For Returns
+
+Locations populate in the suggested location listbox in the following order:
+
+Isle Bin Locations: If the item being put away has stock that already exists in a warehouse location, that location’s aisle bin location is suggested.
+
+Stocked Out Bin Location: If the item being put away does not have stock that already exists in a warehouse location, the mixed aisle bin location is suggested.
+
+Inventory Processes
+
+This section outlines all inventory management related processes.  This includes inventory counts, adjustments, and replenishments/system directed movement.
+
+Inventory Counts
+
+Inventory counting is used to audit the inventory in the warehouse by going to a location and verifying the contents of the location.  Changes to inventory made during a count get recorded as Cycle Count adjustments.
+
+Please note that the process of updating stock due to an inventory count is broken into two parts: counting stock and accepting variances.
+
+Cycle Counts
+
+Please note that for a cycle count to be generated, the location and item must have Cycle Count = True (Shown Below).
+
+Generation and Method
+
+HANKS uses the following methods to create cycle count tasks:
+
+Exceptions
+
+If a location is exceptioned during any picking process, the location is put on hold and a cycle count task is generated with the highest priority.
+
+Manual Creation
+
+Location: Locations are selected and cycle counts are created using Actions > Created Cycle Count.
+
+System Generated tasks
+
+Last Counted Date
+
+Every morning 15 cycle count tasks are generated based on the 15 locations with the oldest ‘Last Counted Date’.
+(location.lastCountedDate)
+
+Prioritization
+
+When cycle counts are generated, a priority is assigned so that certain counts are completed first.  When users perform Cycle Counting, they are directed in order of cycleCount.priority then by location.pickSequence to provide an efficient travel path.
+
+Managing Cycle Count Variances
+
+All cycle count variances are automatically approved and the stock quantities are updated upon the location being counted.
+
+Inventory Adjustments
+
+The AdjustInventory process is used to add or remove inventory from a location.  This differs from a count in that it is incremental instead of a complete location verification and used primarily for adding found inventory to a location or removing damaged inventory.
+
+During the adjustment, the user is prompted for an adjustment code, which is stored against the transaction so that it can be extracted or transmitted to another system.  The following adjustment codes have been identified:
+
+Replenishments
+
+Replenishment is a process that is used to create system directed movement tasks.  Replenishments are generated periodically throughout the day on a schedule.
+
+Replenishments are most commonly used to create tasks to move inventory from Reserve locations to picking locations, so that pickers do not have to pick from Reserve locations for orders (except when desired).
+
+Replenishment tasks are executed in order by replenishment.priority then replenishment.pullLocation.pickSequence.  After the user builds their replenishment cart, they  are routed to complete the putaway of the Cart in order by replenishment.putLocation.pickSequence.
+
+Storage Replens
+
+A replenishment is where inventory is moved from a Reserve location to a pick location that has a Storage defined for a specific item and corresponding minimum and maximum quantity level (ex. Item123 is assigned to LocationABC with a min of 4 and max of 50 units).  When the replenishment scheduler runs, it creates replenishments for all Storages that are below their minimum quantity to fill the location to its maximum.
+
+The replenishment process is available for the HANKS team to use at any time. To start, HANKS is not utilizing replenishments from upper Reserve locations to lower Pickable locations, but plan to utilize this process in the future.
+
+Inventory Calculations
+
+Deposco calculates different types of inventory classifications. Starting with On Hand Inventory, Deposco always displays the total on hand inventory for items. Other calculations like Available to Promise and Available to Release are done in Deposco; adjustments to these calculation queries can be done and require specific approval. These inventory calculations are typically viewed on the Item UI.
+
+Total On Hand Qty API
+
+The Total On Hand calculates all inventory that is physically in the HANKS warehouse.
+
+Total ATP Qty API
+
+Total Available to Promise (ATP) calculates the inventory across the warehouse that is available minus the receiving location inventory, open Outbound Orders, Unshipped Orders, and damaged and quarantine inventory.
+
+This is the Deposco base ATP calculation.
+
+Total ATR Qty API
+
+Available to Release (ATR) is the inventory that is available to release and fulfill Sales Orders.
+
+ATR = On-Hand - Allocated - Unpickable - Damaged
+
+Reserve Loc Qty API
+
+This is the total inventory of an item residing in Reserve Locations.
+
+Pickable Loc Qty API
+
+This is the total inventory of an item residing in Pickable Locations.
+
+Open Pick Task Qty API
+
+Total quantity of an item that is allocated to open/active pick tasks and therefore unavailable to allocate to Sales Orders.
+
+Open Order Line Qty
+
+Total quantity of an item that is required to fulfill New/Back Ordered order lines and does not include already fulfilled/canceled order line quantities.
+
+Qty On Purchase Order API
+
+Total quantity of an item that is on Purchase Orders and yet to be received and does not include already received/canceled order line quantities.
+
+Outbound Processes
+
+This section outlines all outbound related processes.  This includes SO management, wave planning, allocation, picking, packing and shipping.
+
+Sales Order Management
+
+Sales Order (SO) management outlines how SOs are defined, managed, and monitored in Deposco.  The basic flow for processing SOs is:
+
+Orders are classified to determine how they should be processed, typically by stamping fields  via post order import logic (POI).
+
+Multiple orders (or sometimes individual orders) are grouped into a Pick Wave to determine which orders are processed together; purpose being to increase the efficiency when orders are processed.
+
+Pick Waves are released/allocated, and orders are directly linked to Pick Tasks that specify the item, quantity, and location where the stock comes from.  At this point the inventory is ‘hard allocated’ and cannot be used for other orders.
+
+Pick Waves are executed by users on handheld, where pickers scan the inventory into carts/pallets, then stage to a location or packing area.
+
+Packing is performed as users scan the cart/bin, and shipping labels can be automatically printed if applicable.
+
+The packed boxes are then closed automatically and considered shipped
+
+HANKS Order Management Requirement
+
+Outbound Order Creation
+
+Fulfillment Orders are created through a socket integration with Shopify. When these orders are created, Post Order Import (POI) logic is applied. The following updates are made to orders during POI:
+
+Ship Via translations are managed via Automations. Deposco configures this and HANKS is responsible for managing the values populated in Automations.
+
+ShipVia translations
+
+Standard Ground Shipping -> USPS Ground Advantage
+
+UP2 -> UPS 2nd Day Air
+
+UPN -> UPS Next Day
+
+Order total (orderHeader.orderSubtotal) > $800 -> UPS Ground
+
+Insurance Required = true
+
+Delivery Confirmation = true
+
+International Orders (orderHeader.shipToCountry != US) -> Ship Outside System
+
+Deposco Order Processing logic
+
+Singles - If the order contains a single line and single quantity, Order Processing (orderHeader.customAttribute1) -> ‘Singles’
+
+Small Multis - If the order contains multiple lines or multiple quantities and has less than 10 total items, Order Processing (orderHeader.customAttribute1) -> ‘Small Multis’
+
+Large Multis - If the order contains multiple lines or multiple quantities and has more than 10 total items, Order Processing (orderHeader.customAttribute1) -> ‘Large Multis’
+
+Specials - If the order contains an item where Boxed Item (item.customAttribute) = true, Then Order Processing (orderHeader.customAttribute1) -> ‘Specials’
+
+UPS Address Validation places orders with invalid addresses in a “Hold - AV” Status. The order notes section is populated with a suggested address if one is found.
+
+Secondary Order Source (orderHeader.secondaryOrderSource) is stamped with the integration point associated with the order. Ex. WoolX orders stamp Secondary Order Source with ‘Woolx’
+
+orderHeader.customAttribute2 is stamped with a concatenated list of orderLine.itemIds and orderLine.quantities. This is used to identify and wave identical orders together.
+
+Allocation/Wave Release
+
+Orders are waved on a scheduler. Specified orders can be waved manually to give the HANKS team full control over what orders are released. Users are able to select orders to build and release waves as needed (shown below).
+
+As waves are released, they are made visible in the appropriate handheld buttons. When pickers select a wave, they should choose from the top of the list box. Waves in this list box are ordered by priority (UPS Next Day / UPS Second Day Waves first) then placed date (orderHeader.placedDate).
+
+Should the allocation of stock have to be undone before picking begins, a user can enter any wave in Released status and select Actions > Undo Release (Shown Below). After picking has begun, the allocation of stock cannot be rolled back until after picking is completed.
+
+Backorder Management
+
+HANKS allows only full Orders to be released. This ensures that the full quantity on an Order is released.
+
+Cancellations
+
+No automatic cancellation logic happens in Deposco. If an order or a portion of an order needs to be canceled directly in Deposco, the HANKS team can either cancel the appropriate quantities from the order using the Cancel Entire Order or Cancel Order Line PAL.
+
+Order Classifications and Picking Strategy
+
+The following logic is used to wave and pick orders:
+
+Identical Orders
+
+Any group of 25 identical orders are waved and picked separately. Identical waves are waved once a day right before the first scheduled non identical wave to ensure all identical orders are picked up before the non identical waving is completed.
+
+Minimum of 25 orders
+
+Maximum of 500 orders are placed on one wave
+
+DCI uses SingleScanPicking (Link) to pick Identical orders.
+
+Single Orders
+
+Single unit, single line orders are processed together on a singles wave; this allows for increased picking efficiency since pickers can pick multiple orders/items into one cart while traveling, without the need to separate the inventory by order. Hanks and Woolx will wave separately and Woolx will have two types of singles waves; Upper and Lower singles. This allows specified users to pick all orders from upper locations and another to pick from all lower locations.
+
+Order is single unit, single line
+
+100 orders are placed on a wave
+
+HANKS uses SingleScanPicking (Link) to pick single unit orders.
+
+Hanks Multi Orders
+
+Any order that does not contain single unit, single line quantities and is tied back to the Hanks Shopify store is classified as a Hanks Multis order. All Hanks Multi orders are waved together.
+
+Maximum of 70 orders are placed on a wave
+
+HANKS uses BatchPicking (Link) to pick Hanks multi orders.
+
+Woolx Multi Orders
+
+Any order that does not contain single unit, single line quantities and is tied back to the Woolx Shopify store is classified as a Woolx Multis order.  If the total quantity placed on an order is < 10 the order is classified as a Woolx small multis order. If the total quantity placed on an order is >= 10 the order is classified as a Woolx large multis order. Both Woolx large and small will be broken out into two more waves; Upper and Lower. This allows specified users to pick all orders from upper locations and another to pick from all lower locations.
+
+Upper Small Multis -> 48 orders are placed on a wave; Items on order are located in a WZ location
+
+Lower Small Multis -> 48 orders are placed on a wave; No item on the order is located in a WZ location
+
+Upper Large Multis -> 15 orders are placed on a wave; Items on order are located in a WZ location
+
+Lower Large Multis -> 15 orders are placed on a wave; No item on the order is located in a WZ location
+
+HANKS uses BatchPicking (Link) to pick small multi orders.
+
+International Orders
+
+Any order that does not have the ship to country field (orderHeader.shipToCountry) equal to ‘US’ is classified as an International Order. All international orders across Woolx and Hanks are waved together onto a single batch wave to increase efficiency.
+
+50 orders are placed on a wave
+
+HANKS uses BatchPicking (Link) to pick international orders.
+
+Priority Shipping Orders
+
+Any order that has the ship via field (orderHeader.shipVia) equal to ‘UPS Next Day’ or ‘UPS Second Day Air’ is classified as a priority shipping  order. All international orders across Woolx and Hanks are waved together onto a single batch wave to increase efficiency.
+
+50 orders are placed on a wave
+
+HANKS uses BatchPicking (Link) to pick priority shipping orders.
+
+Insured Orders
+
+Any order that has the subtotal field (orderHeader.orderSubtotal) >= to 800 is classified as an insured order. All insured orders across Woolx and Hanks are waved together onto a single batch wave to increase efficiency.
+
+10 orders are placed on a wave
+
+HANKS uses BatchPicking (Link) to pick insured shipping orders.
+
+Specials Orders
+
+Any order that contains an item with the field Boxed Item (item.customAttribute1) = true is classified as a Specials Order.
+
+10 orders are placed on a wave
+
+HANKS uses BatchPicking (Link) to pick insured shipping orders.
+
+Exceptions in Picking
+
+In the above picking processes, a picker may exception a pick task if they are unable to complete the task. If stock for that item exists in a secondary location, they are rerouted to the location with the next highest pick sequence.
+
+When a pick task is exceptioned, the Sales Order and Order Line is placed on Back Order and a cycle count task is automatically generated to ensure that the stock unit quantity is correct in the location.
+
+Packing
+
+The packing processes in Deposco are used to confirm what is being shipped, and print documentation such as shipping labels.
+
+Pack Order By Item
+
+The PackOrderByItem (Link) process may be used to pack the following order types:
+
+Singles orders
+
+The PackOrderByItem (Link) process is used to pack each item that is picked in single scan picking. The user then scans any item from the picking cart and Deposco automatically matches this item with an order in the container. Deposco automatically prepopulates the weight and dimensions based on the item’s weight, length, width, and height.
+
+Single Scan Packing
+
+The SingleScanPacking (Link) process may be used to pack the following order types:
+
+Small Multi Orders
+
+Large Multi Orders
+
+Priority Shipping Orders
+
+International Orders
+
+Insured Orders
+
+This process allows packers to pack the stock from transient picking bins into their final shipping bags. Deposco automatically prepopulates the weight based on the items’ weight and the user selects the carton type to ship the items in.
+
+Bulk packing
+
+The BulkPacking (Link) process is used to pack the following order types:
+
+Identical Orders
+
+In this process, users scan the LPN to view all orders in that container. For Identical orders, users see a list of all orders and all shared items within the LPN. Users hit “Enter Dimensions” and enter the carton type that is being used for these orders. When the process is finished, all shipping labels for all orders are printed. Deposco automatically prepopulates the weight based on the items’ weight and the user selects the carton type to ship the items in.
+
+Exceptions in Packing
+
+If an order has been canceled after picking begins, the items picked can be put back into stock using the GPRollBackOrderAfterPicking (Link) process detailed below.
+
+The VoidAndReprocessShipment (Link) process undoes the shipment of an order. Previously shipped stock is returned to a random generated container. From here, the order can be reshipped or rolled back using the process detailed below.
+
+HANKS Shipping Requirements
+
+HANKS is using a variety of shipping methods. Below is an outline of the integrated shipping carriers currently in scope and which documents they require:
+
+Shipping Carriers
+
+UPS
+
+Shipping Label
+
+USPS (Stamps.com)
+
+Shipping Label
+
+*commercial invoices are transmitted electronically to UPS and FedEx. Copies of the documents can be found on the respective shipments
+
+Packing Slip
+
+HANKS is not utilizing any packing slips or packing slip printing during packing.
+
+Misc. Handheld Processes
+
+Change Resource
+
+A resource connects a user to a printer assignment, and enables the Deposco system to direct print jHANKS to specific printers for processes that the user performs. The Change Resource process allows users to verify their active Resource assignment and change their Resource to Resources within their current facility assignment.
+
+Change Zone
+
+The active zone for a user account determines the warehouse tasks that can be performed for workflow processes such as SingleScanPicking (Link). Each user account can be assigned to multiple zones based on the zone assignment settings for the account, but can only be active in a single zone at a time. The Change User Zone (Link) process allows users to verify and/or change their active Zone assignment. Changing zone is required to pick Ship Alone and Batched orders.
+
+Reprint
+
+The Reprint (Link) process can be used to reprint shipping labels and documents.
+
+Reset Sales Order
+
+The ResetSalesOrder (Link) allows you to reset the status of an order and its order lines to a status of New. This process removes pick waves assigned to the order, deletes associated pick tasks, pick lines, and pick details and deallocates stock from the order.
+
+Integrations
+
+Integration Diagram:
+
+Data Exchange
+
+HANKS uses Data Exchange for master data uploads. Deposco creates initial field mappings for any necessary Data Exchange imports discovered during design. After these are created, HANKS is responsible for any updates as new mappings are desired.
+
+Data Exchanges present:
+
+Storage Record Import
+
+Location Import
+
+Location / Zone Import
+
+Stock Unit Import
+
+Trading Partner Import
+
+Item Vendor import
+
+Purchase Order Import
+
+Pack Dimension Import
+
+Master Data Requirements
+
+This section outlines fields above and beyond base requirements. These are fields that HANKS has special logic applied to and may require additional attention. HANKS is responsible for maintaining all master data including but not limited to the items below:
+
+Item
+
+Boxed Item (CA2) - customAttribute2
+
+Cycle count = true
+
+Pack
+
+Pack Dimensions
+
+pack.weight
+
+pack.length
+
+pack.width
+
+pack.height
+
+Location
+
+pickSequence
+
+Order by which stock is allocated. Lower string values are allocated first. Deposco suggests doing this from the back towards shipping, but this is Master Data owned by HANKS.
+
+pickSequence is a string field, so all pick sequence values must be the same number of digits to order properly
+
+Cycle Count = true
+
+Zone
+
+The following zones must be created with the correct locations associated:
+
+Upper Location
+
+Any Locations that need to be picked using specialized equipment.
+
+Lower Location
+
+Any other location
+
+Carton Type
+
+name
+
+active = "1"
+
+length / height / width
+
+Customer Agreement
+
+Your signature is required as proof of understanding and acceptance of the design document as described above.  Upon acknowledgement of your approval, Deposco will engage in development of the work stated in this document and the design specification.  Please review this document in its entirety.  Upon approval, please sign, date and return.
+
+Dates
+
+Design Expiration: 3/15
+
+Proposed UAT: 4/1 - 4/3
+
+Last Request Date: 3/28
+
+Proposed Go Live: 4/15 (tentative)
+
+--- Table 1 ---
+Adjustment Code | Description
+DMG | Damaged
+MEDIA | Media
+OTHER | Other
+
+--- Table 2 ---
+Deposco, Inc.
+11605 Haynes Bridge Road
+Suite 200
+Alpharetta, GA 30009
+By: | Deposco, Inc.
+11605 Haynes Bridge Road
+Suite 200
+Alpharetta, GA 30009
+By:
+Name:
+Title:
+Date:
+
+--- Table 3 ---
+Hanks Clothing
+3119 Pearl St Endicott,
+Endicott, NY  13760
+By: | Hanks Clothing
+3119 Pearl St Endicott,
+Endicott, NY  13760
+By:
+Name:
+Title:
+Date:
+

@@ -1,0 +1,155 @@
+PDF Text Extraction Results
+Original File: Go West Supply_Order Form_27JUN2025.pdf
+Extracted: 2025-08-13 12:47:40
+Total Pages: 5
+==================================================
+
+--- Page 1 ---
+Docusign Envelope ID: F1D54FB2-E160-4D8A-AB27-433CFFC5F371
+ORDER FORM
+Order Form
+Order Form No. 01 June 30th 2025 Initial Term 36 months
+Offer Expiration
+Prepared by Email Phone
+Anisha Datwani anisha.datwani@deposco.com (732)-947-8922
+Billed to:
+Company Name
+Go West Supply LLC
+Address
+8500 Zuni Street
+City State Zip Code
+Federal Heights CO 80260
+Contact Name Email Phone
+Invoicing Contact Name Email Phone
+Jim Lamirand jim@gowestsupply.com 940-393-3201
+Payment Terms: Net 30 Currency: USD ($) EUR (€) GBP (£)
+Payment Schedule: (i)Subscription Fees (ii)Professional Services
+Annual Retainer due upon execution; monthly on a time and materials
+basis thereafter
+Total Annual Fee:
+see special terms
+/ Annual
+©Deposco, Inc. 1 of 5 Proprietary and Confidential
+
+--- Page 2 ---
+Docusign Envelope ID: F1D54FB2-E160-4D8A-AB27-433CFFC5F371
+ORDER FORM
+Included in Deposco Software Solution Bundle:
+4
+Bright Warehouse
+Included in License Users
+¨ Carton Optimization ¨ 3PL Billing Unlimited
+4
+¨ Rate Shopping
+Facilities
+# of Facilities Facility
+1 Fort Worth, Texas
+included: Location(s):
+Additional Information
+Bright Order
+Included in License Facilities
+¨ Purchase Experience ¨ Distributed Order Mgmt # of Virtual
+Facilities included:
+¨ Enterprise Inventory ¨ Order Consolidation
+¨ Inventory Segmentation
+Additional Information
+4
+Bright Socket
+Included in License
+Standard 3 Select Advanced
+Additional Information
+Shopify (up to 25 instances)
+UPS (up to 25 instances)
+FedEx (up to 25 instances)
+©Deposco, Inc. 2 of 5 Proprietary and Confidential
+
+--- Page 3 ---
+Docusign Envelope ID: F1D54FB2-E160-4D8A-AB27-433CFFC5F371
+ORDER FORM
+4
+Bright Performance
+Included in License
+¨ Data Archive ¨ Additional Report Schedulers
+(20 reports per purchase)
+Additional Information
+Bright Store
+Included in License
+¨ Storefronts
+Additional Information
+4
+Supply Chain Planning
+4
+Bright Source Bright Forecast Bright Inventory
+4
+¨ Enterprise PO Mgmt ¨ Standard ¨ Standard
+¨ Supplier Collaboration ¨ Causal Data
+Additional Information
+©Deposco, Inc. 3 of 5 Proprietary and Confidential
+
+--- Page 4 ---
+Docusign Envelope ID: F1D54FB2-E160-4D8A-AB27-433CFFC5F371
+ORDER FORM
+4
+Bright Cloud
+Included in License
+4
+Production 1 Sandbox 1 Solution 2 ¨ Disaster Recovery Service
+Environment Environment Tier
+Additional Information
+4
+Bright Certification
+Included in License
+Bright Performance 2 users Bright Warehouse 2 users Bright Order 2 users
+Bright Forecast 2 users Bright Inventory 2 users
+Additional Information
+2 users for each application are included with Standard support
+Deposco Software:
+License Type Total Fees
+Annual Subscription Fee $ 80,000
+Deposco Software Solution Bundle
+Initial Term Fee $ 240,000
+©Deposco, Inc. 4 of 5 Proprietary and Confidential
+
+--- Page 5 ---
+Docusign Envelope ID: F1D54FB2-E160-4D8A-AB27-433CFFC5F371
+ORDER FORM
+Deposco Customer Success Level:
+4
+¨ Standard Included in Annual Subscription Fee ¨ Premium + $
+Additional to Annual Subscription Fee, if selected
+Deposco Professional Services:
+Professional Service Hourly Rates Estimated Professional Service Fees for Initial Implementation
+Retainer Due at Execution: $6,000
+Initial Hourly Rate: $150/hour
+Estimated Implementation Services*: $60,000
+* This amount is only an estimate of the Professional Service hours needed and does not include travel expenses, which will
+be invoiced pursuant to the T&Cs. The Initial Hourly Rate shall apply to all Professional Services provided under the initial
+implementation SOW. Upon completion of the initial implementation SOW, Deposco’s then-current Professional Services rate
+that is made available by Deposco from time to time will apply. Any out-of-scope work or additional SOW(s) agreed upon by
+the Parties will be subject to such then-current rate(s), even if such additional Professional Services are agreed upon during the
+initial implementation Professional Services.
+Special Terms
+Subscription Fees will be paid quarterly in advance for the first year. Year 2 and Year 3 will
+be paid annually. All quarterly payments of the Year 1 subscription payment shall be due
+30-days from invoicing. Year 2 and Year 3 will be invoiced in full on the effective date.
+TERMS AND CONDITIONS
+1. This Order Form is effective as of
+6/27/ 2025
+(“Effective Date”) by and between Deposco, Inc., (“Deposco”)
+and Company. This Order Form is subject to the Deposco Master Terms and Conditions (“T&Cs”), which are incorporated
+herein by reference. Capitalized terms used but not defined herein shall have the meanings set forth in the T&Cs.
+2. The pricing and any Special Terms listed in this Order Form are Deposco Confidential Information.
+3. This Order Form’s terms, including the T&Cs, supersede any previous agreement(s) between the Parties as it relates to the
+purchase of Deposco Services.
+IN WITNESS HEREOF, the Parties hereto have executed this Order Form and agree the Order Form is effective as of the Effective
+Date. Each Party’s signature represents each Party’s acceptance of their respective rights and obligations in the T&Cs.
+Deposco, Inc. Go West Supply LLC
+By By
+Bill Gibson Jim Lamirand
+Name Name
+CEO CEO
+Title Title
+6/27/2025 6/27/2025
+Date Date
+©Deposco, Inc. 5 of 5 Proprietary and Confidential
+

@@ -1,0 +1,174 @@
+PDF Text Extraction Results
+Original File: Evereve_Sch A_4457_P276903_08-05-2025 (client).pdf
+Extracted: 2025-08-13 12:47:51
+Total Pages: 4
+==================================================
+
+--- Page 1 ---
+Docusign Envelope ID: 3C9FA632-E189-4DF3-A9DA-1AC82BEEAD65
+Exhibit A
+Order Form
+Order Form No. P276903
+Subscription Effective Date: 08/05/2025
+This Order Form No. P276903 (the “Order Form”) is entered into between Evereve (“Client”) and either (i) United Parcel
+Service, Inc., an Ohio corporation or (ii) the entity identified on the Jurisdiction-Specific Terms Appendix attached to and
+incorporated within the General Terms for the applicable Jurisdiction of Client Establishment (“UPS Customer
+Solutions”), is effective as of the date specified above (the “Order Form Effective Date”) and governed by that certain
+Client Agreement between Client and UPS Customer Solutions (the “Client Agreement”). This Work Order is subject
+to the Deposco Master Terms and Conditions (“T&Cs”), which are incorporated herein by reference. Capitalized
+terms used but not defined herein shall have the meanings set forth in the T&Cs.
+Jurisdiction of Performance: United States
+Initial Subscription Term: 60 months
+PROJECT DESCRIPTION:
+Pursuant to this Order Form, UPS contracts Deposco to perform activities for Client with respect to Project Initiation,
+Analysis & Design, Build & Configure, Training, Client’s testing program, Go-Live & Follow-Up, Project Closure and
+Overall project management associated with Bright Suite Warehouse Management System for Evereve.
+PROJECT COST ESTIMATE AND BUDGET:
+Project cost based on sixty (60) month subscription as quoted below. Price contingent on full sixty (60) month execution
+of Client Agreement which supersedes the Client Agreement Subscription Term.
+Software Services Subscription Fees
+Solution Bundle Total Year 1: $225,000/ year*
+Year 2: $275,000/year
+Year 3: $275,000/year
+Year 4: $300,000/year
+Year 5: $325,000/year
+*Subscription Start Date to commence 90 days after execution of
+this Order Form. 50% of the year one annual subscription shall
+be due at signature of this Order Form, the remaining 50% due
+November 1st, 2025
+Deposco Bright Warehouse Application:
+Includes:
+ Bright Warehouse Solution  Included in solution bundle fees
+ Users
+ Unlimited Users for (1) Facility
+ Minnetonka, MN  Included in solution bundle fees
+Deposco Bright Warehouse (Advanced Add-ons):
+ Rate Shopping  Included in solution bundle fees
+ Carton Optimization  Included in solution bundle fees
+LEGAL02/42475651v6
+
+--- Page 2 ---
+Docusign Envelope ID: 3C9FA632-E189-4DF3-A9DA-1AC82BEEAD65
+Deposco Bright Socket Application:
+Includes:
+ Bright Socket Solution  Included in solution bundle fees
+Deposco Bright Socket (Socket Connectors):
+ Standard Sockets
+o Stamps.com (Endicia – USPS): 116 Instances
+o UPS: 116 Instances  Included in solution bundle fees
+o “Alternate” Carrier: 116 Instances  Included in solution bundle fees
+o Shopify: 116 Instances  Included in solution bundle fees
+o Shopify POS: 116 Instances  Included in solution bundle fees
+ Included in solution bundle fees
+Deposco Bright Order Application:
+Includes:
+ Included in solution bundle fees
+ Enterprise Inventory
+ Included in solution bundle fees
+ Order Consolidation
+Deposco Bright Store Application:
+Includes:
+ 115 Storefronts
+ Bright Store operations capabilities  Included in solution bundle fees
+ Additional Stores may be added
+ Additional $1,100/store/year for Initial 5-Year Term
+ Store Operations Additional Stores (includes Bright
+Store operations capabilities and associated supporting
+socket instances (carriers + Shopify POS Integration)
+Deposco Bright Performance Application
+Includes:
+ Data Archive  Included in solution bundle fees
+ Standard Dashboard and Reporting  Included in solution bundle fees
+Deposco Bright Certification Application
+Include Licenses:
+ Bright Performance: 4 Users  Included in solution bundle fees
+ Bright Warehouse: 4 Users  Included in solution bundle fees
+ Bright Order: 4 Users  Included in solution bundle fees
+Professional Services Service Fees
+Professional Services Total $222,740
+ $185/hour applied to the first 1,204 project hours completed
+Professional Services
+ Deployment Retainer  $44,548 due at signing and will be applied to Implementation
+Services for the first 240.80 hours. Remaining professional
+services hours to be billed monthly as incurred.
+ $240/hour applied to professional services completed under
+a contract post-implementation and for out-of-scope
+ This amount is only an estimate of the Professional Service
+ Ongoing Professional Services
+hours needed and does not include travel expenses, which
+will be invoiced pursuant to the T&Cs. Travel expenses
+incurred by UPS or Deposco in connection with Professional
+Services shall be approved in writing in advance by Evereve.
+Once the Estimated Implementation Services amount has
+been fully billed, the post implementation hourly rate will
+apply. Any out-of-scope work or additional change requests
+agreed upon by the Parties will be subject to the Post-
+LEGAL02/42475651v6
+
+--- Page 3 ---
+Docusign Envelope ID: 3C9FA632-E189-4DF3-A9DA-1AC82BEEAD65
+Implementation and Out-of-Scope Hourly Rate, even if such
+additional Professional Services are agreed upon during the
+initial Implementation Services.
+ All work determined to be outside of the defined scope of
+services shall be subject to mutual written agreement. Out-
+of-scope services shall be invoiced at the post-
+implementation hourly rate of $240/hour only after approval
+by Evereve through a formal change order.
+Other Items Services Free
+Other Total $0
+Deposco Bright Cloud Solution:
+Includes:
+ Tier 2 Solution  Included with bundle subscription fees
+ (2) Tenant Environments:
+o (1) Production
+o (1) Sandbox
+ Disaster Recovery Service
+ Included with bundle subscription fees
+Deposco Support Services:
+Deposco support services are detailed in Deposco Master
+Terms and Conditions.
+ Included with bundle subscriptions fees
+ Standard Deposco Support included in bundled
+Subscription Fees. Evereve shall also receive
+additional success services as detailed below:
+ Dedicated Deposco Customer Success Manager
+ 24x7 Support
+Schedule A
+Invoice Schedule
+Implementation:
+ Due at signing (May 2025) - $44,548
+o 20% Implementation Retainer
+o Remaining Implementation hours are billed monthly as consumed: $178,192
+Subscription:
+ Year 1 (50% Due at signing + 50% due November 1st, 2025) - $225,000
+o May 2025 - $112,500
+o November 2025 - $112,500
+ Year 2 - Annually on Subscription Start Date Anniversary of (August 2026) - $275,000
+ Year 3 - Annually on Subscription Start Date Anniversary of (August 2027) - $275,000
+ Year 4 - Annually on Subscription Start Date Anniversary of (August 2028) - $300,000
+ Year 5 - Annually on Subscription Start Date Anniversary of (August 2029) - $325,000
+All payments are due:
+ Thirty (30) days from invoice date per Client Agreement
+ The same time payments are due under Carrier Agreement between United Parcel Service, Inc., an Ohio corporation and
+Client dated 05/05/2025. In the event such Carrier Agreement terminates before the Client Agreement, timing of payments
+will revert back to default payment terms set forth in the Client Agreement.
+Capitalized terms not defined in this Order Form have the same meanings ascribed in the Client Agreement. The parties agree that any
+change to this Order Form must be agreed to in writing by the parties pursuant to a change order. For avoidance of doubt, any software
+licensed to Client pursuant to the Client Agreement will not be considered a “Deliverable” under any agreement between the parties.
+LEGAL02/42475651v6
+
+--- Page 4 ---
+Docusign Envelope ID: 3C9FA632-E189-4DF3-A9DA-1AC82BEEAD65
+The parties hereto confirm their express agreement that this Order Form, and all documents and agreements directly or indirectly relating
+hereto, be drawn up in the English language.
+IN WITNESS WHEREOF, UPS Customer Solutions and Client have so agreed as of the date written above:
+Client: Evereve UNITED PARCEL SERVICE, INC., an Ohio corporation
+By: /CSSignHere1/ By: /CSSignHere2/
+Michael Porter
+Name: /CSFullName1/ Name: /CCShFruilslN Satmaep2l/ e s
+Title: /CSCTFiOtle1/ Title: /CSPTrietlsei2d/ ent
+5/5/2025 | 3:01 PM PDT 5/6/2025 | 7:55 AM PDT
+Date: /CSDateSigned1/ Date: /CSDateSigned2/
+LEGAL02/42475651v6
+
