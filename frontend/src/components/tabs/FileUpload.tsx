@@ -79,100 +79,106 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
         </p>
       </div>
 
-      {/* Status Messages */}
-      {uploadError && (
-        <div className="flex items-center space-x-2 p-4 bg-red-50 border border-red-200 rounded-lg">
-          <AlertCircle className="h-5 w-5 text-red-600" />
-          <p className="text-red-700">{uploadError}</p>
-        </div>
-      )}
+      {/* Centered Upload Section */}
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="w-full max-w-2xl space-y-8">
 
-      {uploadSuccess && (
-        <div className="flex items-center space-x-2 p-4 bg-green-50 border border-green-200 rounded-lg">
-          <CheckCircle className="h-5 w-5 text-green-600" />
-          <p className="text-green-700">Data uploaded successfully!</p>
-        </div>
-      )}
+        {/* Status Messages */}
+        {uploadError && (
+          <div className="flex items-center space-x-2 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <AlertCircle className="h-5 w-5 text-red-600" />
+            <p className="text-red-700">{uploadError}</p>
+          </div>
+        )}
 
-      {/* File Upload Section */}
-      <div className="max-w-lg mx-auto">
-        <div className="card">
-          <div className="card-content">
-            <h3 className="font-semibold text-gray-900 mb-2">File Upload</h3>
-            <p className="text-sm text-gray-600 mb-4">Upload your file for processing</p>
-            
-            <div
-              className={`file-upload-area ${dragOver ? 'dragover' : ''}`}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              onClick={() => fileInputRef.current?.click()}
-            >
-              <input
-                ref={fileInputRef}
-                type="file"
-                onChange={(e) => {
-                  const selectedFile = e.target.files?.[0];
-                  if (selectedFile) {
-                    handleFileSelect(selectedFile);
-                  }
-                }}
-                className="hidden"
-              />
+        {uploadSuccess && (
+          <div className="flex items-center space-x-2 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <CheckCircle className="h-5 w-5 text-green-600" />
+            <p className="text-green-700">Data uploaded successfully!</p>
+          </div>
+        )}
+
+        {/* File Upload Section */}
+        <div className="max-w-lg mx-auto">
+          <div className="card">
+            <div className="card-content">
+              <h3 className="font-semibold text-gray-900 mb-2">File Upload</h3>
+              <p className="text-sm text-gray-600 mb-4">Upload your file for processing</p>
               
-              {file ? (
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <FileText className="h-8 w-8 text-green-600" />
-                    <div>
-                      <p className="font-medium text-gray-900">{file.name}</p>
-                      <p className="text-sm text-gray-500">
-                        {(file.size / 1024).toFixed(1)} KB
-                      </p>
+              <div
+                className={`file-upload-area ${dragOver ? 'dragover' : ''}`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  onChange={(e) => {
+                    const selectedFile = e.target.files?.[0];
+                    if (selectedFile) {
+                      handleFileSelect(selectedFile);
+                    }
+                  }}
+                  className="hidden"
+                />
+                
+                {file ? (
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <FileText className="h-8 w-8 text-green-600" />
+                      <div>
+                        <p className="font-medium text-gray-900">{file.name}</p>
+                        <p className="text-sm text-gray-500">
+                          {(file.size / 1024).toFixed(1)} KB
+                        </p>
+                      </div>
                     </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        removeFile();
+                      }}
+                      className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
                   </div>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      removeFile();
-                    }}
-                    className="p-1 text-gray-400 hover:text-red-500 transition-colors"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </div>
-              ) : (
-                <div>
-                  <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600 mb-2">
-                    Drop your file here or click to browse
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    All file types supported
-                  </p>
-                </div>
-              )}
+                ) : (
+                  <div>
+                    <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <p className="text-gray-600 mb-2">
+                      Drop your file here or click to browse
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      All file types supported
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Upload Button */}
-      <div className="flex justify-center">
-        <button
-          onClick={handleUpload}
-          disabled={!file || isUploading}
-          className={`btn ${file && !isUploading ? 'btn-primary' : 'btn-secondary'} px-8 py-3 text-base`}
-        >
-          {isUploading ? (
-            <div className="flex items-center space-x-2">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-              <span>Uploading...</span>
-            </div>
-          ) : (
-            'Upload File'
-          )}
-        </button>
+        {/* Upload Button */}
+        <div className="flex justify-center">
+          <button
+            onClick={handleUpload}
+            disabled={!file || isUploading}
+            className={`btn ${file && !isUploading ? 'btn-primary' : 'btn-secondary'} px-8 py-3 text-base`}
+          >
+            {isUploading ? (
+              <div className="flex items-center space-x-2">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                <span>Uploading...</span>
+              </div>
+            ) : (
+              'Upload File'
+            )}
+          </button>
+        </div>
+        </div>
       </div>
     </div>
   );

@@ -19,6 +19,13 @@ This is a modern project management application built with Next.js and FastAPI, 
 - **Date Management**: Start dates and due dates in MM/DD/YYYY format
 - **Billable Hours**: Track time investment per task
 
+### Risk Management
+- **At-Risk Task Identification**: Automatically identifies tasks at risk of missing deadlines
+- **Risk Level Assessment**: Categorizes tasks as High, Medium, or Low risk based on completion and due dates
+- **Risk Summary Dashboard**: Visual cards showing risk distribution across all tasks
+- **Overdue Task Tracking**: Highlights tasks that have passed their due dates
+- **Priority-Based Risk Scoring**: Considers task priority in risk calculations
+
 ### File Upload
 - **Generic File Upload**: Support for all file types
 - **Drag & Drop**: Modern file upload interface
@@ -50,11 +57,12 @@ frontend/src/
 │   └── page.tsx           # Main application with tab routing
 ├── components/
 │   ├── layout/
-│   │   └── Layout.tsx     # Navigation with File Upload, Overview, Task Tracking
+│   │   └── Layout.tsx     # Navigation with File Upload, Overview, Task Tracking, Risk Management
 │   ├── tabs/              # Main application screens
 │   │   ├── FileUpload.tsx # Generic file upload interface
 │   │   ├── Overview.tsx   # Project dashboard with dynamic metrics
-│   │   └── TaskTracking.tsx # Comprehensive task management table
+│   │   ├── TaskTracking.tsx # Comprehensive task management table
+│   │   └── RiskManagement.tsx # At-risk task identification and monitoring
 │   └── ui/                # Reusable UI components
 │       ├── BreakdownTable.tsx # Generic sortable table component
 │       └── ScoreGauge.tsx     # Configurable gauge with percentage option
@@ -100,6 +108,14 @@ backend/
 - **Team Management**: Deposco (orange) vs Client (blue) team indicators
 - **Date Formatting**: Consistent MM/DD/YYYY format throughout
 - **Sortable Interface**: Interactive table with sorting capabilities
+
+### Risk Management
+- **Automated Risk Assessment**: Real-time identification of at-risk tasks based on due dates and completion status
+- **Three-Tier Risk Levels**: High (red), Medium (yellow), Low (green) risk categorization
+- **Risk Summary Cards**: Visual dashboard showing distribution of risk levels across tasks
+- **Overdue Detection**: Automatically flags tasks past their due dates as high risk
+- **Priority-Weighted Scoring**: Considers task priority levels in risk calculations
+- **Days Remaining Tracking**: Clear visualization of time remaining until due dates
 
 ### Formatting System
 - **Currency**: `formatCurrency()` - $1,234.56 format with commas
@@ -153,6 +169,7 @@ python main.py  # Configure for production environment
 1. **File Upload**: Upload any file type with drag & drop support
 2. **Overview**: View project dashboard with real-time metrics
 3. **Task Tracking**: Manage all project tasks with comprehensive details
+4. **Risk Management**: Monitor at-risk tasks and identify potential delays
 
 ### Project Metrics
 - All budget and progress metrics are dynamically calculated from task data

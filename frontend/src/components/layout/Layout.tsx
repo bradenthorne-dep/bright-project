@@ -16,6 +16,7 @@ const navigationItems = [
   { id: 'data-upload', label: 'File Upload' },
   { id: 'overview', label: 'Overview' },
   { id: 'task-tracking', label: 'Task Tracking' },
+  { id: 'risk-management', label: 'Risk Management' },
 ];
 
 export default function Layout({ children, activeSection = 'data-upload', onSectionChange }: LayoutProps) {
@@ -39,7 +40,7 @@ export default function Layout({ children, activeSection = 'data-upload', onSect
     <div className="h-screen bg-gray-50 flex overflow-hidden">
       {/* Sidebar */}
       <aside className="hidden md:flex md:flex-shrink-0">
-        <div className="flex flex-col w-64">
+        <div className="flex flex-col w-58">
           <div className="flex flex-col h-full bg-gray-800">
             {/* Logo Section */}
             <div className="flex items-center justify-center h-16 flex-shrink-0 px-4 bg-gray-900 border-b border-gray-700">
