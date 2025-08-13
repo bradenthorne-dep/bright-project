@@ -80,25 +80,23 @@ def calculate_budget_info(tasks_data: List[Dict[str, Any]], allocated_budget: fl
     Returns:
         Dictionary containing budget information
     """
-    # Calculate total spent budget from billable hours
-    total_billable_hours = sum(task['billable_hours'] for task in tasks_data)
+    # Set spent budget to 0
+    spent_budget = 0
     
     # Handle None values
-    if hourly_rate is not None and allocated_budget is not None:
-        spent_budget = total_billable_hours * hourly_rate
-        remaining_budget = allocated_budget - spent_budget
-        budget_utilization = (spent_budget / allocated_budget) * 100 if allocated_budget > 0 else 0
+    if allocated_budget is not None:
+        remaining_budget = allocated_budget  # Full budget remains
+        budget_utilization = 0  # 0% utilized
     else:
-        spent_budget = None
         remaining_budget = None
         budget_utilization = 0
     
     return {
         "allocated_budget": allocated_budget,
-        "spent_budget": round(spent_budget, 2) if spent_budget is not None else None,
-        "utilized_budget": round(spent_budget, 2) if spent_budget is not None else None,
-        "budget_utilization_percentage": round(budget_utilization, 1),
-        "remaining_budget": round(remaining_budget, 2) if remaining_budget is not None else None
+        "spent_budget": spent_budget,
+        "utilized_budget": spent_budget,
+        "budget_utilization_percentage": budget_utilization,
+        "remaining_budget": remaining_budget
     }
 
 
