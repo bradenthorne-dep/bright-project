@@ -1,0 +1,316 @@
+Deposco Configuration Task List,,,,,,,,,
+Product / Task Group,Task,SOW Notes,In Scope,Post Design - Configuration Notes,Owner,Status,% Complete,,
+Bright Warehouse Configuration (T&M),,,,,,,,,
+Inbound,Receiving,Setup & configuration for receiving process,TRUE,"Data Exhange Inbound Transfer Order:
+- Set in similar way to LPN Receiving Template, the only thing 
+that we will change will be the order type (done)
+-We will need these order statuses and order line statuses to be set ""New"" status since the initial upload (done)",Johnny,Complete,100%,,
+Inbound,Receiving,Setup & configuration for receiving process,TRUE,"Data Exhange Purchase Order LPN Receiving:
+- Set the Current Status as New (done)
+- Default Quantity to 1 (done)
+- Default Status to New (done)
+-Set OL Line status to ""New"" (done)
+- Default type to Purchase Order (done)
+Business Rule to Prevent Users from logging into either or
+if the attribute doesn't match the button they are using (ie: Scan manifest for unit in Case receiving) (done)
+- import type field: Stamp Either ""Case"" or ""Unit"". (done)
+- We will include the lpn field at the order line level (done)",Johnny,Complete,100%,,
+Inbound,Receiving,Setup & configuration for receiving process,TRUE,"Data Exhange Purchase Order:
+- Set the Current Status as Draft (done)
+- Default Quantity to 1 (done)
+- Default Status to Draft (done)
+-Set OL Line status to ""Draft"" (done)
+- Default type to Purchase Order (done)
+-Import Type - Case or Unit (done)
+Business Rule to Prevent Users from logging into either or
+if the attribute doesn't match the button they are using (done)
+- We will need to add columns to for import type to Stanp Either ""Case"" or ""Unit"". (done)
+- We wont include the lpn field at the order line level (done)",Johnny,Complete,100%,,
+Inbound,Receiving,Handheld Rewording Changes,TRUE,"-Remove Item Listbox in receivingitemscreen (done)
+-Rename label “SKU” to “IMEI” in receivingitemscreen (done)
+- Default Quantity to 1 (done)
+- Default Status to Draft (done)
+-Set OL Line status to ""Draft"" (done)
+- Default type to Purchase Order (done)
+- Default Item number to INT101 (done)
+-ReceiveLPNScreen - edit item listbox to include description instead of item.number (done)
+-Rename “Total” label in receiveLPNScreen to “# of Boxes” (done)
+-Default Direct Putaway to NO and remove from screen (done)
+-Remove Summary from identifier input screen (done)
+",Johnny,Complete,100%,,
+Inbound,Receiving,Setup & configuration for receiving process,TRUE,"Button #1: Unit Receiving 
+- Receive by serial number in grocery scan fashion (done)
+- Always auto stage to ""Receiving"" (done)
+- Force receiving to a container (done)
+- Add business rules in the create stock unit post to stamp the 
+serials in the stock unit serial number and in the stock unit inventoryAttribute1 --> We will need to also stamp other attributes outlined in API MDD (done)
+-- business rule in the post of the first screen to validate that unit import type orders only are using the imei receiving (done)
+- After receipt of items, stamp acquisition cost on Stock Unit ",Johnny,Complete,100%,,
+Inbound,Receiving,Setup & configuration for receiving process,TRUE,"Button #2: Case Lot Receiving 
+- Receive by LPN on order line (done)
+- Always auto stage to ""Receiving"" (done)
+- Add business rules in the create stock unit post to stamp the 
+serials and other attributes in OL to respective fields in SU (done)
+serials in the stock unit serial number and in the stock unit inventoryAttribute1 (done)
+--- business rule in the post of the first screen to validate that case import type orders only are using the lpn/box receiving (done)
+- After receipt of items, stamp acquisition cost on Stock Unit (done) ",Johnny,Complete,100%,,
+Inbound,Receiving,Setup & configuration for receiving process,TRUE,"Button #3: Inbound Transfer Receiving 
+- Putaway set to TRUE -- use putaway rules 
+- We will also need to stamp the stock unit with the attributes passed in the OL into the RL and Stock Unit
+
+",Johnny,Complete,100%,,
+Inbound,Repalletize,Will be used to break multi sku case lots (box),TRUE,Business rule to load the item number once the serial number has been scanned,Johnny,Complete,100%,,
+Inbound,Returns,Recieve against customer return orders,TRUE,"Button: RMA Receiving 
+- Order Type = Customer Return (done)
+- Customer Return Button (done)
+- Each Order Lines Needs a Note associated to display to the receiver
+- Reason Codes Below:
+- Defect confirmed (no restocking fee)
+- No defect found (apply restocking fee)
+- Unexpected device (50% restock fee)
+
+- Add field to display the short description",Johnny,Complete,100%,,
+Inbound,Sortation,Sort Devices into ,TRUE,"Move Item Process:
+- See MDD for proposed flow
+- Boxes will be set as locations (done)
+- Business Rules to change the suggested putaway screen based on the attributes in the MDD 
+- XAML text field to input the slot number (done)
+- Business rule to stamp the slot number into the location customAttribute1 after the move has happened (done)
+",Johnny,Complete,,,
+Inbound ,Putaway,"Setup and configuration of putaway processes with anticipated putaway rules by item attributes. 
+Use of new directed putaway process along with use of existing move processes for different staging steps and sortation processes.",TRUE,"- #1: Consolidate by sku and age 
+Consolidate by sku if capacity exists in location and no device in current location is older than x days ( we might need to add a distinct count of item IDs for this)
+
+- #2: Empty location in zone 
+Based on product category or based on zone.
+
+#3: Capacity checks (We might need to add storage details to get the min/max values of that locaton. Whatever is set as the pack doesn't really matter) : 
+Cannot put more than 5 distinct skus to a location 
+No ability to override suggested location 
+Show any location returned by the above in the picking zone(s) (even if stock already exists there) 
+
+- Business rule to blank location customAttribute1 from the box used in sortation once the last sku has been moved
+",Johnny,Complete,100%,"
+Sort type update back to TINC in move back to DT
+","Initial scan: 
+Populate Slot Number textbox and box text box 
+
+If sort exists: 
+populate the existing slot number as message "
+Inventory Management,Stock Unit Tracking,"Use of LPNs, serial number tracking, inventory attribute tracking",TRUE,"Stock Unit Attributes That Need Tracking (We need to check
+If we have enough fields for all of these):
+number = itemNumber
+quantity
+packType = Each
+actionType = ADJ
+businessUnitCode = ECOATM
+processCode:
+CR = Adds Inventory 
+DR = Deducts Inventory 
+adjustmentFacility = LVL
+adjustmentLocation =  stagingLocation (ie Receiving, Device Testing etc.)
+effectiveDate (ie 2025-02-26T13:42:32-05:00)
+serialNumber = ecoATM LPN
+inventoryAttribute1 = IMEI
+inventoryAttribute2 = (4) Encumbrance (Use of “Standardized Codes”)
+BlockList (BL)
+FMI (FMI)
+MDM (MDM)
+CarrierFinancial (CF)
+BlockList + FMI (BL-FMI)
+etc.
+inventoryCondition = Sort Type / Grouping",Johnny,Complete,0%,,
+Inventory Management,Item Tracking,"Use of LPNs, serial number tracking, inventory attribute tracking",TRUE,"Inumber = SKU or item number in Oracle
+businessUnit 
+ID = 73
+businessKey
+code = ECOATM
+salesEnabled = true (Inventory Item Status)
+shippableFlag = true
+inventoryTrackingEnabled = true
+serialTrackingEnabled = true
+cycleCount =true
+originCountry:
+Populated via “Automations” 
+customAttribute1 = modelYear
+customAttribute2 = carrier
+customAttribute3 = capacity
+customAttribute4 = condition
+customAttribute5 = Itemtype (i.e. INT, GSB, PWS)
+size = grade
+styleName = targetSalesChannel
+productCategory = category
+brandName = brand
+name = model
+colorName = colorName
+colorCode = sortableColor
+Populated via “Automations” 
+longDescription = longDescription
+shortDescription = model-color
+externalImageUrl = imageURL",Johnny,Complete,0%,,
+Inventory Management,Cycle Counting,Setup and configuration for cycle count process. Includes adjust inventory process for inventory transfers.,TRUE,"- Cycle Counting will be done using our base processes
+- The user will scan the serial instead of the item number/upc
+-Monthly Cycle Counts → Set cycle count frequency to 30
+- Serial Cycle Count Enhancements  (nice to have):
+Request: Enhance cycle counting using SUPPORT_SERIAL_NUMBER_SCAN to handle unexpected serial numbers found in a location. (This is on Daniel)
+- Make sure that you validate scenarios where there are multiple serials for one same SKU. Validate that scanning one serial doesnt count all of them.",Johnny,Complete,0%,,
+Inventory Management,Adjust Inventory,We will use it to decrement inventory for the system,TRUE,"Make The following cosmetic changes to the Buttons:
+Consume by Item = Consume by Unit
+Consume by LPN = Consume by Box
+Consume by Location = Consume by Location 
+Create Inventory → Remove completely from screen 
+
+We will add the following reason codes in the SI field:
+Reason Codes: 
+Transfer from Wholesale 
+Write off 
+Etc. 
+
+We will need to configure the item description to show instead 
+of the item number. This might not be possible through base. Lets assess
+If this is really necessary because we would need to override the screen",Johnny,Complete,,,
+Outbound ,Outbound Order Management,"- Anticipated support for Automations setup and configuration.
+- Return to Vendor order creation/processing.",TRUE,"- Address Validations -> FedEx setup NTH (The tenant script function only applies to Domestic orders --> The condition should be oh.shipToCountry ==""US""
+- Lookup table to store the different account numbers and write POI rules to trigger stamping different account numbers based on the weight or count of containers
+Lookup Table Columns: Trading Partner Code, Account Type, Ship Via. Rule for # of containers is = Total Unit Count/50
+- Hold status if there is no sale price on the order line (will not use item level unit price) 
+- Automations: Set Country of Origin to CN if Apple, If Samsung then KR 
+- Want unit price to come from Order, not from Item
+
+",Johnny,,0%,,
+Outbound ,Order Release Profile,Order Release Profile Configuration,TRUE,"Order Release Profile: Single Order Picking
+Oldest Stock then Pick Sequence 
+All stock on order to fulfill ",Johnny,,0%,,
+Outbound ,Pickwave Management,"One waving profile, work group splits by units and zone (where zone = product category, phones vs tablets), one order per wave",TRUE,"- Name: PWS-externalOrderNumber-TPCode-BuildTimeWithSeconds
+- Split work group by zones 
+- Max 50 tasks in phone zone  group all the phone zones so they dont get split
+- Max 10 tasks in tablet zone. group all the phone zones so they dont get split
+-  Max 3 tasks in case lot zone
+- Repurpose Description Boolean field to decide if it is priority or not. This will need to bump up the wave if this field is checked
+- Add External Order Number to the pickwave instead of Deposco Order Number
+- Cellphone, Tablet & Case Lots Zones to split during waving
+
+- Second wave profile: Repicks 
+Back order with wave attached and partial pick 
+",Johnny,,0%,,
+Ourbound ,Build and Release Scheduler,Build and Release Scheduler,TRUE,"Sort orders by created date (oldest to newest)  --> You will have to modify the config manager query for this
+Scheduler to run at 7am daily (ecoATM will change)",,,,,
+Outbound ,Picking ,Setup and configuration for single scan picking process,TRUE,"Pickwave Selection Display Screen: 
+- Sort by created date (oldest to newest) but put orders with “priority” flag ability on pickwave 
+- Single Scan Picking with Split Screen + Image Display 
+- Opportunistic count in single scan picking with threshold of 1 
+- Picking into the shipping container itself
+- If there is an exception then we will set the stock unit into a hold status instead of the location
+-Pregenerate picking LPN numbers 
+-Stage boxes after picking. Step where invoices are sent (Generic Shipping Locations)
+
+Screen Changes: 
+- Change item number to description
+- Remove pick quantity since it will always be 1
+- Add color 
+- Remove Available Quantity
+- Display count of boxes (count of workgroup in the order)
+- Webhook to trigger message to Oracle --> This will be on Brian to design
+
+",Johnny,,0%,,
+Outbound ,Inbound Transfer Order,Set up Build Transfer Order Process,TRUE,"-User will build up the transfer order by scanning individual LPNs to a TO
+- We will be shipping to facility RTV and the transfer reason code should be Return to Vendor
+- We need to generate shipping labels for these TOs
+- Dynamically change the Destination location for the TO based on the Vendor (TP). Still thinking on how to do this ",,,,,
+Outbound ,Single Scan Packing,"- Setup and configuration for packing and shipping processes
+- Packing w/ a stage option, attc to close out",TRUE,"- All else through single scan packing with close ship/generate ship label = false 
+- Stage after pack to a location in PWS Staging Zone – if first work group finished in an order can stage anywhere in zone else stage to location where other boxes for order are staged (We will need to add business rules to tell the user where to stage the box. This will be the auditing step
+
+- Screen Change – Add a total count of items in box below the listbox. Just a text field for the count 
+Like Total: 50 in blue makes sense
+Stage after SSPack with logic identified above 
+Remove dims screen 
+
+",Johnny,,0%,,
+Outbound ,Single Container Packing (Parcel Only) ,"- Setup and configuration for packing and shipping processes
+- Used for Case Lots",TRUE,"- Case Lots will go through single container packing
+- Create parcel labels but still do not close 
+- Autopopulate carton type
+- Use weight for scale 
+",Johnny,,0%,,
+Outbound ,Shipping,"- Setup and configuration for packing and shipping processes
+- Packing w/ a stage option, attc to close out",TRUE,"- No signature required 
+- No Saturday Shipping 
+- TP flag for insurance required 
+- LPN and Order Number for label in shipping option (FedEx) 
+- Interrupt/hold flag (Rules to prevent user from shipping an orer that has the interrups/hold flag enabled)
+- Add “Payment Status” field that validates if an order is ready to be packed (Add rule to prevent order from being packed out if Payment status is not there)
+- We need to set a dashboard to display which orders can go through the generation of label process
+
+",Johnny,,0%,,
+Outbound ,Assign Trip To Containers,- Process To close out the shipments at the end of day,TRUE,"Assign Trip Button #1: 
+“Parcel Assign Trip” → select carrier as dock door, scan box license plate to pallet – keep adding to it throughout the day → close when truck is gone 
+- Add business rules to prevent assigning orders with a specific ship vendor to incorrect door. Eg: Fedex goes to FedEx",Johnny,,0%,,
+Outbound ,Assign Trip To Containers,- Process To close out the shipments at the end of day,TRUE,"Assign Trip Button #2: 
+- “Freight Assign Trip” → more common scenario 
+- Need a button to print BOL outside of Assign Trip based on LPN 
+
+",Johnny,,0%,,
+Outbound ,Rate Shopping,Rate shopping at packing across licensed parcel carriers,TRUE,- We need to decide when we need rate shopping to be triggered,Johnny,,0%,,
+Outbound ,Void Labels,Void Labels,TRUE,,,,,,
+Other,Shipping Documents/Labels,(no notes),TRUE,"- Shipping Labels after single container packing
+- BOL at the end of freight shipping (ATTC Button 2)",Johnny,,0%,,
+Setup,System Admin,(no notes),TRUE,,Johnny,,0%,,
+Setup,Data Maintenence ,"Support for preliminary master data setup and data exchange import templates. 
+- locations and zones
+- inbound orders
+- items and packs",TRUE,"Data Exchanges for Manifest especified at the first rows of this file
+- Storage Upload
+- Location Zones
+- Stock Unit
+Printer Resources and Assignments
+- Item Upload",Johnny,,0%,,
+Bright Socket Configuration (T&M),,,,,,,,,
+Configure,API Support,"Support for use of Deposco's REST API by ecoATM team who will be building the connection between Deposco and ecoATM systems.
+Refer to integration diagram for endpoints in scope.
+***Includes an additional 20 hours for new API for serialized item grading conversions.
+***Any additional hours needed will require SOW/CR",TRUE,"This is on Brian. Once we have the APIs built up we will be able to test some scenarios. 
+We will communicate with you once this is ready for you to test through postman",Brian,,0%,,
+Configure,UPS,(no notes),TRUE,On ecoATM to set up carrier account ,ECOATM,In Progress,50%,,
+Configure,FedEx,(no notes),TRUE,On ecoATM to set up carrier account ,ECOATM,In Progress,50%,,
+Configure,DHL,(no notes),TRUE,On ecoATM to set up carrier account ,ECOATM,In Progress,50%,,
+Configure,Stamps.com (USPS),(no notes),TRUE,On ecoATM to set up carrier account ,ECOATM,In Progress,50%,,
+Bright Performance Configuration (T&M),,,,,,,,,
+Standard Dashboard and Reporting,Company Reports/Report Builder,(no notes),TRUE,"Scheduled Email Reports
+Report of encumbrance and count of associated items
+Aging inventory report for each of the testing locations 
+Report of units/IMEI in contact sales location with the incumbrance detail and Manifest Number
+
+Report Builder Reports
+Orders shipped by date range with filters for zones.
+Stock on hand reports with filters for zones and locations
+Count of items on order compared to count of items in container for Items in Contact Sales Location Report
+
+
+
+",,,0%,,
+Standard Dashboard and Reporting,Report Scheduling,(no notes),TRUE,ECOATM to decide which reports and when to send the reports,,,0%,,
+Standard Dashboard and Reporting,Dashboards,(no notes),TRUE,"We will need to set the following dashboards:
+- Inbound
+- Outbound
+- Sortation
+- PAcking/Shipping
+- Inventory
+
+Requests of Widgets
+Orders Shipped per Day
+Shipments created per Day
+Aged Orders
+Number of units and orders unshipped
+Open orders
+Orders on hold
+Stock Unit On Hold
+Sale Summary widget 
+Count of items in each process in warehouse (testing, received, sorted) (Report of units/IMEI in contact sales location with the incumbrance detail and Manifest Number)
+Summary 
+Drilled in version
+Ready to ship orders
+
+",,,0%,,
+Dashboard and Reporting add-on,Report Scheduling,(no notes),TRUE,,,,0%,,
+Dashboard and Reporting add-on,Data Archive,(no notes),TRUE,We will dump data at the EOD to their snowflake instance. We will need to make sure we set up the connection in a successful way. Check CLPK for reference,,,0%,,
