@@ -38,27 +38,7 @@ export default function Home({ onSectionChange }: HomeProps) {
       try {
         setLoading(true);
         
-        // Try to fetch data from API
-        try {
-          const data = await apiService.getProjectOverview();
-          
-          // Transform the data into our ProjectSummary format
-          const projectSummary: ProjectSummary = {
-            client: data.project_info.client,
-            projectManager: data.project_info.project_manager,
-            startDate: data.project_info.start_date,
-            projectedGoLiveDate: data.project_info.projected_go_live,
-            status: data.project_info.status,
-            currentPhase: data.project_info.current_phase,
-            completionPercentage: data.task_metrics.completion_percentage,
-          };
-
-          setProjects([projectSummary]);
-          setError(null);
-        } catch (apiError) {
-          console.error('API error:', apiError);
-          
-          // If API is not available, use fallback sample data
+        // Define the fallback sample data
           const sampleData: ProjectSummary[] = [
             {
               client: "TechCorp Solutions",
