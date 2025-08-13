@@ -8,6 +8,7 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Dict, Any, Optional
+from fastapi import Body
 import os
 import logging
 import json
@@ -56,6 +57,37 @@ class AgentInfo(BaseModel):
     description: str
     model: str
     enabled: bool
+
+class TaskUpdate(BaseModel):
+    id: int
+    category: Optional[str] = None
+    subcategory: Optional[str] = None
+    task_name: Optional[str] = None
+    description: Optional[str] = None
+    owner: Optional[str] = None
+    team: Optional[str] = None
+    status: Optional[str] = None
+    priority: Optional[str] = None
+    start_date: Optional[str] = None
+    due_date: Optional[str] = None
+    completion_percentage: Optional[int] = None
+    comments: Optional[str] = None
+    billable_hours: Optional[float] = None
+    
+class TaskCreate(BaseModel):
+    category: str
+    subcategory: str
+    task_name: str
+    description: Optional[str] = ""
+    owner: str
+    team: str
+    status: str
+    priority: str
+    start_date: str
+    due_date: str
+    completion_percentage: int = 0
+    comments: Optional[str] = ""
+    billable_hours: float = 0
 
 # Configure CORS
 app.add_middleware(
@@ -274,6 +306,112 @@ async def get_tasks(project: Optional[str] = None):
         raise HTTPException(status_code=500, detail="Error parsing tasks data file")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading tasks data: {str(e)}")
+
+@app.patch("/api/tasks")
+async def update_task(task_update: TaskUpdate, project: Optional[str] = None):
+    """Update a task in tasks.json"""
+    try:
+        file_path = ''
+        if project:
+            # Update task in specific project
+            project_dir = f"../project_data/raw/{project}"
+            if not os.path.exists(project_dir):
+                raise HTTPException(status_code=404, detail=f"Project '{project}' not found")
+            
+            # Find the tracker JSON file
+            json_files = [f for f in os.listdir(project_dir) if f.endswith('.json') and 'tracker' in f.lower()]
+            if not json_files:
+                raise HTTPException(status_code=404, detail=f"No tracker file found for project '{project}'")
+            
+            file_path = os.path.join(project_dir, json_files[0])
+        else:
+            # Default behavior - update tasks.json
+            file_path = 'tasks.json'
+        
+        # Load the current tasks
+        with open(file_path, 'r') as file:
+            tasks_data = json.load(file)
+        
+        # Find and update the task
+        task_found = False
+        for task in tasks_data:
+            if task["id"] == task_update.id:
+                task_found = True
+                
+                # Update only the fields that were provided
+                update_dict = task_update.dict(exclude_unset=True)
+                for key, value in update_dict.items():
+                    if key != "id" and value is not None:  # Skip id field and None values
+                        task[key] = value
+                break
+        
+        if not task_found:
+            raise HTTPException(status_code=404, detail=f"Task with ID {task_update.id} not found")
+        
+        # Save the updated tasks back to file
+        with open(file_path, 'w') as file:
+            json.dump(tasks_data, file, indent=2)
+        
+        return {"message": f"Task {task_update.id} updated successfully"}
+    except FileNotFoundError:
+        if project:
+            raise HTTPException(status_code=404, detail=f"Tasks data file not found for project '{project}'")
+        else:
+            raise HTTPException(status_code=404, detail="Tasks data file not found")
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=500, detail="Error parsing tasks data file")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error updating task: {str(e)}")
+
+@app.post("/api/tasks")
+async def create_task(task_create: TaskCreate, project: Optional[str] = None):
+    """Create a new task in tasks.json"""
+    try:
+        file_path = ''
+        if project:
+            # Add task to specific project
+            project_dir = f"../project_data/raw/{project}"
+            if not os.path.exists(project_dir):
+                raise HTTPException(status_code=404, detail=f"Project '{project}' not found")
+            
+            # Find the tracker JSON file
+            json_files = [f for f in os.listdir(project_dir) if f.endswith('.json') and 'tracker' in f.lower()]
+            if not json_files:
+                raise HTTPException(status_code=404, detail=f"No tracker file found for project '{project}'")
+            
+            file_path = os.path.join(project_dir, json_files[0])
+        else:
+            # Default behavior - update tasks.json
+            file_path = 'tasks.json'
+        
+        # Load the current tasks
+        with open(file_path, 'r') as file:
+            tasks_data = json.load(file)
+        
+        # Find the next available ID
+        next_id = max([task.get("id", 0) for task in tasks_data], default=0) + 1
+        
+        # Create the new task
+        new_task = task_create.dict()
+        new_task["id"] = next_id
+        
+        # Add the new task to the list
+        tasks_data.append(new_task)
+        
+        # Save the updated tasks back to file
+        with open(file_path, 'w') as file:
+            json.dump(tasks_data, file, indent=2)
+        
+        return {"message": f"Task created successfully with ID {next_id}"}
+    except FileNotFoundError:
+        if project:
+            raise HTTPException(status_code=404, detail=f"Tasks data file not found for project '{project}'")
+        else:
+            raise HTTPException(status_code=404, detail="Tasks data file not found")
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=500, detail="Error parsing tasks data file")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error creating task: {str(e)}")
 
 @app.get("/api/risk-assessment")
 async def get_risk_assessment():

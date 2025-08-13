@@ -69,6 +69,23 @@ export interface Task {
   billable_hours: number;
 }
 
+export interface TaskUpdate {
+  id: number;
+  category?: string;
+  subcategory?: string;
+  task_name?: string;
+  description?: string;
+  owner?: string;
+  team?: string;
+  status?: string;
+  priority?: string;
+  start_date?: string;
+  due_date?: string;
+  completion_percentage?: number;
+  comments?: string;
+  billable_hours?: number;
+}
+
 export interface TasksResponse {
   tasks: Task[];
 }
@@ -99,6 +116,26 @@ export interface RiskAssessmentResponse {
   };
 }
 
+
+export interface TaskUpdateResponse {
+  message: string;
+}
+
+export interface TaskCreate {
+  category: string;
+  subcategory: string;
+  task_name: string;
+  description?: string;
+  owner: string;
+  team: string;
+  status: string;
+  priority: string;
+  start_date: string;
+  due_date: string;
+  completion_percentage: number;
+  comments?: string;
+  billable_hours: number;
+}
 
 // API functions
 export const apiService = {
@@ -159,6 +196,19 @@ export const apiService = {
     return response.data;
   },
 
+  // Update a task
+  async updateTask(taskUpdate: TaskUpdate, project?: string): Promise<TaskUpdateResponse> {
+    const params = project ? { project } : {};
+    const response = await api.patch('/api/tasks', taskUpdate, { params });
+    return response.data;
+  },
+
+  // Create a new task
+  async createTask(taskCreate: TaskCreate, project?: string): Promise<TaskUpdateResponse> {
+    const params = project ? { project } : {};
+    const response = await api.post('/api/tasks', taskCreate, { params });
+    return response.data;
+  },
 };
 
 export default apiService;
