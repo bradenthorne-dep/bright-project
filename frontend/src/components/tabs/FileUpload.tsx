@@ -19,9 +19,14 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = (selectedFile: File) => {
-    // Validate file type - only accept PDF files
-    if (selectedFile.type !== 'application/pdf') {
-      setUploadError('Only PDF files are supported. Please select a PDF file.');
+    // Validate file type - accept PDF and DOCX files
+    const supportedTypes = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ];
+    
+    if (!supportedTypes.includes(selectedFile.type)) {
+      setUploadError('Only PDF and DOCX files are supported. Please select a PDF or DOCX file.');
       return;
     }
     
@@ -109,7 +114,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
           <div className="card">
             <div className="card-content">
               <h3 className="font-semibold text-gray-900 mb-2">Design Document Upload</h3>
-              <p className="text-sm text-gray-600 mb-4">Upload Design Document (PDF)</p>
+              <p className="text-sm text-gray-600 mb-4">Upload Design Document (PDF or DOCX)</p>
               
               <div
                 className={`file-upload-area ${dragOver ? 'dragover' : ''}`}
@@ -121,7 +126,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
                 <input
                   ref={fileInputRef}
                   type="file"
-                  accept=".pdf,application/pdf"
+                  accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                   onChange={(e) => {
                     const selectedFile = e.target.files?.[0];
                     if (selectedFile) {
@@ -159,7 +164,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
                       Drop your document here or click to browse
                     </p>
                     <p className="text-sm text-gray-500">
-                      PDF files only (.pdf)
+                      PDF and DOCX files (.pdf, .docx)
                     </p>
                   </div>
                 )}
@@ -181,7 +186,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
                 <span>Uploading...</span>
               </div>
             ) : (
-              'Upload PDF'
+              'Upload Document'
             )}
           </button>
         </div>
