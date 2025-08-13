@@ -188,11 +188,11 @@ export default function Home({ onSectionChange }: HomeProps) {
             onClick={() => handleProjectClick(project.client)}
             className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
           >
-            <div className="h-16 bg-gray-800 flex items-center justify-center">
+            <div className="h-20 bg-gray-800 flex items-center justify-center p-4">
               <img 
                 src={getProjectLogo(project.client)} 
                 alt={getProjectLogoAlt(project.client)} 
-                className="w-[90%] h-[90%] object-cover"
+                className="w-auto h-auto max-h-[80%] max-w-[80%] object-contain"
               />
             </div>
             <div className="p-6 space-y-4">
