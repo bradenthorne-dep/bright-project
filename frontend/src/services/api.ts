@@ -73,6 +73,16 @@ export interface TasksResponse {
   tasks: Task[];
 }
 
+export interface Project {
+  id: string;
+  name: string;
+  tracker_file: string;
+}
+
+export interface ProjectsResponse {
+  projects: Project[];
+}
+
 export interface RiskTask extends Task {
   days_remaining: number;
   days_remaining_formatted: string;
@@ -111,15 +121,35 @@ export const apiService = {
     return response.data;
   },
 
+  // MSA file upload
+  async uploadMsaFile(file: File): Promise<FileUploadResponse> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await api.post('/api/upload-msa', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  },
+
   // Get project overview data
   async getProjectOverview(): Promise<ProjectOverviewResponse> {
     const response = await api.get('/api/project-overview');
     return response.data;
   },
 
+  // Get available projects
+  async getProjects(): Promise<ProjectsResponse> {
+    const response = await api.get('/api/projects');
+    return response.data;
+  },
+
   // Get task tracking data
-  async getTasks(): Promise<TasksResponse> {
-    const response = await api.get('/api/tasks');
+  async getTasks(project?: string): Promise<TasksResponse> {
+    const params = project ? { project } : {};
+    const response = await api.get('/api/tasks', { params });
     return response.data;
   },
 

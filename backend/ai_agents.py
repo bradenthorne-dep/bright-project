@@ -1,3 +1,6 @@
+"""
+Consolidated AI Agent System for document processing and information extraction.
+"""
 import asyncio
 import json
 import os
@@ -61,7 +64,6 @@ class AIAgentSystem:
         )
         
         return response.content[0].text
-    
     
     async def _execute_agent(self, agent_id: str, agent_config: Dict[str, Any]) -> Dict[str, Any]:
         """Execute a single agent."""
@@ -214,22 +216,47 @@ class AIAgentSystem:
             json.dump(self.config, f, indent=2)
 
 
-async def main():
-    """Example usage of the AI Agent System."""
-    agent_system = AIAgentSystem()
-    
-    # List available agents
-    agents = agent_system.list_agents()
-    print("Available agents:")
-    for agent in agents:
-        status = "✓" if agent["enabled"] else "✗"
-        print(f"  {status} {agent['id']}: {agent['name']}")
-    
-    # Execute the project info extractor
-    print("\nExecuting project_info_extractor...")
-    result = await agent_system.execute_agent("project_info_extractor")
-    print(f"Result: {result}")
+async def run_agents() -> bool:
+    """Execute all enabled AI agents."""
+    try:
+        print("Initializing AI Agent System...")
+        system = AIAgentSystem()
+        
+        print("\nAvailable agents:")
+        agents = system.list_agents()
+        for agent in agents:
+            status = "Enabled" if agent["enabled"] else "Disabled"
+            print(f"  - {agent['id']}: {agent['name']} ({agent['model']}) - {status}")
+        
+        enabled_agents = [agent for agent in agents if agent["enabled"]]
+        all_success = True
+        
+        for agent in enabled_agents:
+            print(f"\nExecuting {agent['id']}...")
+            result = await system.execute_agent(agent['id'])
+            
+            print(f"Status: {result['status']}")
+            if result['status'] == 'success':
+                print(f"Success! Output saved to: {result.get('output_file', 'N/A')}")
+                if result.get('result_preview'):
+                    print(f"Preview: {result['result_preview'][:100]}...")
+            else:
+                print(f"Failed: {result.get('error', 'Unknown error')}")
+                all_success = False
+        
+        return all_success
+        
+    except Exception as e:
+        print(f"Execution failed with error: {e}")
+        return False
+
+
+def main():
+    """Main entry point for running agents."""
+    success = asyncio.run(run_agents())
+    return success
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    success = main()
+    exit(0 if success else 1)
