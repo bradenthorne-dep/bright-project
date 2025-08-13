@@ -16,7 +16,7 @@ This is a modern project management application built with Next.js and FastAPI, 
 - **Comprehensive Task Tracking**: 10+ task attributes including status, priority, and completion
 - **Team Assignment**: Track Deposco vs Client team responsibilities
 - **Progress Visualization**: Completion percentages with progress bars
-- **Date Management**: Start dates and due dates in MM/DD/YYYY format
+- **Date Management**: Start dates and due dates
 - **Billable Hours**: Track time investment per task
 
 ### Risk Management
@@ -121,7 +121,6 @@ backend/
 - **Comprehensive Tracking**: 11 columns including category, subcategory, status, priority
 - **Visual Indicators**: Color-coded status badges and progress bars
 - **Team Management**: Deposco (orange) vs Client (blue) team indicators
-- **Date Formatting**: Consistent MM/DD/YYYY format throughout
 - **Sortable Interface**: Interactive table with sorting capabilities
 
 ### Risk Management
