@@ -1,6 +1,6 @@
 DOCX Text Extraction Results
-Original File: Copy of Gerber Childrenswear Master Design Document  0325.docx
-Extracted: 2025-08-13 09:59:12
+Original File: Gerber Design Document.docx
+Extracted: 2025-08-13 15:56:48
 Total Paragraphs: 1085
 Total Tables: 20
 ==================================================
