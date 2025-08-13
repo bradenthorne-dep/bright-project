@@ -10,6 +10,7 @@ import RiskManagement from '@/components/tabs/RiskManagement';
 
 export default function DiagnosticPage() {
   const [activeSection, setActiveSection] = useState('home');
+  const [selectedProject, setSelectedProject] = useState('');
 
   const setDataAvailable = () => {
     // Data availability callback - currently unused
@@ -23,6 +24,10 @@ export default function DiagnosticPage() {
     setActiveSection(section);
   };
 
+  const handleProjectChange = (project: string) => {
+    setSelectedProject(project);
+  };
+
   const renderActiveSection = () => {
     switch (activeSection) {
       case 'home':
@@ -32,7 +37,7 @@ export default function DiagnosticPage() {
       case 'overview':
         return <Overview onSectionChange={handleNavigationChange} />;
       case 'task-tracking':
-        return <TaskTracking onSectionChange={handleNavigationChange} />;
+        return <TaskTracking onSectionChange={handleNavigationChange} selectedProject={selectedProject} />;
       case 'risk-management':
         return <RiskManagement onSectionChange={handleNavigationChange} />;
       default:
@@ -41,7 +46,12 @@ export default function DiagnosticPage() {
   };
 
   return (
-    <Layout activeSection={activeSection} onSectionChange={handleNavigationChange}>
+    <Layout 
+      activeSection={activeSection} 
+      onSectionChange={handleNavigationChange}
+      selectedProject={selectedProject}
+      onProjectChange={handleProjectChange}
+    >
       {renderActiveSection()}
     </Layout>
   );

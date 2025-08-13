@@ -158,15 +158,59 @@ async def get_project_overview():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading project overview: {str(e)}")
 
-@app.get("/api/tasks")
-async def get_tasks():
-    """Get all task tracking data from tasks.json"""
+@app.get("/api/projects")
+async def get_projects():
+    """Get list of available projects"""
     try:
-        with open('tasks.json', 'r') as file:
-            tasks_data = json.load(file)
+        project_data_dir = "../project_data/raw"
+        projects = []
+        
+        if os.path.exists(project_data_dir):
+            for item in os.listdir(project_data_dir):
+                project_path = os.path.join(project_data_dir, item)
+                if os.path.isdir(project_path):
+                    # Look for JSON tracker files in the project directory
+                    json_files = [f for f in os.listdir(project_path) if f.endswith('.json') and 'tracker' in f.lower()]
+                    if json_files:
+                        projects.append({
+                            "id": item,
+                            "name": item,
+                            "tracker_file": json_files[0]
+                        })
+        
+        return {"projects": projects}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading projects: {str(e)}")
+
+@app.get("/api/tasks")
+async def get_tasks(project: Optional[str] = None):
+    """Get all task tracking data from tasks.json or project-specific data"""
+    try:
+        if project:
+            # Load tasks from specific project
+            project_dir = f"../project_data/raw/{project}"
+            if not os.path.exists(project_dir):
+                raise HTTPException(status_code=404, detail=f"Project '{project}' not found")
+            
+            # Find the tracker JSON file
+            json_files = [f for f in os.listdir(project_dir) if f.endswith('.json') and 'tracker' in f.lower()]
+            if not json_files:
+                raise HTTPException(status_code=404, detail=f"No tracker file found for project '{project}'")
+            
+            tracker_file = os.path.join(project_dir, json_files[0])
+            with open(tracker_file, 'r') as file:
+                tasks_data = json.load(file)
+        else:
+            # Default behavior - load from tasks.json
+            with open('tasks.json', 'r') as file:
+                tasks_data = json.load(file)
+        
         return {"tasks": tasks_data}
     except FileNotFoundError:
-        raise HTTPException(status_code=404, detail="Tasks data file not found")
+        if project:
+            raise HTTPException(status_code=404, detail=f"Tasks data file not found for project '{project}'")
+        else:
+            raise HTTPException(status_code=404, detail="Tasks data file not found")
     except json.JSONDecodeError:
         raise HTTPException(status_code=500, detail="Error parsing tasks data file")
     except Exception as e:

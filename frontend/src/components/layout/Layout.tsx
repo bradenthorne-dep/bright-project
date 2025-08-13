@@ -3,13 +3,17 @@
 import { useState, useEffect } from 'react';
 import { 
   Menu,
-  X
+  X,
+  ChevronDown
 } from 'lucide-react';
+import { apiService, Project, ProjectsResponse } from '@/services/api';
 
 interface LayoutProps {
   children: React.ReactNode;
   activeSection?: string;
   onSectionChange?: (section: string) => void;
+  selectedProject?: string;
+  onProjectChange?: (project: string) => void;
 }
 
 const navigationItems = [
@@ -20,20 +24,45 @@ const navigationItems = [
   { id: 'risk-management', label: 'Risk Management' },
 ];
 
-export default function Layout({ children, activeSection = 'home', onSectionChange }: LayoutProps) {
+export default function Layout({ children, activeSection = 'home', onSectionChange, selectedProject = '', onProjectChange }: LayoutProps) {
   const [currentSection, setCurrentSection] = useState(activeSection);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [projectsLoading, setProjectsLoading] = useState(false);
 
   // Sync internal state with prop changes
   useEffect(() => {
     setCurrentSection(activeSection);
   }, [activeSection]);
 
+  // Load projects on component mount
+  useEffect(() => {
+    loadProjects();
+  }, []);
+
+  const loadProjects = async () => {
+    setProjectsLoading(true);
+    try {
+      const data: ProjectsResponse = await apiService.getProjects();
+      setProjects(data.projects);
+    } catch (err: any) {
+      console.error('Failed to load projects:', err);
+    } finally {
+      setProjectsLoading(false);
+    }
+  };
+
   const handleSectionClick = (sectionId: string) => {
     setCurrentSection(sectionId);
     setIsMobileMenuOpen(false);
     if (onSectionChange) {
       onSectionChange(sectionId);
+    }
+  };
+
+  const handleProjectChange = (projectId: string) => {
+    if (onProjectChange) {
+      onProjectChange(projectId);
     }
   };
 
@@ -47,9 +76,9 @@ export default function Layout({ children, activeSection = 'home', onSectionChan
             <div className="flex items-center justify-center h-16 flex-shrink-0 px-4 bg-gray-900 border-b border-gray-700">
               <div className="flex items-center">
                 <img 
-                  src="/deposco_primary-logo_color_rev.svg" 
-                  alt="Deposco" 
-                  className="h-8 w-auto"
+                  src="/bright_project_main_logo.png" 
+                  alt="Bright Project" 
+                  className="h-12 w-auto max-w-full object-contain"
                 />
               </div>
             </div>
@@ -111,12 +140,12 @@ export default function Layout({ children, activeSection = 'home', onSectionChan
             <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
               <div className="flex-shrink-0 flex items-center px-4 mb-5">
                 <img 
-                  src="/deposco_primary-logo_color_rev.svg" 
-                  alt="Deposco" 
+                  src="/bright_project_main_logo.png" 
+                  alt="Bright Project" 
                   className="h-6 w-auto"
                 />
                 <div className="ml-2 text-xs text-gray-300 font-medium">
-                  Diagnostic
+                  Bright Project
                 </div>
               </div>
               <nav className="mt-5 px-2 space-y-1">
@@ -157,10 +186,44 @@ export default function Layout({ children, activeSection = 'home', onSectionChan
             <div className="flex-1 px-4 flex justify-between items-center">
               <div className="flex items-center">
                 <img 
-                  src="/deposco_primary-logo_color_pos.svg" 
-                  alt="Deposco" 
+                  src="/bright_project_main_logo.png" 
+                  alt="Bright Project" 
                   className="h-6 w-auto"
                 />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Project Selection Header */}
+        <div className="bg-white border-b border-gray-200 px-4 sm:px-6 md:px-8 py-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="relative">
+                  <select
+                    value={selectedProject}
+                    onChange={(e) => handleProjectChange(e.target.value)}
+                    className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 appearance-none bg-white pr-10 min-w-[200px]"
+                    disabled={projectsLoading}
+                  >
+                    <option value="">All Projects (Default)</option>
+                    {projects.map((project) => (
+                      <option key={project.id} value={project.id}>
+                        {project.name}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                </div>
+                {projectsLoading && (
+                  <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-orange-500"></div>
+                )}
+                {selectedProject && (
+                  <span className="text-sm text-gray-600">
+                    Viewing: <span className="font-medium">{projects.find(p => p.id === selectedProject)?.name}</span>
+                  </span>
+                )}
               </div>
             </div>
           </div>
