@@ -111,6 +111,19 @@ export const apiService = {
     return response.data;
   },
 
+  // MSA file upload
+  async uploadMsaFile(file: File): Promise<FileUploadResponse> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await api.post('/api/upload-msa', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  },
+
   // Get project overview data
   async getProjectOverview(): Promise<ProjectOverviewResponse> {
     const response = await api.get('/api/project-overview');

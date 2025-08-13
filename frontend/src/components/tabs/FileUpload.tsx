@@ -10,15 +10,22 @@ interface FileUploadTabProps {
 }
 
 export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileUploadTabProps) {
-  const [file, setFile] = useState<File | null>(null);
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadSuccess, setUploadSuccess] = useState(false);
-  const [uploadError, setUploadError] = useState<string | null>(null);
-  const [dragOver, setDragOver] = useState(false);
+  const [designFile, setDesignFile] = useState<File | null>(null);
+  const [msaFile, setMsaFile] = useState<File | null>(null);
+  const [isUploadingDesign, setIsUploadingDesign] = useState(false);
+  const [isUploadingMsa, setIsUploadingMsa] = useState(false);
+  const [designUploadSuccess, setDesignUploadSuccess] = useState(false);
+  const [msaUploadSuccess, setMsaUploadSuccess] = useState(false);
+  const [designUploadError, setDesignUploadError] = useState<string | null>(null);
+  const [msaUploadError, setMsaUploadError] = useState<string | null>(null);
+  const [designDragOver, setDesignDragOver] = useState(false);
+  const [msaDragOver, setMsaDragOver] = useState(false);
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const designFileInputRef = useRef<HTMLInputElement>(null);
+  const msaFileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileSelect = (selectedFile: File) => {
+  // Design Document file handlers
+  const handleDesignFileSelect = (selectedFile: File) => {
     // Validate file type - accept PDF and DOCX files
     const supportedTypes = [
       'application/pdf',
@@ -26,57 +33,122 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
     ];
     
     if (!supportedTypes.includes(selectedFile.type)) {
-      setUploadError('Only PDF and DOCX files are supported. Please select a PDF or DOCX file.');
+      setDesignUploadError('Only PDF and DOCX files are supported. Please select a PDF or DOCX file.');
       return;
     }
     
-    setFile(selectedFile);
-    setUploadError(null);
-    setUploadSuccess(false);
+    setDesignFile(selectedFile);
+    setDesignUploadError(null);
+    setDesignUploadSuccess(false);
   };
 
-  const handleDragOver = (e: React.DragEvent) => {
+  const handleDesignDragOver = (e: React.DragEvent) => {
     e.preventDefault();
-    setDragOver(true);
+    setDesignDragOver(true);
   };
 
-  const handleDragLeave = () => {
-    setDragOver(false);
+  const handleDesignDragLeave = () => {
+    setDesignDragOver(false);
   };
 
-  const handleDrop = (e: React.DragEvent) => {
+  const handleDesignDrop = (e: React.DragEvent) => {
     e.preventDefault();
-    setDragOver(false);
+    setDesignDragOver(false);
     
     const droppedFiles = e.dataTransfer.files;
     if (droppedFiles.length > 0) {
-      handleFileSelect(droppedFiles[0]);
+      handleDesignFileSelect(droppedFiles[0]);
     }
   };
 
-  const removeFile = () => {
-    setFile(null);
+  const removeDesignFile = () => {
+    setDesignFile(null);
   };
 
-  const handleUpload = async () => {
-    if (!file) {
-      setUploadError('Please select a file');
+  // MSA file handlers
+  const handleMsaFileSelect = (selectedFile: File) => {
+    // Validate file type - accept PDF and DOCX files
+    const supportedTypes = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ];
+    
+    if (!supportedTypes.includes(selectedFile.type)) {
+      setMsaUploadError('Only PDF and DOCX files are supported. Please select a PDF or DOCX file.');
+      return;
+    }
+    
+    setMsaFile(selectedFile);
+    setMsaUploadError(null);
+    setMsaUploadSuccess(false);
+  };
+
+  const handleMsaDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setMsaDragOver(true);
+  };
+
+  const handleMsaDragLeave = () => {
+    setMsaDragOver(false);
+  };
+
+  const handleMsaDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setMsaDragOver(false);
+    
+    const droppedFiles = e.dataTransfer.files;
+    if (droppedFiles.length > 0) {
+      handleMsaFileSelect(droppedFiles[0]);
+    }
+  };
+
+  const removeMsaFile = () => {
+    setMsaFile(null);
+  };
+
+  // Design document upload
+  const handleDesignUpload = async () => {
+    if (!designFile) {
+      setDesignUploadError('Please select a file');
       return;
     }
 
-    setIsUploading(true);
-    setUploadError(null);
+    setIsUploadingDesign(true);
+    setDesignUploadError(null);
 
     try {
-      const result = await apiService.uploadFile(file);
+      const result = await apiService.uploadFile(designFile);
       
-      setUploadSuccess(true);
+      setDesignUploadSuccess(true);
       onDataUploaded();
       
     } catch (error: any) {
-      setUploadError('Upload failed: ' + (error.response?.data?.detail || error.message));
+      setDesignUploadError('Upload failed: ' + (error.response?.data?.detail || error.message));
     } finally {
-      setIsUploading(false);
+      setIsUploadingDesign(false);
+    }
+  };
+
+  // MSA document upload
+  const handleMsaUpload = async () => {
+    if (!msaFile) {
+      setMsaUploadError('Please select a file');
+      return;
+    }
+
+    setIsUploadingMsa(true);
+    setMsaUploadError(null);
+
+    try {
+      const result = await apiService.uploadMsaFile(msaFile);
+      
+      setMsaUploadSuccess(true);
+      onDataUploaded();
+      
+    } catch (error: any) {
+      setMsaUploadError('Upload failed: ' + (error.response?.data?.detail || error.message));
+    } finally {
+      setIsUploadingMsa(false);
     }
   };
 
@@ -86,71 +158,72 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
       <div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">File Upload</h1>
         <p className="text-gray-600">
-          Upload Design Document Here
+          Upload Project Documents
         </p>
       </div>
 
-      {/* Centered Upload Section */}
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="w-full max-w-2xl space-y-8">
+      {/* File Upload Sections */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Design Document Section */}
+        <div className="space-y-6">
+          <h2 className="text-xl font-semibold text-gray-900">Design Document</h2>
+          
+          {/* Status Messages */}
+          {designUploadError && (
+            <div className="flex items-center space-x-2 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <AlertCircle className="h-5 w-5 text-red-600" />
+              <p className="text-red-700">{designUploadError}</p>
+            </div>
+          )}
 
-        {/* Status Messages */}
-        {uploadError && (
-          <div className="flex items-center space-x-2 p-4 bg-red-50 border border-red-200 rounded-lg">
-            <AlertCircle className="h-5 w-5 text-red-600" />
-            <p className="text-red-700">{uploadError}</p>
-          </div>
-        )}
+          {designUploadSuccess && (
+            <div className="flex items-center space-x-2 p-4 bg-green-50 border border-green-200 rounded-lg">
+              <CheckCircle className="h-5 w-5 text-green-600" />
+              <p className="text-green-700">Design document uploaded successfully!</p>
+            </div>
+          )}
 
-        {uploadSuccess && (
-          <div className="flex items-center space-x-2 p-4 bg-green-50 border border-green-200 rounded-lg">
-            <CheckCircle className="h-5 w-5 text-green-600" />
-            <p className="text-green-700">Data uploaded successfully!</p>
-          </div>
-        )}
-
-        {/* File Upload Section */}
-        <div className="max-w-lg mx-auto">
+          {/* Design File Upload Box */}
           <div className="card">
             <div className="card-content">
               <h3 className="font-semibold text-gray-900 mb-2">Design Document Upload</h3>
               <p className="text-sm text-gray-600 mb-4">Upload Design Document (PDF or DOCX)</p>
               
               <div
-                className={`file-upload-area ${dragOver ? 'dragover' : ''}`}
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
-                onClick={() => fileInputRef.current?.click()}
+                className={`file-upload-area ${designDragOver ? 'dragover' : ''}`}
+                onDragOver={handleDesignDragOver}
+                onDragLeave={handleDesignDragLeave}
+                onDrop={handleDesignDrop}
+                onClick={() => designFileInputRef.current?.click()}
               >
                 <input
-                  ref={fileInputRef}
+                  ref={designFileInputRef}
                   type="file"
                   accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                   onChange={(e) => {
                     const selectedFile = e.target.files?.[0];
                     if (selectedFile) {
-                      handleFileSelect(selectedFile);
+                      handleDesignFileSelect(selectedFile);
                     }
                   }}
                   className="hidden"
                 />
                 
-                {file ? (
+                {designFile ? (
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <FileText className="h-8 w-8 text-green-600" />
                       <div>
-                        <p className="font-medium text-gray-900">{file.name}</p>
+                        <p className="font-medium text-gray-900">{designFile.name}</p>
                         <p className="text-sm text-gray-500">
-                          {(file.size / 1024).toFixed(1)} KB
+                          {(designFile.size / 1024).toFixed(1)} KB
                         </p>
                       </div>
                     </div>
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        removeFile();
+                        removeDesignFile();
                       }}
                       className="p-1 text-gray-400 hover:text-red-500 transition-colors"
                     >
@@ -161,7 +234,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
                   <div>
                     <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                     <p className="text-gray-600 mb-2">
-                      Drop your document here or click to browse
+                      Drop design document here or click to browse
                     </p>
                     <p className="text-sm text-gray-500">
                       PDF and DOCX files (.pdf, .docx)
@@ -171,25 +244,124 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable }: FileU
               </div>
             </div>
           </div>
+
+          {/* Design Upload Button */}
+          <div className="flex justify-center">
+            <button
+              onClick={handleDesignUpload}
+              disabled={!designFile || isUploadingDesign}
+              className={`btn ${designFile && !isUploadingDesign ? 'btn-primary' : 'btn-secondary'} px-8 py-3 text-base`}
+            >
+              {isUploadingDesign ? (
+                <div className="flex items-center space-x-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  <span>Uploading...</span>
+                </div>
+              ) : (
+                'Upload Design Document'
+              )}
+            </button>
+          </div>
         </div>
 
-        {/* Upload Button */}
-        <div className="flex justify-center">
-          <button
-            onClick={handleUpload}
-            disabled={!file || isUploading}
-            className={`btn ${file && !isUploading ? 'btn-primary' : 'btn-secondary'} px-8 py-3 text-base`}
-          >
-            {isUploading ? (
-              <div className="flex items-center space-x-2">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                <span>Uploading...</span>
+        {/* MSA Document Section */}
+        <div className="space-y-6">
+          <h2 className="text-xl font-semibold text-gray-900">MSA Document</h2>
+          
+          {/* Status Messages */}
+          {msaUploadError && (
+            <div className="flex items-center space-x-2 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <AlertCircle className="h-5 w-5 text-red-600" />
+              <p className="text-red-700">{msaUploadError}</p>
+            </div>
+          )}
+
+          {msaUploadSuccess && (
+            <div className="flex items-center space-x-2 p-4 bg-green-50 border border-green-200 rounded-lg">
+              <CheckCircle className="h-5 w-5 text-green-600" />
+              <p className="text-green-700">MSA document uploaded successfully!</p>
+            </div>
+          )}
+
+          {/* MSA File Upload Box */}
+          <div className="card">
+            <div className="card-content">
+              <h3 className="font-semibold text-gray-900 mb-2">MSA Document Upload</h3>
+              <p className="text-sm text-gray-600 mb-4">Upload Master Service Agreement (PDF or DOCX)</p>
+              
+              <div
+                className={`file-upload-area ${msaDragOver ? 'dragover' : ''}`}
+                onDragOver={handleMsaDragOver}
+                onDragLeave={handleMsaDragLeave}
+                onDrop={handleMsaDrop}
+                onClick={() => msaFileInputRef.current?.click()}
+              >
+                <input
+                  ref={msaFileInputRef}
+                  type="file"
+                  accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                  onChange={(e) => {
+                    const selectedFile = e.target.files?.[0];
+                    if (selectedFile) {
+                      handleMsaFileSelect(selectedFile);
+                    }
+                  }}
+                  className="hidden"
+                />
+                
+                {msaFile ? (
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <FileText className="h-8 w-8 text-green-600" />
+                      <div>
+                        <p className="font-medium text-gray-900">{msaFile.name}</p>
+                        <p className="text-sm text-gray-500">
+                          {(msaFile.size / 1024).toFixed(1)} KB
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        removeMsaFile();
+                      }}
+                      className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <p className="text-gray-600 mb-2">
+                      Drop MSA document here or click to browse
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      PDF and DOCX files (.pdf, .docx)
+                    </p>
+                  </div>
+                )}
               </div>
-            ) : (
-              'Upload Document'
-            )}
-          </button>
-        </div>
+            </div>
+          </div>
+
+          {/* MSA Upload Button */}
+          <div className="flex justify-center">
+            <button
+              onClick={handleMsaUpload}
+              disabled={!msaFile || isUploadingMsa}
+              className={`btn ${msaFile && !isUploadingMsa ? 'btn-primary' : 'btn-secondary'} px-8 py-3 text-base`}
+            >
+              {isUploadingMsa ? (
+                <div className="flex items-center space-x-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  <span>Uploading...</span>
+                </div>
+              ) : (
+                'Upload MSA Document'
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </div>

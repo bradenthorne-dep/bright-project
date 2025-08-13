@@ -13,9 +13,9 @@ import logging
 import json
 import asyncio
 from project_calculations import calculate_project_overview, calculate_risk_assessment
-from pdf_processor import pdf_processor
-from docx_processor import docx_processor
-from ai_agent_system import AIAgentSystem
+from pdf_processor import pdf_processor, PDFProcessor
+from docx_processor import docx_processor, DOCXProcessor
+from ai_agents import AIAgentSystem
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +31,12 @@ app = FastAPI(
 
 # Initialize AI Agent System
 agent_system = AIAgentSystem()
+
+# Initialize MSA-specific processors (reuse existing classes with different output files)
+msa_pdf_processor = PDFProcessor()
+msa_pdf_processor.output_file = "msa.txt"
+msa_docx_processor = DOCXProcessor()
+msa_docx_processor.output_file = "msa.txt"
 
 # Pydantic models for API requests/responses
 class AgentExecuteRequest(BaseModel):
@@ -48,21 +54,21 @@ class AgentInfo(BaseModel):
     id: str
     name: str
     description: str
-    enabled: bool
     model: str
+    enabled: bool
 
-# Enable CORS for frontend development
+# Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=["*"],  # Allow all origins
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
 )
 
 @app.get("/")
-async def root():
-    """Health check endpoint"""
+async def read_root():
+    """Root endpoint for API health check"""
     return {
         "message": "Project Management API",
         "version": "1.0.0",
@@ -128,6 +134,65 @@ async def upload_file(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error processing file: {str(e)}")
 
+@app.post("/api/upload-msa")
+async def upload_msa(file: UploadFile = File(...)):
+    """MSA PDF and DOCX file upload endpoint with text extraction to msa.txt"""
+    try:
+        # Validate file type - accept PDF and DOCX files
+        supported_types = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+        if file.content_type not in supported_types:
+            raise HTTPException(status_code=400, detail="Only PDF and DOCX files are supported")
+        
+        # Validate file extension
+        if not file.filename:
+            raise HTTPException(status_code=400, detail="Filename is required")
+        
+        filename_lower = file.filename.lower()
+        if not (filename_lower.endswith('.pdf') or filename_lower.endswith('.docx')):
+            raise HTTPException(status_code=400, detail="File must have a .pdf or .docx extension")
+        
+        # Read file content
+        content = await file.read()
+        
+        # Get file information
+        file_size = len(content)
+        
+        # Determine file type and process accordingly using MSA processors
+        if filename_lower.endswith('.pdf'):
+            file_type = "pdf"
+            extraction_result = msa_pdf_processor.extract_text_from_pdf(content, file.filename)
+            success_message = "MSA PDF uploaded and processed successfully"
+            error_message = "MSA PDF uploaded but text extraction failed"
+        else:  # .docx
+            file_type = "docx"
+            extraction_result = msa_docx_processor.extract_text_from_docx(content, file.filename)
+            success_message = "MSA DOCX uploaded and processed successfully"
+            error_message = "MSA DOCX uploaded but text extraction failed"
+        
+        # Prepare response
+        response_data = {
+            "message": success_message,
+            "filename": file.filename,
+            "file_info": {
+                "size_bytes": file_size,
+                "size_mb": round(file_size / (1024 * 1024), 2),
+                "file_type": file_type,
+                "content_type": file.content_type
+            },
+            "extraction_result": extraction_result
+        }
+        
+        # Add processing status to message if extraction failed
+        if not extraction_result.get("success", False):
+            response_data["message"] = error_message
+        
+        return response_data
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Error processing MSA file: {str(e)}")
+
 @app.get("/api/project-overview")
 async def get_project_overview():
     """Get project management overview data from project_info.json and tasks.json"""
@@ -141,52 +206,41 @@ async def get_project_overview():
             tasks_data = json.load(file)
         
         # Extract values from project_data
-        project_info = project_data['project_info']
-        allocated_budget = project_data['budget_info']['allocated_budget']
-        hourly_rate = project_data['budget_info']['hourly_rate']
+        project_info = project_data.get("project_info", {})
+        allocated_budget = project_data.get("budget_info", {}).get("allocated_budget")
+        hourly_rate = project_data.get("budget_info", {}).get("hourly_rate")
         
-        # Calculate and return project overview using the calculations module
-        return calculate_project_overview(tasks_data, project_info, allocated_budget, hourly_rate)
+        # Calculate project overview
+        result = calculate_project_overview(tasks_data, project_info, allocated_budget, hourly_rate)
         
-    except FileNotFoundError as e:
-        if 'project_info.json' in str(e):
-            raise HTTPException(status_code=404, detail="Project info data file not found")
-        else:
-            raise HTTPException(status_code=404, detail="Tasks data file not found")
-    except json.JSONDecodeError:
-        raise HTTPException(status_code=500, detail="Error parsing data files")
+        return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading project overview: {str(e)}")
 
 @app.get("/api/tasks")
 async def get_tasks():
-    """Get all task tracking data from tasks.json"""
-    try:
-        with open('tasks.json', 'r') as file:
-            tasks_data = json.load(file)
-        return {"tasks": tasks_data}
-    except FileNotFoundError:
-        raise HTTPException(status_code=404, detail="Tasks data file not found")
-    except json.JSONDecodeError:
-        raise HTTPException(status_code=500, detail="Error parsing tasks data file")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error loading tasks data: {str(e)}")
-
-@app.get("/api/risk-assessment")
-async def get_risk_assessment():
-    """Get risk assessment data with pre-calculated risk levels and summary statistics"""
+    """Get all tasks from tasks.json"""
     try:
         # Load tasks from tasks.json
         with open('tasks.json', 'r') as file:
             tasks_data = json.load(file)
         
-        # Calculate and return risk assessment using the calculations module
-        return calculate_risk_assessment(tasks_data)
+        return {"tasks": tasks_data}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading tasks: {str(e)}")
+
+@app.get("/api/risk-assessment")
+async def get_risk_assessment():
+    """Get risk assessment data from tasks.json"""
+    try:
+        # Load tasks from tasks.json
+        with open('tasks.json', 'r') as file:
+            tasks_data = json.load(file)
         
-    except FileNotFoundError:
-        raise HTTPException(status_code=404, detail="Tasks data file not found")
-    except json.JSONDecodeError:
-        raise HTTPException(status_code=500, detail="Error parsing tasks data file")
+        # Calculate risk assessment
+        result = calculate_risk_assessment(tasks_data)
+        
+        return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading risk assessment: {str(e)}")
 
@@ -203,31 +257,41 @@ async def get_extracted_text():
         if content is None:
             content = docx_processor.get_extracted_text()
         
-        if content is None:
-            raise HTTPException(status_code=500, detail="Error reading extracted text file")
-        
-        return {
-            "content": content,
-            "size": len(content),
-            "available": True
-        }
+        return {"text": content}
     except HTTPException:
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error retrieving extracted text: {str(e)}")
 
-# AI Agent System Endpoints
+@app.get("/api/msa-text")
+async def get_msa_text():
+    """Get the extracted text from the most recent MSA document upload (PDF or DOCX)"""
+    try:
+        # Check if either processor has extracted text (they both use the same output file)
+        if not msa_pdf_processor.has_extracted_text() and not msa_docx_processor.has_extracted_text():
+            raise HTTPException(status_code=404, detail="No MSA text available. Please upload an MSA PDF or DOCX file first.")
+        
+        # Try to get content from either processor (both use same output file)
+        content = msa_pdf_processor.get_extracted_text()
+        if content is None:
+            content = msa_docx_processor.get_extracted_text()
+        
+        return {"text": content}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error retrieving MSA text: {str(e)}")
 
-@app.get("/api/agents", response_model=List[AgentInfo])
+@app.get("/api/agents")
 async def list_agents():
-    """Get list of available AI agents"""
+    """List all available AI agents"""
     try:
         agents = agent_system.list_agents()
-        return [AgentInfo(**agent) for agent in agents]
+        return {"agents": agents}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error listing agents: {str(e)}")
 
-@app.post("/api/agents/execute", response_model=AgentResponse)
+@app.post("/api/agents/execute")
 async def execute_agent(request: AgentExecuteRequest):
     """Execute a specific AI agent"""
     try:
@@ -238,12 +302,12 @@ async def execute_agent(request: AgentExecuteRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error executing agent: {str(e)}")
 
-@app.post("/api/agents/execute-all", response_model=List[AgentResponse])
+@app.post("/api/agents/execute-all")
 async def execute_all_agents():
     """Execute all enabled AI agents"""
     try:
         results = await agent_system.execute_all_agents()
-        return [AgentResponse(**result) for result in results]
+        return {"results": results}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error executing agents: {str(e)}")
 
@@ -251,8 +315,8 @@ async def execute_all_agents():
 async def enable_agent(agent_id: str):
     """Enable a specific AI agent"""
     try:
-        success = agent_system.enable_agent(agent_id)
-        if not success:
+        result = agent_system.enable_agent(agent_id)
+        if not result:
             raise HTTPException(status_code=404, detail=f"Agent not found: {agent_id}")
         return {"message": f"Agent {agent_id} enabled successfully"}
     except HTTPException:
@@ -264,8 +328,8 @@ async def enable_agent(agent_id: str):
 async def disable_agent(agent_id: str):
     """Disable a specific AI agent"""
     try:
-        success = agent_system.disable_agent(agent_id)
-        if not success:
+        result = agent_system.disable_agent(agent_id)
+        if not result:
             raise HTTPException(status_code=404, detail=f"Agent not found: {agent_id}")
         return {"message": f"Agent {agent_id} disabled successfully"}
     except HTTPException:
@@ -275,26 +339,17 @@ async def disable_agent(agent_id: str):
 
 @app.post("/api/agents/extract-project-info")
 async def extract_project_info():
-    """Convenience endpoint to extract project info from design document"""
+    """Convenience endpoint to execute project_info_extractor agent"""
     try:
         result = await agent_system.execute_agent("project_info_extractor")
-        if result["status"] == "success":
-            return {
-                "message": "Project information extracted successfully",
-                "output_file": result.get("output_file"),
-                "result_preview": result.get("result_preview")
-            }
-        else:
-            raise HTTPException(
-                status_code=500, 
-                detail=result.get("error", "Failed to extract project information")
-            )
-    except HTTPException:
-        raise
+        return AgentResponse(**result)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error extracting project info: {str(e)}")
 
 
+# Run the server when executed directly
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
