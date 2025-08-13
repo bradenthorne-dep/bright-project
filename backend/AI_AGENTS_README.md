@@ -6,16 +6,20 @@ A scalable AI agent system for document processing and information extraction, i
 
 - **Centralized Configuration**: All agent prompts and settings in `agent_config.json`
 - **Claude Integration**: Uses Anthropic Claude Sonnet 4 via AWS Bedrock
+- **Template-Based Output**: JSON templates ensure consistent output format
+- **Multiple Input Files**: Agents can process multiple input documents
 - **Scalable Architecture**: Easy to add new agents without code changes
 - **Error Handling**: Retry logic, backups, and comprehensive error handling
 - **API Integration**: FastAPI endpoints for agent execution
-- **Flexible Output**: JSON parsing with fallback to text output
+- **Consolidated Module**: Single `ai_agents.py` module for all functionality
 
 ## Files
 
 - `agent_config.json` - Centralized configuration for all agents
-- `ai_agent_system.py` - Core agent framework
-- `test_agents.py` - Test script for agent functionality
+- `ai_agents.py` - Consolidated agent system and execution module
+- `json_templates/` - JSON templates for structured output
+  - `project_info_template.json` - Template for project information
+  - `tasks_template.json` - Template for task extraction
 - API endpoints added to `main.py`
 
 ## Available Agents
@@ -23,21 +27,18 @@ A scalable AI agent system for document processing and information extraction, i
 ### project_info_extractor
 - **Model**: Claude Sonnet 4
 - **Purpose**: Extracts project information from design documents
-- **Input**: `design_doc.txt`
-- **Output**: `project_info.json`
+- **Input**: `design_doc.txt` (supports multiple files)
+- **Output**: `ai_project_info.json`
+- **Template**: `json_templates/project_info_template.json`
 - **Status**: Enabled
 
 ### task_extractor
 - **Model**: Claude Sonnet 4
 - **Purpose**: Extracts tasks and requirements from design documents
-- **Output**: `extracted_tasks.json`
-- **Status**: Disabled (can be enabled via API)
-
-### risk_analyzer
-- **Model**: Claude Sonnet 4
-- **Purpose**: Analyzes project documents for potential risks
-- **Output**: `risk_assessment.json`
-- **Status**: Disabled (can be enabled via API)
+- **Input**: `design_doc.txt` (supports multiple files)
+- **Output**: `ai_tasks.json`
+- **Template**: `json_templates/tasks_template.json`
+- **Status**: Enabled
 
 ## API Endpoints
 
@@ -52,7 +53,15 @@ A scalable AI agent system for document processing and information extraction, i
 
 ### Command Line
 ```bash
-python test_agents.py
+# Run all enabled agents
+python ai_agents.py
+
+# Or import and use programmatically
+python -c "
+import asyncio
+from ai_agents import run_agents
+asyncio.run(run_agents())
+"
 ```
 
 ### API Usage
@@ -71,18 +80,28 @@ curl -X POST http://localhost:8000/api/agents/execute \
 
 ### Python Usage
 ```python
-from ai_agent_system import AIAgentSystem
+from ai_agents import AIAgentSystem, run_agents
 import asyncio
 
+# Option 1: Use the consolidated run_agents function
+async def main():
+    success = await run_agents()
+    print(f"All agents completed successfully: {success}")
+
+# Option 2: Use the AIAgentSystem class directly
 async def main():
     system = AIAgentSystem()
     
     # List agents
     agents = system.list_agents()
     
-    # Execute agent
+    # Execute specific agent
     result = await system.execute_agent("project_info_extractor")
     print(result)
+    
+    # Execute all enabled agents
+    results = await system.execute_all_agents()
+    print(results)
 
 asyncio.run(main())
 ```
@@ -91,9 +110,23 @@ asyncio.run(main())
 
 All agent configuration is centralized in `agent_config.json`:
 
-- **Agent Settings**: Model, temperature, prompts, input/output files
+- **Agent Settings**: Model, temperature, prompts, input files (array), output files, templates
 - **API Configuration**: Claude model settings (AWS Bedrock)
 - **System Settings**: Retry logic, timeouts, backup options
+
+### Input Files Configuration
+Agents now support multiple input files:
+```json
+{
+  "input_files": ["design_doc.txt", "requirements.txt", "specification.pdf"]
+}
+```
+
+### Template System
+Each agent uses a JSON template to ensure consistent output format:
+- Templates are stored in `json_templates/` directory
+- Templates define the exact structure agents should follow
+- Agents populate template fields with extracted information
 
 ### Claude Configuration
 The system uses AWS Bedrock to access Claude Sonnet 4:
