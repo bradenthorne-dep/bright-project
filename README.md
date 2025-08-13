@@ -76,6 +76,8 @@ frontend/src/
 ```
 backend/
 ├── main.py                # FastAPI application with project management endpoints
+├── project_calculations.py # Logic module for project metrics and risk assessment
+├── project_info.json      # Centralized project information
 ├── tasks.json            # Task data storage with 10 sample tasks
 └── requirements.txt       # Python dependencies
 ```
@@ -87,12 +89,15 @@ backend/
 - `POST /api/upload-file` - Generic file upload
 - `GET /api/project-overview` - Dynamic project metrics from task data
 - `GET /api/tasks` - Complete task data with all attributes
+- `GET /api/risk-assessment` - Pre-calculated risk analysis with summary statistics
 
 ### Data Flow
-1. **Task Data**: Stored in `tasks.json` with comprehensive task attributes
-2. **Dynamic Metrics**: Project overview calculated from actual task data
-3. **Real-time Updates**: Metrics reflect current task completion status
-4. **Centralized Formatting**: Consistent currency, date, and number formatting
+1. **Project Configuration**: Centralized in `project_info.json` (budget, rates, project details)
+2. **Task Data**: Stored in `tasks.json` with comprehensive task attributes
+3. **Business Logic**: Calculations handled by `project_calculations.py` module
+4. **Dynamic Metrics**: Project overview and risk assessment
+5. **Real-time Updates**: Metrics reflect current task completion status
+6. **Centralized Formatting**: Consistent currency, date, and number formatting
 
 ## Key Features
 
@@ -173,18 +178,31 @@ python main.py  # Configure for production environment
 
 ### Project Metrics
 - All budget and progress metrics are dynamically calculated from task data
+- Risk assessment performed server-side with pre-calculated levels
 - Top tasks automatically sorted by billable hours
 - Completion percentage based on individual task progress
 - Total spent budget calculated from billable hours × hourly rate
 
+### Risk Assessment
+- Automatic identification of at-risk tasks based on due dates and completion
+- Server-side calculation for optimal performance
+- Three-tier risk levels: High, Medium, Low
+- Summary statistics with task counts per risk level
+
 ## Customization
 
+### Project Configuration
+Edit `backend/project_info.json` to modify:
+- Project details (client, project manager, dates, phase)
+- Budget information (allocated budget, hourly rate)
+
 ### Adding Tasks
-Edit `backend/tasks.json` to add/modify tasks. The overview dashboard will automatically update with new metrics.
+Edit `backend/tasks.json` to add/modify tasks. The overview dashboard and risk assessment will automatically update with new metrics.
 
 ### Extending Functionality
 - Add new tabs in `src/components/tabs/`
 - Extend API endpoints in `backend/main.py`
+- Add business logic functions in `backend/project_calculations.py`
 - Create new UI components in `src/components/ui/`
 - Add formatters in `src/utils/formatters.ts`
 
