@@ -27,9 +27,9 @@ This is a modern project management application built with Next.js and FastAPI, 
 - **Priority-Based Risk Scoring**: Considers task priority in risk calculations
 
 ### Document Processing
-- **Text Extraction**: Automatic text extraction using pdfplumber
+- **Multi-Format Support**: PDF and DOCX document processing
+- **PDF/DOCX Text Extraction**: Automatic text extraction using pdfplumber and python-docx
 - **Document Storage**: Extracted text saved to `design_doc.txt`
-- **Drag & Drop**: Modern file upload interface with PDF validation
 - **Status Feedback**: Real-time upload progress and success/error states
 
 ## Technology Stack
@@ -48,6 +48,7 @@ This is a modern project management application built with Next.js and FastAPI, 
 - **HTTP Server**: Uvicorn
 - **Data Processing**: Dynamic project metrics calculation
 - **PDF Processing**: pdfplumber for text extraction
+- **DOCX Processing**: python-docx for text extraction
 
 ## Application Architecture
 
@@ -61,7 +62,7 @@ frontend/src/
 │   ├── layout/
 │   │   └── Layout.tsx     # Navigation with File Upload, Overview, Task Tracking, Risk Management
 │   ├── tabs/              # Main application screens
-│   │   ├── FileUpload.tsx # PDF document upload with text extraction
+│   │   ├── FileUpload.tsx # PDF and DOCX document upload with text extraction
 │   │   ├── Overview.tsx   # Project dashboard with dynamic metrics
 │   │   ├── TaskTracking.tsx # Comprehensive task management table
 │   │   └── RiskManagement.tsx # At-risk task identification and monitoring
@@ -80,27 +81,30 @@ backend/
 ├── main.py                # FastAPI application with project management endpoints
 ├── project_calculations.py # Logic module for project metrics and risk assessment
 ├── pdf_processor.py       # PDF text extraction module using pdfplumber
+├── docx_processor.py      # DOCX text extraction module using python-docx
 ├── project_info.json      # Centralized project information
 ├── tasks.json            # Task data storage with 10 sample tasks
-├── design_doc.txt         # Extracted text from uploaded PDF documents
-└── requirements.txt       # Python dependencies including pdfplumber
+├── design_doc.txt         # Extracted text from uploaded documents (PDF/DOCX)
+└── requirements.txt       # Python dependencies including pdfplumber and python-docx
 ```
 
 ## API Endpoints
 
 ### Core Endpoints
 - `GET /` - Health check
-- `POST /api/upload-file` - File upload with text extraction
+- `POST /api/upload-file` - PDF and DOCX file upload with text extraction
 - `GET /api/project-overview` - Dynamic project metrics from task data
 - `GET /api/tasks` - Complete task data with all attributes
 - `GET /api/risk-assessment` - Pre-calculated risk analysis with summary statistics
-- `GET /api/extracted-text` - Retrieved extracted text from uploaded PDF
+- `GET /api/extracted-text` - Retrieved extracted text from uploaded documents (PDF/DOCX)
 
 ### Data Flow
 1. **Project Configuration**: Centralized in `project_info.json` (budget, rates, project details)
 2. **Task Data**: Stored in `tasks.json` with comprehensive task attributes
 3. **Business Logic**: Calculations handled by `project_calculations.py` module
-4. **PDF Processing**: Text extraction handled by `pdf_processor.py` module
+4. **Document Processing**: 
+   - PDF text extraction handled by `pdf_processor.py` module
+   - DOCX text extraction handled by `docx_processor.py` module
 5. **Dynamic Metrics**: Project overview and risk assessment
 6. **Real-time Updates**: Metrics reflect current task completion status
 7. **Centralized Formatting**: Consistent currency, date, and number formatting
@@ -177,7 +181,7 @@ python main.py  # Configure for production environment
 ## Usage
 
 ### Navigation
-1. **File Upload**: Upload PDF design documents with automatic text extraction
+1. **File Upload**: Upload design documents (PDF or DOCX) with automatic text extraction
 2. **Overview**: View project dashboard with real-time metrics
 3. **Task Tracking**: Manage all project tasks with comprehensive details
 4. **Risk Management**: Monitor at-risk tasks and identify potential delays
@@ -214,7 +218,8 @@ Edit `backend/tasks.json` to add/modify tasks. The overview dashboard and risk a
 
 ## Production Considerations
 
-- **PDF Processing**: Single PDF document handling with text extraction to `design_doc.txt`
+- **Document Processing**: Document handling (PDF or DOCX) with text extraction to `design_doc.txt`
+- **File Format Support**: PDF text extraction via pdfplumber, DOCX via python-docx (paragraphs and tables)
 - **Scalability**: JSON file can be replaced with database
 - **Security**: CORS configured for development, update for production
 - **Performance**: In-memory calculations for fast dashboard updates
