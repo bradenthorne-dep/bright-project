@@ -541,13 +541,36 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
         </div>
       )}
 
-      {/* Project Creation Progress - Inline below button */}
+      {/* Project Creation Progress Modal */}
       {showProgress && (
-        <div className="mt-8 max-w-4xl mx-auto">
-          <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-            <div className="mb-4">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Creating Your Project</h3>
-              <p className="text-gray-600 text-sm">AI agents are processing your documents and generating project data...</p>
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-8 max-w-4xl w-full mx-4 shadow-2xl relative">
+            {/* Bright Project Logo - Top Right */}
+            <div className="absolute top-4 right-4">
+              <img 
+                src="/bright_project_logo_small.png" 
+                alt="Bright Project" 
+                className="h-12 w-12 animate-pulse"
+                style={{
+                  filter: 'drop-shadow(0 0 8px rgba(255, 165, 0, 0.6))',
+                  animation: 'glow 2s ease-in-out infinite alternate'
+                }}
+              />
+              <style jsx>{`
+                @keyframes glow {
+                  from {
+                    filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.4));
+                  }
+                  to {
+                    filter: drop-shadow(0 0 16px rgba(255, 165, 0, 0.8));
+                  }
+                }
+              `}</style>
+            </div>
+            
+            <div className="mb-6">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2 text-center">Creating Your Project</h3>
+              <p className="text-gray-600 text-center">AI agents are processing your documents and generating project data...</p>
             </div>
             
             {/* Horizontal Progress Steps */}
@@ -562,23 +585,23 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
                 ].map((step, index) => (
                   <div key={index} className="flex flex-col items-center z-10 bg-white">
                     {/* Step Circle */}
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-3 ${
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 ${
                       index < progressStep ? 'bg-green-500' : 
                       index === progressStep ? 'bg-blue-500' : 'bg-gray-300'
                     }`}>
                       {index < progressStep ? (
-                        <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                       ) : index === progressStep ? (
-                        <div className="w-4 h-4 bg-white rounded-full animate-pulse"></div>
+                        <div className="w-5 h-5 bg-white rounded-full animate-pulse"></div>
                       ) : (
-                        <span className="text-white font-medium text-sm">{index + 1}</span>
+                        <span className="text-white font-medium">{index + 1}</span>
                       )}
                     </div>
                     
                     {/* Step Label */}
-                    <div className={`text-center text-xs font-medium max-w-20 ${
+                    <div className={`text-center text-sm font-medium max-w-24 ${
                       index === progressStep ? 'text-blue-600' : 
                       index < progressStep ? 'text-green-600' : 'text-gray-500'
                     }`}>
@@ -589,23 +612,23 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
               </div>
               
               {/* Progress Line */}
-              <div className="absolute top-5 left-5 right-5 h-0.5 bg-gray-300 -z-10"></div>
+              <div className="absolute top-6 left-6 right-6 h-1 bg-gray-300 -z-10 rounded-full"></div>
               <div 
-                className="absolute top-5 left-5 h-0.5 bg-green-500 transition-all duration-500 -z-10"
+                className="absolute top-6 left-6 h-1 bg-green-500 transition-all duration-500 -z-10 rounded-full"
                 style={{ width: `${(progressStep / 4) * 100}%` }}
               ></div>
             </div>
             
             {/* Current Progress Message */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
               <div className="flex items-center justify-center space-x-3">
                 {progressStep < 4 && (
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
                 )}
-                <span className={`font-medium ${progressStep === 4 ? 'text-green-600' : 'text-blue-600'}`}>
+                <span className={`font-semibold text-lg ${progressMessage.includes('Complete') ? 'text-green-600' : 'text-blue-600'}`}>
                   {progressMessage}
-                  {progressStep === 2 && (
-                    <span className="text-sm text-gray-600 ml-2">(This may take a moment...)</span>
+                  {(progressStep === 2 || progressStep === 3) && (
+                    <span className="text-sm text-gray-600 ml-2 font-normal">(This may take a moment...)</span>
                   )}
                 </span>
               </div>
