@@ -236,19 +236,31 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
       {/* Salesforce Connection Status */}
       {isConnectedToSalesforce ? (
         <div className="flex items-center justify-center p-3 bg-green-25 rounded-md">
-          <div className="flex items-center space-x-3">
-            <img 
-              src="/Salesforcelogo.svp" 
-              alt="Salesforce" 
-              className="h-6 w-6"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-            <div className="flex items-center space-x-2">
-              <div className="h-3 w-3 bg-green-400 rounded-full"></div>
-              <span className="text-green-600 text-base font-normal">Salesforce Connected</span>
+          <div className="flex items-center justify-between w-full max-w-md">
+            <div className="flex items-center space-x-3">
+              <img 
+                src="/Salesforcelogo.svp" 
+                alt="Salesforce" 
+                className="h-6 w-6"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+              <div className="flex items-center space-x-2">
+                <div className="h-3 w-3 bg-green-400 rounded-full"></div>
+                <span className="text-green-600 text-base font-normal">Salesforce Connected</span>
+              </div>
             </div>
+            <button
+              onClick={() => {
+                setShowConnectionModal(true);
+                setConnectionStep('opportunities');
+                setSelectedOpportunities(opportunities.map(opp => opp.id));
+              }}
+              className="btn btn-primary px-4 py-1 text-sm ml-4"
+            >
+              Import
+            </button>
           </div>
         </div>
       ) : (
