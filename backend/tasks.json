@@ -135,7 +135,7 @@
     "description": "Conduct comprehensive UAT covering all inbound processes (receiving, putaway), inventory management (cycle counts, adjustments, replenishments), outbound processes (waving, picking, packing, shipping), and integration touchpoints.",
     "owner": "UAT Lead",
     "team": "Deposco",
-    "status": "Validation",
+    "status": "In Progress",
     "priority": "High",
     "start_date": "2025-08-01",
     "due_date": "2025-09-15",
