@@ -11,7 +11,7 @@ interface OverviewProps {
   onSectionChange?: (section: string) => void;
 }
 
-export default function Overview({}: OverviewProps) {
+export default function Overview({ onSectionChange }: OverviewProps) {
   const [projectData, setProjectData] = useState<ProjectOverviewResponse | null>(null);
   const [riskData, setRiskData] = useState<RiskAssessmentResponse | null>(null);
   const [loading, setLoading] = useState(false);
@@ -211,7 +211,10 @@ export default function Overview({}: OverviewProps) {
             </div>
           </div>
 
-          <div className="stat-card">
+          <div 
+            className="stat-card cursor-pointer hover:shadow-lg transition-shadow duration-200"
+            onClick={() => onSectionChange?.('risk-management')}
+          >
             <div>
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks at Risk</h3>
               <p className="text-2xl font-bold text-red-600">{riskData?.summary.high_risk_count || 0}</p>
