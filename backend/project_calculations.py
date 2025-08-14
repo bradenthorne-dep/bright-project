@@ -282,12 +282,12 @@ def calculate_risk_assessment(tasks_data: List[Dict[str, Any]]) -> Dict[str, Any
     if ai_risks and 'risks' in ai_risks:
         ai_summary = ai_risks.get('summary', {})
         
-        # Update summary to include AI-identified risks
+        # Update summary - task risks and AI risks are separate categories
         combined_summary = {
-            "total_at_risk": len(risk_tasks) + len(ai_risks['risks']),
-            "high_risk_count": high_risk_count + ai_summary.get('high_risk_count', 0),
-            "medium_risk_count": medium_risk_count + ai_summary.get('medium_risk_count', 0),
-            "low_risk_count": low_risk_count + ai_summary.get('low_risk_count', 0),
+            "total_at_risk": len(risk_tasks),
+            "high_risk_count": high_risk_count,
+            "medium_risk_count": medium_risk_count,
+            "low_risk_count": low_risk_count,
             "technical_risk_count": ai_summary.get('technical_risk_count', 0),
             "resource_risk_count": ai_summary.get('resource_risk_count', 0),
             "timeline_risk_count": ai_summary.get('timeline_risk_count', 0),
