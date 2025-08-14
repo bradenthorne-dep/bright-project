@@ -197,14 +197,20 @@ export default function Overview({ onSectionChange }: OverviewProps) {
       <div>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Task Metrics</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="stat-card">
+          <div 
+            className="stat-card cursor-pointer hover:shadow-lg transition-shadow duration-200"
+            onClick={() => onSectionChange?.('task-tracking')}
+          >
             <div>
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks Completed</h3>
               <p className="text-2xl font-bold text-green-600">{task_metrics.tasks_completed}</p>
             </div>
           </div>
 
-          <div className="stat-card">
+          <div 
+            className="stat-card cursor-pointer hover:shadow-lg transition-shadow duration-200"
+            onClick={() => onSectionChange?.('task-tracking')}
+          >
             <div>
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks In Progress</h3>
               <p className="text-2xl font-bold text-blue-600">{task_metrics.tasks_in_progress}</p>
@@ -221,7 +227,10 @@ export default function Overview({ onSectionChange }: OverviewProps) {
             </div>
           </div>
 
-          <div className="stat-card">
+          <div 
+            className="stat-card cursor-pointer hover:shadow-lg transition-shadow duration-200"
+            onClick={() => onSectionChange?.('task-tracking')}
+          >
             <div>
               <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Total Tasks</h3>
               <p className="text-2xl font-bold text-gray-900">{task_metrics.total_tasks}</p>
