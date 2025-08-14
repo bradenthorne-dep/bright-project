@@ -272,30 +272,35 @@ export default function Layout({ children, activeSection = 'home', onSectionChan
         {/* Project Selection Header */}
         <div className="bg-white border-b border-gray-200 py-4 px-4 sm:px-6 md:px-8">
           <div className="w-full flex justify-between items-center">
+            {/* Project selector dropdown - Hidden on Home and New Project tabs */}
             <div className="flex items-center space-x-4">
-              <div className="relative">
-                <select
-                  value={selectedProject}
-                  onChange={(e) => handleProjectChange(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 appearance-none bg-white pr-10 min-w-[200px]"
-                  disabled={projectsLoading}
-                >
-                  <option value="">All Projects</option>
-                  {projects.map((project, index) => (
-                    <option key={index} value={project.client}>
-                      {project.client}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
-              </div>
-              {projectsLoading && (
-                <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-orange-500"></div>
-              )}
-              {selectedProject && (
-                <span className="text-sm text-gray-600">
-                  Viewing: <span className="font-medium">{projects.find(p => p.client === selectedProject)?.client}</span>
-                </span>
+              {currentSection !== 'home' && currentSection !== 'data-upload' && (
+                <>
+                  <div className="relative">
+                    <select
+                      value={selectedProject}
+                      onChange={(e) => handleProjectChange(e.target.value)}
+                      className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 appearance-none bg-white pr-10 min-w-[200px]"
+                      disabled={projectsLoading}
+                    >
+                      <option value="">All Projects</option>
+                      {projects.map((project, index) => (
+                        <option key={index} value={project.client}>
+                          {project.client}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                  </div>
+                  {projectsLoading && (
+                    <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-orange-500"></div>
+                  )}
+                  {selectedProject && (
+                    <span className="text-sm text-gray-600">
+                      Viewing: <span className="font-medium">{projects.find(p => p.client === selectedProject)?.client}</span>
+                    </span>
+                  )}
+                </>
               )}
             </div>
             <div className="pr-4">
