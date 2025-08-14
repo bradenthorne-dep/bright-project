@@ -11,7 +11,7 @@ import RiskManagement from '@/components/tabs/RiskManagement';
 
 export default function DiagnosticPage() {
   const [activeSection, setActiveSection] = useState('home');
-  const [selectedProject, setSelectedProject] = useState('');
+  const [selectedProject, setSelectedProject] = useState('Gerber Childrenswear');
   const [showGerber, setShowGerber] = useState(false);
   const [isConnectedToSalesforce, setIsConnectedToSalesforce] = useState(false);
   const [newlyCreatedProjects, setNewlyCreatedProjects] = useState<string[]>([]);
@@ -41,10 +41,10 @@ export default function DiagnosticPage() {
       setNewlyCreatedProjects(projectNames);
     }
     
-    // Clear the highlight after 5 seconds
+    // Clear the highlight after 2 seconds
     setTimeout(() => {
       setNewlyCreatedProjects([]);
-    }, 5000);
+    }, 2000);
   };
 
   const renderActiveSection = () => {
@@ -56,11 +56,11 @@ export default function DiagnosticPage() {
       case 'overview':
         return <Overview onSectionChange={handleNavigationChange} />;
       case 'task-tracking':
-        return <TaskTracking onSectionChange={handleNavigationChange} selectedProject={selectedProject} />;
+        return <TaskTracking onSectionChange={handleNavigationChange} />;
       case 'risk-management':
         return <RiskManagement onSectionChange={handleNavigationChange} />;
       default:
-        return <Home onSectionChange={handleNavigationChange} isConnectedToSalesforce={isConnectedToSalesforce} newlyCreatedProjects={newlyCreatedProjects} />;
+        return <Home onSectionChange={handleNavigationChange} showGerber={showGerber} isConnectedToSalesforce={isConnectedToSalesforce} newlyCreatedProjects={newlyCreatedProjects} />;
     }
   };
 

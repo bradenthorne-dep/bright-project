@@ -111,7 +111,11 @@ export default function Home({ onSectionChange, showGerber = false, isConnectedT
           // Check if the API project is already in the sample data (by client name)
           const apiClientExists = sampleData.some(project => project.client === apiProject.client);
           
-          if (!apiClientExists && apiProject) {
+          // Only add API project if it doesn't exist and if it's not Gerber (unless showGerber is true)
+          const isGerberProject = apiProject.client.toLowerCase().includes('gerber');
+          const shouldIncludeApiProject = !apiClientExists && apiProject && (!isGerberProject || showGerber);
+          
+          if (shouldIncludeApiProject) {
             // Add the API project to the beginning of the array
             setProjects([apiProject, ...sampleData]);
           } else {
@@ -136,7 +140,7 @@ export default function Home({ onSectionChange, showGerber = false, isConnectedT
     };
 
     fetchProjects();
-  }, []);
+  }, [showGerber]);
 
   const handleProjectClick = (clientName: string) => {
     // Navigate to the overview section for this project

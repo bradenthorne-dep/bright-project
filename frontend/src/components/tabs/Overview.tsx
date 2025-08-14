@@ -132,7 +132,7 @@ export default function Overview({}: OverviewProps) {
 
             <div className="stat-card">
               <div>
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Go Live Date</h3>
+                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Go-Live Date</h3>
                 <p className="text-lg font-bold text-gray-900">{formatDate(project_info.projected_go_live)}</p>
               </div>
             </div>
@@ -237,6 +237,8 @@ export default function Overview({}: OverviewProps) {
           { key: 'Billable Hours', header: 'Billable Hours', format: 'number', sortable: true },
           { key: 'Total Cost', header: 'Total Cost', format: 'text', sortable: false }
         ]}
+        defaultSortColumn="Billable Hours"
+        defaultSortDirection="desc"
       />
     </div>
   );

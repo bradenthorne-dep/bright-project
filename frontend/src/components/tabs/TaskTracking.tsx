@@ -7,10 +7,9 @@ import { formatDateShort } from '@/utils/formatters';
 
 interface TaskTrackingProps {
   onSectionChange?: (section: string) => void;
-  selectedProject?: string;
 }
 
-export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps) {
+export default function TaskTracking({}: TaskTrackingProps) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -44,17 +43,12 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
     loadTasks();
   }, []);
 
-  useEffect(() => {
-    loadTasks();
-  }, [selectedProject]);
-
   const loadTasks = async () => {
     setLoading(true);
     setError(null);
     
     try {
-      const project = selectedProject || undefined;
-      const data: TasksResponse = await apiService.getTasks(project);
+      const data: TasksResponse = await apiService.getTasks();
       setTasks(data.tasks);
       
       // Extract unique categories
@@ -113,8 +107,7 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
     setSaveMessage(null);
     
     try {
-      const project = selectedProject || undefined;
-      await apiService.updateTask(editFormData, project);
+      await apiService.updateTask(editFormData);
       
       // Update the local tasks state
       const updatedTasks = tasks.map(task =>
@@ -178,8 +171,7 @@ export default function TaskTracking({ selectedProject = '' }: TaskTrackingProps
     setSaveMessage(null);
     
     try {
-      const project = selectedProject || undefined;
-      await apiService.createTask(newTaskData, project);
+      await apiService.createTask(newTaskData);
       
       // Reload tasks to get the new one with the server-assigned ID
       await loadTasks();

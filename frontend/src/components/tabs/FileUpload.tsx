@@ -36,9 +36,9 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
 
   // Sample opportunity data
   const opportunities = [
-    { id: 'acme', name: 'ACME Corporation', description: 'Enterprise software implementation' },
-    { id: 'cdcbme', name: 'CDCBME Solutions', description: 'Digital transformation project' },
-    { id: 'neovia', name: 'NEOVIA Logistics', description: 'Supply chain optimization' }
+    { id: 'acme', name: 'Acme Manufacturing', description: 'Enterprise software implementation' },
+    { id: 'cdcbme', name: 'CDCBME', description: 'Digital transformation project' },
+    { id: 'neovia', name: 'Neovia', description: 'Supply chain optimization' }
   ];
 
   // Salesforce connection simulation functions
@@ -233,57 +233,99 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
         </p>
       </div>
 
-      {/* Salesforce Connection Status */}
-      {isConnectedToSalesforce ? (
-        <div className="flex items-center justify-center p-3 bg-green-25 rounded-md">
-          <div className="flex items-center justify-between w-full max-w-md">
-            <div className="flex items-center space-x-3">
-              <img 
-                src="/Salesforcelogo.svp" 
-                alt="Salesforce" 
-                className="h-6 w-6"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-              <div className="flex items-center space-x-2">
-                <div className="h-3 w-3 bg-green-400 rounded-full"></div>
-                <span className="text-green-600 text-base font-normal">Salesforce Connected</span>
-              </div>
-            </div>
-            <button
-              onClick={() => {
-                setShowConnectionModal(true);
-                setConnectionStep('opportunities');
-                setSelectedOpportunities(opportunities.map(opp => opp.id));
-              }}
-              className="btn btn-primary px-4 py-1 text-sm ml-4"
-            >
-              Import
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className="flex items-center justify-center p-3 bg-gray-50 rounded-md">
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center space-x-2">
-              <WifiOff className="h-5 w-5 text-gray-400" />
-              <span className="text-gray-600 text-base font-normal">Salesforce Not Connected</span>
-            </div>
-            <button
-              onClick={handleConnectToSalesforce}
-              className="btn btn-primary px-4 py-1 text-sm"
-            >
-              Connect to Salesforce
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Project Creation Options */}
-      <div className="flex justify-center">
-        {/* Manual Upload Option - Centered */}
-        <div className="card max-w-2xl w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {/* Salesforce Integration Option */}
+        <div className="card">
+          <div className="card-content">
+            <h3 className="font-semibold text-gray-900 mb-2">Import from Salesforce</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Connect to Salesforce and import existing opportunities as projects
+            </p>
+
+            {/* Salesforce Connection Status */}
+            <div className="mb-6">
+              {isConnectedToSalesforce ? (
+                <div className="flex items-center justify-between p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <div className="flex items-center space-x-3">
+                    <img 
+                      src="/Salesforcelogo.svp" 
+                      alt="Salesforce" 
+                      className="h-6 w-6"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                    <div className="flex items-center space-x-2">
+                      <div className="h-3 w-3 bg-green-400 rounded-full"></div>
+                      <span className="text-green-600 font-medium">Connected</span>
+                    </div>
+                  </div>
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                </div>
+              ) : (
+                <div className="flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                  <div className="flex items-center space-x-3">
+                    <img 
+                      src="/Salesforcelogo.svp" 
+                      alt="Salesforce" 
+                      className="h-6 w-6 opacity-50"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                    <div className="flex items-center space-x-2">
+                      <div className="h-3 w-3 bg-gray-400 rounded-full"></div>
+                      <span className="text-gray-600">Not Connected</span>
+                    </div>
+                  </div>
+                  <WifiOff className="h-5 w-5 text-gray-400" />
+                </div>
+              )}
+            </div>
+
+            {/* Action Area */}
+            <div className="text-center">
+              {isConnectedToSalesforce ? (
+                <div className="space-y-4">
+                  <div className="p-4 bg-green-50 rounded-lg">
+                    <Wifi className="h-12 w-12 text-green-600 mx-auto mb-3" />
+                    <p className="text-green-700 font-medium mb-2">Salesforce Connected</p>
+                    <p className="text-sm text-green-600">Ready to import opportunities</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setShowConnectionModal(true);
+                      setConnectionStep('opportunities');
+                      setSelectedOpportunities(opportunities.map(opp => opp.id));
+                    }}
+                    className="btn btn-primary w-full py-3"
+                  >
+                    Import Opportunities
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div className="p-4 bg-gray-50 rounded-lg">
+                    <WifiOff className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                    <p className="text-gray-700 font-medium mb-2">Connect to Salesforce</p>
+                    <p className="text-sm text-gray-500">Authenticate with your account to get started</p>
+                  </div>
+                  <button
+                    onClick={handleConnectToSalesforce}
+                    className="btn btn-primary w-full py-3"
+                  >
+                    Connect to Salesforce
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Manual Upload Option */}
+        <div className="card">
           <div className="card-content">
             <h3 className="font-semibold text-gray-900 mb-2">Create Project Manually</h3>
             <p className="text-sm text-gray-600 mb-4">
@@ -453,16 +495,17 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
         
       </div>
       
-      {/* Create Project Button - Positioned at bottom, much smaller */}
-      <div className="flex justify-center mt-8">
-        <button
-          disabled={!allFilesUploaded}
-          onClick={handleCreateProject}
-          className={`btn ${allFilesUploaded ? 'btn-primary' : 'btn-secondary'} px-4 py-1 text-sm font-normal disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none`}
-        >
-          Create Project
-        </button>
-      </div>
+      {/* Create Project Button - Only show for manual upload */}
+      {allFilesUploaded && (
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={handleCreateProject}
+            className="btn btn-primary px-6 py-2 text-base"
+          >
+            Create Project from Uploaded Files
+          </button>
+        </div>
+      )}
 
       {/* Salesforce Connection Modal */}
       {showConnectionModal && (
