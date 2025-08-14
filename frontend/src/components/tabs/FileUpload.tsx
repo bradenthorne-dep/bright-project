@@ -31,6 +31,11 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
   const [connectionStep, setConnectionStep] = useState('login'); // login, connecting, opportunities, success
   const [selectedOpportunities, setSelectedOpportunities] = useState<string[]>([]);
   const [importedCount, setImportedCount] = useState(0);
+  
+  // Project creation progress states
+  const [showProgress, setShowProgress] = useState(false);
+  const [progressStep, setProgressStep] = useState(0);
+  const [progressMessage, setProgressMessage] = useState('');
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -93,10 +98,45 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
   };
 
   const handleCreateProject = () => {
-    // Create project with Gerber name (from uploaded files)
-    onNewProjectCreated?.('manual', ['Gerber Childrenswear']);
-    // Navigate to home page
-    onSectionChange?.('home');
+    setShowProgress(true);
+    simulateProjectCreation();
+  };
+
+  const simulateProjectCreation = () => {
+    const steps = [
+      { message: 'Processing Files', duration: 3000 },
+      { message: 'Project Metadata Agent - Generating Project Information', duration: 3750 },
+      { message: 'Task Generation Agent - Generating Tasks', duration: 6000 }, // Longer duration
+      { message: 'Risk Assessment Agent - Analyzing Tasks', duration: 3750 },
+      { message: 'Complete', duration: 1500 }
+    ];
+
+    let currentStep = 0;
+    setProgressStep(0);
+    setProgressMessage(steps[0].message);
+
+    const runNextStep = () => {
+      if (currentStep < steps.length - 1) {
+        setTimeout(() => {
+          currentStep++;
+          setProgressStep(currentStep);
+          setProgressMessage(steps[currentStep].message);
+          
+          if (currentStep === steps.length - 1) {
+            // On completion, hide progress and create project
+            setTimeout(() => {
+              setShowProgress(false);
+              onNewProjectCreated?.('manual', ['Gerber Childrenswear']);
+              onSectionChange?.('home');
+            }, steps[currentStep].duration);
+          } else {
+            runNextStep();
+          }
+        }, steps[currentStep].duration);
+      }
+    };
+
+    runNextStep();
   };
 
   const closeModal = () => {
@@ -490,7 +530,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
       </div>
       
       {/* Create Project Button - Only show for manual upload */}
-      {allFilesUploaded && (
+      {allFilesUploaded && !showProgress && (
         <div className="flex justify-center mt-8">
           <button
             onClick={handleCreateProject}
@@ -498,6 +538,79 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
           >
             Create Project from Uploaded Files
           </button>
+        </div>
+      )}
+
+      {/* Project Creation Progress - Inline below button */}
+      {showProgress && (
+        <div className="mt-8 max-w-4xl mx-auto">
+          <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Creating Your Project</h3>
+              <p className="text-gray-600 text-sm">AI agents are processing your documents and generating project data...</p>
+            </div>
+            
+            {/* Horizontal Progress Steps */}
+            <div className="relative mb-6">
+              <div className="flex items-center justify-between">
+                {[
+                  'Processing Files',
+                  'Project Metadata Agent',
+                  'Task Generation Agent', 
+                  'Risk Assessment Agent',
+                  'Complete'
+                ].map((step, index) => (
+                  <div key={index} className="flex flex-col items-center z-10 bg-white">
+                    {/* Step Circle */}
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-3 ${
+                      index < progressStep ? 'bg-green-500' : 
+                      index === progressStep ? 'bg-blue-500' : 'bg-gray-300'
+                    }`}>
+                      {index < progressStep ? (
+                        <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      ) : index === progressStep ? (
+                        <div className="w-4 h-4 bg-white rounded-full animate-pulse"></div>
+                      ) : (
+                        <span className="text-white font-medium text-sm">{index + 1}</span>
+                      )}
+                    </div>
+                    
+                    {/* Step Label */}
+                    <div className={`text-center text-xs font-medium max-w-20 ${
+                      index === progressStep ? 'text-blue-600' : 
+                      index < progressStep ? 'text-green-600' : 'text-gray-500'
+                    }`}>
+                      {step}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Progress Line */}
+              <div className="absolute top-5 left-5 right-5 h-0.5 bg-gray-300 -z-10"></div>
+              <div 
+                className="absolute top-5 left-5 h-0.5 bg-green-500 transition-all duration-500 -z-10"
+                style={{ width: `${(progressStep / 4) * 100}%` }}
+              ></div>
+            </div>
+            
+            {/* Current Progress Message */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="flex items-center justify-center space-x-3">
+                {progressStep < 4 && (
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+                )}
+                <span className={`font-medium ${progressStep === 4 ? 'text-green-600' : 'text-blue-600'}`}>
+                  {progressMessage}
+                  {progressStep === 2 && (
+                    <span className="text-sm text-gray-600 ml-2">(This may take a moment...)</span>
+                  )}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
