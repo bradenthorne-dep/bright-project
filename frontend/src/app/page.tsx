@@ -70,6 +70,8 @@ export default function DiagnosticPage() {
       onSectionChange={handleNavigationChange}
       selectedProject={selectedProject}
       onProjectChange={handleProjectChange}
+      showGerber={showGerber}
+      isConnectedToSalesforce={isConnectedToSalesforce}
     >
       {renderActiveSection()}
     </Layout>

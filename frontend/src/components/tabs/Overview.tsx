@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { AlertCircle } from 'lucide-react';
-import { apiService, ProjectOverviewResponse } from '@/services/api';
+import { apiService, ProjectOverviewResponse, RiskAssessmentResponse } from '@/services/api';
 import ScoreGauge from '@/components/ui/ScoreGauge';
 import BreakdownTable from '@/components/ui/BreakdownTable';
 import { formatCurrency, formatDate } from '@/utils/formatters';
@@ -13,6 +13,7 @@ interface OverviewProps {
 
 export default function Overview({}: OverviewProps) {
   const [projectData, setProjectData] = useState<ProjectOverviewResponse | null>(null);
+  const [riskData, setRiskData] = useState<RiskAssessmentResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,8 +26,14 @@ export default function Overview({}: OverviewProps) {
     setError(null);
     
     try {
-      const data = await apiService.getProjectOverview();
-      setProjectData(data);
+      // Load both project overview and risk assessment data
+      const [projectResponse, riskResponse] = await Promise.all([
+        apiService.getProjectOverview(),
+        apiService.getRiskAssessment()
+      ]);
+      
+      setProjectData(projectResponse);
+      setRiskData(riskResponse);
     } catch (err: any) {
       setError(err.response?.data?.detail || err.message || 'Failed to load project data');
     } finally {
@@ -94,46 +101,60 @@ export default function Overview({}: OverviewProps) {
       </div>
 
       {/* Project Information Section */}
-      <div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left side - Project information cards */}
+        <div className="lg:col-span-2">
+          {/* Top Row: Client and Project Lead */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="stat-card">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Client</h3>
+                <p className="text-lg font-bold text-gray-900">{project_info.client}</p>
+              </div>
+            </div>
 
-        {/* Top Row: Client and Project Lead */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div className="stat-card">
-            <div>
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Client</h3>
-              <p className="text-lg font-bold text-gray-900">{project_info.client}</p>
+            <div className="stat-card">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Project Lead</h3>
+                <p className="text-lg font-bold text-gray-900">{project_info.project_manager}</p>
+              </div>
             </div>
           </div>
 
-          <div className="stat-card">
-            <div>
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Project Lead</h3>
-              <p className="text-lg font-bold text-gray-900">{project_info.project_manager}</p>
+          {/* Bottom Row: Start Date, Go-Live Date, Current Phase */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="stat-card">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Start Date</h3>
+                <p className="text-lg font-bold text-gray-900">{formatDate(project_info.start_date)}</p>
+              </div>
+            </div>
+
+            <div className="stat-card">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Go Live Date</h3>
+                <p className="text-lg font-bold text-gray-900">{formatDate(project_info.projected_go_live)}</p>
+              </div>
+            </div>
+
+            <div className="stat-card">
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Current Phase</h3>
+                <p className="text-lg font-bold text-gray-900">{project_info.current_phase}</p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Row: Start Date, Go-Live Date, Current Phase */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="stat-card">
-            <div>
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Start Date</h3>
-              <p className="text-lg font-bold text-gray-900">{formatDate(project_info.start_date)}</p>
-            </div>
-          </div>
-
-          <div className="stat-card">
-            <div>
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Projected Go-Live Date</h3>
-              <p className="text-lg font-bold text-gray-900">{formatDate(project_info.projected_go_live)}</p>
-            </div>
-          </div>
-
-          <div className="stat-card">
-            <div>
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Current Project Phase</h3>
-              <p className="text-lg font-bold text-gray-900">{project_info.current_phase}</p>
-            </div>
+        {/* Right side - Progress Score Gauge */}
+        <div className="lg:col-span-1">
+          <div className="stat-card h-full flex flex-col items-center justify-center">
+            <ScoreGauge
+              score={Math.round(task_metrics.completion_percentage)}
+              rating="Completion"
+              maxScore={100}
+              showPercentage={true}
+            />
           </div>
         </div>
       </div>
@@ -172,52 +193,35 @@ export default function Overview({}: OverviewProps) {
         </div>
       </div>
 
-      {/* Progress Section */}
+      {/* Task Metrics Section */}
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Project Progress</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Task Metrics - 2x2 Grid */}
-          <div className="lg:col-span-2">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="stat-card">
-                <div>
-                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks Completed</h3>
-                  <p className="text-2xl font-bold text-green-600">{task_metrics.tasks_completed}</p>
-                </div>
-              </div>
-
-              <div className="stat-card">
-                <div>
-                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks In Progress</h3>
-                  <p className="text-2xl font-bold text-blue-600">{task_metrics.tasks_in_progress}</p>
-                </div>
-              </div>
-
-              <div className="stat-card">
-                <div>
-                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks Open</h3>
-                  <p className="text-2xl font-bold text-gray-600">{task_metrics.tasks_open}</p>
-                </div>
-              </div>
-
-              <div className="stat-card">
-                <div>
-                  <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Total Tasks</h3>
-                  <p className="text-2xl font-bold text-gray-900">{task_metrics.total_tasks}</p>
-                </div>
-              </div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Task Metrics</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks Completed</h3>
+              <p className="text-2xl font-bold text-green-600">{task_metrics.tasks_completed}</p>
             </div>
           </div>
 
-          {/* Completion Percentage Gauge */}
-          <div className="lg:col-span-1">
-            <div className="stat-card h-full flex flex-col items-center justify-center">
-              <ScoreGauge
-                score={Math.round(task_metrics.completion_percentage)}
-                rating="Completion"
-                maxScore={100}
-                showPercentage={true}
-              />
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks In Progress</h3>
+              <p className="text-2xl font-bold text-blue-600">{task_metrics.tasks_in_progress}</p>
+            </div>
+          </div>
+
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Tasks at Risk</h3>
+              <p className="text-2xl font-bold text-red-600">{riskData?.summary.high_risk_count || 0}</p>
+            </div>
+          </div>
+
+          <div className="stat-card">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Total Tasks</h3>
+              <p className="text-2xl font-bold text-gray-900">{task_metrics.total_tasks}</p>
             </div>
           </div>
         </div>

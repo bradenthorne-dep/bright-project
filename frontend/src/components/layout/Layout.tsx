@@ -14,6 +14,8 @@ interface LayoutProps {
   onSectionChange?: (section: string) => void;
   selectedProject?: string;
   onProjectChange?: (project: string) => void;
+  showGerber?: boolean;
+  isConnectedToSalesforce?: boolean;
 }
 
 const navigationItems = [
@@ -24,10 +26,10 @@ const navigationItems = [
   { id: 'risk-management', label: 'Risk Management' },
 ];
 
-export default function Layout({ children, activeSection = 'home', onSectionChange, selectedProject = '', onProjectChange }: LayoutProps) {
+export default function Layout({ children, activeSection = 'home', onSectionChange, selectedProject = 'Gerber Childrenswear', onProjectChange, showGerber = false, isConnectedToSalesforce = false }: LayoutProps) {
   const [currentSection, setCurrentSection] = useState(activeSection);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<any[]>([]);
   const [projectsLoading, setProjectsLoading] = useState(false);
 
   // Sync internal state with prop changes
@@ -35,16 +37,88 @@ export default function Layout({ children, activeSection = 'home', onSectionChan
     setCurrentSection(activeSection);
   }, [activeSection]);
 
-  // Load projects on component mount
+  // Load projects when dependencies change
   useEffect(() => {
     loadProjects();
-  }, []);
+  }, [showGerber, isConnectedToSalesforce]);
 
   const loadProjects = async () => {
     setProjectsLoading(true);
     try {
-      const data: ProjectsResponse = await apiService.getProjects();
-      setProjects(data.projects);
+      // Use the same sample data as Home component
+      const sampleData = [
+        {
+          client: "TechCorp Solutions",
+          projectManager: "Sarah Johnson",
+          startDate: "2024-01-15",
+          projectedGoLiveDate: "2024-12-01",
+          status: "In Progress",
+          currentPhase: "Development",
+          completionPercentage: 50,
+        },
+        {
+          client: "EcoAtm",
+          projectManager: "Michael Chen",
+          startDate: "2024-02-20",
+          projectedGoLiveDate: "2024-11-15",
+          status: "In Progress",
+          currentPhase: "API Integration",
+          completionPercentage: 60,
+        },
+        {
+          client: "Neovia",
+          projectManager: "Alex Rodriguez",
+          startDate: "2024-04-05",
+          projectedGoLiveDate: "2025-01-10",
+          status: "In Progress",
+          currentPhase: "Design",
+          completionPercentage: 25,
+        },
+        {
+          client: "CDCBME",
+          projectManager: "Emily Watson",
+          startDate: "2024-03-18",
+          projectedGoLiveDate: "2024-09-30",
+          status: "On Hold",
+          currentPhase: "Requirements Gathering",
+          completionPercentage: 15,
+        },
+        {
+          client: "Acme Manufacturing",
+          projectManager: "David Wilson",
+          startDate: "2024-03-11",
+          projectedGoLiveDate: "2024-10-15",
+          status: "On Hold",
+          currentPhase: "Design",
+          completionPercentage: 30,
+        }
+      ];
+
+      let filteredProjects = sampleData
+        .filter(project => showGerber || project.client !== "Gerber")
+        .filter(project => {
+          // Hide Salesforce-imported projects if not connected
+          const salesforceProjects = ['CDCBME', 'Acme Manufacturing', 'Neovia'];
+          const isSalesforceProject = salesforceProjects.some(sfProject => 
+            project.client.toLowerCase().includes(sfProject.toLowerCase())
+          );
+          return !isSalesforceProject || isConnectedToSalesforce;
+        });
+
+      // Add Gerber project if showGerber is true
+      if (showGerber) {
+        filteredProjects.unshift({
+          client: "Gerber Childrenswear",
+          projectManager: "Project Manager",
+          startDate: "2024-01-01",
+          projectedGoLiveDate: "2024-12-31",
+          status: "In Progress",
+          currentPhase: "Implementation",
+          completionPercentage: 65,
+        });
+      }
+
+      setProjects(filteredProjects);
     } catch (err: any) {
       console.error('Failed to load projects:', err);
     } finally {
@@ -206,10 +280,10 @@ export default function Layout({ children, activeSection = 'home', onSectionChan
                   className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 appearance-none bg-white pr-10 min-w-[200px]"
                   disabled={projectsLoading}
                 >
-                  <option value="">All Projects (Default)</option>
-                  {projects.map((project) => (
-                    <option key={project.id} value={project.id}>
-                      {project.name}
+                  <option value="">All Projects</option>
+                  {projects.map((project, index) => (
+                    <option key={index} value={project.client}>
+                      {project.client}
                     </option>
                   ))}
                 </select>
@@ -220,7 +294,7 @@ export default function Layout({ children, activeSection = 'home', onSectionChan
               )}
               {selectedProject && (
                 <span className="text-sm text-gray-600">
-                  Viewing: <span className="font-medium">{projects.find(p => p.id === selectedProject)?.name}</span>
+                  Viewing: <span className="font-medium">{projects.find(p => p.client === selectedProject)?.client}</span>
                 </span>
               )}
             </div>
