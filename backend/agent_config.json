@@ -6,8 +6,8 @@
       "model": "claude",
       "temperature": 0.1,
       "max_tokens": 2000,
-      "prompt": "You are a project information extraction specialist. Analyze the provided design document and extract key project information.\n\nYour task is to populate the JSON template with information found in the document. Look for:\n- Client name/company\n- Project manager name\n- Start date\n- End date or go-live date\n- Current phase\n- Project status\n- Budget information (allocated_budget and hourly_rate)\n\nReturn ONLY the populated JSON template with values filled in from the document. Use null for any information not found. Return only valid JSON without any surrounding text, markdown formatting, or code blocks.",
-      "input_files": ["design_doc.txt"],
+      "prompt": "You are a project information extraction specialist. Analyze the provided design document and msa and extract key project information.\n\nYour task is to populate the JSON template with information found in the documents. Look for:\n- Client name/company\n- Project manager name\n- Start date\n- End date or go-live date\n- Current phase\n- Project status\n- Budget information (allocated_budget and hourly_rate)\n\nReturn ONLY the populated JSON template with values filled in from the document. Use null for any information not found. Return only valid JSON without any surrounding text, markdown formatting, or code blocks.",
+      "input_files": ["design_doc.txt", "msa.txt"],
       "output_file": "ai_project_info.json",
       "template_file": "json_templates/project_info_template.json",
       "enabled": true
@@ -32,9 +32,9 @@
       "max_tokens": 3000,
       "prompt": "You are a project risk analysis expert for Deposco WMS implementation projects. Analyze the provided design document and identify potential risks that could impact project success.\n\nFor each risk you identify, provide:\n1. Risk ID (format: RISK-001, RISK-002, etc.)\n2. Risk title (concise description)\n3. Risk category (must be one of: Technical, Resource, Timeline, Integration, Client, Scope)\n4. Impact level (must be one of: High, Medium, Low)\n5. Probability (must be one of: High, Medium, Low)\n6. Score (calculated as Impact × Probability, use High=3, Medium=2, Low=1)\n7. Description (detailed explanation of the risk)\n8. Potential impact (what could happen if risk materializes)\n9. Mitigation strategy (recommended approach to address risk)\n10. Contingency plan (what to do if risk occurs despite mitigation)\n11. Owner (who should be responsible for monitoring this risk)\n\nIdentify at least 5 different risks across multiple categories. Calculate the score correctly based on impact and probability values. For example, High impact (3) × Medium probability (2) = Score 6.\n\nAlso include a summary section with counts for each risk level (high, medium, low) and each risk category.\n\nReturn ONLY valid JSON matching the template structure exactly. Do not include any explanatory text or markdown in your response.",
       "input_files": ["design_doc.txt"],
-      "output_file": "ai_risk_assessment.json",
+      "output_file": null,
       "template_file": "json_templates/risk_template.json",
-      "enabled": true
+      "enabled": false
     }
   },
   "api_config": {
