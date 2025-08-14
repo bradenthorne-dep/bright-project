@@ -239,7 +239,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
         {/* Salesforce Integration Option */}
         <div className="card">
           <div className="card-content">
-            <h3 className="font-semibold text-gray-900 mb-2">Import from Salesforce</h3>
+            <h3 className="font-semibold text-gray-900 mb-2">Option 1: Import from Salesforce</h3>
             <p className="text-sm text-gray-600 mb-4">
               Connect to Salesforce and import existing opportunities as projects
             </p>
@@ -327,7 +327,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
         {/* Manual Upload Option */}
         <div className="card">
           <div className="card-content">
-            <h3 className="font-semibold text-gray-900 mb-2">Create Project Manually</h3>
+            <h3 className="font-semibold text-gray-900 mb-2">Option 2: Create Project from Local Files</h3>
             <p className="text-sm text-gray-600 mb-4">
               Upload Design and MSA documents manually to create a new project
             </p>
@@ -340,12 +340,6 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
               </div>
             )}
 
-            {allFilesUploaded && (
-              <div className="flex items-center space-x-2 p-4 bg-green-50 border border-green-200 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-green-600" />
-                <p className="text-green-700">All documents uploaded successfully! You can now create your project.</p>
-              </div>
-            )}
           
             {/* File Requirements */}
             <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
