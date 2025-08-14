@@ -19,6 +19,7 @@
       "Bash(cp:*)",
       "Bash(git push:*)"
     ],
-    "deny": []
+    "deny": [],
+    "defaultMode": "acceptEdits"
   }
 }

@@ -250,9 +250,6 @@ config.json
 *.swo
 *~
 
-# Claude Code
-.claude
-
 # Temporary files
 *.tmp
 *.temp
