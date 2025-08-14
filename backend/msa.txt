@@ -1,6 +1,6 @@
 DOCX Text Extraction Results
-Original File: Gerber MSA.docx
-Extracted: 2025-08-13 17:20:25
+Original File: Gerber_MSA (30.August.2024 Deposco Revisions).FINAL.V1 (1).docx
+Extracted: 2025-08-13 22:44:30
 Total Paragraphs: 360
 Total Tables: 18
 ==================================================

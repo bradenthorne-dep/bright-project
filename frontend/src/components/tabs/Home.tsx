@@ -8,6 +8,8 @@ import { getProjectLogo, getProjectLogoAlt } from '@/utils/projectLogos';
 interface HomeProps {
   onSectionChange?: (section: string) => void;
   showGerber?: boolean;
+  isConnectedToSalesforce?: boolean;
+  newlyCreatedProjects?: string[];
 }
 
 interface ProjectSummary {
@@ -20,7 +22,7 @@ interface ProjectSummary {
   completionPercentage: number;
 }
 
-export default function Home({ onSectionChange, showGerber = false }: HomeProps) {
+export default function Home({ onSectionChange, showGerber = false, isConnectedToSalesforce = false, newlyCreatedProjects = [] }: HomeProps) {
   // Fallback function for formatDate if the formatter utility fails
   const safeDateFormat = (dateString: string) => {
     try {
@@ -143,6 +145,13 @@ export default function Home({ onSectionChange, showGerber = false }: HomeProps)
     }
   };
 
+  const isNewlyCreated = (clientName: string) => {
+    return newlyCreatedProjects.some(newProject => 
+      clientName.toLowerCase().includes(newProject.toLowerCase()) ||
+      newProject.toLowerCase().includes(clientName.toLowerCase())
+    );
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -176,12 +185,28 @@ export default function Home({ onSectionChange, showGerber = false }: HomeProps)
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects
           .filter(project => showGerber || project.client !== "Gerber")
+          .filter(project => {
+            // Hide Salesforce-imported projects if not connected
+            const salesforceProjects = ['CDCBME', 'Acme Manufacturing', 'Neovia'];
+            const isSalesforceProject = salesforceProjects.some(sfProject => 
+              project.client.toLowerCase().includes(sfProject.toLowerCase())
+            );
+            return !isSalesforceProject || isConnectedToSalesforce;
+          })
           .map((project, index) => (
           <div
             key={index}
             onClick={() => handleProjectClick(project.client)}
-            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer overflow-hidden"
+            className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer overflow-hidden relative ${
+              isNewlyCreated(project.client) ? 'ring-2 ring-blue-400 ring-opacity-50 shadow-lg animate-pulse' : ''
+            }`}
           >
+            {/* NEW indicator badge */}
+            {isNewlyCreated(project.client) && (
+              <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                NEW
+              </div>
+            )}
             <div className={`h-20 bg-white flex items-center justify-center ${
               project.client.toLowerCase().includes('gerber') ? 'p-2' : 'p-4'
             }`}>

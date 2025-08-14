@@ -13,6 +13,8 @@ export default function DiagnosticPage() {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedProject, setSelectedProject] = useState('');
   const [showGerber, setShowGerber] = useState(false);
+  const [isConnectedToSalesforce, setIsConnectedToSalesforce] = useState(false);
+  const [newlyCreatedProjects, setNewlyCreatedProjects] = useState<string[]>([]);
 
   const setDataAvailable = () => {
     // Data availability callback - currently unused
@@ -31,12 +33,26 @@ export default function DiagnosticPage() {
     setSelectedProject(project);
   };
 
+  const handleNewProjectCreated = (projectType: 'manual' | 'salesforce', projectNames: string[] = []) => {
+    if (projectType === 'manual') {
+      setShowGerber(true);
+      setNewlyCreatedProjects(['Gerber Childrenswear']);
+    } else if (projectType === 'salesforce') {
+      setNewlyCreatedProjects(projectNames);
+    }
+    
+    // Clear the highlight after 5 seconds
+    setTimeout(() => {
+      setNewlyCreatedProjects([]);
+    }, 5000);
+  };
+
   const renderActiveSection = () => {
     switch (activeSection) {
       case 'home':
-        return <Home onSectionChange={handleNavigationChange} showGerber={showGerber} />;
+        return <Home onSectionChange={handleNavigationChange} showGerber={showGerber} isConnectedToSalesforce={isConnectedToSalesforce} newlyCreatedProjects={newlyCreatedProjects} />;
       case 'data-upload':
-        return <FileUpload onDataUploaded={handleDataUpload} onDataAvailable={setDataAvailable} />;
+        return <FileUpload onDataUploaded={handleDataUpload} onDataAvailable={setDataAvailable} isConnectedToSalesforce={isConnectedToSalesforce} onSalesforceConnect={setIsConnectedToSalesforce} onSectionChange={handleNavigationChange} onNewProjectCreated={handleNewProjectCreated} />;
       case 'overview':
         return <Overview onSectionChange={handleNavigationChange} />;
       case 'task-tracking':
@@ -44,7 +60,7 @@ export default function DiagnosticPage() {
       case 'risk-management':
         return <RiskManagement onSectionChange={handleNavigationChange} />;
       default:
-        return <Home onSectionChange={handleNavigationChange} />;
+        return <Home onSectionChange={handleNavigationChange} isConnectedToSalesforce={isConnectedToSalesforce} newlyCreatedProjects={newlyCreatedProjects} />;
     }
   };
 
