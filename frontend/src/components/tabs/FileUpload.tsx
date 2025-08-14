@@ -266,16 +266,19 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Add a New Project</h1>
-        <p className="text-gray-600">
-          Create a new project manually or import from Salesforce
-        </p>
-      </div>
+      {!showProgress && (
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Add a New Project</h1>
+          <p className="text-gray-600">
+            Create a new project manually or import from Salesforce
+          </p>
+        </div>
+      )}
 
 
       {/* Project Creation Options */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      {!showProgress && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {/* Salesforce Integration Option */}
         <div className="card">
           <div className="card-content">
@@ -528,6 +531,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
         </div>
         
       </div>
+      )}
       
       {/* Create Project Button - Only show for manual upload */}
       {allFilesUploaded && !showProgress && (
@@ -543,7 +547,7 @@ export default function FileUploadTab({ onDataUploaded, onDataAvailable, isConne
 
       {/* Project Creation Progress Modal */}
       {showProgress && (
-        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="fixed inset-0 backdrop-blur-md flex items-center z-50 p-4" style={{ justifyContent: 'center', paddingLeft: '12rem' }}>
           <div className="bg-white rounded-lg p-8 max-w-4xl w-full mx-4 shadow-2xl relative">
             {/* Bright Project Logo - Top Right */}
             <div className="absolute top-4 right-4">
